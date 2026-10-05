@@ -1,0 +1,23 @@
+* text=auto
+*.cs text eol=lf
+*.shader text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.meta text eol=lf
+*.asset text eol=lf
+*.prefab text eol=lf
+*.unity text eol=lf
+# Keep canonical schedules and CAD bytes exactly as delivered.
+*.csv -text
+*.dxf -text
+*.blend binary
+*.fbx binary
+*.bytes binary
+*.glb binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.wav binary
+*.pdf binary
+*.ttf binary
