@@ -1,0 +1,265 @@
+{
+  "project": "THE COMMONS - Compact Edition",
+  "purpose": "VRChat social / bar / cafe / academic presentation / DJ venue",
+  "status": "Concept Design - Work handoff v0.1",
+  "units": "meters",
+  "footprint": {
+    "width_x": 28.0,
+    "depth_y": 18.0,
+    "gross_1f_area_m2": 504.0
+  },
+  "levels": {
+    "1F": {
+      "z": 0.0,
+      "floor_to_floor": 4.8
+    },
+    "2F": {
+      "z": 4.8,
+      "floor_to_floor": 4.8
+    },
+    "roof": {
+      "z": 9.6,
+      "feature_max_z": 10.8
+    }
+  },
+  "coordinate_system": "Origin (0,0) = southwest outer corner. +X east, +Y north, +Z up.",
+  "zones_1f": [
+    {
+      "id": "1F-ENT",
+      "name": "Entrance / Orientation",
+      "bbox": [
+        11.5,
+        0.25,
+        16.5,
+        2.6
+      ],
+      "capacity": 8,
+      "notes": "Spawn buffer, world rules, event status, coat/prop shelf."
+    },
+    {
+      "id": "1F-BAR",
+      "name": "Main Bar",
+      "bbox": [
+        0.5,
+        4.4,
+        7.5,
+        15.8
+      ],
+      "capacity": 12,
+      "notes": "Primary conversation anchor. Counter approx. 11.5 m total usable edge."
+    },
+    {
+      "id": "1F-CAFE",
+      "name": "Cafe / Low Social",
+      "bbox": [
+        0.7,
+        0.8,
+        8.2,
+        4.2
+      ],
+      "capacity": 12,
+      "notes": "2-4 person tables, lower voice intensity, visible from entrance."
+    },
+    {
+      "id": "1F-LOUNGE",
+      "name": "Main Social Lounge",
+      "bbox": [
+        8.0,
+        2.6,
+        20.2,
+        11.6
+      ],
+      "capacity": 24,
+      "notes": "Modular lounge seating; converts to academic audience or standing DJ floor."
+    },
+    {
+      "id": "1F-STG",
+      "name": "Central Stage",
+      "center": [
+        14.0,
+        13.2
+      ],
+      "diameter": 4.8,
+      "capacity": 4,
+      "notes": "Academic talks, panel, live performance. 250 mm platform."
+    },
+    {
+      "id": "1F-SCR",
+      "name": "Main Media Wall",
+      "bbox": [
+        9.4,
+        16.6,
+        18.6,
+        17.55
+      ],
+      "capacity": 0,
+      "notes": "16:9 presentation surface, effective screen 7.1 x 4.0 m in 3D wall."
+    },
+    {
+      "id": "1F-POST",
+      "name": "Poster / Demo Gallery",
+      "bbox": [
+        23.0,
+        7.2,
+        27.5,
+        15.6
+      ],
+      "capacity": 12,
+      "notes": "Six poster bays + four demo plinths. Stand-off circulation 1.5 m."
+    },
+    {
+      "id": "1F-QN",
+      "name": "Quiet Nook",
+      "bbox": [
+        21.7,
+        1.0,
+        27.4,
+        6.4
+      ],
+      "capacity": 6,
+      "notes": "Semi-open acoustic refuge; full Quiet Room is on 2F."
+    },
+    {
+      "id": "1F-STAIR-E",
+      "name": "Main Social Stair",
+      "bbox": [
+        19.2,
+        7.0,
+        22.2,
+        14.4
+      ],
+      "capacity": 0,
+      "notes": "1.5 m clear visual stair; use simplified/ramp collider for VR locomotion."
+    },
+    {
+      "id": "1F-STAIR-W",
+      "name": "Cafe Stair",
+      "bbox": [
+        7.0,
+        11.8,
+        9.0,
+        16.6
+      ],
+      "capacity": 0,
+      "notes": "Secondary vertical loop to mezzanine."
+    },
+    {
+      "id": "1F-BOH",
+      "name": "Back of House / AV",
+      "bbox": [
+        19.2,
+        15.0,
+        27.4,
+        17.55
+      ],
+      "capacity": 4,
+      "notes": "AV rack, prop storage, staff-only dressing, hidden maintenance."
+    }
+  ],
+  "zones_2f": [
+    {
+      "id": "2F-CAFE",
+      "name": "Cafe Mezzanine",
+      "bbox": [
+        0.5,
+        4.2,
+        8.8,
+        16.8
+      ],
+      "capacity": 18,
+      "notes": "Overlook seating and working tables."
+    },
+    {
+      "id": "2F-GAL",
+      "name": "North Gallery Bridge",
+      "bbox": [
+        8.8,
+        15.3,
+        19.5,
+        17.55
+      ],
+      "capacity": 10,
+      "notes": "Standing overlook and circulation."
+    },
+    {
+      "id": "2F-DJ",
+      "name": "Suspended DJ Booth",
+      "bbox": [
+        11.0,
+        12.6,
+        17.0,
+        15.8
+      ],
+      "capacity": 4,
+      "notes": "Faces main lounge; academic mode dims/folds visual effects."
+    },
+    {
+      "id": "2F-TERR",
+      "name": "City Terrace / Overlook",
+      "bbox": [
+        20.0,
+        9.0,
+        27.5,
+        16.8
+      ],
+      "capacity": 16,
+      "notes": "Window-side skyline lounge; calm social node."
+    },
+    {
+      "id": "2F-QUIET",
+      "name": "Quiet Room",
+      "bbox": [
+        20.0,
+        1.0,
+        27.5,
+        7.8
+      ],
+      "capacity": 8,
+      "notes": "Closed 4-8 person discussion room, low BGM, warm lighting."
+    },
+    {
+      "id": "2F-BRIDGE",
+      "name": "South Bridge / Balcony",
+      "bbox": [
+        8.8,
+        2.6,
+        20.0,
+        5.0
+      ],
+      "capacity": 10,
+      "notes": "Connects mezzanine sides, gives stage overview."
+    }
+  ],
+  "circulation": {
+    "primary_clear_width": 1.8,
+    "secondary_clear_width": 1.2,
+    "stair_visual_width": 1.5,
+    "virtual_accessibility": "Provide optional elevator/teleport and/or invisible gentle-ramp collider. Never force precision stair climbing."
+  },
+  "presentation": {
+    "stage_diameter": 4.8,
+    "stage_height": 0.25,
+    "screen_visible_size": [
+      7.1,
+      4.0
+    ],
+    "audience_seated_target": 24,
+    "audience_event_target": 40,
+    "speaker_positions": 3,
+    "modes": [
+      "Talk",
+      "Panel",
+      "Poster Session",
+      "3D Demo",
+      "DJ / Live",
+      "Ambient Lounge"
+    ]
+  },
+  "capacity": {
+    "comfortable": 32,
+    "event": 48,
+    "design_max": 64
+  },
+  "style": "Dark neo-industrial + warm hospitality + flat-light stylization + restrained neon",
+  "design_rule": "Small enough for social proximity; vertically layered so different participation intensities coexist without fragmenting the room."
+}

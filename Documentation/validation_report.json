@@ -1,0 +1,201 @@
+{
+  "checks": [
+    {
+      "name": "Footprint",
+      "pass": true,
+      "detail": [
+        28.0,
+        18.0,
+        0.20000000298023224
+      ]
+    },
+    {
+      "name": "WestMezzanine datum",
+      "pass": true,
+      "detail": [
+        7.0,
+        16.799999237060547,
+        4.800000190734863
+      ]
+    },
+    {
+      "name": "SouthBridge datum",
+      "pass": true,
+      "detail": [
+        20.0,
+        5.0,
+        4.800000190734863
+      ]
+    },
+    {
+      "name": "NorthBridge datum",
+      "pass": true,
+      "detail": [
+        19.5,
+        17.549999237060547,
+        4.800000190734863
+      ]
+    },
+    {
+      "name": "QuietFloor datum",
+      "pass": true,
+      "detail": [
+        27.5,
+        7.0,
+        4.800000190734863
+      ]
+    },
+    {
+      "name": "DJFloor datum",
+      "pass": true,
+      "detail": [
+        17.0,
+        15.300000190734863,
+        4.800000190734863
+      ]
+    },
+    {
+      "name": "Stage dimensions",
+      "pass": true,
+      "detail": [
+        4.799999237060547,
+        4.800000190734863,
+        0.25
+      ]
+    },
+    {
+      "name": "Main screen dimensions",
+      "pass": true,
+      "detail": [
+        7.09999942779541,
+        0.02500152587890625,
+        4.000000089406967
+      ]
+    },
+    {
+      "name": "Texture images packed",
+      "pass": true,
+      "detail": 7
+    },
+    {
+      "name": "TheCommons_PC binary",
+      "pass": true,
+      "detail": {
+        "meshes": 127,
+        "triangles": 140384,
+        "vertices": 250290,
+        "invalid_meshes": 0
+      }
+    },
+    {
+      "name": "TheCommons_PC handedness",
+      "pass": true,
+      "detail": {
+        "inverted_triangles": 0
+      }
+    },
+    {
+      "name": "TheCommons_PC end of file",
+      "pass": true,
+      "detail": "9702010"
+    },
+    {
+      "name": "TheCommons_Quest binary",
+      "pass": true,
+      "detail": {
+        "meshes": 118,
+        "triangles": 106025,
+        "vertices": 196484,
+        "invalid_meshes": 0
+      }
+    },
+    {
+      "name": "TheCommons_Quest handedness",
+      "pass": true,
+      "detail": {
+        "inverted_triangles": 0
+      }
+    },
+    {
+      "name": "TheCommons_Quest end of file",
+      "pass": true,
+      "detail": "7567304"
+    },
+    {
+      "name": "2F route: Orbit Cafe",
+      "pass": true,
+      "detail": [
+        3,
+        6.8
+      ]
+    },
+    {
+      "name": "2F route: DJ Booth",
+      "pass": true,
+      "detail": [
+        14,
+        14.5
+      ]
+    },
+    {
+      "name": "2F route: Archive",
+      "pass": true,
+      "detail": [
+        24,
+        4.2
+      ]
+    },
+    {
+      "name": "2F route: Horizon",
+      "pass": true,
+      "detail": [
+        25,
+        12
+      ]
+    },
+    {
+      "name": "2F route: West Stair Landing",
+      "pass": true,
+      "detail": [
+        8,
+        16.8
+      ]
+    },
+    {
+      "name": "Academic chair anchors",
+      "pass": true,
+      "detail": 24
+    },
+    {
+      "name": "PC total mesh target",
+      "pass": true,
+      "detail": "Editable objects: 3458"
+    }
+  ],
+  "runtime_tests": "NOT RUN: Unity Editor and VRChat client are not available in this environment.",
+  "sightlines": [
+    {
+      "view": "Entry",
+      "target": "Main screen",
+      "first_hit": "AV_MainScreen",
+      "distance_m": 15.58808946022634
+    },
+    {
+      "view": "Stage approach",
+      "target": "Main screen",
+      "first_hit": "AV_MainScreen",
+      "distance_m": 7.212222996256654
+    },
+    {
+      "view": "Upper overlook",
+      "target": "Upper repeater",
+      "first_hit": "AV_OrbitRing",
+      "distance_m": 10.16118086913961
+    }
+  ],
+  "notes": [
+    "West stair is 48.14 degrees in the retained CAD envelope; use its adjacent portal if movement is blocked by the VRChat slope limit.",
+    "Room and player audio levels, shader compilation, lightmap bake, network late join, Quest performance and VR playtest remain unverified.",
+    "Texture images remain the original generated images. Seam continuity is provided by Mirror wrap in the supplied materials, not by exact raw Repeat edge matching."
+  ]
+}

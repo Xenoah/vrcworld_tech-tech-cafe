@@ -1,0 +1,16 @@
+ID,Floor,Name,X1_m,Y1_m,X2_m,Y2_m,Width_m,Depth_m,Notes
+1F-ENT,1F,Entrance / Orientation,11.5,0.25,16.5,2.6,5.0,2.35,Spawn buffer
+1F-BAR,1F,Main Bar,0.5,4.4,7.5,15.8,7.0,11.4,Conversation anchor
+1F-CAFE,1F,Cafe / Low Social,0.7,0.8,8.2,4.2,7.5,3.4,Low pressure entry
+1F-LOUNGE,1F,Main Social Lounge,8.0,2.6,20.2,11.6,12.2,9.0,Convertible seating / floor
+1F-STG,1F,Central Stage,11.6,10.8,16.4,15.6,4.8,4.8,Circular stage Ø4.8m centered 14.0/13.2
+1F-SCR,1F,Main Media Wall,9.4,16.6,18.6,17.55,9.2,0.95,Effective display approx 7.1x4.0m in elevation
+1F-POST,1F,Poster / Demo Gallery,23.0,7.2,27.5,15.6,4.5,8.4,6 poster bays minimum
+1F-QN,1F,Quiet Nook,21.7,1.0,27.4,6.4,5.7,5.4,Semi-open
+1F-BOH,1F,Back of House / AV,19.2,15.0,27.4,17.55,8.2,2.55,Hidden support
+2F-CAFE,2F,Cafe Mezzanine,0.5,4.2,8.8,16.8,8.3,12.6,Overlook
+2F-DJ,2F,Suspended DJ Booth,11.0,12.6,17.0,15.8,6.0,3.2,Faces atrium
+2F-TERR,2F,City Terrace / Overlook,20.0,9.0,27.5,16.8,7.5,7.8,Window-side lounge
+2F-QUIET,2F,Quiet Room,20.0,1.0,27.5,7.8,7.5,6.8,4-8 people
+2F-GAL,2F,North Gallery Bridge,8.8,15.3,19.5,17.55,10.7,2.25,Standing overlook
+2F-BRIDGE,2F,South Bridge / Balcony,8.8,2.6,20.0,5.0,11.2,2.4,Connects both sides

@@ -1,0 +1,9 @@
+﻿ID,Material,Use,ShaderClass,PCSpec,QuestFallback
+MAT-01,Structural dark metal,Walls/frames,Flat-light hybrid,Charcoal; roughness 0.68; baked AO; 3-step diffuse,Quest fallback: vertex-lit/unlit baked
+MAT-02,Warm timber,Bar/cafe accents,Flat-light hybrid,Warm medium wood; low specular; grain via normal + albedo,Atlas with furniture
+MAT-03,Polished dark floor,Main circulation,Flat-light PBR-lite,Roughness 0.35 PC; cubemap-only reflection,"Quest roughness 0.55, no realtime reflection"
+MAT-04,Smoked glass,Railings/partitions,Transparent-lite,Tinted alpha; no screen-space refraction,Quest: dither/opaque fallback
+MAT-05,Neon emissive,Signs/edge light,Unlit emissive,Blue/cyan + warm amber; bloom receiver,Separate emissive atlas
+MAT-06,Hologram,Central globe/UI,Additive/emissive,Fresnel + scanline + slow UV rotation; depth fade PC,Quest: single-pass additive
+MAT-07,Plants,Planters/vines,Cutout foliage,"Two-sided cutout, baked light, minimal wind",Quest: no wind
+MAT-08,Presentation screen,Main wall/posters,Unlit media,Video/slide RT + subtle frame glow,Clamp brightness to avoid glare

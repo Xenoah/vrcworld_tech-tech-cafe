@@ -1,0 +1,42 @@
+# Unity local data and builds
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+MemoryCaptures/
+Recordings/
+Unity/Assets/TheCommons/Generated/
+Unity/Assets/TheCommons/Generated.meta
+
+# IDE and operating-system files
+.vs/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.csproj
+*.sln
+*.user
+*.pidb
+*.suo
+
+# Regenerable or temporary outputs
+__pycache__/
+*.pyc
+*.tmp
+*.tmp.meta
+*.blend1
+*.blend2
+# Regenerated self-contained browser preview; Git stores the external glTF form.
+Preview/The_Commons_Compact.glb
+*.unitypackage
+*.zip
+node_modules/
+.env
+.env.*
+
+# Hosting identity belongs to the separate browser viewer
+.openai/

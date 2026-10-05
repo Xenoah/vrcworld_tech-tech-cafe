@@ -1,0 +1,18 @@
+﻿ID,Floor,Zone,ApproxArea_m2,TargetCapacity,Notes
+1F-ENT,1F,Entrance / Orientation,11.8,8,"Spawn buffer, world rules, event status, coat/prop shelf."
+1F-BAR,1F,Main Bar,79.8,12,Primary conversation anchor. Counter approx. 11.5 m total usable edge.
+1F-CAFE,1F,Cafe / Low Social,25.5,12,"2-4 person tables, lower voice intensity, visible from entrance."
+1F-LOUNGE,1F,Main Social Lounge,109.8,24,Modular lounge seating; converts to academic audience or standing DJ floor.
+1F-STG,1F,Central Stage,18.1,4,"Academic talks, panel, live performance. 250 mm platform."
+1F-SCR,1F,Main Media Wall,8.7,0,"16:9 presentation surface, effective screen 7.1 x 4.0 m in 3D wall."
+1F-POST,1F,Poster / Demo Gallery,37.8,12,Six poster bays + four demo plinths. Stand-off circulation 1.5 m.
+1F-QN,1F,Quiet Nook,30.8,6,Semi-open acoustic refuge; full Quiet Room is on 2F.
+1F-STAIR-E,1F,Main Social Stair,22.2,0,1.5 m clear visual stair; use simplified/ramp collider for VR locomotion.
+1F-STAIR-W,1F,Cafe Stair,9.6,0,Secondary vertical loop to mezzanine.
+1F-BOH,1F,Back of House / AV,20.9,4,"AV rack, prop storage, staff-only dressing, hidden maintenance."
+2F-CAFE,2F,Cafe Mezzanine,104.6,18,Overlook seating and working tables.
+2F-GAL,2F,North Gallery Bridge,24.1,10,Standing overlook and circulation.
+2F-DJ,2F,Suspended DJ Booth,19.2,4,Faces main lounge; academic mode dims/folds visual effects.
+2F-TERR,2F,City Terrace / Overlook,58.5,16,Window-side skyline lounge; calm social node.
+2F-QUIET,2F,Quiet Room,51.0,8,"Closed 4-8 person discussion room, low BGM, warm lighting."
+2F-BRIDGE,2F,South Bridge / Balcony,26.9,10,"Connects mezzanine sides, gives stage overview."

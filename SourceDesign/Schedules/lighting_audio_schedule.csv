@@ -1,0 +1,7 @@
+﻿ID,Element,Area,Implementation,Target,Notes
+L-01,Warm practical pendants,Bar/Cafe,Baked emissive + baked GI,2700-3000K visual target,Hospitality anchor
+L-02,Linear step lights,Stairs,Baked emissive,Warm white,"Navigation, no strobe"
+L-03,Stage key,Stage,Mode-controlled realtime or baked swap,Neutral 4200K,Only realtime shadow light if needed
+L-04,Neon rings,Atrium/DJ,Emissive + optional bloom,Cyan/blue,AudioLink intensity capped
+L-05,Poster wash,Gallery,Baked spots,Neutral 4000K,Readable research content
+L-06,Quiet room lamps,Quiet Room,Baked practical,2400-2800K,"Low-contrast, calm"

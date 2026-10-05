@@ -1,0 +1,41 @@
+{
+  "checks": [
+    {
+      "file": "CommonsAudioZones.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsWorldState.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsButton.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsSeat.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsPortal.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsVideoSync.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsComfort.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsTopicCard.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsWorldBuilder.cs",
+      "syntax_errors": false
+    }
+  ],
+  "note": "Syntax parsing only. Not Unity or Udon compilation."
+}

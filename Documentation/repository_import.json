@@ -1,0 +1,47 @@
+{
+  "repository": "Xenoah/vrcworld_tech-tech-cafe",
+  "source_archive": "The_Commons_Compact_v0.2.0_Full.zip",
+  "source_sha256": "3cb2282d184a541379a6ad40c3e93facfa53bd2b438aedcc91bad7240f950a6d",
+  "source_version": "0.2.0",
+  "source_files_verified_unchanged": 148,
+  "excluded_temporary_files": [
+    "Unity/Assets/TheCommons/Models/TheCommons_Quest.tcmesh.bytes.tmp",
+    "Unity/Assets/TheCommons/Models/TheCommons_Quest.tcmesh.bytes.tmp.meta"
+  ],
+  "added_repository_files": [
+    "README.md",
+    ".gitignore",
+    ".gitattributes",
+    "Documentation/repository_import.json",
+    "Blender/prepare_repository_assets.py",
+    "Documentation/repository_asset_packaging.json",
+    "Preview/The_Commons_Compact.gltf",
+    "Preview/The_Commons_Compact.bin"
+  ],
+  "updated_manifest": "SHA256SUMS.txt",
+  "unity_guids_verified": 53,
+  "models": {
+    "PC": {
+      "meshes": 127,
+      "triangles": 140384,
+      "bytes": 9702010
+    },
+    "Quest": {
+      "meshes": 118,
+      "triangles": 106025,
+      "bytes": 7567304
+    }
+  },
+  "browser_walkthrough_included": false,
+  "unity_or_vrchat_runtime_verified": false,
+  "largest_file_bytes": 9702010,
+  "repacked_files": {
+    "Blender/The_Commons_Compact.blend": "Compressed save; exact images and fonts moved to repository-relative external references; geometry fingerprint unchanged after reopen.",
+    "Preview/The_Commons_Compact.glb": "Replaced in Git by external glTF/bin; all geometry buffer views and all six original PNG files verified byte-for-byte."
+  },
+  "updated_documentation": [
+    "README_JA.md",
+    "README.md"
+  ],
+  "tracked_file_count": 159
+}

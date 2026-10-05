@@ -1,0 +1,50 @@
+[
+  {
+    "name": "warm_oak",
+    "prompt_material": "Warm smoked medium oak timber with long fine vertical grain, broad quiet variations, narrow pores, low saturation golden-brown. NO plank joints, no knots larger than 1cm, no objects.",
+    "file": "warm_oak_albedo.png",
+    "mode": "built-in image_gen",
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  },
+  {
+    "name": "mineral_plaster",
+    "prompt_material": "Warm grey mineral lime plaster, fine smooth mottling and small sandy pores, subtle quiet trowel irregularities, low contrast. NO cracks, no panel joints, no objects.",
+    "file": "mineral_plaster_albedo.png",
+    "mode": "built-in image_gen",
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  },
+  {
+    "name": "basalt_terrazzo",
+    "prompt_material": "Dark charcoal basalt terrazzo flooring, dense tiny irregular warm grey and graphite stone chips within dark grey matrix, no prominent large stones. Refined matte contemporary bar floor. NO grid, no grout, no tile divisions.",
+    "file": "basalt_terrazzo_albedo.png",
+    "mode": "built-in image_gen",
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  },
+  {
+    "name": "blackened_steel",
+    "prompt_material": "Charcoal blackened steel with subdued bluish grey mill scale and extremely fine brushed grain, low contrast, restrained industrial finish. NO seams, no bolts, no scratches that cross the whole tile.",
+    "file": "blackened_steel_albedo.png",
+    "mode": "built-in image_gen",
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  },
+  {
+    "name": "satin_brass",
+    "prompt_material": "Satin aged warm brass, fine brushing and very subtle patina, pale desaturated bronze-gold color, matte metallic BASE COLOR only without highlights. NO plates, no screws, no edges.",
+    "file": "satin_brass_albedo.png",
+    "mode": "built-in image_gen",
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  },
+  {
+    "name": "teal_woven",
+    "prompt_material": "Deep desaturated petrol teal upholstery fabric, extremely fine tightly woven basket weave visible across uniform textile surface, soft small interlaced fibers, low contrast. NO folds, no seams, no buttons.",
+    "file": "teal_woven_albedo.png",
+    "mode": "built-in image_gen",
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  }
+]

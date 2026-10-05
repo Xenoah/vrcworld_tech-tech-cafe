@@ -1,0 +1,50 @@
+[
+  {
+    "name": "warm_oak",
+    "exact_prompt": "Create a production game texture for a stylized VRChat neo-industrial bar/cafe. ONE square seamless tileable material albedo texture, 1024 by 1024. Orthographic straight-on view, edge-to-edge material ONLY. Exact left/right and top/bottom continuity for infinite repeating in both axes is essential. Uniform flat diffuse illumination, no shadows, no lighting gradients, no specular highlights, no vignette, no perspective, no borders, no text, no watermark. Avoid photographic high-frequency noise; graphic flat-light art direction with subtle tactile detail. Material: Warm smoked medium oak timber with long fine vertical grain, broad quiet variations, narrow pores, low saturation golden-brown. NO plank joints, no knots larger than 1cm, no objects.",
+    "mode": "built-in image_gen",
+    "transparent_background": false,
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  },
+  {
+    "name": "mineral_plaster",
+    "exact_prompt": "Create a production game texture for a stylized VRChat neo-industrial bar/cafe. ONE square seamless tileable material albedo texture, 1024 by 1024. Orthographic straight-on view, edge-to-edge material ONLY. Exact left/right and top/bottom continuity for infinite repeating in both axes is essential. Uniform flat diffuse illumination, no shadows, no lighting gradients, no specular highlights, no vignette, no perspective, no borders, no text, no watermark. Avoid photographic high-frequency noise; graphic flat-light art direction with subtle tactile detail. Material: Warm grey mineral lime plaster, fine smooth mottling and small sandy pores, subtle quiet trowel irregularities, low contrast. NO cracks, no panel joints, no objects.",
+    "mode": "built-in image_gen",
+    "transparent_background": false,
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  },
+  {
+    "name": "basalt_terrazzo",
+    "exact_prompt": "Create a production game texture for a stylized VRChat neo-industrial bar/cafe. ONE square seamless tileable material albedo texture, 1024 by 1024. Orthographic straight-on view, edge-to-edge material ONLY. Exact left/right and top/bottom continuity for infinite repeating in both axes is essential. Uniform flat diffuse illumination, no shadows, no lighting gradients, no specular highlights, no vignette, no perspective, no borders, no text, no watermark. Avoid photographic high-frequency noise; graphic flat-light art direction with subtle tactile detail. Material: Dark charcoal basalt terrazzo flooring, dense tiny irregular warm grey and graphite stone chips within dark grey matrix, no prominent large stones. Refined matte contemporary bar floor. NO grid, no grout, no tile divisions.",
+    "mode": "built-in image_gen",
+    "transparent_background": false,
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  },
+  {
+    "name": "blackened_steel",
+    "exact_prompt": "Create a production game texture for a stylized VRChat neo-industrial bar/cafe. ONE square seamless tileable material albedo texture, 1024 by 1024. Orthographic straight-on view, edge-to-edge material ONLY. Exact left/right and top/bottom continuity for infinite repeating in both axes is essential. Uniform flat diffuse illumination, no shadows, no lighting gradients, no specular highlights, no vignette, no perspective, no borders, no text, no watermark. Avoid photographic high-frequency noise; graphic flat-light art direction with subtle tactile detail. Material: Charcoal blackened steel with subdued bluish grey mill scale and extremely fine brushed grain, low contrast, restrained industrial finish. NO seams, no bolts, no scratches that cross the whole tile.",
+    "mode": "built-in image_gen",
+    "transparent_background": false,
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  },
+  {
+    "name": "satin_brass",
+    "exact_prompt": "Create a production game texture for a stylized VRChat neo-industrial bar/cafe. ONE square seamless tileable material albedo texture, 1024 by 1024. Orthographic straight-on view, edge-to-edge material ONLY. Exact left/right and top/bottom continuity for infinite repeating in both axes is essential. Uniform flat diffuse illumination, no shadows, no lighting gradients, no specular highlights, no vignette, no perspective, no borders, no text, no watermark. Avoid photographic high-frequency noise; graphic flat-light art direction with subtle tactile detail. Material: Satin aged warm brass, fine brushing and very subtle patina, pale desaturated bronze-gold color, matte metallic BASE COLOR only without highlights. NO plates, no screws, no edges.",
+    "mode": "built-in image_gen",
+    "transparent_background": false,
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  },
+  {
+    "name": "teal_woven",
+    "exact_prompt": "Create a production game texture for a stylized VRChat neo-industrial bar/cafe. ONE square seamless tileable material albedo texture, 1024 by 1024. Orthographic straight-on view, edge-to-edge material ONLY. Exact left/right and top/bottom continuity for infinite repeating in both axes is essential. Uniform flat diffuse illumination, no shadows, no lighting gradients, no specular highlights, no vignette, no perspective, no borders, no text, no watermark. Avoid photographic high-frequency noise; graphic flat-light art direction with subtle tactile detail. Material: Deep desaturated petrol teal upholstery fabric, extremely fine tightly woven basket weave visible across uniform textile surface, soft small interlaced fibers, low contrast. NO folds, no seams, no buttons.",
+    "mode": "built-in image_gen",
+    "transparent_background": false,
+    "wrap": "Mirror / mirrored-repeat",
+    "source_pixels_unchanged": true
+  }
+]

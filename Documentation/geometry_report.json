@@ -1,0 +1,1485 @@
+{
+  "pc": {
+    "triangles": 140384,
+    "render_meshes": 127,
+    "meshes": [
+      {
+        "name": "ARCH_Mezzanine__MAT_Brass",
+        "group": "ARCH_Mezzanine",
+        "vertices": 7500,
+        "triangles": 5012
+      },
+      {
+        "name": "ARCH_Mezzanine__MAT_Cyan",
+        "group": "ARCH_Mezzanine",
+        "vertices": 144,
+        "triangles": 84
+      },
+      {
+        "name": "ARCH_Mezzanine__MAT_Steel",
+        "group": "ARCH_Mezzanine",
+        "vertices": 6372,
+        "triangles": 3944
+      },
+      {
+        "name": "ARCH_Mezzanine__MAT_Stone",
+        "group": "ARCH_Mezzanine",
+        "vertices": 266,
+        "triangles": 168
+      },
+      {
+        "name": "ARCH_Shell__MAT_Amber",
+        "group": "ARCH_Shell",
+        "vertices": 1407,
+        "triangles": 840
+      },
+      {
+        "name": "ARCH_Shell__MAT_Brass",
+        "group": "ARCH_Shell",
+        "vertices": 3456,
+        "triangles": 1920
+      },
+      {
+        "name": "ARCH_Shell__MAT_Oak",
+        "group": "ARCH_Shell",
+        "vertices": 336,
+        "triangles": 168
+      },
+      {
+        "name": "ARCH_Shell__MAT_Plaster",
+        "group": "ARCH_Shell",
+        "vertices": 102,
+        "triangles": 60
+      },
+      {
+        "name": "ARCH_Shell__MAT_Steel",
+        "group": "ARCH_Shell",
+        "vertices": 2184,
+        "triangles": 1092
+      },
+      {
+        "name": "ARCH_Shell__MAT_Stone",
+        "group": "ARCH_Shell",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "ARCH_Shell__MAT_Window",
+        "group": "ARCH_Shell",
+        "vertices": 240,
+        "triangles": 120
+      },
+      {
+        "name": "ARCH_Stairs__MAT_Amber",
+        "group": "ARCH_Stairs",
+        "vertices": 1272,
+        "triangles": 636
+      },
+      {
+        "name": "ARCH_Stairs__MAT_Brass",
+        "group": "ARCH_Stairs",
+        "vertices": 192,
+        "triangles": 112
+      },
+      {
+        "name": "ARCH_Stairs__MAT_Oak",
+        "group": "ARCH_Stairs",
+        "vertices": 1272,
+        "triangles": 636
+      },
+      {
+        "name": "ARCH_Stairs__MAT_Steel",
+        "group": "ARCH_Stairs",
+        "vertices": 2808,
+        "triangles": 1532
+      },
+      {
+        "name": "AV_BackOfHouse__MAT_Amber",
+        "group": "AV_BackOfHouse",
+        "vertices": 764,
+        "triangles": 484
+      },
+      {
+        "name": "AV_BackOfHouse__MAT_Black",
+        "group": "AV_BackOfHouse",
+        "vertices": 72,
+        "triangles": 36
+      },
+      {
+        "name": "AV_BackOfHouse__MAT_Cyan",
+        "group": "AV_BackOfHouse",
+        "vertices": 2592,
+        "triangles": 1296
+      },
+      {
+        "name": "AV_BackOfHouse__MAT_Plaster",
+        "group": "AV_BackOfHouse",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "AV_BackOfHouse__MAT_Steel",
+        "group": "AV_BackOfHouse",
+        "vertices": 648,
+        "triangles": 324
+      },
+      {
+        "name": "AV_DJ__MAT_Amber",
+        "group": "AV_DJ",
+        "vertices": 192,
+        "triangles": 96
+      },
+      {
+        "name": "AV_DJ__MAT_Black",
+        "group": "AV_DJ",
+        "vertices": 888,
+        "triangles": 444
+      },
+      {
+        "name": "AV_DJ__MAT_Brass",
+        "group": "AV_DJ",
+        "vertices": 576,
+        "triangles": 336
+      },
+      {
+        "name": "AV_DJ__MAT_Cyan",
+        "group": "AV_DJ",
+        "vertices": 1718,
+        "triangles": 920
+      },
+      {
+        "name": "AV_DJ__MAT_Oak",
+        "group": "AV_DJ",
+        "vertices": 216,
+        "triangles": 108
+      },
+      {
+        "name": "AV_DJ__MAT_Steel",
+        "group": "AV_DJ",
+        "vertices": 1032,
+        "triangles": 620
+      },
+      {
+        "name": "AV_DJ__MAT_White",
+        "group": "AV_DJ",
+        "vertices": 96,
+        "triangles": 48
+      },
+      {
+        "name": "AV_Gallery__MAT_Amber",
+        "group": "AV_Gallery",
+        "vertices": 816,
+        "triangles": 536
+      },
+      {
+        "name": "AV_Gallery__MAT_Black",
+        "group": "AV_Gallery",
+        "vertices": 144,
+        "triangles": 72
+      },
+      {
+        "name": "AV_Gallery__MAT_Brass",
+        "group": "AV_Gallery",
+        "vertices": 6864,
+        "triangles": 3432
+      },
+      {
+        "name": "AV_Gallery__MAT_Cyan",
+        "group": "AV_Gallery",
+        "vertices": 4446,
+        "triangles": 2532
+      },
+      {
+        "name": "AV_Gallery__MAT_Steel",
+        "group": "AV_Gallery",
+        "vertices": 576,
+        "triangles": 368
+      },
+      {
+        "name": "AV_Gallery__MAT_White",
+        "group": "AV_Gallery",
+        "vertices": 13996,
+        "triangles": 8996
+      },
+      {
+        "name": "AV_Hologram__MAT_Cyan",
+        "group": "AV_Hologram",
+        "vertices": 3840,
+        "triangles": 2304
+      },
+      {
+        "name": "AV_Hologram__MAT_Holo",
+        "group": "AV_Hologram",
+        "vertices": 2818,
+        "triangles": 1440
+      },
+      {
+        "name": "AV_Stage__MAT_Black",
+        "group": "AV_Stage",
+        "vertices": 480,
+        "triangles": 240
+      },
+      {
+        "name": "AV_Stage__MAT_Brass",
+        "group": "AV_Stage",
+        "vertices": 1536,
+        "triangles": 768
+      },
+      {
+        "name": "AV_Stage__MAT_Cyan",
+        "group": "AV_Stage",
+        "vertices": 8088,
+        "triangles": 5004
+      },
+      {
+        "name": "AV_Stage__MAT_Oak",
+        "group": "AV_Stage",
+        "vertices": 792,
+        "triangles": 488
+      },
+      {
+        "name": "AV_Stage__MAT_Steel",
+        "group": "AV_Stage",
+        "vertices": 1584,
+        "triangles": 916
+      },
+      {
+        "name": "AV_Stage__MAT_White",
+        "group": "AV_Stage",
+        "vertices": 5494,
+        "triangles": 3488
+      },
+      {
+        "name": "ENV_City__MAT_Amber",
+        "group": "ENV_City",
+        "vertices": 10560,
+        "triangles": 5280
+      },
+      {
+        "name": "ENV_City__MAT_Black",
+        "group": "ENV_City",
+        "vertices": 720,
+        "triangles": 360
+      },
+      {
+        "name": "ENV_City__MAT_Cyan",
+        "group": "ENV_City",
+        "vertices": 3120,
+        "triangles": 1560
+      },
+      {
+        "name": "ENV_City__MAT_Steel",
+        "group": "ENV_City",
+        "vertices": 480,
+        "triangles": 280
+      },
+      {
+        "name": "FURN_Bar__MAT_Amber",
+        "group": "FURN_Bar",
+        "vertices": 2142,
+        "triangles": 1384
+      },
+      {
+        "name": "FURN_Bar__MAT_Black",
+        "group": "FURN_Bar",
+        "vertices": 192,
+        "triangles": 116
+      },
+      {
+        "name": "FURN_Bar__MAT_BottleAmber",
+        "group": "FURN_Bar",
+        "vertices": 2508,
+        "triangles": 1512
+      },
+      {
+        "name": "FURN_Bar__MAT_BottleGreen",
+        "group": "FURN_Bar",
+        "vertices": 9180,
+        "triangles": 5508
+      },
+      {
+        "name": "FURN_Bar__MAT_Brass",
+        "group": "FURN_Bar",
+        "vertices": 11012,
+        "triangles": 6160
+      },
+      {
+        "name": "FURN_Bar__MAT_Ceramic",
+        "group": "FURN_Bar",
+        "vertices": 2064,
+        "triangles": 1092
+      },
+      {
+        "name": "FURN_Bar__MAT_Fabric",
+        "group": "FURN_Bar",
+        "vertices": 1584,
+        "triangles": 1012
+      },
+      {
+        "name": "FURN_Bar__MAT_Label",
+        "group": "FURN_Bar",
+        "vertices": 2232,
+        "triangles": 1116
+      },
+      {
+        "name": "FURN_Bar__MAT_Leaf",
+        "group": "FURN_Bar",
+        "vertices": 330,
+        "triangles": 168
+      },
+      {
+        "name": "FURN_Bar__MAT_LeafLight",
+        "group": "FURN_Bar",
+        "vertices": 30,
+        "triangles": 12
+      },
+      {
+        "name": "FURN_Bar__MAT_Oak",
+        "group": "FURN_Bar",
+        "vertices": 2180,
+        "triangles": 1092
+      },
+      {
+        "name": "FURN_Bar__MAT_Steel",
+        "group": "FURN_Bar",
+        "vertices": 2660,
+        "triangles": 1640
+      },
+      {
+        "name": "FURN_Cafe__MAT_Amber",
+        "group": "FURN_Cafe",
+        "vertices": 1753,
+        "triangles": 1100
+      },
+      {
+        "name": "FURN_Cafe__MAT_Black",
+        "group": "FURN_Cafe",
+        "vertices": 96,
+        "triangles": 60
+      },
+      {
+        "name": "FURN_Cafe__MAT_BottleAmber",
+        "group": "FURN_Cafe",
+        "vertices": 288,
+        "triangles": 176
+      },
+      {
+        "name": "FURN_Cafe__MAT_Brass",
+        "group": "FURN_Cafe",
+        "vertices": 2432,
+        "triangles": 1312
+      },
+      {
+        "name": "FURN_Cafe__MAT_Ceramic",
+        "group": "FURN_Cafe",
+        "vertices": 1552,
+        "triangles": 836
+      },
+      {
+        "name": "FURN_Cafe__MAT_Fabric",
+        "group": "FURN_Cafe",
+        "vertices": 2592,
+        "triangles": 1296
+      },
+      {
+        "name": "FURN_Cafe__MAT_Leaf",
+        "group": "FURN_Cafe",
+        "vertices": 330,
+        "triangles": 168
+      },
+      {
+        "name": "FURN_Cafe__MAT_LeafLight",
+        "group": "FURN_Cafe",
+        "vertices": 30,
+        "triangles": 12
+      },
+      {
+        "name": "FURN_Cafe__MAT_Oak",
+        "group": "FURN_Cafe",
+        "vertices": 384,
+        "triangles": 248
+      },
+      {
+        "name": "FURN_Cafe__MAT_Steel",
+        "group": "FURN_Cafe",
+        "vertices": 384,
+        "triangles": 240
+      },
+      {
+        "name": "FURN_HangingGarden__MAT_Black",
+        "group": "FURN_HangingGarden",
+        "vertices": 1056,
+        "triangles": 660
+      },
+      {
+        "name": "FURN_HangingGarden__MAT_Ceramic",
+        "group": "FURN_HangingGarden",
+        "vertices": 1056,
+        "triangles": 660
+      },
+      {
+        "name": "FURN_HangingGarden__MAT_Leaf",
+        "group": "FURN_HangingGarden",
+        "vertices": 3630,
+        "triangles": 1848
+      },
+      {
+        "name": "FURN_HangingGarden__MAT_LeafLight",
+        "group": "FURN_HangingGarden",
+        "vertices": 330,
+        "triangles": 132
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Amber",
+        "group": "FURN_QuietNook",
+        "vertices": 1934,
+        "triangles": 1244
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Black",
+        "group": "FURN_QuietNook",
+        "vertices": 96,
+        "triangles": 60
+      },
+      {
+        "name": "FURN_QuietNook__MAT_BottleAmber",
+        "group": "FURN_QuietNook",
+        "vertices": 288,
+        "triangles": 176
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Brass",
+        "group": "FURN_QuietNook",
+        "vertices": 2048,
+        "triangles": 1088
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Ceramic",
+        "group": "FURN_QuietNook",
+        "vertices": 1552,
+        "triangles": 836
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Cream",
+        "group": "FURN_QuietNook",
+        "vertices": 3456,
+        "triangles": 1728
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Leaf",
+        "group": "FURN_QuietNook",
+        "vertices": 330,
+        "triangles": 168
+      },
+      {
+        "name": "FURN_QuietNook__MAT_LeafLight",
+        "group": "FURN_QuietNook",
+        "vertices": 30,
+        "triangles": 12
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Oak",
+        "group": "FURN_QuietNook",
+        "vertices": 816,
+        "triangles": 464
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Steel",
+        "group": "FURN_QuietNook",
+        "vertices": 384,
+        "triangles": 240
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Amber",
+        "group": "FURN_QuietRoom",
+        "vertices": 810,
+        "triangles": 512
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Black",
+        "group": "FURN_QuietRoom",
+        "vertices": 528,
+        "triangles": 276
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_BottleAmber",
+        "group": "FURN_QuietRoom",
+        "vertices": 288,
+        "triangles": 176
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Brass",
+        "group": "FURN_QuietRoom",
+        "vertices": 2048,
+        "triangles": 1088
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Ceramic",
+        "group": "FURN_QuietRoom",
+        "vertices": 1984,
+        "triangles": 1052
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Cream",
+        "group": "FURN_QuietRoom",
+        "vertices": 1728,
+        "triangles": 864
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Fabric",
+        "group": "FURN_QuietRoom",
+        "vertices": 2160,
+        "triangles": 1080
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Leaf",
+        "group": "FURN_QuietRoom",
+        "vertices": 330,
+        "triangles": 168
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_LeafLight",
+        "group": "FURN_QuietRoom",
+        "vertices": 30,
+        "triangles": 12
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Oak",
+        "group": "FURN_QuietRoom",
+        "vertices": 912,
+        "triangles": 512
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Plaster",
+        "group": "FURN_QuietRoom",
+        "vertices": 108,
+        "triangles": 60
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Steel",
+        "group": "FURN_QuietRoom",
+        "vertices": 384,
+        "triangles": 240
+      },
+      {
+        "name": "FURN_Terrace__MAT_Amber",
+        "group": "FURN_Terrace",
+        "vertices": 930,
+        "triangles": 596
+      },
+      {
+        "name": "FURN_Terrace__MAT_Black",
+        "group": "FURN_Terrace",
+        "vertices": 288,
+        "triangles": 180
+      },
+      {
+        "name": "FURN_Terrace__MAT_BottleAmber",
+        "group": "FURN_Terrace",
+        "vertices": 288,
+        "triangles": 176
+      },
+      {
+        "name": "FURN_Terrace__MAT_Brass",
+        "group": "FURN_Terrace",
+        "vertices": 2816,
+        "triangles": 1536
+      },
+      {
+        "name": "FURN_Terrace__MAT_Ceramic",
+        "group": "FURN_Terrace",
+        "vertices": 1744,
+        "triangles": 956
+      },
+      {
+        "name": "FURN_Terrace__MAT_Fabric",
+        "group": "FURN_Terrace",
+        "vertices": 3456,
+        "triangles": 1728
+      },
+      {
+        "name": "FURN_Terrace__MAT_Leaf",
+        "group": "FURN_Terrace",
+        "vertices": 992,
+        "triangles": 504
+      },
+      {
+        "name": "FURN_Terrace__MAT_LeafLight",
+        "group": "FURN_Terrace",
+        "vertices": 92,
+        "triangles": 36
+      },
+      {
+        "name": "FURN_Terrace__MAT_Oak",
+        "group": "FURN_Terrace",
+        "vertices": 384,
+        "triangles": 248
+      },
+      {
+        "name": "FURN_Terrace__MAT_Steel",
+        "group": "FURN_Terrace",
+        "vertices": 384,
+        "triangles": 240
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Amber",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 3870,
+        "triangles": 2376
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Black",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 288,
+        "triangles": 180
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_BottleAmber",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 648,
+        "triangles": 396
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Brass",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 5640,
+        "triangles": 3036
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Ceramic",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 3456,
+        "triangles": 1860
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Fabric",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 5616,
+        "triangles": 2868
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Leaf",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 990,
+        "triangles": 504
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_LeafLight",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 90,
+        "triangles": 36
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Oak",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 648,
+        "triangles": 408
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Steel",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 936,
+        "triangles": 588
+      },
+      {
+        "name": "LGT_Main__MAT_Amber",
+        "group": "LGT_Main",
+        "vertices": 3392,
+        "triangles": 1696
+      },
+      {
+        "name": "LGT_Main__MAT_Brass",
+        "group": "LGT_Main",
+        "vertices": 3200,
+        "triangles": 1920
+      },
+      {
+        "name": "MODE_Academic__MAT_Brass",
+        "group": "MODE_Academic",
+        "vertices": 4608,
+        "triangles": 2688
+      },
+      {
+        "name": "MODE_Academic__MAT_Fabric",
+        "group": "MODE_Academic",
+        "vertices": 10368,
+        "triangles": 5184
+      },
+      {
+        "name": "MODE_Lounge__MAT_Amber",
+        "group": "MODE_Lounge",
+        "vertices": 240,
+        "triangles": 144
+      },
+      {
+        "name": "MODE_Lounge__MAT_Black",
+        "group": "MODE_Lounge",
+        "vertices": 192,
+        "triangles": 120
+      },
+      {
+        "name": "MODE_Lounge__MAT_BottleAmber",
+        "group": "MODE_Lounge",
+        "vertices": 576,
+        "triangles": 352
+      },
+      {
+        "name": "MODE_Lounge__MAT_Brass",
+        "group": "MODE_Lounge",
+        "vertices": 4864,
+        "triangles": 2624
+      },
+      {
+        "name": "MODE_Lounge__MAT_Ceramic",
+        "group": "MODE_Lounge",
+        "vertices": 3104,
+        "triangles": 1672
+      },
+      {
+        "name": "MODE_Lounge__MAT_Fabric",
+        "group": "MODE_Lounge",
+        "vertices": 6912,
+        "triangles": 3456
+      },
+      {
+        "name": "MODE_Lounge__MAT_Leaf",
+        "group": "MODE_Lounge",
+        "vertices": 660,
+        "triangles": 336
+      },
+      {
+        "name": "MODE_Lounge__MAT_LeafLight",
+        "group": "MODE_Lounge",
+        "vertices": 64,
+        "triangles": 24
+      },
+      {
+        "name": "MODE_Lounge__MAT_Oak",
+        "group": "MODE_Lounge",
+        "vertices": 768,
+        "triangles": 496
+      },
+      {
+        "name": "MODE_Lounge__MAT_Steel",
+        "group": "MODE_Lounge",
+        "vertices": 768,
+        "triangles": 480
+      }
+    ]
+  },
+  "quest": {
+    "triangles": 106025,
+    "render_meshes": 118,
+    "meshes": [
+      {
+        "name": "ARCH_Mezzanine__MAT_Brass",
+        "group": "ARCH_Mezzanine",
+        "vertices": 5004,
+        "triangles": 2806
+      },
+      {
+        "name": "ARCH_Mezzanine__MAT_Cyan",
+        "group": "ARCH_Mezzanine",
+        "vertices": 144,
+        "triangles": 84
+      },
+      {
+        "name": "ARCH_Mezzanine__MAT_Steel",
+        "group": "ARCH_Mezzanine",
+        "vertices": 6372,
+        "triangles": 3944
+      },
+      {
+        "name": "ARCH_Mezzanine__MAT_Stone",
+        "group": "ARCH_Mezzanine",
+        "vertices": 266,
+        "triangles": 168
+      },
+      {
+        "name": "ARCH_Shell__MAT_Amber",
+        "group": "ARCH_Shell",
+        "vertices": 1407,
+        "triangles": 840
+      },
+      {
+        "name": "ARCH_Shell__MAT_Brass",
+        "group": "ARCH_Shell",
+        "vertices": 3456,
+        "triangles": 1920
+      },
+      {
+        "name": "ARCH_Shell__MAT_Oak",
+        "group": "ARCH_Shell",
+        "vertices": 336,
+        "triangles": 168
+      },
+      {
+        "name": "ARCH_Shell__MAT_Plaster",
+        "group": "ARCH_Shell",
+        "vertices": 102,
+        "triangles": 60
+      },
+      {
+        "name": "ARCH_Shell__MAT_Steel",
+        "group": "ARCH_Shell",
+        "vertices": 2184,
+        "triangles": 1092
+      },
+      {
+        "name": "ARCH_Shell__MAT_Stone",
+        "group": "ARCH_Shell",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "ARCH_Stairs__MAT_Amber",
+        "group": "ARCH_Stairs",
+        "vertices": 1272,
+        "triangles": 636
+      },
+      {
+        "name": "ARCH_Stairs__MAT_Brass",
+        "group": "ARCH_Stairs",
+        "vertices": 192,
+        "triangles": 112
+      },
+      {
+        "name": "ARCH_Stairs__MAT_Oak",
+        "group": "ARCH_Stairs",
+        "vertices": 1272,
+        "triangles": 636
+      },
+      {
+        "name": "ARCH_Stairs__MAT_Steel",
+        "group": "ARCH_Stairs",
+        "vertices": 2808,
+        "triangles": 1532
+      },
+      {
+        "name": "AV_BackOfHouse__MAT_Amber",
+        "group": "AV_BackOfHouse",
+        "vertices": 764,
+        "triangles": 484
+      },
+      {
+        "name": "AV_BackOfHouse__MAT_Black",
+        "group": "AV_BackOfHouse",
+        "vertices": 72,
+        "triangles": 36
+      },
+      {
+        "name": "AV_BackOfHouse__MAT_Cyan",
+        "group": "AV_BackOfHouse",
+        "vertices": 2592,
+        "triangles": 1296
+      },
+      {
+        "name": "AV_BackOfHouse__MAT_Plaster",
+        "group": "AV_BackOfHouse",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "AV_BackOfHouse__MAT_Steel",
+        "group": "AV_BackOfHouse",
+        "vertices": 648,
+        "triangles": 324
+      },
+      {
+        "name": "AV_DJ__MAT_Amber",
+        "group": "AV_DJ",
+        "vertices": 192,
+        "triangles": 96
+      },
+      {
+        "name": "AV_DJ__MAT_Black",
+        "group": "AV_DJ",
+        "vertices": 888,
+        "triangles": 444
+      },
+      {
+        "name": "AV_DJ__MAT_Brass",
+        "group": "AV_DJ",
+        "vertices": 576,
+        "triangles": 336
+      },
+      {
+        "name": "AV_DJ__MAT_Cyan",
+        "group": "AV_DJ",
+        "vertices": 1718,
+        "triangles": 920
+      },
+      {
+        "name": "AV_DJ__MAT_Oak",
+        "group": "AV_DJ",
+        "vertices": 216,
+        "triangles": 108
+      },
+      {
+        "name": "AV_DJ__MAT_Steel",
+        "group": "AV_DJ",
+        "vertices": 1032,
+        "triangles": 620
+      },
+      {
+        "name": "AV_DJ__MAT_White",
+        "group": "AV_DJ",
+        "vertices": 96,
+        "triangles": 48
+      },
+      {
+        "name": "AV_Gallery__MAT_Amber",
+        "group": "AV_Gallery",
+        "vertices": 816,
+        "triangles": 536
+      },
+      {
+        "name": "AV_Gallery__MAT_Black",
+        "group": "AV_Gallery",
+        "vertices": 144,
+        "triangles": 72
+      },
+      {
+        "name": "AV_Gallery__MAT_Brass",
+        "group": "AV_Gallery",
+        "vertices": 4688,
+        "triangles": 1920
+      },
+      {
+        "name": "AV_Gallery__MAT_Cyan",
+        "group": "AV_Gallery",
+        "vertices": 4446,
+        "triangles": 2532
+      },
+      {
+        "name": "AV_Gallery__MAT_Steel",
+        "group": "AV_Gallery",
+        "vertices": 576,
+        "triangles": 368
+      },
+      {
+        "name": "AV_Gallery__MAT_White",
+        "group": "AV_Gallery",
+        "vertices": 8540,
+        "triangles": 5037
+      },
+      {
+        "name": "AV_Stage__MAT_Black",
+        "group": "AV_Stage",
+        "vertices": 480,
+        "triangles": 240
+      },
+      {
+        "name": "AV_Stage__MAT_Brass",
+        "group": "AV_Stage",
+        "vertices": 1536,
+        "triangles": 768
+      },
+      {
+        "name": "AV_Stage__MAT_Cyan",
+        "group": "AV_Stage",
+        "vertices": 5771,
+        "triangles": 2801
+      },
+      {
+        "name": "AV_Stage__MAT_Oak",
+        "group": "AV_Stage",
+        "vertices": 792,
+        "triangles": 488
+      },
+      {
+        "name": "AV_Stage__MAT_Steel",
+        "group": "AV_Stage",
+        "vertices": 1584,
+        "triangles": 916
+      },
+      {
+        "name": "AV_Stage__MAT_White",
+        "group": "AV_Stage",
+        "vertices": 3463,
+        "triangles": 1953
+      },
+      {
+        "name": "ENV_City__MAT_Black",
+        "group": "ENV_City",
+        "vertices": 720,
+        "triangles": 360
+      },
+      {
+        "name": "ENV_City__MAT_Steel",
+        "group": "ENV_City",
+        "vertices": 480,
+        "triangles": 280
+      },
+      {
+        "name": "FURN_Bar__MAT_Amber",
+        "group": "FURN_Bar",
+        "vertices": 2142,
+        "triangles": 1384
+      },
+      {
+        "name": "FURN_Bar__MAT_Black",
+        "group": "FURN_Bar",
+        "vertices": 192,
+        "triangles": 116
+      },
+      {
+        "name": "FURN_Bar__MAT_BottleAmber",
+        "group": "FURN_Bar",
+        "vertices": 2508,
+        "triangles": 1512
+      },
+      {
+        "name": "FURN_Bar__MAT_BottleGreen",
+        "group": "FURN_Bar",
+        "vertices": 5760,
+        "triangles": 3084
+      },
+      {
+        "name": "FURN_Bar__MAT_Brass",
+        "group": "FURN_Bar",
+        "vertices": 7212,
+        "triangles": 3448
+      },
+      {
+        "name": "FURN_Bar__MAT_Ceramic",
+        "group": "FURN_Bar",
+        "vertices": 2064,
+        "triangles": 1092
+      },
+      {
+        "name": "FURN_Bar__MAT_Fabric",
+        "group": "FURN_Bar",
+        "vertices": 1584,
+        "triangles": 1012
+      },
+      {
+        "name": "FURN_Bar__MAT_Label",
+        "group": "FURN_Bar",
+        "vertices": 2232,
+        "triangles": 1116
+      },
+      {
+        "name": "FURN_Bar__MAT_Leaf",
+        "group": "FURN_Bar",
+        "vertices": 330,
+        "triangles": 168
+      },
+      {
+        "name": "FURN_Bar__MAT_LeafLight",
+        "group": "FURN_Bar",
+        "vertices": 30,
+        "triangles": 12
+      },
+      {
+        "name": "FURN_Bar__MAT_Oak",
+        "group": "FURN_Bar",
+        "vertices": 2180,
+        "triangles": 1092
+      },
+      {
+        "name": "FURN_Bar__MAT_Steel",
+        "group": "FURN_Bar",
+        "vertices": 2660,
+        "triangles": 1640
+      },
+      {
+        "name": "FURN_Cafe__MAT_Amber",
+        "group": "FURN_Cafe",
+        "vertices": 1753,
+        "triangles": 1100
+      },
+      {
+        "name": "FURN_Cafe__MAT_Black",
+        "group": "FURN_Cafe",
+        "vertices": 96,
+        "triangles": 60
+      },
+      {
+        "name": "FURN_Cafe__MAT_BottleAmber",
+        "group": "FURN_Cafe",
+        "vertices": 288,
+        "triangles": 176
+      },
+      {
+        "name": "FURN_Cafe__MAT_Brass",
+        "group": "FURN_Cafe",
+        "vertices": 2432,
+        "triangles": 1312
+      },
+      {
+        "name": "FURN_Cafe__MAT_Ceramic",
+        "group": "FURN_Cafe",
+        "vertices": 1552,
+        "triangles": 836
+      },
+      {
+        "name": "FURN_Cafe__MAT_Fabric",
+        "group": "FURN_Cafe",
+        "vertices": 2592,
+        "triangles": 1296
+      },
+      {
+        "name": "FURN_Cafe__MAT_Leaf",
+        "group": "FURN_Cafe",
+        "vertices": 330,
+        "triangles": 168
+      },
+      {
+        "name": "FURN_Cafe__MAT_LeafLight",
+        "group": "FURN_Cafe",
+        "vertices": 30,
+        "triangles": 12
+      },
+      {
+        "name": "FURN_Cafe__MAT_Oak",
+        "group": "FURN_Cafe",
+        "vertices": 384,
+        "triangles": 248
+      },
+      {
+        "name": "FURN_Cafe__MAT_Steel",
+        "group": "FURN_Cafe",
+        "vertices": 384,
+        "triangles": 240
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Amber",
+        "group": "FURN_QuietNook",
+        "vertices": 1934,
+        "triangles": 1244
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Black",
+        "group": "FURN_QuietNook",
+        "vertices": 96,
+        "triangles": 60
+      },
+      {
+        "name": "FURN_QuietNook__MAT_BottleAmber",
+        "group": "FURN_QuietNook",
+        "vertices": 288,
+        "triangles": 176
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Brass",
+        "group": "FURN_QuietNook",
+        "vertices": 2048,
+        "triangles": 1088
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Ceramic",
+        "group": "FURN_QuietNook",
+        "vertices": 1552,
+        "triangles": 836
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Cream",
+        "group": "FURN_QuietNook",
+        "vertices": 3456,
+        "triangles": 1728
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Leaf",
+        "group": "FURN_QuietNook",
+        "vertices": 330,
+        "triangles": 168
+      },
+      {
+        "name": "FURN_QuietNook__MAT_LeafLight",
+        "group": "FURN_QuietNook",
+        "vertices": 30,
+        "triangles": 12
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Oak",
+        "group": "FURN_QuietNook",
+        "vertices": 816,
+        "triangles": 464
+      },
+      {
+        "name": "FURN_QuietNook__MAT_Steel",
+        "group": "FURN_QuietNook",
+        "vertices": 384,
+        "triangles": 240
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Amber",
+        "group": "FURN_QuietRoom",
+        "vertices": 810,
+        "triangles": 512
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Black",
+        "group": "FURN_QuietRoom",
+        "vertices": 528,
+        "triangles": 276
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_BottleAmber",
+        "group": "FURN_QuietRoom",
+        "vertices": 288,
+        "triangles": 176
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Brass",
+        "group": "FURN_QuietRoom",
+        "vertices": 2048,
+        "triangles": 1088
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Ceramic",
+        "group": "FURN_QuietRoom",
+        "vertices": 1984,
+        "triangles": 1052
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Cream",
+        "group": "FURN_QuietRoom",
+        "vertices": 1728,
+        "triangles": 864
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Fabric",
+        "group": "FURN_QuietRoom",
+        "vertices": 2160,
+        "triangles": 1080
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Leaf",
+        "group": "FURN_QuietRoom",
+        "vertices": 330,
+        "triangles": 168
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_LeafLight",
+        "group": "FURN_QuietRoom",
+        "vertices": 30,
+        "triangles": 12
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Oak",
+        "group": "FURN_QuietRoom",
+        "vertices": 912,
+        "triangles": 512
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Plaster",
+        "group": "FURN_QuietRoom",
+        "vertices": 108,
+        "triangles": 60
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_Steel",
+        "group": "FURN_QuietRoom",
+        "vertices": 384,
+        "triangles": 240
+      },
+      {
+        "name": "FURN_Terrace__MAT_Amber",
+        "group": "FURN_Terrace",
+        "vertices": 930,
+        "triangles": 596
+      },
+      {
+        "name": "FURN_Terrace__MAT_Black",
+        "group": "FURN_Terrace",
+        "vertices": 288,
+        "triangles": 180
+      },
+      {
+        "name": "FURN_Terrace__MAT_BottleAmber",
+        "group": "FURN_Terrace",
+        "vertices": 288,
+        "triangles": 176
+      },
+      {
+        "name": "FURN_Terrace__MAT_Brass",
+        "group": "FURN_Terrace",
+        "vertices": 2816,
+        "triangles": 1536
+      },
+      {
+        "name": "FURN_Terrace__MAT_Ceramic",
+        "group": "FURN_Terrace",
+        "vertices": 1744,
+        "triangles": 956
+      },
+      {
+        "name": "FURN_Terrace__MAT_Fabric",
+        "group": "FURN_Terrace",
+        "vertices": 3456,
+        "triangles": 1728
+      },
+      {
+        "name": "FURN_Terrace__MAT_Leaf",
+        "group": "FURN_Terrace",
+        "vertices": 992,
+        "triangles": 504
+      },
+      {
+        "name": "FURN_Terrace__MAT_LeafLight",
+        "group": "FURN_Terrace",
+        "vertices": 92,
+        "triangles": 36
+      },
+      {
+        "name": "FURN_Terrace__MAT_Oak",
+        "group": "FURN_Terrace",
+        "vertices": 384,
+        "triangles": 248
+      },
+      {
+        "name": "FURN_Terrace__MAT_Steel",
+        "group": "FURN_Terrace",
+        "vertices": 384,
+        "triangles": 240
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Amber",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 3870,
+        "triangles": 2376
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Black",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 288,
+        "triangles": 180
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_BottleAmber",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 648,
+        "triangles": 396
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Brass",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 5640,
+        "triangles": 3036
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Ceramic",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 3456,
+        "triangles": 1860
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Fabric",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 5616,
+        "triangles": 2868
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Leaf",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 990,
+        "triangles": 504
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_LeafLight",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 90,
+        "triangles": 36
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Oak",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 648,
+        "triangles": 408
+      },
+      {
+        "name": "FURN_UpstairsCafe__MAT_Steel",
+        "group": "FURN_UpstairsCafe",
+        "vertices": 936,
+        "triangles": 588
+      },
+      {
+        "name": "LGT_Main__MAT_Amber",
+        "group": "LGT_Main",
+        "vertices": 3392,
+        "triangles": 1696
+      },
+      {
+        "name": "LGT_Main__MAT_Brass",
+        "group": "LGT_Main",
+        "vertices": 3200,
+        "triangles": 1920
+      },
+      {
+        "name": "MODE_Academic__MAT_Brass",
+        "group": "MODE_Academic",
+        "vertices": 4608,
+        "triangles": 2688
+      },
+      {
+        "name": "MODE_Academic__MAT_Fabric",
+        "group": "MODE_Academic",
+        "vertices": 7074,
+        "triangles": 2902
+      },
+      {
+        "name": "MODE_Lounge__MAT_Amber",
+        "group": "MODE_Lounge",
+        "vertices": 240,
+        "triangles": 144
+      },
+      {
+        "name": "MODE_Lounge__MAT_Black",
+        "group": "MODE_Lounge",
+        "vertices": 192,
+        "triangles": 120
+      },
+      {
+        "name": "MODE_Lounge__MAT_BottleAmber",
+        "group": "MODE_Lounge",
+        "vertices": 576,
+        "triangles": 352
+      },
+      {
+        "name": "MODE_Lounge__MAT_Brass",
+        "group": "MODE_Lounge",
+        "vertices": 4864,
+        "triangles": 2624
+      },
+      {
+        "name": "MODE_Lounge__MAT_Ceramic",
+        "group": "MODE_Lounge",
+        "vertices": 3104,
+        "triangles": 1672
+      },
+      {
+        "name": "MODE_Lounge__MAT_Fabric",
+        "group": "MODE_Lounge",
+        "vertices": 4746,
+        "triangles": 1934
+      },
+      {
+        "name": "MODE_Lounge__MAT_Leaf",
+        "group": "MODE_Lounge",
+        "vertices": 660,
+        "triangles": 336
+      },
+      {
+        "name": "MODE_Lounge__MAT_LeafLight",
+        "group": "MODE_Lounge",
+        "vertices": 64,
+        "triangles": 24
+      },
+      {
+        "name": "MODE_Lounge__MAT_Oak",
+        "group": "MODE_Lounge",
+        "vertices": 768,
+        "triangles": 496
+      },
+      {
+        "name": "MODE_Lounge__MAT_Steel",
+        "group": "MODE_Lounge",
+        "vertices": 768,
+        "triangles": 480
+      }
+    ]
+  },
+  "measurement": "Exported whole-scene geometry. Not runtime FPS / draw-call measurement."
+}

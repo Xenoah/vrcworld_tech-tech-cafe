@@ -1,0 +1,25 @@
+# ファイル一覧
+
+- `00_WORK_HANDOFF_JA.md` - 日本語の正本引き継ぎ説明
+- `WORK_START_PROMPT_JA.md` - Workへそのまま渡せる開始プロンプト
+- `world_spec.json` - 寸法、階高、ゾーン座標、定員などの機械可読正本
+- `CAD/The_Commons_Compact_Master.dxf` - 1F/2F統合CAD
+- `CAD/A-101_1F_Plan.dxf` - 1F平面CAD
+- `CAD/A-102_2F_Plan.dxf` - 2F平面CAD
+- `CAD/A-201_Section_AA.dxf` - A-A断面CAD
+- `CAD/The_Commons_Compact_Blockout.scad` - 3Dブロックアウトソース
+- `CAD/The_Commons_Compact_Blockout.stl` - 3Dブロックアウト
+- `Drawings/The_Commons_Compact_Drawing_Set.pdf` - 1F/2F/断面の図面セット
+- `The_Commons_Compact_Design_Packet.pdf` - 総合設計資料
+- `01_Concept_and_Worldbuilding.md` - 基本コンセプト
+- `02_Architectural_Specification.md` - 建築・寸法仕様
+- `03_VRChat_Implementation_Spec.md` - VRChat機能仕様
+- `04_Material_Shader_Lighting_Audio.md` - フラットライト、照明、音響
+- `05_Optimization_and_Production.md` - 最適化・制作工程
+- `06_Detailed_World_Setting_JA.md` - 日本語の詳細世界設定
+- `Schedules/room_schedule.csv` - 部屋/ゾーン表
+- `Schedules/dimensional_schedule.csv` - 座標/寸法表
+- `Schedules/material_shader_schedule.csv` - マテリアル/シェーダー表
+- `Schedules/lighting_audio_schedule.csv` - 照明/音響表
+- `Schedules/interaction_schedule.csv` - Udon/インタラクション表
+- `Reference/The_Commons_Compact_reference.png` - 元コンセプト画像

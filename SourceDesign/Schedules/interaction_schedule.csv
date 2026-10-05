@@ -1,0 +1,11 @@
+﻿ID,System,Area,Function,Notes
+INT-01,World mode selector,Entrance + host panel,Lounge / Academic / DJ / Quiet Night,Host-locked optional
+INT-02,Presentation controller,Stage,"slide/video source, timer, pointer, Q&A indicator",Presenter role
+INT-03,Seat markers,Lounge/Cafe,Optional stations / sit anchors,No forced seating
+INT-04,Drink props,Bar,"pickup glasses, non-alcoholic variants, toast chime",Conversation affordance
+INT-05,Topic cards,Bar tables,rotating discussion prompts,Can be disabled
+INT-06,Poster bays,Gallery,image/video/URL metadata panel,Per-event content set
+INT-07,DJ controller facade,2F booth,visual deck controls + AudioLink mode,Actual audio source host-controlled
+INT-08,Quiet Room audio gate,2F room,local BGM attenuation / voice range preset,Soft transition
+INT-09,Accessibility portal,Entrance + 2F,instant vertical transfer,Always available
+INT-10,Mirror toggle,Quiet / vanity niche,"local only, default off",Performance safeguard
