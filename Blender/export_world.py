@@ -1,6 +1,6 @@
 """Export render groups, deterministic Unity mesh binary, FBX and GLB."""
 from pathlib import Path
-import bpy,struct,json,collections,math,os
+import bpy,bmesh,struct,json,collections,math,os
 from mathutils import Vector
 ROOT=Path(__file__).resolve().parents[1];A=ROOT/'Unity/Assets/TheCommons'
 bpy.ops.wm.open_mainfile(filepath=str(ROOT/'Blender/The_Commons_Compact.blend'))
@@ -14,6 +14,18 @@ for o in bpy.data.objects:
  if o.type=='MESH':
   bpy.context.view_layer.objects.active=o
   for mod in list(o.modifiers):bpy.ops.object.modifier_apply(modifier=mod.name)
+# Keep face-assigned artwork and stage timber through FBX/TCM export.
+# Split by material before batching; a TCM render mesh has exactly one material.
+for o in list(bpy.data.objects):
+ used=sorted({p.material_index for p in o.data.polygons})
+ if len(used)<2:continue
+ for index in used:
+  me=o.data.copy();bm=bmesh.new();bm.from_mesh(me)
+  bmesh.ops.delete(bm,geom=[f for f in bm.faces if f.material_index!=index],context='FACES')
+  for f in bm.faces:f.material_index=0
+  bm.to_mesh(me);bm.free();me.materials.clear();me.materials.append(o.data.materials[index])
+  piece=bpy.data.objects.new(o.name+'_'+o.data.materials[index].name,me);piece.matrix_world=o.matrix_world.copy();o.users_collection[0].objects.link(piece)
+ bpy.data.objects.remove(o,do_unlink=True)
 groups=collections.defaultdict(list)
 for o in list(bpy.data.objects):
  if o.type=='MESH':groups[(o.users_collection[0].name,o.data.materials[0].name)].append(o)

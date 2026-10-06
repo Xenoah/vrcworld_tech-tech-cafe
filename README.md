@@ -1,10 +1,12 @@
 # vrcworld_tech-tech-cafe
 
-VRChat用の技術者カフェ／交流ワールド制作データ。内部プロジェクト名は **The Commons — Compact Edition**、収録モデルは **v0.2.0** です。
+VRChat用の技術者カフェ／交流ワールド制作データ。内部プロジェクト名は **The Commons — Compact Edition**、収録モデルは **v0.3.0** です。
 
 ![ワールドの入口からのプレビュー](Preview/01_Entrance_160cm.png)
 
 28 × 18 m、2階床高 4.8 m。バーカウンター、カフェ、発表ステージ、吊り下げDJブース、展示ギャラリー、静かなアーカイブルームを配置しています。
+
+v0.3.0ではDJ機材・酒ラベル・カフェ小物を作り込み、床・ステージ・階段の同一面重複を修正しました。[変更内容](Documentation/CHANGES_v0.3.0_JA.md) / [Unity MCP引き継ぎ](UNITY_MCP_HANDOFF.md)
 
 ## Unityへ導入
 
@@ -24,12 +26,12 @@ VRChat用の技術者カフェ／交流ワールド制作データ。内部プ�
 | --- | --- |
 | [Blender/](Blender/) | 編集用 `.blend`、モデル再生成・書き出しスクリプト、使用フォント |
 | [Unity/Assets/TheCommons/](Unity/Assets/TheCommons/) | PC/Quest用FBX、Unity用メッシュ、シーン生成Editor、UdonSharp、シェーダー |
-| [Unity/Assets/TheCommons/Textures/](Unity/Assets/TheCommons/Textures/) | 木・左官・テラゾー・黒皮鋼・真鍮・織布の生成テクスチャ6種 |
+| [Unity/Assets/TheCommons/Textures/](Unity/Assets/TheCommons/Textures/) | 木・左官・テラゾー・黒皮鋼・真鍮・織布の建築素材6種＋DJ・酒ラベル・小物用アトラス3種 |
 | [Unity/Assets/TheCommons/Media/](Unity/Assets/TheCommons/Media/) | 発表スライド・展示ポスター |
 | [Unity/Assets/TheCommons/Audio/](Unity/Assets/TheCommons/Audio/) | 環境音・アンビエント・DJ用のオリジナル音源 |
 | [CAD/](CAD/) / [SourceDesign/](SourceDesign/) | 実装差分図、元図面、設計資料 |
 | [Documentation/](Documentation/) | 寸法検査・構文検査・受入確認・素材生成記録 |
-| [Preview/](Preview/) | 制作モデルの静止画5枚とglTF（外部参照形式） |
+| [Preview/](Preview/) | 制作モデルの静止画8枚とglTF（外部参照形式） |
 
 ### ワールド内の機能
 
@@ -45,18 +47,18 @@ VRChat用の技術者カフェ／交流ワールド制作データ。内部プ�
 
 | 書き出しモデル | 三角形数 | メッシュ数 |
 | --- | ---: | ---: |
-| PC | 140,384 | 127 |
-| Quest | 106,025 | 118 |
+| PC | 139,940 | 129 |
+| Quest | 107,773 | 120 |
 
 数値は書き出した全景の形状検査結果です。実機FPSや描画負荷の実測値ではありません。
 
-テクスチャは **Mirror（鏡像反復）** を使用します。通常のRepeatで画像端が完全一致することは保証していません。元CADから補完した箇所は [CAD_CHANGES_JA.md](Documentation/CAD_CHANGES_JA.md) で追跡できます。
+建築素材6種は **Mirror（鏡像反復）**、印刷用アトラス3種は **Clamp** を使用します。通常のRepeatで画像端が完全一致することは保証していません。元CADから補完した箇所は [CAD_CHANGES_JA.md](Documentation/CAD_CHANGES_JA.md) で追跡できます。
 
 ## 制作・管理
 
 - `.blend` と全アセットを通常のGitファイルとして管理します。Git LFSは使用していません。
 - `.blend` は圧縮保存し、画像とフォントをリポジトリ内の相対パスで参照します。Blenderファイル単体ではなく、リポジトリ全体を取得してください。
-- プレビューモデルは `Preview/The_Commons_Compact.gltf` と `.bin` に分離し、同じテクスチャを参照します。形状・PNGの内容は変更していません。
+- プレビューモデルは `Preview/The_Commons_Compact.gltf` と `.bin` に分離し、同じテクスチャを参照します。パッケージ整理による形状・PNGの変更はありません。
 - 再生成後のGit用整理は `Blender/prepare_repository_assets.py` をBlenderのPython環境で実行します。元のGLBは生成できますがGit対象外です。
 - Unityの `Library`、キャッシュ、ビルド出力、生成シーンはGit対象外です。
 - SDK本体とAudioLink本体は同梱していません。

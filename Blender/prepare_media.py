@@ -2,11 +2,21 @@
 AI material albedos are copied unmodified; no raster retouching is performed.
 """
 from pathlib import Path
-import json,math,wave,shutil
+import json,math,wave,shutil,sys
 import numpy as np
 from scipy.ndimage import gaussian_filter1d
 from PIL import Image,ImageDraw,ImageFont
 ROOT=Path(__file__).resolve().parents[1];A=ROOT/'Unity/Assets/TheCommons'
+def prepare_manifest():
+ raw=json.loads((ROOT/'Documentation/model_manifest.json').read_text())
+ raw['materials']=[dict(name=n,**v) for n,v in raw['materials'].items()]
+ for c in raw['colliders']:
+  if 'vertices' in c:c['vertices']=[v for row in c['vertices'] for v in row]
+ (A/'Data/world_manifest.json').write_text(json.dumps(raw,indent=2))
+
+if '--manifest-only' in sys.argv:
+ prepare_manifest();print('Unity manifest prepared');raise SystemExit(0)
+
 FONT=str(ROOT/'Blender/Fonts/DejaVuSans.ttf');BOLD=str(ROOT/'Blender/Fonts/DejaVuSans-Bold.ttf')
 def font(n,b=False):return ImageFont.truetype(BOLD if b else FONT,n)
 def text(d,p,s,n=28,c='#dfdfd2',b=False):d.text(p,s,font=font(n,b),fill=c)
@@ -60,10 +70,5 @@ for k in range(64):
  if k%2: dj+=.023*gaussian_filter1d(rng.normal(0,1,n),.5,mode='wrap')*np.exp(-tau*35)
  f=[73.4167,73.4167,110,65.4][(k//4)%4];dj+=.038*np.sin(2*np.pi*f*tau)*np.exp(-tau*5)*(1-np.exp(-tau*80))
 save_audio('commons_dj',dj)
-# Convert only the manifest structure needed by Unity JsonUtility (no dictionaries/jagged arrays).
-raw=json.loads((ROOT/'Documentation/model_manifest.json').read_text())
-raw['materials']=[dict(name=n,**v) for n,v in raw['materials'].items()]
-for c in raw['colliders']:
- if 'vertices' in c:c['vertices']=[v for row in c['vertices'] for v in row]
-(A/'Data/world_manifest.json').write_text(json.dumps(raw,indent=2))
+prepare_manifest()
 print('4 slides, 6 posters, 3 original audio loops, Unity manifest prepared')

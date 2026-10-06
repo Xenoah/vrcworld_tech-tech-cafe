@@ -22,16 +22,16 @@ def link(o):
  if GROUP not in GROUPS: group(GROUP)
  GROUPS[GROUP].objects.link(o)
  return o
-def mat(name,color,texture=None,rough=.72,metal=0,emit=0):
+def mat(name,color,texture=None,rough=.72,metal=0,emit=0,wrap='mirror'):
  m=bpy.data.materials.new(name); m.diffuse_color=(*color,1); m.use_nodes=True
  p=m.node_tree.nodes.get('Principled BSDF'); p.inputs['Base Color'].default_value=(*color,1)
  p.inputs['Metallic'].default_value=metal; p.inputs['Roughness'].default_value=rough
  p.inputs['Emission Color'].default_value=(*color,1); p.inputs['Emission Strength'].default_value=emit
  if texture:
-  n=m.node_tree.nodes.new('ShaderNodeTexImage'); n.image=bpy.data.images.load(str(ASSET/'Textures'/f'{texture}_albedo.png')); n.extension='MIRROR'
+  n=m.node_tree.nodes.new('ShaderNodeTexImage'); n.image=bpy.data.images.load(str(ASSET/'Textures'/f'{texture}_albedo.png'),check_existing=True); n.extension='MIRROR' if wrap=='mirror' else 'EXTEND'
   mix=m.node_tree.nodes.new('ShaderNodeMixRGB'); mix.blend_type='MULTIPLY'; mix.inputs[0].default_value=1; mix.inputs[2].default_value=(*color,1)
   m.node_tree.links.new(n.outputs['Color'],mix.inputs[1]); m.node_tree.links.new(mix.outputs[0],p.inputs['Base Color'])
- m['texture_key']=texture or ''; m['emission']=emit; M[name]=m
+ m['texture_key']=texture or ''; m['emission']=emit; m['wrap']=wrap; M[name]=m
  return m
 mat('MAT_Steel',(.62,.69,.75),'blackened_steel',.65,.45)
 mat('MAT_Oak',(.8,.64,.48),'warm_oak',.65)
@@ -54,6 +54,10 @@ mat('MAT_Amber',(.95,.42,.115),rough=.5,emit=2.3)
 mat('MAT_Cyan',(.02,.48,.72),rough=.5,emit=1.6)
 mat('MAT_White',(.72,.82,.86),rough=.6,emit=.5)
 mat('MAT_Holo',(.018,.3,.48),rough=.3,emit=1.0)
+mat('MAT_DJPanel',(1,1,1),'relay_controller',.8,0,wrap='clamp')
+M['MAT_DJPanel'].node_tree.nodes.get('Principled BSDF').inputs['Specular IOR Level'].default_value=.16
+mat('MAT_BottleLabels',(1,1,1),'bar_labels',.84,wrap='clamp')
+mat('MAT_PropPrint',(1,1,1),'cafe_props',.73,wrap='clamp')
 def uv_planar(mesh,scale=1):
  uv=mesh.uv_layers.new(name='UVMap')
  for poly in mesh.polygons:
@@ -71,6 +75,39 @@ def box(name,pos,size,material='MAT_Steel',bevel=0):
  o=mesh(name,vs,[(0,3,2,1),(4,5,6,7),(0,1,5,4),(1,2,6,5),(2,3,7,6),(3,0,4,7)],material,2 if material=='MAT_Fabric' else .5)
  if bevel:
   m=o.modifiers.new('Small edge chamfer','BEVEL'); m.width=bevel; m.segments=2
+ return o
+def print_face(o,face,material,rect=(0,0,1,1),axes=(0,2),flip_u=False,flip_v=False):
+ """Replace one existing face's material/UV; no overlapping decal geometry.
+ rect uses Blender UV origin (bottom left). Atlas margins prevent adjacent ink bleeding.
+ """
+ if M[material].name not in o.data.materials:o.data.materials.append(M[material])
+ p=o.data.polygons[face];p.material_index=o.data.materials.find(material)
+ u0,v0,u1,v1=rect;points=[o.data.vertices[i].co for i in p.vertices]
+ lo=[min(v[a] for v in points) for a in axes];hi=[max(v[a] for v in points) for a in axes]
+ for li in p.loop_indices:
+  v=o.data.vertices[o.data.loops[li].vertex_index].co
+  u=(v[axes[0]]-lo[0])/(hi[0]-lo[0]);t=(v[axes[1]]-lo[1])/(hi[1]-lo[1])
+  if flip_u:u=1-u
+  if flip_v:t=1-t
+  o.data.uv_layers.active.data[li].uv=(u0+u*(u1-u0),v0+t*(v1-v0))
+ return o
+def atlas_rect(index,columns=3,rows=2,inset=.012):
+ c=index%columns;r=index//columns
+ return ((c+inset)/columns,1-(r+1-inset)/rows,(c+1-inset)/columns,1-(r+inset)/rows)
+def bottle_label(x,y,z,variant,r=.052,height=.092):
+ """Curved label facing +X. Side-only strip, 3 mm outside the glass, no hidden box.
+ Six brand cells share one material. Cropped guard pixels isolate mip boundaries.
+ """
+ vs=[];n=6;angle=.86
+ for zz in [z-height/2,z+height/2]:
+  for i in range(n+1):
+   a=-angle+2*angle*i/n;vs.append((x+(r+.003)*math.cos(a),y+(r+.003)*math.sin(a),zz))
+ o=mesh('FURN_BottleLabel',vs,[(i,i+1,i+1+n+1,i+n+1) for i in range(n)],'MAT_BottleLabels')
+ u0,v0,u1,v1=atlas_rect(variant)
+ for p in o.data.polygons:
+  for li in p.loop_indices:
+   vi=o.data.loops[li].vertex_index;o.data.uv_layers.active.data[li].uv=(u0+(vi%(n+1))/n*(u1-u0),v0+(vi//(n+1))*(v1-v0))
+ o['label_variant']=variant
  return o
 def slab(name,b,z,th=.2,matn='MAT_Stone',collision=True):
  x1,y1,x2,y2=b
@@ -109,10 +146,14 @@ def text_obj(name,body,pos,size=.22,matn='MAT_White',rot=(math.pi/2,0,0),align='
  cu=bpy.data.curves.new(name,'FONT');cu.body=body;cu.size=size;cu.align_x=align;cu.align_y='CENTER';cu.extrude=.0008;cu.resolution_u=2
  if FONT:cu.font=FONT
  o=link(bpy.data.objects.new(name,cu));o.location=pos;o.rotation_euler=rot;cu.materials.append(M[matn]); return o
+RAIL_POSTS=set()
 def rail(name,a,b,z):
  a=Vector((*a,z));b=Vector((*b,z));length=(b-a).length;n=max(1,math.ceil(length/1.15))
  for i in range(n+1):
-  p=a.lerp(b,i/n);beam(name+'_post',p,p+Vector((0,0,1.05)),.026);cyl(name+'_foot',p+Vector((0,0,.025)),.065,.05,'MAT_Brass',12)
+  p=a.lerp(b,i/n);key=tuple(round(v,5) for v in p)
+  if key in RAIL_POSTS:continue
+  RAIL_POSTS.add(key)
+  beam(name+'_post',p+Vector((0,0,.05)),p+Vector((0,0,1.05)),.026);cyl(name+'_foot',p+Vector((0,0,.025)),.065,.05,'MAT_Brass',12)
  beam(name+'_top',a+Vector((0,0,1.05)),b+Vector((0,0,1.05)),.039,'MAT_Brass',10)
  for h in [.28,.54,.8]:beam(name+'_cable',a+Vector((0,0,h)),b+Vector((0,0,h)),.008,'MAT_Steel',6)
  mid=(a+b)/2
@@ -163,9 +204,9 @@ def plant(x,y,z=0,height=1.4,r=.31):
 def stair(name,x1,x2,y0,y1,steps=28):
  h=4.8/steps;run=(y1-y0)/steps
  for i in range(steps):
-  ht=(i+1)*h;box(name+'_Tread',((x1+x2)/2,y0+(i+.5)*run,ht-.05),(x2-x1,run+.008,.10),'MAT_Oak')
-  box(name+'_Riser',((x1+x2)/2,y0+i*run+.015,ht-h/2),(x2-x1,.03,h),'MAT_Steel')
-  box(name+'_Nosing',((x1+x2)/2,y0+i*run+.009,ht-.009),(x2-x1,.022,.017),'MAT_Amber')
+  ht=(i+1)*h;box(name+'_Tread',((x1+x2)/2,y0+(i+.5)*run,ht-.05),(x2-x1,run,.10),'MAT_Oak')
+  box(name+'_Riser',((x1+x2)/2,y0+i*run+.015,ht-h/2-.05),(x2-x1,.03,h-.10),'MAT_Steel')
+  box(name+'_Nosing',((x1+x2)/2,y0+i*run-.007,ht-.012),(x2-x1,.014,.018),'MAT_Amber')
  for x in [x1+.04,x2-.04]:
   beam(name+'_Stringer',(x,y0,-.1),(x,y1,4.7),.085)
   beam(name+'_Handrail',(x,y0,1.05),(x,y1,5.85),.036,'MAT_Brass')
@@ -178,14 +219,13 @@ def stair(name,x1,x2,y0,y1,steps=28):
 # ARCHITECTURE: footprint and floor datums from authoritative JSON.
 group('ARCH_Shell')
 slab('Ground',(0,0,28,18),0,.2)
-for y in range(1,18):box('ARCH_FloorJoint',(14,y,.001),(27.5,.006,.002),'MAT_Steel')
-for x in range(1,28):box('ARCH_FloorJoint',(x,9,.001),(.006,17.5,.002),'MAT_Steel')
-for pos,size in [((.125,9,4.8),(.25,18,9.6)),((14,17.875,4.8),(28,.25,9.6)),((5.75,.125,4.8),(11.5,.25,9.6)),((22.25,.125,4.8),(11.5,.25,9.6))]:
+# Stone texture supplies floor detail; intersecting 2 mm overlay strips were removed.
+for pos,size in [((.125,9,4.8),(.25,17.5,9.6)),((14,17.875,4.8),(28,.25,9.6)),((5.75,.125,4.8),(11.5,.25,9.6)),((22.25,.125,4.8),(11.5,.25,9.6))]:
  box('ARCH_Wall',pos,size,'MAT_Plaster');colbox('Wall',pos,size)
 # East curtain wall: opaque lower plinth, columns, minimal smoked panes.
-box('ARCH_EastPlinth',(27.875,9,.42),(.25,18,.84),'MAT_Plaster');colbox('EastEnvelope',(27.875,9,4.8),(.25,18,9.6))
-for y in [0.25,3.5,7,10.5,14,17.75]:box('ARCH_EastMullion',(27.85,y,4.8),(.3,.16,9.6),'MAT_Steel')
-for z in [4.6,9.45]:box('ARCH_EastTransom',(27.85,9,z),(.25,18,.18),'MAT_Steel')
+box('ARCH_EastPlinth',(27.875,9,.42),(.25,17.5,.84),'MAT_Plaster');colbox('EastEnvelope',(27.875,9,4.8),(.25,18,9.6))
+for y in [.33,3.5,7,10.5,14,17.67]:box('ARCH_EastMullion',(27.84,y,4.8),(.3,.16,9.6),'MAT_Steel')
+for z in [4.6,9.45]:box('ARCH_EastTransom',(27.85,9,z),(.25,17.5,.18),'MAT_Steel')
 for y in [1.9,5.25,8.75,12.25,15.8]:
  for z in [2.7,7.0]:box('ARCH_WindowPane',(27.91,y,z),(.008,3.1,4.1),'MAT_Window')
 slab('Roof',(0,0,28,18),9.8,.2,'MAT_Steel',False)
@@ -206,14 +246,14 @@ group('ARCH_Mezzanine')
 slab('WestMezzanine',(0.5,4.2,7,16.8),4.8)
 slab('WestMezzanineSouth',(7,4.2,8.8,11.8),4.8)
 slab('WestMezzanineLanding',(7,16.1,8.8,17.55),4.8)
-slab('WestStairTop',(8.8,16.1,9,17.55),4.8)
+# NorthBridge already covers the former WestStairTop rectangle.
 slab('WestNorthLink',(.5,16.8,7,17.55),4.8)
 slab('SouthBridge',(8.8,2.6,20,5),4.8)
 slab('SouthWestAdapter',(7,2.6,8.8,4.2),4.8)
 slab('NorthBridge',(8.8,15.3,19.5,17.55),4.8)
 slab('NorthEastAdapter',(19.5,15.0,21.3,17.55),4.8)
 slab('TerraceEast',(21.3,9,27.5,16.8),4.8)
-slab('TerraceLanding',(20,13.5,21.3,16.8),4.8)
+slab('TerraceLanding',(20,13.5,21.3,15.0),4.8)
 slab('EastConnector',(21.3,7.8,27.5,9),4.8)
 slab('QuietFloor',(20,1,27.5,7),4.8)
 slab('QuietNorthFloor',(21.3,7,27.5,7.8),4.8)
@@ -227,8 +267,8 @@ stair('EastStair',19.65,21.15,7.0,13.5,28)
 stair('WestStair',7.15,8.65,11.8,16.1,25)
 # Stage and AV
 group('AV_Stage')
-cyl('AV_Stage',(14,13.2,.125),2.4,.25,'MAT_Steel',96)
-cyl('AV_StageDeck',(14,13.2,.245),2.38,.01,'MAT_Oak',96)
+stage=cyl('AV_Stage',(14,13.2,.125),2.4,.25,'MAT_Steel',96)
+stage.data.materials.append(M['MAT_Oak']);stage.data.polygons[1].material_index=1
 ring('AV_StageEdge',(14,13.2,.225),2.39,.017,'MAT_Cyan',96,6)
 COL.append(dict(name='COL_Stage',kind='cylinder',position=[14,13.2,.125],radius=2.4,height=.25,group=GROUP))
 COL.append(dict(name='COL_StageRamp',kind='ramp',vertices=[(13.25,10.0,0),(14.75,10.0,0),(14.75,10.92,.25),(13.25,10.92,.25)],group=GROUP))
@@ -257,25 +297,45 @@ for z,r in [(7.0,1.05),(7.8,1.05),(8.5,.75)]:ring('AV_OrbitRing',(14,13.6,z),r,.
 for angle in [0,math.pi/3,2*math.pi/3]:
  o=ring('AV_HoloMeridian',(0,0,0),.7,.012,'MAT_Holo',48,5);o.rotation_euler=(math.pi/2,angle,0);o.location=(14,13.6,7.75)
 group('AV_DJ')
-box('AV_DJDesk',(14,13.32,5.85),(4.9,.92,.12),'MAT_Oak',.035)
+box('AV_DJDesk',(14,13.32,5.85),(4.9,1.12,.12),'MAT_Oak',.035)
 box('AV_DJFascia',(14,12.9,5.36),(4.9,.14,.85),'MAT_Steel')
 text_obj('AV_DJSign','R E L A Y',(14,12.812,5.43),.28,'MAT_Cyan')
 for x in [11.75,16.25]:box('AV_DJLeg',(x,13.4,5.3),(.1,.6,1),'MAT_Steel')
-for x in [12.8,15.2]:
- box('AV_Deck',(x,13.32,5.965),(.77,.63,.10),'MAT_Black',.03)
- cyl('AV_Jog',(x,13.22,6.04),.22,.045,'MAT_Steel',40);ring('AV_JogLED',(x,13.22,6.07),.215,.009,'MAT_Cyan',40,4)
- for j in range(4):box('AV_PerformancePad',(x-.21+j*.14,13.06,6.03),(.085,.075,.02),'MAT_Amber')
- for j in range(4):cyl('AV_DeckKnob',(x-.23+j*.14,13.52,6.052),.018,.04,'MAT_Steel',8)
-box('AV_Mixer',(14,13.32,5.96),(.68,.65,.09),'MAT_Black')
-for x in [13.8,13.94,14.08,14.22]:
- for yy in [13.22,13.37,13.52]:cyl('AV_MixerKnob',(x,yy,6.035),.018,.045,'MAT_Brass',8)
- box('AV_Fader',(x,13.05,6.028),(.015,.14,.008),'MAT_Steel');box('AV_FaderCap',(x,13.04,6.043),(.045,.025,.014),'MAT_White')
+# Controller front faces its operator on +Y. The entire artwork uses one UV frame.
+controller=box('AV_RelayController',(14,13.32,5.965),(2,1,.10),'MAT_Black',.009)
+print_face(controller,1,'MAT_DJPanel',axes=(0,1),flip_u=True,flip_v=True)
+def dj_pos(u,v):return (15-2*u,12.82+v)
+def dj_top(o):
+ # Place the corresponding artwork onto raised controls, not a second coplanar sheet.
+ o.data.materials.append(M['MAT_DJPanel'])
+ for p in o.data.polygons:
+  if p.normal.z>.99:
+   p.material_index=len(o.data.materials)-1
+   for li in p.loop_indices:
+    v=o.data.vertices[o.data.loops[li].vertex_index].co;o.data.uv_layers.active.data[li].uv=((15-v.x)/2,1-(v.y-12.82))
+ return o
+for u in [.206,.793]:
+ x,y=dj_pos(u,.485)
+ dj_top(cyl('AV_Jog',(x,y,6.046),.25,.054,'MAT_Steel',48))
+ ring('AV_JogTrim',(x,y,6.04),.253,.007,'MAT_Brass',48,5)
+for u in [.407,.454,.501,.548]:
+ for v in [.158,.264,.371,.466]:
+  x,y=dj_pos(u,v);dj_top(cyl('AV_MixerKnob',(x,y,6.038),.022,.042,'MAT_Black',12))
+ x,y=dj_pos(u,.637);dj_top(box('AV_FaderCap',(x,y,6.032),(.055,.036,.030),'MAT_Steel'))
+for u in [.358,.644]:
+ for v in [.17,.278,.39,.505,.628]:
+  x,y=dj_pos(u,v);dj_top(cyl('AV_DeckKnob',(x,y,6.038),.020,.042,'MAT_Black',12))
+for u in [.124,.190,.256,.322,.679,.744,.811,.878]:
+ x,y=dj_pos(u,.837);dj_top(box('AV_PerformancePad',(x,y,6.026),(.103,.080,.018),'MAT_Black'))
+x,y=dj_pos(.5,.88);dj_top(box('AV_Crossfader',(x,y,6.034),(.052,.064,.034),'MAT_Black'))
+for u in [.045,.954]:
+ x,y=dj_pos(u,.267);dj_top(box('AV_PitchFader',(x,y,6.032),(.040,.050,.030),'MAT_Steel'))
 for x in [11.9,16.1]:box('AV_DJMonitor',(x,13.63,6.21),(.28,.27,.50),'MAT_Black',.02)
 
 # BAR follows the two exact CAD L-counter polygons.
 group('FURN_Bar')
 for name,b in [('Return',(1.3,5.6,6.6,6.5)),('Long',(1.3,6.5,2.2,13.9))]:
- x1,y1,x2,y2=b;box('FURN_Bar'+name,((x1+x2)/2,(y1+y2)/2,.53),(x2-x1,y2-y1,1.06),'MAT_Steel')
+ x1,y1,x2,y2=b;box('FURN_Bar'+name,((x1+x2)/2,(y1+y2)/2,.5275),(x2-x1,y2-y1,1.055),'MAT_Steel')
  slab('BarTop'+name,b,1.13,.075,'MAT_Oak',False);colbox('Bar'+name,((x1+x2)/2,(y1+y2)/2,.57),(x2-x1,y2-y1,1.14))
 for x in [1.42+i*.145 for i in range(35)]:box('FURN_BarFlute',(x,5.55,.62),(.057,.10,.82),'MAT_Oak')
 for y in [6.58+i*.145 for i in range(50)]:box('FURN_BarFlute',(2.23,y,.62),(.10,.057,.82),'MAT_Oak')
@@ -294,15 +354,20 @@ for zi,z in enumerate([1.26,1.98,2.70]):
   cyl('FURN_Bottle',(x,y,z+h*.39),.052,h*.78,'MAT_BottleGreen' if j%3 else 'MAT_BottleAmber',10,r2=.052)
   cyl('FURN_BottleNeck',(x,y,z+h*.88),.022,h*.25,'MAT_BottleGreen',10)
   cyl('FURN_BottleCap',(x,y,z+h*1.025),.024,.035,'MAT_Brass',10)
-  box('FURN_BottleLabel',(x+.050,y,z+h*.45),(.007,.071,.085),'MAT_Label')
+  bottle_label(x,y,z+h*.43,(j+zi*2)%6)
 text_obj('FURN_BarTitle','ANCHOR BAR',(1.02,10.2,3.74),.25,'MAT_Amber',rot=(math.pi/2,0,math.pi/2))
 for y in [7.5,9.7,12.0]:pendant(3.6,y,3.8)
 for x in [3.4,5.5]:pendant(x,6.1,3.75)
 box('FURN_Espresso',(4.4,6.02,1.40),(.72,.43,.49),'MAT_Steel',.035)
-box('FURN_EspressoFace',(4.4,5.79,1.4),(.60,.018,.29),'MAT_Brass')
+o=box('FURN_EspressoFace',(4.4,5.79,1.4),(.60,.018,.29),'MAT_Brass')
+print_face(o,2,'MAT_PropPrint',(.006,.566,.494,.994))
 for x in [4.24,4.52]:
  beam('FURN_Portafilter',(x,5.77,1.35),(x,5.58,1.35),.022,'MAT_Black');cup(x,5.77,1.15)
 cyl('FURN_Grinder',(5.2,6.02,1.36),.115,.44,'MAT_Steel',16);cyl('FURN_BeanHopper',(5.2,6.02,1.66),.14,.2,'MAT_BottleAmber',16,r2=.1)
+for x in [3.36,3.58,3.80]:
+ o=box('FURN_CoffeeBag',(x,6.03,1.28),(.17,.11,.29),'MAT_Ceramic',.008)
+ print_face(o,2,'MAT_PropPrint',(.506,.009,.994,.546))
+ box('FURN_BagFold',(x,6.03,1.431),(.16,.035,.012),'MAT_Brass')
 for y in [7.3,9.2,11.4,13.1]:cup(1.86,y,1.133)
 plant(6.4,13.9,height=1.8,r=.38)
 
@@ -346,7 +411,7 @@ text_obj('FURN_NookSign','A QUIETER CORNER',(24,6.0,2.6),.16,'MAT_Amber')
 
 group('FURN_QuietRoom')
 slab('QuietCeiling',(20,1,27.5,7.8),8.46,.16,'MAT_Plaster',False)
-for pos,size in [((20.05,2.45,6.55),(.10,2.9,3.5)),((20.05,6.2,6.55),(.10,1.6,3.5)),((23.75,1.05,6.55),(7.5,.10,3.5)),((24.4,7.75,6.55),(6.2,.10,3.5))]:
+for pos,size in [((20.05,2.50,6.55),(.10,2.8,3.5)),((20.05,6.2,6.55),(.10,1.6,3.5)),((23.75,1.05,6.55),(7.5,.10,3.5)),((24.4,7.75,6.55),(6.2,.10,3.5))]:
  box('ARCH_QuietWall',pos,size,'MAT_Plaster');colbox('QuietWall',pos,size)
 box('ARCH_QuietDoorHeader',(20.05,4.65,8.05),(.14,1.6,.5),'MAT_Oak')
 text_obj('FURN_ArchiveSign','ARCHIVE',(19.94,4.65,7.81),.24,'MAT_Amber',rot=(math.pi/2,0,-math.pi/2))
@@ -356,7 +421,8 @@ for x in [22.4,25.1]:
 for z in [5.7,6.5,7.3]:
  box('FURN_ArchiveShelf',(24,1.4,z),(4.5,.48,.06),'MAT_Oak')
  for j in range(24):
-  h=random.uniform(.20,.36);box('FURN_Book',(21.9+j*.175,1.4,z+h/2+.03),(.06+random.random()*.05,.25,h),['MAT_Oak','MAT_Fabric','MAT_Ceramic','MAT_Black'][j%4])
+  h=random.uniform(.20,.36);o=box('FURN_Book',(21.9+j*.175,1.4,z+h/2+.03),(.06+random.random()*.05,.25,h),['MAT_Oak','MAT_Fabric','MAT_Ceramic','MAT_Black'][j%4])
+  c=j%6;print_face(o,4,'MAT_PropPrint',((c+.05)/12,.012,(c+.95)/12,.543),flip_u=True)
 plant(26.8,6.8,4.8,height=1.5)
 area('LGT_Archive',(23.8,4.0,8.1),(23.8,4,4.8),220,(1,.61,.36),3.8)
 
@@ -392,7 +458,8 @@ box('ARCH_AVPartition',(23.2,15.65,1.9),(7.7,.14,3.8),'MAT_Plaster');colbox('AVW
 for x in [21,22.2,23.4]:
  box('AV_Rack',(x,17.1,1.05),(.72,.65,2.1),'MAT_Black')
  for j in range(9):
-  box('AV_RackUnit',(x,16.765,.2+j*.205),(.66,.028,.165),'MAT_Steel')
+  o=box('AV_RackUnit',(x,16.765,.2+j*.205),(.66,.028,.165),'MAT_Steel')
+  print_face(o,2,'MAT_PropPrint',(.506,.565,.994,.994))
   for k in range(4):box('AV_StatusLED',(x-.22+k*.04,16.744,.2+j*.205),(.014,.008,.014),'MAT_Cyan')
 text_obj('AV_BackOfHouseLabel','AV / HOST',(20.0,16.6,2.7),.17,'MAT_Amber')
 
@@ -437,19 +504,22 @@ camera('03_Stage_160cm',(14,9.65,1.6),(14,16.8,2.5),22)
 camera('04_Mezzanine_160cm',(17.95,4.05,6.4),(12.6,11.8,3.05),20)
 camera('05_Archive_160cm',(20.65,6.65,6.4),(24,3.2,6.1),21)
 camera('06_Overview',(36,-27,28),(14,9,3.8),49)
+camera('07_Relay_Detail',(14,14.8,7.4),(14,13.3,6.0),32)
+camera('08_BarLabels_Detail',(2.40,7.35,2.90),(.84,7.35,2.85),54)
+camera('09_Coffee_Detail',(4.5,4.75,1.98),(4.35,6.00,1.41),48)
 S.camera=CAMS['01_Entrance_160cm']
 S.render.engine='CYCLES';S.cycles.samples=32;S.cycles.use_denoising=True;S.cycles.max_bounces=5
 S.render.resolution_x=1600;S.render.resolution_y=1000;S.render.resolution_percentage=100
 S.view_settings.view_transform='AgX';S.view_settings.look='AgX - Medium High Contrast';S.view_settings.exposure=1.05
 S.render.image_settings.file_format='PNG';S.render.film_transparent=False
-S['project']='THE COMMONS - Compact Edition';S['revision']='0.2.0-art1';S['source']='SourceDesign/world_spec.json';S['world_test_status']='Unity and VRChat runtime tests pending'
+S['project']='THE COMMONS - Compact Edition';S['revision']='0.3.0';S['source']='SourceDesign/world_spec.json';S['world_test_status']='Unity and VRChat runtime tests pending'
 # Hide only inactive mode, preserving authoring editability.
 for o in GROUPS['MODE_Academic'].objects:o.hide_render=True;o.hide_set(True)
 for im in bpy.data.images:
  if im.source=='FILE':im.pack()
 for o in bpy.data.objects:
  if o.type=='MESH':o['commons_group']=o.users_collection[0].name
-report={'footprint':[28,18],'level_tops':[0,4.8,9.6],'stage':{'center':[14,13.2],'diameter':4.8,'height':.25},'screen':[7.1,4.0],'stair_design':COUNTS,'colliders':COL,'lights':LIGHTS,'seat_anchors':SEATS,'cameras':{n:{'position':list(o.location),'eye_height':1.6 if '160cm' in n else None} for n,o in CAMS.items()},'materials':{n:{'color':list(m.diffuse_color),'texture':m.get('texture_key',''),'emission':m.get('emission',0)} for n,m in M.items()}}
+report={'version':'0.3.0','footprint':[28,18],'level_tops':[0,4.8,9.6],'stage':{'center':[14,13.2],'diameter':4.8,'height':.25},'screen':[7.1,4.0],'stair_design':COUNTS,'colliders':COL,'lights':LIGHTS,'seat_anchors':SEATS,'cameras':{n:{'position':list(o.location),'eye_height':1.6 if '160cm' in n else None} for n,o in CAMS.items()},'materials':{n:{'color':list(m.diffuse_color),'texture':m.get('texture_key',''),'emission':m.get('emission',0),'wrap':m.get('wrap','mirror')} for n,m in M.items()}}
 (ASSET/'Data/world_manifest.json').write_text(json.dumps(report,indent=2))
 (ROOT/'Documentation/model_manifest.json').write_text(json.dumps(report,indent=2))
 bpy.ops.file.pack_all()

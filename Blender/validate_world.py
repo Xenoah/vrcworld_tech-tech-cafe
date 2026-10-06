@@ -16,7 +16,35 @@ for name in ['WestMezzanine','SouthBridge','NorthBridge','QuietFloor','DJFloor']
  lo,hi=bounds(name);check(name+' datum',abs(hi[2]-4.8)<1e-5,hi.tolist())
 lo,hi=bounds('AV_Stage');check('Stage dimensions',np.allclose(hi-lo,[4.8,4.8,.25]),(hi-lo).tolist())
 lo,hi=bounds('AV_MainScreen');check('Main screen dimensions',abs(hi[0]-lo[0]-7.1)<1e-5 and abs(hi[2]-lo[2]-4)<1e-5,(hi-lo).tolist())
-im=[i for i in bpy.data.images if i.source=='FILE'];check('Texture images packed',all(i.packed_file is not None for i in im),len(im))
+im=[i for i in bpy.data.images if i.source=='FILE'];check('Texture images resolve',all(i.packed_file is not None or Path(bpy.path.abspath(i.filepath)).is_file() for i in im),len(im))
+# Intersect real horizontal face polygons, rather than relying on floor bbox checks.
+# This catches the former nested landing, stage cap, and riser/tread z-fighting.
+from shapely.geometry import Polygon
+from shapely.strtree import STRtree
+planes=collections.defaultdict(list)
+names={c['name'][4:] for c in json.loads((ROOT/'Documentation/model_manifest.json').read_text())['colliders'] if c['kind']=='box' and abs(c['position'][2]+c['size'][2]/2-4.8)<1e-4}
+names|={'Ground','AV_Stage','AV_StageDeck'}
+for o in bpy.data.objects:
+ if o.type!='MESH' or not (o.name in names or o.name.startswith(('EastStair_Tread','WestStair_Tread','EastStair_Riser','WestStair_Riser','EastStair_Nosing','WestStair_Nosing'))):continue
+ for p in o.data.polygons:
+  if p.normal.z<.99999:continue
+  vs=[o.matrix_world@o.data.vertices[i].co for i in p.vertices]
+  planes[round(vs[0].z,4)].append((o.name,Polygon([(v.x,v.y) for v in vs])))
+overlaps=[]
+for z,items in planes.items():
+ tree=STRtree([p for _,p in items])
+ for i,(name,p) in enumerate(items):
+  for j in tree.query(p):
+   if j<=i or name==items[j][0]:continue
+   area=p.intersection(items[j][1]).area
+   if area>1e-5:overlaps.append({'a':name,'b':items[j][0],'z':z,'area_m2':area})
+check('No coplanar overlapping floor/stage/stair top faces',not overlaps,overlaps)
+check('No floor overlay strips',not any(o.name.startswith('ARCH_FloorJoint') for o in bpy.data.objects),'Texture detail uses the floor surface itself')
+labels=[o for o in bpy.data.objects if 'label_variant' in o]
+check('Six label variants mapped to all 93 bottles',len(labels)==93 and {o['label_variant'] for o in labels}==set(range(6)),{'labels':len(labels),'variants':sorted({o['label_variant'] for o in labels})})
+for name in ['MAT_DJPanel','MAT_BottleLabels','MAT_PropPrint']:
+ m=bpy.data.materials[name];users=[o for o in bpy.data.objects if o.type=='MESH' and name in o.data.materials]
+ check(name+' artwork UVs and clamp mode',len(users)>0 and m.get('wrap')=='clamp' and all(o.data.uv_layers.active for o in users),{'mesh_objects':len(users),'texture':m.get('texture_key')})
 for fn in ['TheCommons_PC','TheCommons_Quest']:
  with open(A/'Models'/f'{fn}.tcmesh.bytes','rb') as f:
   assert f.read(4)==b'TCM2';num=struct.unpack('<I',f.read(4))[0];tri=0;vtotal=0;bad=0;badnorm=0
@@ -58,7 +86,7 @@ while queue:
 for name,p in [('Orbit Cafe',(3,6.8)),('DJ Booth',(14,14.5)),('Archive',(24,4.2)),('Horizon',(25,12)),('West Stair Landing',(8,16.8))]:check('2F route: '+name,cell(p) in seen,list(p))
 check('Academic chair anchors',sum(s['group']=='MODE_Academic' for s in raw['seat_anchors'])==24,24)
 check('PC total mesh target',len(bpy.data.objects)>3000,'Editable objects: '+str(len(bpy.data.objects)))
-report['notes']=['West stair is 48.14 degrees in the retained CAD envelope; use its adjacent portal if movement is blocked by the VRChat slope limit.','Room and player audio levels, shader compilation, lightmap bake, network late join, Quest performance and VR playtest remain unverified.','Texture images remain the original generated images. Seam continuity is provided by Mirror wrap in the supplied materials, not by exact raw Repeat edge matching.']
+report['notes']=['West stair is 48.14 degrees in the retained CAD envelope; use its adjacent portal if movement is blocked by the VRChat slope limit.','Room and player audio levels, shader compilation, lightmap bake, network late join, Quest performance and VR playtest remain unverified.','Six architectural textures use Mirror wrap, not exact raw Repeat edge matching. Three new printed artwork atlases use Clamp and individual UV regions.','Coplanar test covers walkable floor, stage and stair top faces. It is not a claim that all intentional object contacts or all realtime artifacts are eliminated.']
 (ROOT/'Documentation/validation_report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False))
 # Actual floor and collider layout, in millimetres, separate from the original CAD.
 doc=ezdxf.new('R2010');doc.units=4;ms=doc.modelspace()

@@ -46,5 +46,53 @@
     "mode": "built-in image_gen",
     "wrap": "Mirror / mirrored-repeat",
     "source_pixels_unchanged": true
+  },
+  {
+    "name": "relay_controller",
+    "prompt_material": "RELAY R2 fictional DJ controller. Flat 2:1 black printed panel, cyan and amber waveforms, two jogs, four-channel mixer with EQ/fader markings and cue/play/performance pads. Raised geometry matches artwork UVs.",
+    "file": "relay_controller_albedo.png",
+    "mode": "built-in image_gen",
+    "wrap": "Clamp",
+    "source_pixels_unchanged": true,
+    "source_size": [
+      1774,
+      887
+    ],
+    "import_max_pc": 1024,
+    "import_max_android": 512,
+    "sha256": "c3209959d4d66776dc51f78d7b321a0b9359edc313057ac858cc251b4a9c03c6",
+    "revision": "0.3.0"
+  },
+  {
+    "name": "bar_labels",
+    "prompt_material": "3 by 2 square-cell atlas: ANCHOR reserve amber malt, ORBIT botanical gin, HORIZON citrus aperitif, RELAY dark rum, ARCHIVE dry vermouth, COMMONS zero-proof botanical. Etched vintage emblems; cream, green, orange, navy, burgundy, mint.",
+    "file": "bar_labels_albedo.png",
+    "mode": "built-in image_gen",
+    "wrap": "Clamp",
+    "source_pixels_unchanged": true,
+    "source_size": [
+      1536,
+      1024
+    ],
+    "import_max_pc": 1024,
+    "import_max_android": 512,
+    "sha256": "6a0d1ffe7da88a68f3e8cd0f9b126bef3b3201f3acbc44f05a713b8e842c1da8",
+    "revision": "0.3.0"
+  },
+  {
+    "name": "cafe_props",
+    "prompt_material": "Four-cell prop print atlas: brass ANCHOR ESPRESSO control panel, COMMONS AUDIO rack, six book spines CODE SOUND SPACE FORM LIGHT IDEAS, COMMON GROUND coffee package.",
+    "file": "cafe_props_albedo.png",
+    "mode": "built-in image_gen",
+    "wrap": "Clamp",
+    "source_pixels_unchanged": true,
+    "source_size": [
+      1774,
+      887
+    ],
+    "import_max_pc": 1024,
+    "import_max_android": 512,
+    "sha256": "bc3f26f6ec15b16436345e5cef34bbf245d22b7d2bcd90fa6fb033177cd99313",
+    "revision": "0.3.0"
   }
 ]

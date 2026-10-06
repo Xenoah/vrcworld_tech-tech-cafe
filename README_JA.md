@@ -1,14 +1,16 @@
 # THE COMMONS — Compact Edition
 
-**v0.2.0 / 詳細モデル・Unity構築データ / 2026-10-05**
+**v0.3.0 / 詳細モデル・Unity構築データ / 2026-10-05**
 
 28×18m、1F +0.000m、2F +4.800m、屋根基準 +9.600mの制作データです。Blenderで編集できる実形状、FBX、glTF、生成テクスチャ、VRChat SDK用のシーン構築ツールとUdonSharpソースを含みます。
 
 **Unity Editor / VRChatクライアントは制作環境になかったため、Unityでのコンパイル・ライトベイク・Build & Test・Quest実機・複数人通信は未検証です。公開済みワールドやビルド済み `.vrcw` ではありません。** Blenderレンダーと幾何検査の結果は `Preview/` と `Documentation/validation_report.json` に収録しています。
 
+Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md)、今回の修正は [CHANGES_v0.3.0_JA.md](Documentation/CHANGES_v0.3.0_JA.md) を参照してください。
+
 ## 最短の導入
 
-1. VRChat Creator Companionで **Worldsプロジェクト** を作成します。確認した公式指定は **Unity 2022.3.22f1**。Built-in Render Pipelineを使います。SDK / UdonSharpはVCCの導入分を利用します。
+1. VRChat Creator Companionで **Worldsプロジェクト** を作成します。制作基準は **Unity 2022.3.22f1**。Built-in Render Pipelineを使います。SDK / UdonSharpはVCCの導入分を利用します。
 2. `Unity/Assets/TheCommons` を、作成したプロジェクトの `Assets` へフォルダーごとコピーします。別添の `.unitypackage` をインポートする方法でも同じです。
 3. C#のインポートが完了したら、Unity上部メニュー **The Commons → Build PC World** を実行します。最初にUdonSharpをコンパイルし、メッシュ・マテリアル・コライダー・操作パネル・スポーン・照明を配置します。
 4. シーンは `Assets/TheCommons/Generated/PC_日時/TheCommons.unity` に保存されます。既存シーンは上書きしません。
@@ -26,15 +28,15 @@
 | `Blender/build_world.py` | 寸法を追跡できる再生成用ソース |
 | `Unity/Assets/TheCommons/Models/` | PC/Quest FBXと、向き・単位を固定したUnity用メッシュデータ |
 | `Unity/Assets/TheCommons/Scripts/` | 共有状態、発表、同期動画、移動、着席、音量ゾーン、ローカル快適設定 |
-| `Unity/Assets/TheCommons/Textures/` | AI生成した6素材のアルベド原本 |
+| `Unity/Assets/TheCommons/Textures/` | 建築素材6種＋専用印刷アトラス3種の生成原本 |
 | `Unity/Assets/TheCommons/Media/` | 差し替え可能な4枚のスライド・6枚のポスター |
 | `Unity/Assets/TheCommons/Audio/` | オリジナルの環境音・アンビエント・96 BPMのDJループ |
-| `Preview/` | 1.6m視点の5画像、外部参照形式のglTFモデル |
+| `Preview/` | 1.6m視点の5画像と小物の近接3画像、外部参照形式のglTFモデル |
 | `SourceDesign/` | 元仕様、元CAD、元スケジュール、参考画像、添付PDF |
 
 ## モデルの細部
 
-L字バーカウンター、木製リブ、真鍮の足掛け、11脚のスツール、バックバー3段のボトル、ラベル、棚下灯、エスプレッソマシン、グラインダー、カップとソーサー、テーブル灯、座面と背のクッション、脚、柱脚プレートとボルト、手すりとケーブル、段鼻灯、吊り下げロッド、DJデッキ2台とミキサー、ジョグ、パッド、フェーダー、ノブ、AVラック、展示台、植木鉢と立体葉、本棚、外景を実形状で作っています。
+L字バーカウンター、木製リブ、真鍮の足掛け、11脚のスツール、バックバー3段のボトル、ラベル、棚下灯、エスプレッソマシン、グラインダー、カップとソーサー、テーブル灯、座面と背のクッション、脚、柱脚プレートとボルト、手すりとケーブル、段鼻灯、吊り下げロッド、2デッキ・4チャンネル一体型DJコントローラー、ジョグ、パッド、フェーダー、ノブ、AVラック、展示台、植木鉢と立体葉、本棚、外景を実形状で作っています。
 
 フラット寄りの輪郭と明暗を優先し、布・木・壁を強いノーマルマップで荒らしていません。Blenderの画像はCyclesによる見え方確認です。Unityの独自Flat Lightシェーダーとは描画結果が完全一致しません。
 
@@ -65,15 +67,16 @@ DJシェーダーはAudioLinkのグローバル `_AudioTexture` の4バンドを
 ## 素材と差し替え
 
 - 木、左官、暗色テラゾー、黒皮鋼、真鍮、青緑の織布を個別に画像生成しました。
-- アルベド画像は生成原本のまま。供給マテリアルとインポーターは **Mirror（鏡像反復）** を使い、境界の段差を防ぎます。生画像の左右・上下端が通常のRepeatで完全一致するとは保証していません。他の制作ソフトでもMirrorに設定してください。
+- アルベド画像は生成原本のまま。建築の6素材は **Mirror（鏡像反復）** を使い、境界の段差を防ぎます。生画像の左右・上下端が通常のRepeatで完全一致するとは保証していません。他の制作ソフトでもMirrorに設定してください。
+- 専用アトラスは **Clamp**。DJ操作面、6種の酒ラベル、エスプレッソ機、コーヒー袋、本、AVラックに個別UVで割り当てています。DJ機材の個別操作部は装飾です。
 - PCのインポート上限は共通素材1024、モバイルは512。法線・金属度・粗さは形状とシェーダーの値で整理しています。
 - スライドは `Media/slide_0.png`〜`slide_3.png`、ポスターは `poster_0.png`〜`poster_5.png` を交換してからシーンを再構築できます。作成済みシーンは生成先のマテリアルのテクスチャを交換できます。
 - 実際のスライド面はUnityで別の正規UV面を追加します。Blenderの文字入りスクリーンは確認用の静的表示です。
-- 再生成時は `build_world.py → export_world.py → prepare_media.py → validate_world.py` の順。`render_views.py` は確認画像を出します。Blender 4.5 LTS、Python側の numpy/scipy/Pillow/ezdxf が必要です。
+- 再生成時は `build_world.py → export_world.py → prepare_media.py --manifest-only → prepare_repository_assets.py → validate_world.py → package_release.py --metadata-only` の順。`render_views.py` は確認画像を出します。Blender 4.5 LTS、Python側の numpy/scipy/Pillow/ezdxf/shapely が必要です。
 
 ## 検証の区分
 
-実行済み: Blenderでモデル生成・保存・開き直し、5視点の実モデルレンダー、メッシュの有限数/インデックス/向き/データ末尾、外形/階高/ステージ/画面寸法、上階接続の平面検査、UdonSharp/C#構文解析、SDK 3.10.5の公開メンバー照合。
+実行済み: Blenderでモデル生成・保存・開き直し、8視点の実モデルレンダー、メッシュの有限数/インデックス/向き/データ末尾、外形/階高/ステージ/画面寸法、上階接続の平面検査、UdonSharp/C#構文解析、SDK 3.10.5の公開メンバー照合。
 
 未実行: Unity/Udonコンパイル、シェーダーコンパイル、Unityライトマップ、VRChat Build & Test、アップロード、複数人同期、視線追従やVR両眼、QuestのFPS/メモリ/ダウンロード容量測定。
 
@@ -90,6 +93,6 @@ DJシェーダーはAudioLinkのグローバル `_AudioTexture` の4バンドを
 - 動画: https://creators.vrchat.com/worlds/udon/video-players/
 - AudioLink: https://github.com/llealloo/audiolink
 
-Git登録用の `.blend` は圧縮保存し、画像・フォントを相対パスで参照します。必ずフォルダー構造ごと取得してください。`Blender/prepare_repository_assets.py` で同じ整理を再実行できます。形状とPNGの内容は元データから変えていません。
+Git登録用の `.blend` は圧縮保存し、画像・フォントを相対パスで参照します。必ずフォルダー構造ごと取得してください。`Blender/prepare_repository_assets.py` で同じ整理を再実行できます。パッケージ整理時には形状とPNGの内容を保持します。
 
 同梱DejaVuフォントのライセンスは `Documentation/DejaVu_Font_License.txt`。VRChat SDKとAudioLink本体は配布物に含めていません。

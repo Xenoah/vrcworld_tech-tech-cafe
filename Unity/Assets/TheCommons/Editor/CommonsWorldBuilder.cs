@@ -25,12 +25,24 @@ public static class CommonsWorldBuilder
     [Serializable] public class ColliderRecord { public string name,kind,group; public float[] position,size,rotation,vertices; public float radius,height; }
     [Serializable] public class LightRecord { public string name; public float[] position,color,target; public float power,size; }
     [Serializable] public class SeatRecord { public float[] position; public float yaw; public string group; }
-    [Serializable] public class MaterialRecord { public string name,texture; public float[] color; public float emission; }
+    [Serializable] public class MaterialRecord { public string name,texture,wrap; public float[] color; public float emission; }
 
     [MenuItem("The Commons/Build PC World")]
     public static void PC() { Build(false); }
     [MenuItem("The Commons/Build Quest World")]
     public static void Quest() { Build(true); }
+    // MCP can call these public static methods or the corresponding menu items.
+    // Fail before modifying an unsaved scene; normal interactive builds retain the save dialog.
+    [MenuItem("The Commons/MCP/Build PC World (no dialogs)")]
+    public static void BuildPCForMCP() { RequireSavedScene(); Build(false,false); }
+    [MenuItem("The Commons/MCP/Build Quest World (no dialogs)")]
+    public static void BuildQuestForMCP() { RequireSavedScene(); Build(true,false); }
+    static void RequireSavedScene()
+    {
+        for(int i=0;i<UnityEngine.SceneManagement.SceneManager.sceneCount;i++)
+            if(UnityEngine.SceneManagement.SceneManager.GetSceneAt(i).isDirty)
+                throw new InvalidOperationException("Save the current scenes before an MCP build.");
+    }
     static Vector3 V(float[] a) { return new Vector3(a[0],a[2],a[1]); }
     static GameObject Group(string name)
     {
@@ -43,12 +55,12 @@ public static class CommonsWorldBuilder
         AssetDatabase.CreateAsset(asset,path);
     }
     static string ReadString(BinaryReader r) { return System.Text.Encoding.UTF8.GetString(r.ReadBytes(r.ReadInt32())); }
-    static void Build(bool mobile)
+    static void Build(bool mobile,bool interactive=true)
     {
-        if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+        if (interactive && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
         UdonSharp.Compiler.UdonSharpCompilerV1.CompileSync();
         Mobile=mobile;
-        string stamp=DateTime.Now.ToString("yyyyMMdd_HHmmss");
+        string stamp=DateTime.Now.ToString("yyyyMMdd_HHmmss_fff");
         Out=Root+"/Generated/"+(Mobile?"Quest_":"PC_")+stamp;
         Directory.CreateDirectory(Out+"/Meshes");Directory.CreateDirectory(Out+"/Materials");AssetDatabase.Refresh();
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
@@ -60,7 +72,11 @@ public static class CommonsWorldBuilder
             Material m=new Material(Shader.Find("The Commons/Flat Light"));m.name=r.name;
             m.SetColor("_Color",new Color(r.color[0],r.color[1],r.color[2],1));
             m.SetColor("_EmissionColor",new Color(r.color[0]*r.emission,r.color[1]*r.emission,r.color[2]*r.emission,1));
-            if (!string.IsNullOrEmpty(r.texture)) m.mainTexture=AssetDatabase.LoadAssetAtPath<Texture2D>(Root+"/Textures/"+r.texture+"_albedo.png");
+            if (!string.IsNullOrEmpty(r.texture))
+            {
+                m.mainTexture=AssetDatabase.LoadAssetAtPath<Texture2D>(Root+"/Textures/"+r.texture+"_albedo.png");
+                if(m.mainTexture==null)throw new InvalidDataException("Missing texture: "+r.texture);
+            }
             m.globalIlluminationFlags=MaterialGlobalIlluminationFlags.BakedEmissive;
             if(r.name=="MAT_Window") {m.shader=Shader.Find("The Commons/Smoked Glass");m.SetColor("_Color",new Color(.1f,.18f,.2f,.07f));}
             SaveAsset(m,Out+"/Materials/"+r.name+".mat");materials.Add(r.name,m);
@@ -200,7 +216,8 @@ public static class CommonsWorldBuilder
         EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(Out+"/TheCommons.unity",true)};
         EditorSceneManager.SaveScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene(),Out+"/TheCommons.unity");AssetDatabase.SaveAssets();
         Debug.Log("THE COMMONS scene created: "+Out+". Run Bake lighting, then SDK Build & Test. Unity/runtime validation remains required.");
-        EditorUtility.DisplayDialog("THE COMMONS", "Scene created. Next: The Commons > Bake lighting, then VRChat SDK > Build & Test.\n\nNo upload has occurred.", "OK");
+        if(interactive && !Application.isBatchMode)
+            EditorUtility.DisplayDialog("THE COMMONS", "Scene created. Next: The Commons > Bake lighting, then VRChat SDK > Build & Test.\n\nNo upload has occurred.", "OK");
     }
     static GameObject Quad(string name,Vector3 center,float w,float h,float yaw,Material m)
     {
@@ -278,7 +295,8 @@ public class CommonsAssetImporter : AssetPostprocessor
     {
         if(!assetPath.StartsWith("Assets/TheCommons/"))return;
         TextureImporter t=(TextureImporter)assetImporter;t.mipmapEnabled=true;t.sRGBTexture=true;
-        t.wrapMode=assetPath.Contains("/Textures/")?TextureWrapMode.Mirror:TextureWrapMode.Clamp;
+        bool artwork=assetPath.EndsWith("relay_controller_albedo.png")||assetPath.EndsWith("bar_labels_albedo.png")||assetPath.EndsWith("cafe_props_albedo.png");
+        t.wrapMode=assetPath.Contains("/Textures/")&&!artwork?TextureWrapMode.Mirror:TextureWrapMode.Clamp;
         t.maxTextureSize=assetPath.Contains("/Media/")?2048:1024;t.anisoLevel=4;t.textureCompression=TextureImporterCompression.Compressed;
         TextureImporterPlatformSettings android=t.GetPlatformTextureSettings("Android");android.overridden=true;android.maxTextureSize=assetPath.Contains("/Media/")?1024:512;android.format=TextureImporterFormat.ASTC_6x6;t.SetPlatformTextureSettings(android);
     }

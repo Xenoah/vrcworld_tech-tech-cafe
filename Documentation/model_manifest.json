@@ -1,4 +1,5 @@
 {
+  "version": "0.3.0",
   "footprint": [
     28,
     18
@@ -66,7 +67,7 @@
       ],
       "size": [
         0.25,
-        18,
+        17.5,
         9.6
       ],
       "rotation": [
@@ -218,26 +219,6 @@
       "group": "ARCH_Mezzanine"
     },
     {
-      "name": "COL_WestStairTop",
-      "position": [
-        8.9,
-        16.825000000000003,
-        4.7
-      ],
-      "size": [
-        0.1999999999999993,
-        1.4499999999999993,
-        0.2
-      ],
-      "rotation": [
-        0,
-        0,
-        0
-      ],
-      "kind": "box",
-      "group": "ARCH_Mezzanine"
-    },
-    {
       "name": "COL_WestNorthLink",
       "position": [
         3.75,
@@ -361,12 +342,12 @@
       "name": "COL_TerraceLanding",
       "position": [
         20.65,
-        15.15,
+        14.25,
         4.7
       ],
       "size": [
         1.3000000000000007,
-        3.3000000000000007,
+        1.5,
         0.2
       ],
       "rotation": [
@@ -934,12 +915,12 @@
       "name": "COL_QuietWall",
       "position": [
         20.05,
-        2.45,
+        2.5,
         6.55
       ],
       "size": [
         0.1,
-        2.9,
+        2.8,
         3.5
       ],
       "rotation": [
@@ -2033,6 +2014,30 @@
         28.0
       ],
       "eye_height": null
+    },
+    "07_Relay_Detail": {
+      "position": [
+        14.0,
+        14.800000190734863,
+        7.400000095367432
+      ],
+      "eye_height": null
+    },
+    "08_BarLabels_Detail": {
+      "position": [
+        2.4000000953674316,
+        7.349999904632568,
+        2.9000000953674316
+      ],
+      "eye_height": null
+    },
+    "09_Coffee_Detail": {
+      "position": [
+        4.5,
+        4.75,
+        1.9800000190734863
+      ],
+      "eye_height": null
     }
   },
   "materials": {
@@ -2044,7 +2049,8 @@
         1.0
       ],
       "texture": "blackened_steel",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Oak": {
       "color": [
@@ -2054,7 +2060,8 @@
         1.0
       ],
       "texture": "warm_oak",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Plaster": {
       "color": [
@@ -2064,7 +2071,8 @@
         1.0
       ],
       "texture": "mineral_plaster",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Stone": {
       "color": [
@@ -2074,7 +2082,8 @@
         1.0
       ],
       "texture": "basalt_terrazzo",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Brass": {
       "color": [
@@ -2084,7 +2093,8 @@
         1.0
       ],
       "texture": "satin_brass",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Fabric": {
       "color": [
@@ -2094,7 +2104,8 @@
         1.0
       ],
       "texture": "teal_woven",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Cream": {
       "color": [
@@ -2104,7 +2115,8 @@
         1.0
       ],
       "texture": "teal_woven",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Black": {
       "color": [
@@ -2114,7 +2126,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Ceramic": {
       "color": [
@@ -2124,7 +2137,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Leaf": {
       "color": [
@@ -2134,7 +2148,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_LeafLight": {
       "color": [
@@ -2144,7 +2159,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_BottleGreen": {
       "color": [
@@ -2154,7 +2170,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_BottleAmber": {
       "color": [
@@ -2164,7 +2181,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Label": {
       "color": [
@@ -2174,7 +2192,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Glass": {
       "color": [
@@ -2184,7 +2203,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Window": {
       "color": [
@@ -2194,7 +2214,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 0
+      "emission": 0,
+      "wrap": "mirror"
     },
     "MAT_Amber": {
       "color": [
@@ -2204,7 +2225,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 2.3
+      "emission": 2.3,
+      "wrap": "mirror"
     },
     "MAT_Cyan": {
       "color": [
@@ -2214,7 +2236,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 1.6
+      "emission": 1.6,
+      "wrap": "mirror"
     },
     "MAT_White": {
       "color": [
@@ -2224,7 +2247,8 @@
         1.0
       ],
       "texture": "",
-      "emission": 0.5
+      "emission": 0.5,
+      "wrap": "mirror"
     },
     "MAT_Holo": {
       "color": [
@@ -2234,7 +2258,41 @@
         1.0
       ],
       "texture": "",
-      "emission": 1.0
+      "emission": 1.0,
+      "wrap": "mirror"
+    },
+    "MAT_DJPanel": {
+      "color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "texture": "relay_controller",
+      "emission": 0,
+      "wrap": "clamp"
+    },
+    "MAT_BottleLabels": {
+      "color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "texture": "bar_labels",
+      "emission": 0,
+      "wrap": "clamp"
+    },
+    "MAT_PropPrint": {
+      "color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "texture": "cafe_props",
+      "emission": 0,
+      "wrap": "clamp"
     }
   }
 }

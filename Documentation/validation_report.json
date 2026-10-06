@@ -73,17 +73,66 @@
       ]
     },
     {
-      "name": "Texture images packed",
+      "name": "Texture images resolve",
       "pass": true,
-      "detail": 7
+      "detail": 9
+    },
+    {
+      "name": "No coplanar overlapping floor/stage/stair top faces",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No floor overlay strips",
+      "pass": true,
+      "detail": "Texture detail uses the floor surface itself"
+    },
+    {
+      "name": "Six label variants mapped to all 93 bottles",
+      "pass": true,
+      "detail": {
+        "labels": 93,
+        "variants": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "name": "MAT_DJPanel artwork UVs and clamp mode",
+      "pass": true,
+      "detail": {
+        "mesh_objects": 44,
+        "texture": "relay_controller"
+      }
+    },
+    {
+      "name": "MAT_BottleLabels artwork UVs and clamp mode",
+      "pass": true,
+      "detail": {
+        "mesh_objects": 93,
+        "texture": "bar_labels"
+      }
+    },
+    {
+      "name": "MAT_PropPrint artwork UVs and clamp mode",
+      "pass": true,
+      "detail": {
+        "mesh_objects": 103,
+        "texture": "cafe_props"
+      }
     },
     {
       "name": "TheCommons_PC binary",
       "pass": true,
       "detail": {
-        "meshes": 127,
-        "triangles": 140384,
-        "vertices": 250290,
+        "meshes": 129,
+        "triangles": 139940,
+        "vertices": 250756,
         "invalid_meshes": 0
       }
     },
@@ -97,15 +146,15 @@
     {
       "name": "TheCommons_PC end of file",
       "pass": true,
-      "detail": "9702010"
+      "detail": "9711778"
     },
     {
       "name": "TheCommons_Quest binary",
       "pass": true,
       "detail": {
-        "meshes": 118,
-        "triangles": 106025,
-        "vertices": 196484,
+        "meshes": 120,
+        "triangles": 107773,
+        "vertices": 199428,
         "invalid_meshes": 0
       }
     },
@@ -119,7 +168,7 @@
     {
       "name": "TheCommons_Quest end of file",
       "pass": true,
-      "detail": "7567304"
+      "detail": "7682672"
     },
     {
       "name": "2F route: Orbit Cafe",
@@ -169,7 +218,7 @@
     {
       "name": "PC total mesh target",
       "pass": true,
-      "detail": "Editable objects: 3458"
+      "detail": "Editable objects: 3404"
     }
   ],
   "runtime_tests": "NOT RUN: Unity Editor and VRChat client are not available in this environment.",
@@ -196,6 +245,7 @@
   "notes": [
     "West stair is 48.14 degrees in the retained CAD envelope; use its adjacent portal if movement is blocked by the VRChat slope limit.",
     "Room and player audio levels, shader compilation, lightmap bake, network late join, Quest performance and VR playtest remain unverified.",
-    "Texture images remain the original generated images. Seam continuity is provided by Mirror wrap in the supplied materials, not by exact raw Repeat edge matching."
+    "Six architectural textures use Mirror wrap, not exact raw Repeat edge matching. Three new printed artwork atlases use Clamp and individual UV regions.",
+    "Coplanar test covers walkable floor, stage and stair top faces. It is not a claim that all intentional object contacts or all realtime artifacts are eliminated."
   ]
 }

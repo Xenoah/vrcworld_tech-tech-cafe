@@ -1,13 +1,13 @@
 {
   "pc": {
-    "triangles": 140384,
-    "render_meshes": 127,
+    "triangles": 139940,
+    "render_meshes": 129,
     "meshes": [
       {
         "name": "ARCH_Mezzanine__MAT_Brass",
         "group": "ARCH_Mezzanine",
         "vertices": 7500,
-        "triangles": 5012
+        "triangles": 4572
       },
       {
         "name": "ARCH_Mezzanine__MAT_Cyan",
@@ -19,13 +19,13 @@
         "name": "ARCH_Mezzanine__MAT_Steel",
         "group": "ARCH_Mezzanine",
         "vertices": 6372,
-        "triangles": 3944
+        "triangles": 3664
       },
       {
         "name": "ARCH_Mezzanine__MAT_Stone",
         "group": "ARCH_Mezzanine",
-        "vertices": 266,
-        "triangles": 168
+        "vertices": 252,
+        "triangles": 156
       },
       {
         "name": "ARCH_Shell__MAT_Amber",
@@ -48,14 +48,14 @@
       {
         "name": "ARCH_Shell__MAT_Plaster",
         "group": "ARCH_Shell",
-        "vertices": 102,
+        "vertices": 108,
         "triangles": 60
       },
       {
         "name": "ARCH_Shell__MAT_Steel",
         "group": "ARCH_Shell",
-        "vertices": 2184,
-        "triangles": 1092
+        "vertices": 1128,
+        "triangles": 564
       },
       {
         "name": "ARCH_Shell__MAT_Stone",
@@ -118,34 +118,40 @@
         "triangles": 12
       },
       {
-        "name": "AV_BackOfHouse__MAT_Steel",
+        "name": "AV_BackOfHouse__MAT_PropPrint",
         "group": "AV_BackOfHouse",
-        "vertices": 648,
-        "triangles": 324
+        "vertices": 108,
+        "triangles": 54
       },
       {
-        "name": "AV_DJ__MAT_Amber",
-        "group": "AV_DJ",
-        "vertices": 192,
-        "triangles": 96
+        "name": "AV_BackOfHouse__MAT_Steel",
+        "group": "AV_BackOfHouse",
+        "vertices": 540,
+        "triangles": 270
       },
       {
         "name": "AV_DJ__MAT_Black",
         "group": "AV_DJ",
-        "vertices": 888,
-        "triangles": 444
+        "vertices": 2352,
+        "triangles": 1280
       },
       {
         "name": "AV_DJ__MAT_Brass",
         "group": "AV_DJ",
-        "vertices": 576,
-        "triangles": 336
+        "vertices": 1920,
+        "triangles": 960
       },
       {
         "name": "AV_DJ__MAT_Cyan",
         "group": "AV_DJ",
-        "vertices": 1718,
-        "triangles": 920
+        "vertices": 438,
+        "triangles": 280
+      },
+      {
+        "name": "AV_DJ__MAT_DJPanel",
+        "group": "AV_DJ",
+        "vertices": 504,
+        "triangles": 400
       },
       {
         "name": "AV_DJ__MAT_Oak",
@@ -156,14 +162,8 @@
       {
         "name": "AV_DJ__MAT_Steel",
         "group": "AV_DJ",
-        "vertices": 1032,
-        "triangles": 620
-      },
-      {
-        "name": "AV_DJ__MAT_White",
-        "group": "AV_DJ",
-        "vertices": 96,
-        "triangles": 48
+        "vertices": 672,
+        "triangles": 380
       },
       {
         "name": "AV_Gallery__MAT_Amber",
@@ -234,14 +234,14 @@
       {
         "name": "AV_Stage__MAT_Oak",
         "group": "AV_Stage",
-        "vertices": 792,
-        "triangles": 488
+        "vertices": 312,
+        "triangles": 202
       },
       {
         "name": "AV_Stage__MAT_Steel",
         "group": "AV_Stage",
-        "vertices": 1584,
-        "triangles": 916
+        "vertices": 1488,
+        "triangles": 822
       },
       {
         "name": "AV_Stage__MAT_White",
@@ -298,28 +298,28 @@
         "triangles": 5508
       },
       {
+        "name": "FURN_Bar__MAT_BottleLabels",
+        "group": "FURN_Bar",
+        "vertices": 2232,
+        "triangles": 1116
+      },
+      {
         "name": "FURN_Bar__MAT_Brass",
         "group": "FURN_Bar",
-        "vertices": 11012,
-        "triangles": 6160
+        "vertices": 11080,
+        "triangles": 6194
       },
       {
         "name": "FURN_Bar__MAT_Ceramic",
         "group": "FURN_Bar",
-        "vertices": 2064,
-        "triangles": 1092
+        "vertices": 2604,
+        "triangles": 1362
       },
       {
         "name": "FURN_Bar__MAT_Fabric",
         "group": "FURN_Bar",
         "vertices": 1584,
         "triangles": 1012
-      },
-      {
-        "name": "FURN_Bar__MAT_Label",
-        "group": "FURN_Bar",
-        "vertices": 2232,
-        "triangles": 1116
       },
       {
         "name": "FURN_Bar__MAT_Leaf",
@@ -338,6 +338,12 @@
         "group": "FURN_Bar",
         "vertices": 2180,
         "triangles": 1092
+      },
+      {
+        "name": "FURN_Bar__MAT_PropPrint",
+        "group": "FURN_Bar",
+        "vertices": 112,
+        "triangles": 56
       },
       {
         "name": "FURN_Bar__MAT_Steel",
@@ -498,8 +504,8 @@
       {
         "name": "FURN_QuietRoom__MAT_Black",
         "group": "FURN_QuietRoom",
-        "vertices": 528,
-        "triangles": 276
+        "vertices": 456,
+        "triangles": 240
       },
       {
         "name": "FURN_QuietRoom__MAT_BottleAmber",
@@ -516,8 +522,8 @@
       {
         "name": "FURN_QuietRoom__MAT_Ceramic",
         "group": "FURN_QuietRoom",
-        "vertices": 1984,
-        "triangles": 1052
+        "vertices": 1912,
+        "triangles": 1016
       },
       {
         "name": "FURN_QuietRoom__MAT_Cream",
@@ -528,8 +534,8 @@
       {
         "name": "FURN_QuietRoom__MAT_Fabric",
         "group": "FURN_QuietRoom",
-        "vertices": 2160,
-        "triangles": 1080
+        "vertices": 2088,
+        "triangles": 1044
       },
       {
         "name": "FURN_QuietRoom__MAT_Leaf",
@@ -546,14 +552,20 @@
       {
         "name": "FURN_QuietRoom__MAT_Oak",
         "group": "FURN_QuietRoom",
-        "vertices": 912,
-        "triangles": 512
+        "vertices": 840,
+        "triangles": 476
       },
       {
         "name": "FURN_QuietRoom__MAT_Plaster",
         "group": "FURN_QuietRoom",
-        "vertices": 108,
+        "vertices": 110,
         "triangles": 60
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_PropPrint",
+        "group": "FURN_QuietRoom",
+        "vertices": 288,
+        "triangles": 144
       },
       {
         "name": "FURN_QuietRoom__MAT_Steel",
@@ -768,14 +780,14 @@
     ]
   },
   "quest": {
-    "triangles": 106025,
-    "render_meshes": 118,
+    "triangles": 107773,
+    "render_meshes": 120,
     "meshes": [
       {
         "name": "ARCH_Mezzanine__MAT_Brass",
         "group": "ARCH_Mezzanine",
-        "vertices": 5004,
-        "triangles": 2806
+        "vertices": 7500,
+        "triangles": 4572
       },
       {
         "name": "ARCH_Mezzanine__MAT_Cyan",
@@ -787,13 +799,13 @@
         "name": "ARCH_Mezzanine__MAT_Steel",
         "group": "ARCH_Mezzanine",
         "vertices": 6372,
-        "triangles": 3944
+        "triangles": 3664
       },
       {
         "name": "ARCH_Mezzanine__MAT_Stone",
         "group": "ARCH_Mezzanine",
-        "vertices": 266,
-        "triangles": 168
+        "vertices": 252,
+        "triangles": 156
       },
       {
         "name": "ARCH_Shell__MAT_Amber",
@@ -816,14 +828,14 @@
       {
         "name": "ARCH_Shell__MAT_Plaster",
         "group": "ARCH_Shell",
-        "vertices": 102,
+        "vertices": 108,
         "triangles": 60
       },
       {
         "name": "ARCH_Shell__MAT_Steel",
         "group": "ARCH_Shell",
-        "vertices": 2184,
-        "triangles": 1092
+        "vertices": 1128,
+        "triangles": 564
       },
       {
         "name": "ARCH_Shell__MAT_Stone",
@@ -880,34 +892,40 @@
         "triangles": 12
       },
       {
-        "name": "AV_BackOfHouse__MAT_Steel",
+        "name": "AV_BackOfHouse__MAT_PropPrint",
         "group": "AV_BackOfHouse",
-        "vertices": 648,
-        "triangles": 324
+        "vertices": 108,
+        "triangles": 54
       },
       {
-        "name": "AV_DJ__MAT_Amber",
-        "group": "AV_DJ",
-        "vertices": 192,
-        "triangles": 96
+        "name": "AV_BackOfHouse__MAT_Steel",
+        "group": "AV_BackOfHouse",
+        "vertices": 540,
+        "triangles": 270
       },
       {
         "name": "AV_DJ__MAT_Black",
         "group": "AV_DJ",
-        "vertices": 888,
-        "triangles": 444
+        "vertices": 2352,
+        "triangles": 1280
       },
       {
         "name": "AV_DJ__MAT_Brass",
         "group": "AV_DJ",
-        "vertices": 576,
-        "triangles": 336
+        "vertices": 1920,
+        "triangles": 960
       },
       {
         "name": "AV_DJ__MAT_Cyan",
         "group": "AV_DJ",
-        "vertices": 1718,
-        "triangles": 920
+        "vertices": 438,
+        "triangles": 280
+      },
+      {
+        "name": "AV_DJ__MAT_DJPanel",
+        "group": "AV_DJ",
+        "vertices": 504,
+        "triangles": 400
       },
       {
         "name": "AV_DJ__MAT_Oak",
@@ -918,14 +936,8 @@
       {
         "name": "AV_DJ__MAT_Steel",
         "group": "AV_DJ",
-        "vertices": 1032,
-        "triangles": 620
-      },
-      {
-        "name": "AV_DJ__MAT_White",
-        "group": "AV_DJ",
-        "vertices": 96,
-        "triangles": 48
+        "vertices": 672,
+        "triangles": 380
       },
       {
         "name": "AV_Gallery__MAT_Amber",
@@ -984,14 +996,14 @@
       {
         "name": "AV_Stage__MAT_Oak",
         "group": "AV_Stage",
-        "vertices": 792,
-        "triangles": 488
+        "vertices": 312,
+        "triangles": 202
       },
       {
         "name": "AV_Stage__MAT_Steel",
         "group": "AV_Stage",
-        "vertices": 1584,
-        "triangles": 916
+        "vertices": 1488,
+        "triangles": 822
       },
       {
         "name": "AV_Stage__MAT_White",
@@ -1036,28 +1048,28 @@
         "triangles": 3084
       },
       {
+        "name": "FURN_Bar__MAT_BottleLabels",
+        "group": "FURN_Bar",
+        "vertices": 2232,
+        "triangles": 1116
+      },
+      {
         "name": "FURN_Bar__MAT_Brass",
         "group": "FURN_Bar",
-        "vertices": 7212,
-        "triangles": 3448
+        "vertices": 7262,
+        "triangles": 3468
       },
       {
         "name": "FURN_Bar__MAT_Ceramic",
         "group": "FURN_Bar",
-        "vertices": 2064,
-        "triangles": 1092
+        "vertices": 2604,
+        "triangles": 1362
       },
       {
         "name": "FURN_Bar__MAT_Fabric",
         "group": "FURN_Bar",
         "vertices": 1584,
         "triangles": 1012
-      },
-      {
-        "name": "FURN_Bar__MAT_Label",
-        "group": "FURN_Bar",
-        "vertices": 2232,
-        "triangles": 1116
       },
       {
         "name": "FURN_Bar__MAT_Leaf",
@@ -1076,6 +1088,12 @@
         "group": "FURN_Bar",
         "vertices": 2180,
         "triangles": 1092
+      },
+      {
+        "name": "FURN_Bar__MAT_PropPrint",
+        "group": "FURN_Bar",
+        "vertices": 112,
+        "triangles": 56
       },
       {
         "name": "FURN_Bar__MAT_Steel",
@@ -1212,8 +1230,8 @@
       {
         "name": "FURN_QuietRoom__MAT_Black",
         "group": "FURN_QuietRoom",
-        "vertices": 528,
-        "triangles": 276
+        "vertices": 456,
+        "triangles": 240
       },
       {
         "name": "FURN_QuietRoom__MAT_BottleAmber",
@@ -1230,8 +1248,8 @@
       {
         "name": "FURN_QuietRoom__MAT_Ceramic",
         "group": "FURN_QuietRoom",
-        "vertices": 1984,
-        "triangles": 1052
+        "vertices": 1912,
+        "triangles": 1016
       },
       {
         "name": "FURN_QuietRoom__MAT_Cream",
@@ -1242,8 +1260,8 @@
       {
         "name": "FURN_QuietRoom__MAT_Fabric",
         "group": "FURN_QuietRoom",
-        "vertices": 2160,
-        "triangles": 1080
+        "vertices": 2088,
+        "triangles": 1044
       },
       {
         "name": "FURN_QuietRoom__MAT_Leaf",
@@ -1260,14 +1278,20 @@
       {
         "name": "FURN_QuietRoom__MAT_Oak",
         "group": "FURN_QuietRoom",
-        "vertices": 912,
-        "triangles": 512
+        "vertices": 840,
+        "triangles": 476
       },
       {
         "name": "FURN_QuietRoom__MAT_Plaster",
         "group": "FURN_QuietRoom",
-        "vertices": 108,
+        "vertices": 110,
         "triangles": 60
+      },
+      {
+        "name": "FURN_QuietRoom__MAT_PropPrint",
+        "group": "FURN_QuietRoom",
+        "vertices": 288,
+        "triangles": 144
       },
       {
         "name": "FURN_QuietRoom__MAT_Steel",

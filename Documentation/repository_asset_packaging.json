@@ -1,14 +1,14 @@
 {
   "gltf": {
-    "geometry_buffer_bytes": 8276200,
-    "geometry_views_verified": 483,
-    "texture_files_exactly_reused": 6
+    "geometry_buffer_bytes": 8257032,
+    "geometry_views_verified": 493,
+    "texture_files_exactly_reused": 9
   },
   "blend": {
-    "compressed_bytes": 1411104,
-    "external_images": 7,
+    "compressed_bytes": 1409731,
+    "external_images": 9,
     "external_fonts": 1,
-    "geometry_sha256_before_and_after": "4d8b09883d5b154b5f88432ac01b21402284578c10e62c9202c8159f25e75374",
+    "geometry_sha256_before_and_after": "aaccf3b93651f1cd20993d9e1b539c5046386ba737a03ee775d1eb80fe144f5e",
     "relative_asset_paths_verified_after_reopen": true
   }
 }

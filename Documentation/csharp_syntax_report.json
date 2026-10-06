@@ -1,11 +1,11 @@
 {
   "checks": [
     {
-      "file": "CommonsAudioZones.cs",
+      "file": "CommonsWorldBuilder.cs",
       "syntax_errors": false
     },
     {
-      "file": "CommonsWorldState.cs",
+      "file": "CommonsAudioZones.cs",
       "syntax_errors": false
     },
     {
@@ -13,7 +13,7 @@
       "syntax_errors": false
     },
     {
-      "file": "CommonsSeat.cs",
+      "file": "CommonsComfort.cs",
       "syntax_errors": false
     },
     {
@@ -21,11 +21,7 @@
       "syntax_errors": false
     },
     {
-      "file": "CommonsVideoSync.cs",
-      "syntax_errors": false
-    },
-    {
-      "file": "CommonsComfort.cs",
+      "file": "CommonsSeat.cs",
       "syntax_errors": false
     },
     {
@@ -33,7 +29,11 @@
       "syntax_errors": false
     },
     {
-      "file": "CommonsWorldBuilder.cs",
+      "file": "CommonsVideoSync.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsWorldState.cs",
       "syntax_errors": false
     }
   ],
