@@ -10,6 +10,8 @@ v0.3.0ではDJ機材・酒ラベル・カフェ小物を作り込み、床・ス
 
 ## Unityへ導入
 
+配布用の `.unitypackage` と制作データ一式のZIPは [GitHub Releases](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases) から取得できます。パッケージを使う場合は、以下の手順2のコピー操作をインポートに置き換えてください。
+
 1. VRChat Creator Companionで **Worlds / Built-in Render Pipeline** のプロジェクトを作成します。制作時の基準は **Unity 2022.3.22f1 / VRChat SDK 3.10.5** です。SDKとUdonSharpはVCC側で導入してください。
 2. このリポジトリの `Unity/Assets/TheCommons` を、VCCで作成したプロジェクトの `Assets` にコピーします。`.meta` も一緒にコピーしてください。
 3. Unity上部メニューの **The Commons → Build PC World** を実行します。

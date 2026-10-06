@@ -1,6 +1,6 @@
 """Deterministic Unity metadata and install package, plus the complete authoring archive."""
 from pathlib import Path
-import uuid,json,tarfile,io,zipfile,hashlib,sys,subprocess
+import uuid,json,tarfile,io,zipfile,hashlib,sys,subprocess,gzip
 ROOT=Path(__file__).resolve().parents[1];ASSETS=ROOT/'Unity/Assets';A=ASSETS/'TheCommons'
 def guid(path):return uuid.uuid5(uuid.NAMESPACE_URL,'thecommons-v02/'+path).hex
 def metadata(p):
@@ -64,7 +64,9 @@ if '--metadata-only' in sys.argv:
  print('Unity metadata ready; existing GUIDs/import settings preserved.');raise SystemExit(0)
 version=json.loads((A/'Data/world_manifest.json').read_text()).get('version','0.3.0')
 release=ROOT.parent/f'The_Commons_Compact_v{version}.unitypackage'
-with tarfile.open(release,'w:gz',compresslevel=7) as tar:
+pending=release.with_suffix(release.suffix+'.tmp')
+# Close all compression layers before publishing the complete archive.
+with pending.open('wb') as raw,gzip.GzipFile(filename='',fileobj=raw,mode='wb',compresslevel=7,mtime=0) as compressed,tarfile.open(fileobj=compressed,mode='w') as tar:
  def add(name,data):
   t=tarfile.TarInfo(name);t.size=len(data);t.mtime=0;tar.addfile(t,io.BytesIO(data))
  for p in paths:
@@ -72,6 +74,7 @@ with tarfile.open(release,'w:gz',compresslevel=7) as tar:
   add(g+'/pathname',rel.encode());add(g+'/asset.meta',Path(str(p)+'.meta').read_bytes())
   if p.is_file():add(g+'/asset',p.read_bytes())
   else:add(g+'/asset',b'')
+pending.replace(release)
 # Remove only generated Blender backups from the delivery tree.
 for p in ROOT.rglob('*.blend1'):p.unlink()
 # Only Git-visible project files, never repository internals, caches or generated scenes.
