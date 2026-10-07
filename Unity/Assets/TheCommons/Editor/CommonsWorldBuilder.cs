@@ -104,7 +104,7 @@ public static class CommonsWorldBuilder
                     ns[i]=new Vector3(r.ReadSingle(),r.ReadSingle(),r.ReadSingle());uv[i]=new Vector2(r.ReadSingle(),r.ReadSingle());
                     // Authored ambient tint, a preview fallback until Unity lightmaps are baked.
                     float warm=Mathf.Clamp01((8.5f-vs[i].x)/5f);
-                    colors[i]=Color.Lerp(new Color(.66f,.75f,.87f),new Color(1.03f,.79f,.51f),warm);
+                    colors[i]=group.StartsWith("KART_")?new Color(.30f,.35f,.62f):Color.Lerp(new Color(.66f,.75f,.87f),new Color(1.03f,.79f,.51f),warm);
                 }
                 int[] ix=new int[ni];for(int i=0;i<ni;i++)ix[i]=r.ReadInt32();
                 Mesh mesh=new Mesh();mesh.name=name;mesh.indexFormat=nv>65535?IndexFormat.UInt32:IndexFormat.UInt16;
@@ -114,6 +114,8 @@ public static class CommonsWorldBuilder
                 GameObject o=new GameObject(name);o.transform.SetParent(Group(group).transform,false);
                 o.AddComponent<MeshFilter>().sharedMesh=mesh;MeshRenderer mr=o.AddComponent<MeshRenderer>();mr.sharedMaterial=materials[mat];
                 mr.shadowCastingMode=ShadowCastingMode.On;
+                if(group.StartsWith("KART_"))
+                    mr.scaleInLightmap=(group=="KART_Hall" || group=="KART_Roof" || group.StartsWith("KART_Shell"))?.08f:.4f;
                 if (!group.StartsWith("MODE_") && group!="AV_Hologram")
                     GameObjectUtility.SetStaticEditorFlags(o,StaticEditorFlags.ContributeGI|StaticEditorFlags.BatchingStatic|StaticEditorFlags.OccludeeStatic|StaticEditorFlags.OccluderStatic);
             }
@@ -258,6 +260,13 @@ public static class CommonsWorldBuilder
         {
             ReflectionProbe rp=new GameObject("LGT_BakedReflection").AddComponent<ReflectionProbe>();rp.transform.position=new Vector3(14,4,9);rp.size=new Vector3(28,10,18);rp.mode=ReflectionProbeMode.Baked;rp.resolution=128;rp.boxProjection=true;
             ReflectionProbe fp=new GameObject("LGT_FPV_BakedReflection").AddComponent<ReflectionProbe>();fp.transform.position=new Vector3(-46,4,13);fp.size=new Vector3(36,8,26);fp.mode=ReflectionProbeMode.Baked;fp.resolution=128;fp.boxProjection=true;
+            if(data.kart!=null)
+            {
+                ReflectionProbe kp=new GameObject("LGT_Kart_BakedReflection").AddComponent<ReflectionProbe>();
+                kp.transform.position=V(data.kart.origin)+new Vector3(data.kart.size[0]*.5f,6f,data.kart.size[1]*.5f);
+                kp.size=new Vector3(data.kart.size[0],data.kart.size[2],data.kart.size[1]);
+                kp.mode=ReflectionProbeMode.Baked;kp.resolution=128;kp.boxProjection=true;
+            }
         }
         GameObject areaObject=new GameObject("INT_AreaVisibility");areaObject.transform.SetParent(systems.transform);
         CommonsAreaVisibility visibility=areaObject.AddUdonSharpComponent<CommonsAreaVisibility>();

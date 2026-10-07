@@ -1,4 +1,4 @@
-# Unity MCPへの引き継ぎ — v0.5.0
+# Unity MCPへの引き継ぎ — v0.6.0
 
 取得元: https://github.com/Xenoah/vrcworld_tech-tech-cafe
 
@@ -51,12 +51,13 @@ Unity EditorへのMCP接続はこの制作環境にはありません。Unity/Ud
 
 PCでPPSを導入した場合は、`VRCWorld` のReference Cameraに `LGT_PC_ReferenceCamera` が入り、PostProcessLayerのVolume LayerがWater、`LGT_PC_BloomVolume` もWaterに設定されていることを確認してください。参照カメラのCameraは無効、HDRは有効です。SOFT GLOWはVolumeと器具グローをまとめて切り替えます。
 
-## v0.5.0 カート・CVS2
+## v0.6.0 NEON SWITCHYARD・CVS2
 
-- カフェ入口のAPEX / KARTから移動し、観戦側RETURN / CAFEで戻る。Unity座標X=180〜500、Z=0〜300。路面Y=0.35／3.95／7.55 m。
-- 8 m幅の連続MeshCollider。橋下6.75 m、最大勾配8.95%、最小中心旋回半径14.73 m。PC／Questで走行形状を共通化。
-- シーン生成後、所有者のCVS2車両を6つの空Transform `KART_ExternalVehicleAnchors/CVS2_Bay_01`〜`06` を目安に配置。車高・タイヤ・所有権・復帰設定はCVS2説明書に従う。詳細は `Documentation/CVS2_INTEGRATION_JA.md`。
-- 観戦側時間パネル、朝昼夕夜、エリア切替時の霧・音声を確認。Reference CameraはPC／Questともfar clip 900 m、Camera無効、HDRはPCのみ。
+- カフェ入口のAPEX / KARTから移動し、観戦側RETURN / CAFEで戻る。Unity座標X=180〜328、Z=0〜160。路面Y=0.35／4.55／8.75 m。
+- 5.2 m幅の連続MeshCollider、34のコーナー。橋下最小3.80 m、最大勾配11.66%、最小中心旋回半径6.00 m。PC／Questで走行形状を共通化。
+- シーン生成後、所有者のCVS2車両を6つの空Transform `KART_ExternalVehicleAnchors/CVS2_Bay_01`〜`06` を目安に配置。車体寸法・最小旋回・タイヤ・所有権・復帰設定はCVS2説明書に従う。詳細は `Documentation/CVS2_INTEGRATION_JA.md`。
+- 室内のマテリアルは固定の青紫色・発光。カフェ／FPVは従来の時間帯同期を維持する。往復時の環境色と霧の切替を確認。Reference CameraはPC／Questともfar clip 900 m、Camera無効、HDRはPCのみ。
+- 全面屋根・外壁・鉄骨トラスを含む。PCのカート用128 pxベイク反射プローブとライトマップを更新し、路面反射・低い壁のLED・橋下の方向の見やすさを走行目線で確認する。
 - 外部CVS2車両を建築Renderer配列へ登録しない。建築が非表示でも物理とUdonを維持する。
-- 大面積のライトマップ・メモリ・実機フレーム時間を確認。Unity／CVS2実走は未検証。
-- Release画像4枚はBlender実モデル。今後も撮影元を明記し、PNGをRelease Assetsへ添付する。
+- PC／Questのライトマップ・メモリ・実機フレーム時間を確認。Unity／CVS2実走は未検証。
+- Release画像5枚はBlender実モデル。全景のみ屋根・手前2面の壁・トラスを非表示にしたカットアウェイ。残り4枚は屋内モデルのまま。撮影元を明記し、PNGをRelease Assetsへ添付する。

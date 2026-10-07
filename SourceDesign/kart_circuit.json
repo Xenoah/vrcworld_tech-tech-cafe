@@ -1,1 +1,230 @@
-{"name":"APEX / TRI-LAYER KART","version":"0.5.0","origin":[180,0,0],"size":[320,300,18],"center_local":[160,145],"levels":[0.35,3.95,7.55],"road_width":8.0,"deck_half_width":4.95,"deck_thickness":0.45,"barrier_height":1.05,"layout":{"type":"closed_three_lobe_overpass","major_radius":100.0,"minor_radius":32.0,"x_scale":1.1,"samples":1800,"plateau_begin":1.25,"ramp_begin":0.12,"chicane_amplitude":2.2},"design_limits":{"maximum_grade_percent":9.5,"minimum_center_radius":14.0,"minimum_crossing_clearance":5.0,"maximum_sample_distance":1.2,"kart_triangle_budget_pc":150000,"kart_triangle_budget_quest":120000},"pit":{"phase":1.5707963267948966,"half_phase":0.09,"outside_offset":22.0,"vehicle_bays":6},"external_vehicle_system":"CHIKUWA VEHICLE SYSTEM 2 (CVS2), installed by the world owner","vehicle_assets_included":false,"runtime_status":"CVS2 vehicle handling, tire collision, multiplayer and PC/Quest frame timings require Unity/VRChat validation."}
+{
+  "name": "APEX / NEON SWITCHYARD",
+  "version": "0.6.0",
+  "origin": [
+    180,
+    0,
+    0
+  ],
+  "size": [
+    148,
+    160,
+    15.5
+  ],
+  "center_local": [
+    74,
+    80
+  ],
+  "levels": [
+    0.35,
+    4.55,
+    8.75
+  ],
+  "road_width": 5.2,
+  "deck_half_width": 3.25,
+  "deck_thickness": 0.4,
+  "barrier_height": 0.75,
+  "indoor": true,
+  "layout": {
+    "type": "original_rounded_switchback_multilevel",
+    "corner_radius": 6.0,
+    "sample_distance": 0.65,
+    "offset": [
+      8,
+      36
+    ],
+    "control_vertices": [
+      [
+        18,
+        18,
+        0.35
+      ],
+      [
+        96,
+        18,
+        0.35
+      ],
+      [
+        96,
+        42,
+        0.35
+      ],
+      [
+        72,
+        42,
+        0.35
+      ],
+      [
+        72,
+        30,
+        0.35
+      ],
+      [
+        50,
+        30,
+        0.35
+      ],
+      [
+        50,
+        58,
+        0.35
+      ],
+      [
+        26,
+        58,
+        0.35
+      ],
+      [
+        26,
+        36,
+        0.35
+      ],
+      [
+        10,
+        36,
+        0.35
+      ],
+      [
+        10,
+        92,
+        0.35
+      ],
+      [
+        118,
+        92,
+        4.55
+      ],
+      [
+        118,
+        70,
+        4.55
+      ],
+      [
+        92,
+        70,
+        4.55
+      ],
+      [
+        92,
+        82,
+        4.55
+      ],
+      [
+        68,
+        82,
+        4.55
+      ],
+      [
+        68,
+        60,
+        4.55
+      ],
+      [
+        44,
+        60,
+        4.55
+      ],
+      [
+        44,
+        76,
+        4.55
+      ],
+      [
+        26,
+        76,
+        4.55
+      ],
+      [
+        26,
+        10,
+        8.75
+      ],
+      [
+        118,
+        10,
+        8.75
+      ],
+      [
+        118,
+        48,
+        8.75
+      ],
+      [
+        100,
+        48,
+        8.75
+      ],
+      [
+        100,
+        30,
+        8.75
+      ],
+      [
+        80,
+        30,
+        8.75
+      ],
+      [
+        80,
+        58,
+        8.75
+      ],
+      [
+        60,
+        58,
+        8.75
+      ],
+      [
+        60,
+        40,
+        8.75
+      ],
+      [
+        40,
+        40,
+        8.75
+      ],
+      [
+        40,
+        108,
+        8.75
+      ],
+      [
+        128,
+        108,
+        4.55
+      ],
+      [
+        128,
+        -24,
+        0.35
+      ],
+      [
+        18,
+        -24,
+        0.35
+      ]
+    ]
+  },
+  "design_limits": {
+    "maximum_grade_percent": 12.5,
+    "minimum_center_radius": 5.8,
+    "minimum_crossing_clearance": 3.0,
+    "maximum_sample_distance": 0.8,
+    "kart_triangle_budget_pc": 170000,
+    "kart_triangle_budget_quest": 140000
+  },
+  "pit": {
+    "straight_x": [
+      35,
+      81
+    ],
+    "straight_y": 18,
+    "outside_offset": 13.4,
+    "vehicle_bays": 6
+  },
+  "art_direction": "Enclosed industrial kart hall; cyan, violet and pink LED rails; dark glossy asphalt; close barriers, hairpins, underpasses and overhead trusses. Photographs inform atmosphere only; the route is original.",
+  "external_vehicle_system": "CHIKUWA VEHICLE SYSTEM 2 (CVS2), installed by the world owner",
+  "vehicle_assets_included": false,
+  "runtime_status": "CVS2 steering, vehicle dimensions, multiplayer, lightmap baking and PC/Quest frame timings require Unity/VRChat validation."
+}

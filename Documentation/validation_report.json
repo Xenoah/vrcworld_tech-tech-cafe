@@ -130,9 +130,9 @@
       "name": "TheCommons_PC binary",
       "pass": true,
       "detail": {
-        "meshes": 166,
-        "triangles": 231297,
-        "vertices": 414611,
+        "meshes": 186,
+        "triangles": 295797,
+        "vertices": 485059,
         "invalid_meshes": 0
       }
     },
@@ -146,15 +146,15 @@
     {
       "name": "TheCommons_PC end of file",
       "pass": true,
-      "detail": "16053940"
+      "detail": "19083788"
     },
     {
       "name": "TheCommons_Quest binary",
       "pass": true,
       "detail": {
-        "meshes": 156,
-        "triangles": 193517,
-        "vertices": 355060,
+        "meshes": 176,
+        "triangles": 245507,
+        "vertices": 408366,
         "invalid_meshes": 0
       }
     },
@@ -168,7 +168,7 @@
     {
       "name": "TheCommons_Quest end of file",
       "pass": true,
-      "detail": "13694282"
+      "detail": "16025466"
     },
     {
       "name": "2F route: Orbit Cafe",
@@ -218,7 +218,12 @@
     {
       "name": "PC total mesh target",
       "pass": true,
-      "detail": "Editable objects: 4076"
+      "detail": "Editable objects: 4633"
+    },
+    {
+      "name": "Kart meshes remain in kart export groups",
+      "pass": true,
+      "detail": []
     },
     {
       "name": "FPV independent floor",

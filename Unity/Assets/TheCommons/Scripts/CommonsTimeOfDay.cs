@@ -76,7 +76,14 @@ public class CommonsTimeOfDay : UdonSharpBehaviour
         RenderSettings.ambientGroundColor = Color.Lerp(new Color(.045f,.042f,.04f),new Color(.13f,.12f,.10f),day);
         RenderSettings.fogColor = Color.Lerp(new Color(.026f,.036f,.06f),horizon*.72f,day);
         bool atKart=Utilities.IsValid(Networking.LocalPlayer) && Networking.LocalPlayer.GetPosition().x>=100f;
-        RenderSettings.fogDensity = atKart?Mathf.Lerp(.0022f,.001f,day):Mathf.Lerp(.007f,.0035f,day);
+        RenderSettings.fogDensity = atKart?.0025f:Mathf.Lerp(.007f,.0035f,day);
+        if(atKart)
+        {
+            RenderSettings.ambientSkyColor=new Color(.065f,.075f,.14f);
+            RenderSettings.ambientEquatorColor=new Color(.035f,.045f,.09f);
+            RenderSettings.ambientGroundColor=new Color(.015f,.018f,.035f);
+            RenderSettings.fogColor=new Color(.012f,.016f,.036f);
+        }
         if (sun != null) { sun.transform.rotation=Quaternion.LookRotation(-direction); sun.color=sunlight; sun.intensity=day*.85f; }
         Color tint = Color.Lerp(new Color(.78f,.84f,.94f),Color.white,day);
         Color fill = Color.Lerp(new Color(.008f,.012f,.025f),new Color(.16f,.20f,.25f),day);

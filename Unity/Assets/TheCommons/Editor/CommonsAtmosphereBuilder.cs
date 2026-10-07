@@ -13,7 +13,19 @@ public static class CommonsAtmosphereBuilder
     {
         GameObject go=new GameObject("INT_TimeOfDay");go.transform.SetParent(state.transform.parent);
         CommonsTimeOfDay time=go.AddUdonSharpComponent<CommonsTimeOfDay>();
-        time.state=state;time.surfaces=new List<Material>(materials.Values).ToArray();
+        time.state=state;
+        List<Material> daylightSurfaces=new List<Material>();
+        foreach(KeyValuePair<string,Material> pair in materials)
+        {
+            if(!pair.Key.StartsWith("MAT_Kart")){daylightSurfaces.Add(pair.Value);continue;}
+            // The enclosed kart hall keeps its artificial lighting at every outside hour.
+            Material interior=pair.Value;
+            interior.SetColor("_TimeTint",new Color(.72f,.78f,1f));
+            interior.SetColor("_DayFill",new Color(.018f,.023f,.045f));
+            interior.SetFloat("_TimeEmission",1f);
+            if(interior.HasProperty("_SunColor"))interior.SetColor("_SunColor",Color.black);
+        }
+        time.surfaces=daylightSurfaces.ToArray();
         Material sky=new Material(Shader.Find("The Commons/Time Sky"));sky.name="Commons_TimeSky";sky.enableInstancing=true;
         AssetDatabase.CreateAsset(sky,output+"/Materials/TimeSky.mat");RenderSettings.skybox=sky;time.sky=sky;
         if(!mobile)

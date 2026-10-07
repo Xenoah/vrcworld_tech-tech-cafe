@@ -86,6 +86,8 @@ while queue:
 for name,p in [('Orbit Cafe',(3,6.8)),('DJ Booth',(14,14.5)),('Archive',(24,4.2)),('Horizon',(25,12)),('West Stair Landing',(8,16.8))]:check('2F route: '+name,cell(p) in seen,list(p))
 check('Academic chair anchors',sum(s['group']=='MODE_Academic' for s in raw['seat_anchors'])==24,24)
 check('PC total mesh target',len(bpy.data.objects)>3000,'Editable objects: '+str(len(bpy.data.objects)))
+misgrouped=[o.name for o in bpy.data.objects if o.name.startswith('KART_') and not o.users_collection[0].name.startswith('KART_')]
+check('Kart meshes remain in kart export groups',not misgrouped,misgrouped)
 # FPV geometry and travel checks against authored collider records.
 fpv=raw['fpv'];origin=np.array(fpv['origin']);size=np.array(fpv['size'])
 lo,hi=bounds('FPV_Floor')
@@ -137,7 +139,7 @@ for c in cols:
  if c['kind']!='box':continue
  x,y,z=c['position'];sx,sy,sz=c['size'];layer='IMPL_FLOOR_2F' if abs(z+sz/2-4.8)<.001 else 'IMPL_GUARD' if 'Balustrade' in c['name'] else 'IMPL_COLLIDER'
  ms.add_lwpolyline([((x-sx/2)*1000,(y-sy/2)*1000),((x+sx/2)*1000,(y-sy/2)*1000),((x+sx/2)*1000,(y+sy/2)*1000),((x-sx/2)*1000,(y+sy/2)*1000)],close=True,dxfattribs={'layer':layer})
-ms.add_text('THE COMMONS - v0.5 IMPLEMENTATION OVERLAY / PROPOSED CHANGES - NOT SOURCE CAD',dxfattribs={'height':240,'insert':(0,19000),'layer':'NOTES'})
-doc.saveas(ROOT/'CAD/The_Commons_Implementation_Overlay_v05.dxf')
+ms.add_text('THE COMMONS - v0.6 IMPLEMENTATION OVERLAY / PROPOSED CHANGES - NOT SOURCE CAD',dxfattribs={'height':240,'insert':(0,19000),'layer':'NOTES'})
+doc.saveas(ROOT/'CAD/The_Commons_Implementation_Overlay_v06.dxf')
 print(json.dumps(report,ensure_ascii=False,indent=2))
 if any(not c['pass'] for c in report['checks']):raise SystemExit(1)

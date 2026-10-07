@@ -76,7 +76,7 @@ for portal in spec['portals']:
         nearest=np.maximum(abs(local)-size[:2]/2,0)
         if np.linalg.norm(nearest)<radius_player and center[2]+size[2]/2>p[2]+.02 and center[2]-size[2]/2<p[2]+1.7:blocks.append({'portal':portal['name'],'collider':c['name']})
 check('Kart pedestrian warp capsule clearance',not blocks and len(spec['portals'])==2,{'blocked':blocks})
-report={'version':'0.5.0','length_m':total,'checks':checks,'passed':all(c['pass'] for c in checks),'scope':'Geometric collision/layout checks only. Unity, CVS2 and VRChat runtime not tested.'}
+report={'version':'0.6.0','length_m':total,'checks':checks,'passed':all(c['pass'] for c in checks),'scope':'Geometric collision/layout checks only. Unity, CVS2 and VRChat runtime not tested.'}
 (ROOT/'Documentation/kart_validation.json').write_text(json.dumps(report,indent=2)+'\n')
 doc=ezdxf.new('R2010');doc.units=4;ms=doc.modelspace()
 for name,color in [('LOWER',4),('MIDDLE',30),('UPPER',3),('FLOOR',8),('CVS2_GUIDES',2)]:doc.layers.new(name,dxfattribs={'color':color})
@@ -85,6 +85,6 @@ for i in range(n):
     ms.add_line(tuple(P[i]*1000),tuple(P[k]*1000),dxfattribs={'layer':name})
 ms.add_lwpolyline([(lo[0]*1000,lo[1]*1000),(hi[0]*1000,lo[1]*1000),(hi[0]*1000,hi[1]*1000),(lo[0]*1000,hi[1]*1000)],close=True,dxfattribs={'layer':'FLOOR'})
 for a in spec['vehicle_anchors']:ms.add_point(tuple(np.array(a['position'])*1000),dxfattribs={'layer':'CVS2_GUIDES'})
-doc.saveas(ROOT/'CAD/APEX_Kart_ThreeLayer_v05.dxf')
+doc.saveas(ROOT/'CAD/APEX_Kart_Neon_Switchyard_v06.dxf')
 print(json.dumps(report,indent=2))
 if not report['passed']:raise SystemExit(1)

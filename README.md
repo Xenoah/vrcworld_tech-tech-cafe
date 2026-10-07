@@ -1,6 +1,6 @@
 # vrcworld_tech-tech-cafe
 
-VRChat用の技術者カフェ／交流ワールド制作データ。内部プロジェクト名は **The Commons — Compact Edition**、mainの収録モデルは **v0.5.0** です。
+VRChat用の技術者カフェ／交流ワールド制作データ。内部プロジェクト名は **The Commons — Compact Edition**、mainの収録モデルは **v0.6.0** です。
 
 ![ワールドの入口からのプレビュー](Preview/01_Entrance_160cm.png)
 
@@ -10,13 +10,15 @@ v0.3.0ではDJ機材・酒ラベル・カフェ小物を作り込み、床・ス
 
 v0.4.0では独立した屋内FPVフロア、往復ワープ、PBR／軽量シェーダー、控えめなグロー、全時間帯の切り替えを追加しました。[変更内容](Documentation/CHANGES_v0.4.0_JA.md)
 
-v0.5.0で **APEX / TRI-LAYER KART** を追加。320 × 300 mの別フロアに約1.40 kmの3層コース、立体交差、ピットと観戦席を配置。カフェとワープで往復します。CVS2の車両は別途導入してください。[変更内容](Documentation/CHANGES_v0.5.0_JA.md)
+v0.6.0でカートフロアを **APEX / NEON SWITCHYARD** に全面改修。148 × 160 mの屋内空間に、34のコーナーと3層の立体交差を詰め込んだオリジナルコースです。幅5.2 m、約1.27 km。低い青・シアンのネオン壁と紫の天井照明で、次の旋回と橋下が迫るテクニカルな走行空間にしました。[変更内容](Documentation/CHANGES_v0.6.0_JA.md)
 
-![3層コース全景（Blender実モデルプレビュー）](Preview/16_Kart_Overview.png)
+![ネオンコースの走行目線（Blender実モデル）](Preview/18_Kart_Driver.png)
+
+![3層レイアウト確認用カットアウェイ（屋根・手前2面の壁・トラスを非表示）](Preview/16_Kart_Overview.png)
 
 ## Unityへ導入
 
-**v0.5.0** の `.unitypackage` と制作データ一式のZIPは [GitHub Releases](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.5.0) から取得できます。カート・FPV・時間帯・描画更新とスクリーンショット4枚を収録しています。Unityパッケージをインポートするか、以下のコピー手順を使ってください。
+**v0.6.0** の `.unitypackage` と制作データ一式のZIPは [GitHub Releases](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.6.0) から取得できます。屋内ネオンカート・FPV・時間帯と実モデル画像5枚を収録しています。Unityパッケージをインポートするか、以下のコピー手順を使ってください。
 
 1. VRChat Creator Companionで **Worlds / Built-in Render Pipeline** のプロジェクトを作成します。制作時の基準は **Unity 2022.3.22f1 / VRChat SDK 3.10.5** です。SDKとUdonSharpはVCC側で導入してください。
 2. このリポジトリの `Unity/Assets/TheCommons` を、VCCで作成したプロジェクトの `Assets` にコピーします。`.meta` も一緒にコピーしてください。
@@ -39,7 +41,7 @@ v0.5.0で **APEX / TRI-LAYER KART** を追加。320 × 300 mの別フロアに�
 | [Unity/Assets/TheCommons/Audio/](Unity/Assets/TheCommons/Audio/) | 環境音・アンビエント・DJ用のオリジナル音源 |
 | [CAD/](CAD/) / [SourceDesign/](SourceDesign/) | 実装差分図、元図面、設計資料 |
 | [Documentation/](Documentation/) | 寸法検査・構文検査・受入確認・素材生成記録 |
-| [Preview/](Preview/) | 制作モデルの静止画19枚とglTF（外部参照形式） |
+| [Preview/](Preview/) | 制作モデルの静止画20枚とglTF（外部参照形式） |
 
 ### ワールド内の機能
 
@@ -49,7 +51,7 @@ v0.5.0で **APEX / TRI-LAYER KART** を追加。320 × 300 mの別フロアに�
 - 明示的な操作による着席、上下階の移動ポータル。
 - 動き・発光・DJ演出・グローのローカル設定、音量ゾーン。
 - 36 × 26 × 8 mの独立FPVフロア、8ゲート、操縦・観戦席、往復ワープ。VRC+ドローンを利用。
-- 3層カートコース、8 m幅の連続路面、空のCVS2配置ガイド6か所、ピット・観戦席、往復ワープ。
+- 3層の屋内ネオンカートコース、5.2 m幅の連続路面、空のCVS2配置ガイド6か所、ピット・観戦席、往復ワープ。
 - 朝・昼・夕・夜のプリセット、±1時間、連続サイクル。ホスト操作と時刻同期。
 
 これらはUdonSharpソースとして収録しています。実機での確認項目は [ACCEPTANCE_JA.md](Documentation/ACCEPTANCE_JA.md) に記載しています。
@@ -58,10 +60,10 @@ v0.5.0で **APEX / TRI-LAYER KART** を追加。320 × 300 mの別フロアに�
 
 | 書き出しモデル | 三角形数 | メッシュ数 |
 | --- | ---: | ---: |
-| PC | 231,297 | 166 |
-| Quest | 193,517 | 156 |
+| PC | 295,797 | 186 |
+| Quest | 245,507 | 176 |
 
-カート部分はPC／Quest共通71,413 tris／15メッシュ。エリア移動時に遠い側の建築描画を抑制します。
+カート部分はPC 135,913 tris／Quest 123,403 tris、各35メッシュ。エリア移動時に遠い側の建築描画を抑制します。
 
 数値は書き出した全景の形状検査結果です。実機FPSや描画負荷の実測値ではありません。
 

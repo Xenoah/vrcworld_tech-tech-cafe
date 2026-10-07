@@ -1,7 +1,7 @@
 {
   "pc": {
-    "triangles": 231297,
-    "render_meshes": 166,
+    "triangles": 295797,
+    "render_meshes": 186,
     "meshes": [
       {
         "name": "ARCH_Mezzanine__MAT_Brass",
@@ -826,94 +826,214 @@
         "triangles": 588
       },
       {
-        "name": "KART_Barriers__MAT_KartConcrete",
+        "name": "KART_Barriers__MAT_KartRubber",
         "group": "KART_Barriers",
-        "vertices": 53170,
-        "triangles": 28404
+        "vertices": 40384,
+        "triangles": 31228
       },
       {
-        "name": "KART_Markings__MAT_Black",
-        "group": "KART_Markings",
-        "vertices": 32,
-        "triangles": 16
-      },
-      {
-        "name": "KART_Markings__MAT_KartAmber",
-        "group": "KART_Markings",
-        "vertices": 8909,
-        "triangles": 4839
-      },
-      {
-        "name": "KART_Markings__MAT_KartCyan",
-        "group": "KART_Markings",
-        "vertices": 5065,
-        "triangles": 2979
-      },
-      {
-        "name": "KART_Markings__MAT_KartLime",
-        "group": "KART_Markings",
-        "vertices": 5181,
-        "triangles": 3111
-      },
-      {
-        "name": "KART_Markings__MAT_KartWhite",
-        "group": "KART_Markings",
-        "vertices": 18842,
-        "triangles": 10748
-      },
-      {
-        "name": "KART_Pits__MAT_KartConcrete",
-        "group": "KART_Pits",
-        "vertices": 1240,
-        "triangles": 828
-      },
-      {
-        "name": "KART_Pits__MAT_KartWhite",
-        "group": "KART_Pits",
-        "vertices": 4846,
-        "triangles": 2764
-      },
-      {
-        "name": "KART_Pits__MAT_Steel",
-        "group": "KART_Pits",
-        "vertices": 192,
-        "triangles": 96
-      },
-      {
-        "name": "KART_Plaza__MAT_KartConcrete",
-        "group": "KART_Plaza",
-        "vertices": 72,
+        "name": "KART_HallDetails__MAT_KartBlue",
+        "group": "KART_HallDetails",
+        "vertices": 96,
         "triangles": 48
       },
       {
-        "name": "KART_Plaza__MAT_KartGrass",
-        "group": "KART_Plaza",
+        "name": "KART_HallDetails__MAT_KartSteel",
+        "group": "KART_HallDetails",
+        "vertices": 624,
+        "triangles": 312
+      },
+      {
+        "name": "KART_HallDetails__MAT_KartViolet",
+        "group": "KART_HallDetails",
+        "vertices": 624,
+        "triangles": 312
+      },
+      {
+        "name": "KART_Hall__MAT_KartFloor",
+        "group": "KART_Hall",
         "vertices": 24,
         "triangles": 12
       },
       {
+        "name": "KART_Lighting__MAT_KartLEDWhite",
+        "group": "KART_Lighting",
+        "vertices": 600,
+        "triangles": 300
+      },
+      {
+        "name": "KART_Markings__MAT_KartBlue",
+        "group": "KART_Markings",
+        "vertices": 12038,
+        "triangles": 9768
+      },
+      {
+        "name": "KART_Markings__MAT_KartCyan",
+        "group": "KART_Markings",
+        "vertices": 8944,
+        "triangles": 7332
+      },
+      {
+        "name": "KART_Markings__MAT_KartGold",
+        "group": "KART_Markings",
+        "vertices": 791,
+        "triangles": 565
+      },
+      {
+        "name": "KART_Markings__MAT_KartPink",
+        "group": "KART_Markings",
+        "vertices": 11468,
+        "triangles": 7860
+      },
+      {
+        "name": "KART_Markings__MAT_KartRubber",
+        "group": "KART_Markings",
+        "vertices": 61,
+        "triangles": 48
+      },
+      {
+        "name": "KART_Markings__MAT_KartViolet",
+        "group": "KART_Markings",
+        "vertices": 9180,
+        "triangles": 6312
+      },
+      {
+        "name": "KART_Markings__MAT_KartWhite",
+        "group": "KART_Markings",
+        "vertices": 21523,
+        "triangles": 15744
+      },
+      {
+        "name": "KART_Pits__MAT_KartConcrete",
+        "group": "KART_Pits",
+        "vertices": 716,
+        "triangles": 704
+      },
+      {
+        "name": "KART_Pits__MAT_KartGold",
+        "group": "KART_Pits",
+        "vertices": 168,
+        "triangles": 144
+      },
+      {
+        "name": "KART_Pits__MAT_KartLEDWhite",
+        "group": "KART_Pits",
+        "vertices": 1970,
+        "triangles": 1256
+      },
+      {
+        "name": "KART_Pits__MAT_KartRubber",
+        "group": "KART_Pits",
+        "vertices": 544,
+        "triangles": 496
+      },
+      {
+        "name": "KART_Pits__MAT_KartSteel",
+        "group": "KART_Pits",
+        "vertices": 120,
+        "triangles": 60
+      },
+      {
+        "name": "KART_Pits__MAT_KartViolet",
+        "group": "KART_Pits",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "KART_Pits__MAT_KartWhite",
+        "group": "KART_Pits",
+        "vertices": 2368,
+        "triangles": 1560
+      },
+      {
         "name": "KART_Road__MAT_KartAsphalt",
         "group": "KART_Road",
-        "vertices": 6240,
-        "triangles": 3600
+        "vertices": 5048,
+        "triangles": 3974
       },
       {
         "name": "KART_Road__MAT_KartConcrete",
         "group": "KART_Road",
-        "vertices": 20640,
-        "triangles": 10800
+        "vertices": 15418,
+        "triangles": 11922
       },
       {
-        "name": "KART_Structure__MAT_KartConcrete",
-        "group": "KART_Structure",
-        "vertices": 3168,
-        "triangles": 1584
+        "name": "KART_Roof__MAT_KartSteel",
+        "group": "KART_Roof",
+        "vertices": 24,
+        "triangles": 12
       },
       {
-        "name": "KART_Structure__MAT_Steel",
+        "name": "KART_ShellEast__MAT_KartConcrete",
+        "group": "KART_ShellEast",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "KART_ShellNorth__MAT_KartConcrete",
+        "group": "KART_ShellNorth",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "KART_ShellSouth__MAT_KartConcrete",
+        "group": "KART_ShellSouth",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "KART_ShellWest__MAT_KartConcrete",
+        "group": "KART_ShellWest",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "KART_Signage__MAT_KartBlue",
+        "group": "KART_Signage",
+        "vertices": 1292,
+        "triangles": 836
+      },
+      {
+        "name": "KART_Signage__MAT_KartCyan",
+        "group": "KART_Signage",
+        "vertices": 3050,
+        "triangles": 1932
+      },
+      {
+        "name": "KART_Signage__MAT_KartSteel",
+        "group": "KART_Signage",
+        "vertices": 84,
+        "triangles": 44
+      },
+      {
+        "name": "KART_Signage__MAT_KartViolet",
+        "group": "KART_Signage",
+        "vertices": 2034,
+        "triangles": 1324
+      },
+      {
+        "name": "KART_Signage__MAT_KartWhite",
+        "group": "KART_Signage",
+        "vertices": 3172,
+        "triangles": 2012
+      },
+      {
+        "name": "KART_Structure__MAT_KartSteel",
         "group": "KART_Structure",
-        "vertices": 3168,
-        "triangles": 1584
+        "vertices": 2616,
+        "triangles": 1308
+      },
+      {
+        "name": "KART_Trusses__MAT_KartSteel",
+        "group": "KART_Trusses",
+        "vertices": 7176,
+        "triangles": 3948
+      },
+      {
+        "name": "KART_TyreBundles__MAT_KartRubber",
+        "group": "KART_TyreBundles",
+        "vertices": 48960,
+        "triangles": 24480
       },
       {
         "name": "LGT_Main__MAT_Amber",
@@ -1002,8 +1122,8 @@
     ]
   },
   "quest": {
-    "triangles": 193517,
-    "render_meshes": 156,
+    "triangles": 245507,
+    "render_meshes": 176,
     "meshes": [
       {
         "name": "ARCH_Mezzanine__MAT_Brass",
@@ -1768,94 +1888,214 @@
         "triangles": 588
       },
       {
-        "name": "KART_Barriers__MAT_KartConcrete",
+        "name": "KART_Barriers__MAT_KartRubber",
         "group": "KART_Barriers",
-        "vertices": 53170,
-        "triangles": 28404
+        "vertices": 40384,
+        "triangles": 31228
       },
       {
-        "name": "KART_Markings__MAT_Black",
-        "group": "KART_Markings",
-        "vertices": 32,
-        "triangles": 16
-      },
-      {
-        "name": "KART_Markings__MAT_KartAmber",
-        "group": "KART_Markings",
-        "vertices": 8909,
-        "triangles": 4839
-      },
-      {
-        "name": "KART_Markings__MAT_KartCyan",
-        "group": "KART_Markings",
-        "vertices": 5065,
-        "triangles": 2979
-      },
-      {
-        "name": "KART_Markings__MAT_KartLime",
-        "group": "KART_Markings",
-        "vertices": 5181,
-        "triangles": 3111
-      },
-      {
-        "name": "KART_Markings__MAT_KartWhite",
-        "group": "KART_Markings",
-        "vertices": 18842,
-        "triangles": 10748
-      },
-      {
-        "name": "KART_Pits__MAT_KartConcrete",
-        "group": "KART_Pits",
-        "vertices": 1240,
-        "triangles": 828
-      },
-      {
-        "name": "KART_Pits__MAT_KartWhite",
-        "group": "KART_Pits",
-        "vertices": 4846,
-        "triangles": 2764
-      },
-      {
-        "name": "KART_Pits__MAT_Steel",
-        "group": "KART_Pits",
-        "vertices": 192,
-        "triangles": 96
-      },
-      {
-        "name": "KART_Plaza__MAT_KartConcrete",
-        "group": "KART_Plaza",
-        "vertices": 72,
+        "name": "KART_HallDetails__MAT_KartBlue",
+        "group": "KART_HallDetails",
+        "vertices": 96,
         "triangles": 48
       },
       {
-        "name": "KART_Plaza__MAT_KartGrass",
-        "group": "KART_Plaza",
+        "name": "KART_HallDetails__MAT_KartSteel",
+        "group": "KART_HallDetails",
+        "vertices": 624,
+        "triangles": 312
+      },
+      {
+        "name": "KART_HallDetails__MAT_KartViolet",
+        "group": "KART_HallDetails",
+        "vertices": 624,
+        "triangles": 312
+      },
+      {
+        "name": "KART_Hall__MAT_KartFloor",
+        "group": "KART_Hall",
         "vertices": 24,
         "triangles": 12
       },
       {
+        "name": "KART_Lighting__MAT_KartLEDWhite",
+        "group": "KART_Lighting",
+        "vertices": 600,
+        "triangles": 300
+      },
+      {
+        "name": "KART_Markings__MAT_KartBlue",
+        "group": "KART_Markings",
+        "vertices": 12038,
+        "triangles": 9768
+      },
+      {
+        "name": "KART_Markings__MAT_KartCyan",
+        "group": "KART_Markings",
+        "vertices": 8944,
+        "triangles": 7332
+      },
+      {
+        "name": "KART_Markings__MAT_KartGold",
+        "group": "KART_Markings",
+        "vertices": 791,
+        "triangles": 565
+      },
+      {
+        "name": "KART_Markings__MAT_KartPink",
+        "group": "KART_Markings",
+        "vertices": 11468,
+        "triangles": 7860
+      },
+      {
+        "name": "KART_Markings__MAT_KartRubber",
+        "group": "KART_Markings",
+        "vertices": 61,
+        "triangles": 48
+      },
+      {
+        "name": "KART_Markings__MAT_KartViolet",
+        "group": "KART_Markings",
+        "vertices": 9180,
+        "triangles": 6312
+      },
+      {
+        "name": "KART_Markings__MAT_KartWhite",
+        "group": "KART_Markings",
+        "vertices": 21523,
+        "triangles": 15744
+      },
+      {
+        "name": "KART_Pits__MAT_KartConcrete",
+        "group": "KART_Pits",
+        "vertices": 716,
+        "triangles": 704
+      },
+      {
+        "name": "KART_Pits__MAT_KartGold",
+        "group": "KART_Pits",
+        "vertices": 168,
+        "triangles": 144
+      },
+      {
+        "name": "KART_Pits__MAT_KartLEDWhite",
+        "group": "KART_Pits",
+        "vertices": 1970,
+        "triangles": 1256
+      },
+      {
+        "name": "KART_Pits__MAT_KartRubber",
+        "group": "KART_Pits",
+        "vertices": 544,
+        "triangles": 496
+      },
+      {
+        "name": "KART_Pits__MAT_KartSteel",
+        "group": "KART_Pits",
+        "vertices": 120,
+        "triangles": 60
+      },
+      {
+        "name": "KART_Pits__MAT_KartViolet",
+        "group": "KART_Pits",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "KART_Pits__MAT_KartWhite",
+        "group": "KART_Pits",
+        "vertices": 2368,
+        "triangles": 1560
+      },
+      {
         "name": "KART_Road__MAT_KartAsphalt",
         "group": "KART_Road",
-        "vertices": 6240,
-        "triangles": 3600
+        "vertices": 5048,
+        "triangles": 3974
       },
       {
         "name": "KART_Road__MAT_KartConcrete",
         "group": "KART_Road",
-        "vertices": 20640,
-        "triangles": 10800
+        "vertices": 15418,
+        "triangles": 11922
       },
       {
-        "name": "KART_Structure__MAT_KartConcrete",
-        "group": "KART_Structure",
-        "vertices": 3168,
-        "triangles": 1584
+        "name": "KART_Roof__MAT_KartSteel",
+        "group": "KART_Roof",
+        "vertices": 24,
+        "triangles": 12
       },
       {
-        "name": "KART_Structure__MAT_Steel",
+        "name": "KART_ShellEast__MAT_KartConcrete",
+        "group": "KART_ShellEast",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "KART_ShellNorth__MAT_KartConcrete",
+        "group": "KART_ShellNorth",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "KART_ShellSouth__MAT_KartConcrete",
+        "group": "KART_ShellSouth",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "KART_ShellWest__MAT_KartConcrete",
+        "group": "KART_ShellWest",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "KART_Signage__MAT_KartBlue",
+        "group": "KART_Signage",
+        "vertices": 1292,
+        "triangles": 836
+      },
+      {
+        "name": "KART_Signage__MAT_KartCyan",
+        "group": "KART_Signage",
+        "vertices": 3050,
+        "triangles": 1932
+      },
+      {
+        "name": "KART_Signage__MAT_KartSteel",
+        "group": "KART_Signage",
+        "vertices": 84,
+        "triangles": 44
+      },
+      {
+        "name": "KART_Signage__MAT_KartViolet",
+        "group": "KART_Signage",
+        "vertices": 2034,
+        "triangles": 1324
+      },
+      {
+        "name": "KART_Signage__MAT_KartWhite",
+        "group": "KART_Signage",
+        "vertices": 3172,
+        "triangles": 2012
+      },
+      {
+        "name": "KART_Structure__MAT_KartSteel",
         "group": "KART_Structure",
-        "vertices": 3168,
-        "triangles": 1584
+        "vertices": 2616,
+        "triangles": 1308
+      },
+      {
+        "name": "KART_Trusses__MAT_KartSteel",
+        "group": "KART_Trusses",
+        "vertices": 5276,
+        "triangles": 2210
+      },
+      {
+        "name": "KART_TyreBundles__MAT_KartRubber",
+        "group": "KART_TyreBundles",
+        "vertices": 33718,
+        "triangles": 13708
       },
       {
         "name": "LGT_Main__MAT_Amber",
