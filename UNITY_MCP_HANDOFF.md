@@ -1,4 +1,4 @@
-# Unity MCPへの引き継ぎ — v0.3.0
+# Unity MCPへの引き継ぎ — v0.4.0
 
 取得元: https://github.com/Xenoah/vrcworld_tech-tech-cafe
 
@@ -6,10 +6,10 @@
 
 ## 取得からシーン生成まで
 
-1. リポジトリを `git clone` / `git pull --ff-only` で取得する。ローカル変更がある場合は上書きせず差分を確認する。
+1. **mainブランチ**のリポジトリを `git clone` / `git pull --ff-only` で取得する。ローカル変更がある場合は上書きせず差分を確認する。
 2. VCCで作成したWorlds / Built-inプロジェクトをUnityで開く。SDKとUdonSharpの導入・コンパイル完了を待つ。制作基準はUnity 2022.3.22f1 / SDK 3.10.5。実際の対応版はVCCとVRChat公式の指定に従う。
 3. `Unity/Assets/TheCommons` と同階層の `TheCommons.meta` を、対象プロジェクトの `Assets` にコピーする。子ファイルの `.meta` も保持する。既存の `Generated` シーンを削除しない。
-4. Unity MCPからAssetDatabaseのRefresh / 再インポートを行い、ConsoleのC#・UdonSharpエラーを確認する。接続しているMCPの実際のツール名・引数を使う。
+4. PCのBloomも生成する場合は、Package Managerで `com.unity.postprocessing@3.4.0` を導入する。C#実行対応MCPなら `UnityEditor.PackageManager.Client.Add("com.unity.postprocessing@3.4.0");` を使用し、導入と再コンパイルを待つ。未導入では器具グローのみ生成される。Unity MCPからAssetDatabaseのRefresh / 再インポートを行い、ConsoleのC#・UdonSharpエラーを確認する。接続しているMCPの実際のツール名・引数を使う。
 5. 現在のシーンを保存してから、メニュー **`The Commons/MCP/Build PC World (no dialogs)`** を実行する。C#実行に対応するMCPなら `CommonsWorldBuilder.BuildPCForMCP();` でも同じ。未保存のシーンがあると停止する。
 6. Consoleの `THE COMMONS scene created:` を読む。生成先は `Assets/TheCommons/Generated/PC_yyyyMMdd_HHmmss_fff/TheCommons.unity`。完了ダイアログは出ない。既存シーンへモデルを追加するのではなく、新しいシーンを生成する。
 7. `The Commons/Bake lighting` を実行してベイク完了を待ち、VRChat SDKのBuild & Testを行う。
@@ -37,3 +37,16 @@ DJの操作面・ノブ・フェーダーは装飾モデルです。ライブミ
 Blender実モデルの近接レンダー、PC/Questバイナリの向き・UV・材質、床・ステージ・階段上面の重複検査、上階の回遊検査を実施。結果は `Documentation/validation_report.json`。全項目の受入表は `Documentation/ACCEPTANCE_JA.md`。
 
 Unity EditorへのMCP接続はこの制作環境にはありません。Unity/Udonコンパイル、シェーダー、ベイク、VRChat両眼表示、同期、Quest実機は引き継ぎ先で確認してください。
+
+## v0.4.0で追加した確認
+
+- カフェ入口のVECTORからFPVへ、RETURNからカフェへ往復。Unity座標でFPV着地点 `(-42.5, 0.12, 2)`、カフェ着地点 `(19.3, 0.12, 2.5)`。
+- 開口3.2 × 3.0 mの8ゲートをVRC+ Camera Droneで飛行。ワールド／インスタンスのDrones許可を確認。独自ドローンギミックは不要。
+- 操縦席4席、観戦席3席、柵と出入口、色・番号・床矢印を確認。Quest実機のフレーム時間と操縦感を測り、密度を調整。
+- 両側の時間パネルで朝昼夕夜・±1時間・CYCLE / HOLDを確認。ホスト以外の操作制限、途中参加、所有者退出後を確認。
+- PCのPBR・ベイク済み反射・弱いBloom、Questの軽量な補助光・器具グローを確認。SOFT GLOW / LOW EMISSIONで眩しさを落とせること。
+- 遠い側のRendererを非表示にしてもワープ先の床・Udonが維持されること。
+
+時間帯は空・霧・環境色・補助光の連続補間。ライトマップ／反射は静的1組です。新シーンを生成して再ベイクしてください。Release v0.4.0のパッケージにこの追加更新を収録しています。
+
+PCでPPSを導入した場合は、`VRCWorld` のReference Cameraに `LGT_PC_ReferenceCamera` が入り、PostProcessLayerのVolume LayerがWater、`LGT_PC_BloomVolume` もWaterに設定されていることを確認してください。参照カメラのCameraは無効、HDRは有効です。SOFT GLOWはVolumeと器具グローをまとめて切り替えます。

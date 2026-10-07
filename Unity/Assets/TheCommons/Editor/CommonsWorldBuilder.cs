@@ -21,11 +21,13 @@ public static class CommonsWorldBuilder
     static bool Mobile;
     static Dictionary<string,Material> materials;
     static Dictionary<string,GameObject> groups;
-    [Serializable] public class Manifest { public ColliderRecord[] colliders; public LightRecord[] lights; public SeatRecord[] seat_anchors; public MaterialRecord[] materials; }
+    [Serializable] public class Manifest { public ColliderRecord[] colliders; public LightRecord[] lights; public SeatRecord[] seat_anchors; public MaterialRecord[] materials; public FPVRecord fpv; }
     [Serializable] public class ColliderRecord { public string name,kind,group; public float[] position,size,rotation,vertices; public float radius,height; }
     [Serializable] public class LightRecord { public string name; public float[] position,color,target; public float power,size; }
     [Serializable] public class SeatRecord { public float[] position; public float yaw; public string group; }
-    [Serializable] public class MaterialRecord { public string name,texture,wrap; public float[] color; public float emission; }
+    [Serializable] public class MaterialRecord { public string name,texture,wrap; public float[] color; public float emission,roughness,metallic; }
+    [Serializable] public class FPVRecord { public float[] origin,size; public PortalRecord[] portals; }
+    [Serializable] public class PortalRecord { public string name; public float[] position,destination; public float yaw,facing_yaw; }
 
     [MenuItem("The Commons/Build PC World")]
     public static void PC() { Build(false); }
@@ -69,7 +71,9 @@ public static class CommonsWorldBuilder
         if (data == null || data.materials == null) throw new InvalidDataException("Missing world manifest. Reimport the complete TheCommons folder.");
         foreach(MaterialRecord r in data.materials)
         {
-            Material m=new Material(Shader.Find("The Commons/Flat Light"));m.name=r.name;
+            Material m=new Material(Shader.Find(Mobile?"The Commons/Flat Light":"The Commons/Surface"));m.name=r.name;m.enableInstancing=true;
+            m.SetFloat("_Metallic",r.metallic);m.SetFloat("_Smoothness",Mathf.Clamp(1f-r.roughness,.03f,.82f));
+            if(!Mobile && r.wrap=="mirror" && !string.IsNullOrEmpty(r.texture))m.EnableKeyword("_DETAIL_BUMP");
             m.SetColor("_Color",new Color(r.color[0],r.color[1],r.color[2],1));
             m.SetColor("_EmissionColor",new Color(r.color[0]*r.emission,r.color[1]*r.emission,r.color[2]*r.emission,1));
             if (!string.IsNullOrEmpty(r.texture))
@@ -101,7 +105,7 @@ public static class CommonsWorldBuilder
                 }
                 int[] ix=new int[ni];for(int i=0;i<ni;i++)ix[i]=r.ReadInt32();
                 Mesh mesh=new Mesh();mesh.name=name;mesh.indexFormat=nv>65535?IndexFormat.UInt32:IndexFormat.UInt16;
-                mesh.vertices=vs;mesh.normals=ns;mesh.uv=uv;mesh.colors=colors;mesh.triangles=ix;mesh.RecalculateBounds();
+                mesh.vertices=vs;mesh.normals=ns;mesh.uv=uv;mesh.colors=colors;mesh.triangles=ix;mesh.RecalculateBounds();mesh.RecalculateTangents();
                 Unwrapping.GenerateSecondaryUVSet(mesh);
                 SaveAsset(mesh,Out+"/Meshes/"+name+".asset");
                 GameObject o=new GameObject(name);o.transform.SetParent(Group(group).transform,false);
@@ -175,12 +179,15 @@ public static class CommonsWorldBuilder
         Button("REDUCED MOTION",new Vector3(10.65f,1.55f,1.49f),comfort,"ToggleMotion",1.6f);
         Button("LOW EMISSION",new Vector3(10.65f,1.21f,1.49f),comfort,"ToggleEmission",1.6f);
         Button("DJ VISUALS",new Vector3(10.65f,.87f,1.49f),comfort,"ToggleDJVisuals",1.6f);
+        Button("SOFT GLOW",new Vector3(10.65f,.53f,1.49f),comfort,"ToggleGlow",1.6f);
         if(!Mobile)BuildMirror(comfort);
         // Both main portal and stair-side portal remain reachable in every mode.
         Portal("TO 2F",new Vector3(18.75f,1.15f,1.8f),new Vector3(18,4.9f,3.65f));
         Portal("TO 1F",new Vector3(18.7f,5.95f,3.2f),new Vector3(18,.1f,2.3f));
         Portal("ORBIT CAFE",new Vector3(6.6f,1.15f,11.4f),new Vector3(6.35f,4.9f,15.4f));
         Portal("ANCHOR BAR",new Vector3(6.7f,5.95f,15.8f),new Vector3(6.35f,.1f,11.0f));
+        if(data.fpv!=null && data.fpv.portals!=null)foreach(PortalRecord r in data.fpv.portals)
+            Portal(r.name,V(r.position),V(r.destination),r.facing_yaw,r.yaw);
         int si=0;
         foreach(SeatRecord r in data.seat_anchors)
         {
@@ -201,16 +208,30 @@ public static class CommonsWorldBuilder
         SetupVideo(state,zones,media);
         new GameObject("EventSystem",typeof(EventSystem),typeof(StandaloneInputModule));
         SetupLighting(data);
+        CommonsTimeOfDay time=CommonsAtmosphereBuilder.Configure(Out,Mobile,state,comfort,materials);
+        TextMesh cafeTime=TimePanel(new Vector3(22.5f,1.8f,1.48f),0,time);
+        TextMesh fieldTime=TimePanel(new Vector3(-33f,1.8f,.65f),180,time);
+        time.labels=new[]{cafeTime,fieldTime};time.ApplyHour(time.hour);time.ApplyProxyModifications();
+        Button("SOFT GLOW",new Vector3(-30.5f,.85f,.65f),comfort,"ToggleGlow",1.6f,.28f,180);
         GameObject desc=new GameObject("VRCWorld");var descriptor=desc.AddComponent<VRCSceneDescriptor>();
         Transform spawn=new GameObject("Spawn_Entry").transform;spawn.position=new Vector3(14,.1f,1.2f);descriptor.spawns=new[]{spawn};descriptor.capacity=32;
         SerializedObject ds=new SerializedObject(descriptor);SerializedProperty rh=ds.FindProperty("RespawnHeightY");if(rh!=null)rh.floatValue=-12;ds.ApplyModifiedPropertiesWithoutUndo();
+        if(!Mobile)CommonsAtmosphereBuilder.AddOptionalBloom(Out,comfort.glowRoot,descriptor);
         // SDK stores its blueprint only after the owner uploads. No blueprint ID is preassigned.
         LightProbeGroup probes=new GameObject("LGT_LightProbes").AddComponent<LightProbeGroup>();List<Vector3> ps=new List<Vector3>();
-        for(int x=2;x<28;x+=4)for(int z=2;z<18;z+=4)foreach(float y in new[]{1f,3f,5.6f,7.8f})ps.Add(new Vector3(x,y,z));probes.probePositions=ps.ToArray();
+        for(int x=2;x<28;x+=4)for(int z=2;z<18;z+=4)foreach(float y in new[]{1f,3f,5.6f,7.8f})ps.Add(new Vector3(x,y,z));for(int x=-61;x<=-28;x+=6)for(int z=3;z<=26;z+=6)foreach(float y in new[]{1.2f,3.5f,6f})ps.Add(new Vector3(x,y,z));
+        probes.probePositions=ps.ToArray();
         if(!Mobile)
         {
             ReflectionProbe rp=new GameObject("LGT_BakedReflection").AddComponent<ReflectionProbe>();rp.transform.position=new Vector3(14,4,9);rp.size=new Vector3(28,10,18);rp.mode=ReflectionProbeMode.Baked;rp.resolution=128;rp.boxProjection=true;
+            ReflectionProbe fp=new GameObject("LGT_FPV_BakedReflection").AddComponent<ReflectionProbe>();fp.transform.position=new Vector3(-46,4,13);fp.size=new Vector3(36,8,26);fp.mode=ReflectionProbeMode.Baked;fp.resolution=128;fp.boxProjection=true;
         }
+        GameObject areaObject=new GameObject("INT_AreaVisibility");areaObject.transform.SetParent(systems.transform);
+        CommonsAreaVisibility visibility=areaObject.AddUdonSharpComponent<CommonsAreaVisibility>();
+        List<Renderer> cafeRenderers=new List<Renderer>(),fieldRenderers=new List<Renderer>();
+        foreach(Renderer renderer in UnityEngine.Object.FindObjectsOfType<Renderer>(true))
+            if(renderer.bounds.center.x < -15f)fieldRenderers.Add(renderer);else cafeRenderers.Add(renderer);
+        visibility.cafe=cafeRenderers.ToArray();visibility.fpv=fieldRenderers.ToArray();visibility.ApplyProxyModifications();
         zones.ApplyProxyModifications();comfort.ApplyProxyModifications();state.ApplyProxyModifications();
         state.academicRoot.SetActive(false);pointer.SetActive(false);comfort.Refresh();
         EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(Out+"/TheCommons.unity",true)};
@@ -225,22 +246,33 @@ public static class CommonsWorldBuilder
         Mesh mesh=new Mesh();mesh.name=name;mesh.vertices=new[]{new Vector3(-w/2,-h/2,0),new Vector3(w/2,-h/2,0),new Vector3(w/2,h/2,0),new Vector3(-w/2,h/2,0)};mesh.uv=new[]{Vector2.zero,Vector2.right,Vector2.one,Vector2.up};mesh.triangles=new[]{0,2,1,0,3,2};mesh.RecalculateNormals();
         SaveAsset(mesh,Out+"/Meshes/"+name+".asset");o.AddComponent<MeshFilter>().sharedMesh=mesh;o.AddComponent<MeshRenderer>().sharedMaterial=m;return o;
     }
-    static TextMesh Label(string name,string content,Vector3 p,float size)
+    static TextMesh Label(string name,string content,Vector3 p,float size,float yaw=0)
     {
-        GameObject o=new GameObject("LABEL_"+name);o.transform.position=p;TextMesh text=o.AddComponent<TextMesh>();text.text=content;text.anchor=TextAnchor.MiddleCenter;text.alignment=TextAlignment.Center;text.fontSize=48;text.characterSize=size*10f/48f;text.color=new Color(.87f,.92f,.94f);return text;
+        GameObject o=new GameObject("LABEL_"+name);o.transform.position=p;o.transform.rotation=Quaternion.Euler(0,yaw,0);TextMesh text=o.AddComponent<TextMesh>();text.text=content;text.anchor=TextAnchor.MiddleCenter;text.alignment=TextAlignment.Center;text.fontSize=48;text.characterSize=size*10f/48f;text.color=new Color(.87f,.92f,.94f);return text;
     }
-    static void Button(string name,Vector3 p,UdonSharpBehaviour target,string method,float w=.95f,float h=.28f)
+    static void Button(string name,Vector3 p,UdonSharpBehaviour target,string method,float w=.95f,float h=.28f,float yaw=0)
     {
-        GameObject o=GameObject.CreatePrimitive(PrimitiveType.Cube);o.name="INT_"+method;o.transform.position=p;o.transform.localScale=new Vector3(w,h,.075f);o.GetComponent<Renderer>().sharedMaterial=materials["MAT_Steel"];
-        Label(name,name,p+new Vector3(0,0,-.046f),h*.35f);
+        GameObject o=GameObject.CreatePrimitive(PrimitiveType.Cube);o.name="INT_"+method;o.transform.position=p;o.transform.rotation=Quaternion.Euler(0,yaw,0);o.transform.localScale=new Vector3(w,h,.075f);o.GetComponent<Renderer>().sharedMaterial=materials["MAT_Steel"];
+        Label(name,name,p+Quaternion.Euler(0,yaw,0)*new Vector3(0,0,-.046f),h*.35f,yaw);
         CommonsButton b=o.AddUdonSharpComponent<CommonsButton>();b.target=target;b.eventName=method;b.ApplyProxyModifications();InteractSettings(b,name,2f);
     }
-    static void Portal(string name,Vector3 p,Vector3 destination)
+    static void Portal(string name,Vector3 p,Vector3 destination,float facingYaw=0,float destinationYaw=0)
     {
-        GameObject o=GameObject.CreatePrimitive(PrimitiveType.Cube);o.name="INT_Portal_"+name;o.transform.position=p;o.transform.localScale=new Vector3(.66f,.5f,.12f);o.GetComponent<Renderer>().sharedMaterial=materials["MAT_Cyan"];
-        Label(name,name,p+new Vector3(0,0,-.072f),.10f);
-        Transform target=new GameObject("TP_"+name).transform;target.position=destination;
+        GameObject o=GameObject.CreatePrimitive(PrimitiveType.Cube);o.name="INT_Portal_"+name;o.transform.position=p;o.transform.rotation=Quaternion.Euler(0,facingYaw,0);o.transform.localScale=new Vector3(.8f,.5f,.12f);o.GetComponent<Renderer>().sharedMaterial=materials["MAT_Cyan"];
+        Label(name,name,p+Quaternion.Euler(0,facingYaw,0)*new Vector3(0,0,-.072f),.075f,facingYaw);
+        Transform target=new GameObject("TP_"+name).transform;target.position=destination;target.rotation=Quaternion.Euler(0,destinationYaw,0);
         CommonsPortal portal=o.AddUdonSharpComponent<CommonsPortal>();portal.destination=target;portal.ApplyProxyModifications();InteractSettings(portal,name,2.5f);
+    }
+    static TextMesh TimePanel(Vector3 p,float yaw,CommonsTimeOfDay time)
+    {
+        Quaternion rotation=Quaternion.Euler(0,yaw,0);
+        TextMesh caption=Label("Time","TIME",p+rotation*new Vector3(0,.36f,-.05f),.09f,yaw);
+        Label("TimeAccess","HOST / INSTANCE MASTER",p+rotation*new Vector3(0,.19f,-.05f),.065f,yaw);
+        string[] titles={"DAWN","DAY","DUSK","NIGHT","-1 HOUR","+1 HOUR"};
+        string[] events={"Dawn","Day","Dusk","Night","Earlier","Later"};
+        for(int i=0;i<titles.Length;i++)Button(titles[i],p+rotation*new Vector3((i%2-.5f)*1.02f,-(i/2)*.32f,0),time,events[i],.95f,.27f,yaw);
+        Button("CYCLE / HOLD",p+rotation*new Vector3(0,-.96f,0),time,"ToggleCycle",1.96f,.27f,yaw);
+        return caption;
     }
     static AudioSource Audio(string name,string clip,Vector3 p,float volume)
     {

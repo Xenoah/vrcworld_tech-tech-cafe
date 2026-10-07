@@ -1,0 +1,173 @@
+{
+  "name": "VECTOR / Indoor FPV",
+  "origin": [
+    -64,
+    0,
+    0
+  ],
+  "size": [
+    36,
+    26,
+    8
+  ],
+  "flight_bounds_local": [
+    1,
+    6.2,
+    35,
+    25
+  ],
+  "pilot_bounds_local": [
+    2,
+    1,
+    19,
+    5
+  ],
+  "spectator_bounds_local": [
+    23,
+    1,
+    34,
+    5
+  ],
+  "gate_clear_width": 3.2,
+  "gate_clear_height": 3.0,
+  "gate_frame_thickness": 0.18,
+  "gates": [
+    {
+      "id": 1,
+      "center": [
+        10,
+        9,
+        1.9
+      ],
+      "direction": [
+        1,
+        0
+      ],
+      "sector": "cyan"
+    },
+    {
+      "id": 2,
+      "center": [
+        21,
+        9,
+        2.3
+      ],
+      "direction": [
+        1,
+        0
+      ],
+      "sector": "cyan"
+    },
+    {
+      "id": 3,
+      "center": [
+        30,
+        13,
+        3.3
+      ],
+      "direction": [
+        0,
+        1
+      ],
+      "sector": "amber"
+    },
+    {
+      "id": 4,
+      "center": [
+        27,
+        21,
+        3.5
+      ],
+      "direction": [
+        -1,
+        0
+      ],
+      "sector": "amber"
+    },
+    {
+      "id": 5,
+      "center": [
+        20,
+        22,
+        3.0
+      ],
+      "direction": [
+        -1,
+        0
+      ],
+      "sector": "lime"
+    },
+    {
+      "id": 6,
+      "center": [
+        11,
+        21,
+        2.2
+      ],
+      "direction": [
+        -1,
+        0
+      ],
+      "sector": "lime"
+    },
+    {
+      "id": 7,
+      "center": [
+        6,
+        18,
+        2.1
+      ],
+      "direction": [
+        0,
+        -1
+      ],
+      "sector": "cyan"
+    },
+    {
+      "id": 8,
+      "center": [
+        6,
+        12,
+        1.8
+      ],
+      "direction": [
+        0,
+        -1
+      ],
+      "sector": "cyan"
+    }
+  ],
+  "portals": [
+    {
+      "name": "VECTOR / FPV",
+      "position": [
+        19.8,
+        1.8,
+        1.15
+      ],
+      "destination": [
+        -42.5,
+        2.0,
+        0.12
+      ],
+      "yaw": 0
+    },
+    {
+      "name": "RETURN / CAFE",
+      "position": [
+        -42.5,
+        0.7,
+        1.15
+      ],
+      "destination": [
+        19.3,
+        2.5,
+        0.12
+      ],
+      "yaw": 0,
+      "facing_yaw": 180
+    }
+  ],
+  "design_status": "Initial spacious layout. VRC+ drone feel and PC/Quest frame timing require an in-client playtest.",
+  "drone_implementation": "Use the user's VRC+ Camera Drone; no world drone, controller, physics or race timer."
+}

@@ -17,6 +17,7 @@ public class CommonsAudioZones : UdonSharpBehaviour
     private float targetVideo;
     private float targetDance;
     private bool quiet;
+    private bool atField;
     void Start()
     {
         if(dance!=null && dance.clip!=null) dance.time=(float)(Networking.GetServerTimeInSeconds()%dance.clip.length);
@@ -33,10 +34,13 @@ public class CommonsAudioZones : UdonSharpBehaviour
         targetDance = m == 2 ? .32f*k : 0;
         if(state!=null && state.videoSync!=null && state.videoSync.playing){targetMusic=0;targetDance=0;}
         targetVideo = (quiet ? .10f : .7f);
+        if (atField) {targetAmbience=.065f;targetMusic=0;targetDance=0;targetVideo=0;}
     }
     void Update()
     {
         if (!Utilities.IsValid(Networking.LocalPlayer)) return;
+        bool field = Networking.LocalPlayer.GetPosition().x < -15f;
+        if (field != atField) {atField=field;Refresh();}
         bool now = Inside(Networking.LocalPlayer.GetPosition());
         if (now != quiet) { quiet = now; Refresh(); }
         float k = Mathf.Min(1f, Time.deltaTime*3f);
@@ -52,7 +56,7 @@ public class CommonsAudioZones : UdonSharpBehaviour
         {
             VRCPlayerApi p = players[i];
             if (!Utilities.IsValid(p) || p.isLocal) continue;
-            bool separated = voiceZoning && quiet != Inside(p.GetPosition());
+            bool separated = voiceZoning && (quiet != Inside(p.GetPosition()) || atField != (p.GetPosition().x < -15f));
             p.SetVoiceGain(separated ? 5f : 15f);
             p.SetVoiceDistanceNear(0);
             p.SetVoiceDistanceFar(separated ? 8f : 18f);

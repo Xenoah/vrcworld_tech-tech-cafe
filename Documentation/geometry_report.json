@@ -1,7 +1,7 @@
 {
   "pc": {
-    "triangles": 139940,
-    "render_meshes": 129,
+    "triangles": 159884,
+    "render_meshes": 151,
     "meshes": [
       {
         "name": "ARCH_Mezzanine__MAT_Brass",
@@ -272,6 +272,138 @@
         "group": "ENV_City",
         "vertices": 480,
         "triangles": 280
+      },
+      {
+        "name": "FPV_Course__MAT_Black",
+        "group": "FPV_Course",
+        "vertices": 240,
+        "triangles": 156
+      },
+      {
+        "name": "FPV_Course__MAT_FPVAmber",
+        "group": "FPV_Course",
+        "vertices": 328,
+        "triangles": 192
+      },
+      {
+        "name": "FPV_Course__MAT_FPVCyan",
+        "group": "FPV_Course",
+        "vertices": 1424,
+        "triangles": 768
+      },
+      {
+        "name": "FPV_Course__MAT_FPVLime",
+        "group": "FPV_Course",
+        "vertices": 328,
+        "triangles": 192
+      },
+      {
+        "name": "FPV_Course__MAT_Steel",
+        "group": "FPV_Course",
+        "vertices": 960,
+        "triangles": 480
+      },
+      {
+        "name": "FPV_Course__MAT_White",
+        "group": "FPV_Course",
+        "vertices": 3254,
+        "triangles": 2144
+      },
+      {
+        "name": "FPV_Lighting__MAT_Steel",
+        "group": "FPV_Lighting",
+        "vertices": 144,
+        "triangles": 72
+      },
+      {
+        "name": "FPV_Lighting__MAT_White",
+        "group": "FPV_Lighting",
+        "vertices": 144,
+        "triangles": 72
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_Brass",
+        "group": "FPV_PilotLounge",
+        "vertices": 1344,
+        "triangles": 784
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_Cream",
+        "group": "FPV_PilotLounge",
+        "vertices": 2592,
+        "triangles": 1296
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_FPVAmber",
+        "group": "FPV_PilotLounge",
+        "vertices": 1616,
+        "triangles": 1048
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_FPVCyan",
+        "group": "FPV_PilotLounge",
+        "vertices": 8551,
+        "triangles": 5468
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_FPVLime",
+        "group": "FPV_PilotLounge",
+        "vertices": 42,
+        "triangles": 24
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_Fabric",
+        "group": "FPV_PilotLounge",
+        "vertices": 1728,
+        "triangles": 864
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_Oak",
+        "group": "FPV_PilotLounge",
+        "vertices": 96,
+        "triangles": 48
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_Steel",
+        "group": "FPV_PilotLounge",
+        "vertices": 1224,
+        "triangles": 656
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_White",
+        "group": "FPV_PilotLounge",
+        "vertices": 7915,
+        "triangles": 5084
+      },
+      {
+        "name": "FPV_Shell__MAT_FPVCyan",
+        "group": "FPV_Shell",
+        "vertices": 192,
+        "triangles": 96
+      },
+      {
+        "name": "FPV_Shell__MAT_FPVFloor",
+        "group": "FPV_Shell",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "FPV_Shell__MAT_FPVWall",
+        "group": "FPV_Shell",
+        "vertices": 80,
+        "triangles": 48
+      },
+      {
+        "name": "FPV_Shell__MAT_Steel",
+        "group": "FPV_Shell",
+        "vertices": 804,
+        "triangles": 416
+      },
+      {
+        "name": "FPV_Shell__MAT_Window",
+        "group": "FPV_Shell",
+        "vertices": 48,
+        "triangles": 24
       },
       {
         "name": "FURN_Bar__MAT_Amber",
@@ -780,8 +912,8 @@
     ]
   },
   "quest": {
-    "triangles": 107773,
-    "render_meshes": 120,
+    "triangles": 122104,
+    "render_meshes": 141,
     "meshes": [
       {
         "name": "ARCH_Mezzanine__MAT_Brass",
@@ -1022,6 +1154,132 @@
         "group": "ENV_City",
         "vertices": 480,
         "triangles": 280
+      },
+      {
+        "name": "FPV_Course__MAT_Black",
+        "group": "FPV_Course",
+        "vertices": 240,
+        "triangles": 156
+      },
+      {
+        "name": "FPV_Course__MAT_FPVAmber",
+        "group": "FPV_Course",
+        "vertices": 328,
+        "triangles": 192
+      },
+      {
+        "name": "FPV_Course__MAT_FPVCyan",
+        "group": "FPV_Course",
+        "vertices": 1424,
+        "triangles": 768
+      },
+      {
+        "name": "FPV_Course__MAT_FPVLime",
+        "group": "FPV_Course",
+        "vertices": 328,
+        "triangles": 192
+      },
+      {
+        "name": "FPV_Course__MAT_Steel",
+        "group": "FPV_Course",
+        "vertices": 960,
+        "triangles": 480
+      },
+      {
+        "name": "FPV_Course__MAT_White",
+        "group": "FPV_Course",
+        "vertices": 2146,
+        "triangles": 1199
+      },
+      {
+        "name": "FPV_Lighting__MAT_Steel",
+        "group": "FPV_Lighting",
+        "vertices": 144,
+        "triangles": 72
+      },
+      {
+        "name": "FPV_Lighting__MAT_White",
+        "group": "FPV_Lighting",
+        "vertices": 144,
+        "triangles": 72
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_Brass",
+        "group": "FPV_PilotLounge",
+        "vertices": 1344,
+        "triangles": 784
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_Cream",
+        "group": "FPV_PilotLounge",
+        "vertices": 2592,
+        "triangles": 1296
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_FPVAmber",
+        "group": "FPV_PilotLounge",
+        "vertices": 1616,
+        "triangles": 1048
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_FPVCyan",
+        "group": "FPV_PilotLounge",
+        "vertices": 4941,
+        "triangles": 3062
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_FPVLime",
+        "group": "FPV_PilotLounge",
+        "vertices": 42,
+        "triangles": 24
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_Fabric",
+        "group": "FPV_PilotLounge",
+        "vertices": 1728,
+        "triangles": 864
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_Oak",
+        "group": "FPV_PilotLounge",
+        "vertices": 96,
+        "triangles": 48
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_Steel",
+        "group": "FPV_PilotLounge",
+        "vertices": 1224,
+        "triangles": 656
+      },
+      {
+        "name": "FPV_PilotLounge__MAT_White",
+        "group": "FPV_PilotLounge",
+        "vertices": 4538,
+        "triangles": 2846
+      },
+      {
+        "name": "FPV_Shell__MAT_FPVCyan",
+        "group": "FPV_Shell",
+        "vertices": 192,
+        "triangles": 96
+      },
+      {
+        "name": "FPV_Shell__MAT_FPVFloor",
+        "group": "FPV_Shell",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "FPV_Shell__MAT_FPVWall",
+        "group": "FPV_Shell",
+        "vertices": 80,
+        "triangles": 48
+      },
+      {
+        "name": "FPV_Shell__MAT_Steel",
+        "group": "FPV_Shell",
+        "vertices": 804,
+        "triangles": 416
       },
       {
         "name": "FURN_Bar__MAT_Amber",

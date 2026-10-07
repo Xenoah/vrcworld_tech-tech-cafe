@@ -1,7 +1,15 @@
 {
   "checks": [
     {
+      "file": "CommonsAtmosphereBuilder.cs",
+      "syntax_errors": false
+    },
+    {
       "file": "CommonsWorldBuilder.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsAreaVisibility.cs",
       "syntax_errors": false
     },
     {
@@ -22,6 +30,10 @@
     },
     {
       "file": "CommonsSeat.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsTimeOfDay.cs",
       "syntax_errors": false
     },
     {

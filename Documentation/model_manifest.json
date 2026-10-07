@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.4.0",
   "footprint": [
     28,
     18
@@ -9,6 +9,664 @@
     4.8,
     9.6
   ],
+  "fpv": {
+    "name": "VECTOR / Indoor FPV",
+    "origin": [
+      -64,
+      0,
+      0
+    ],
+    "size": [
+      36,
+      26,
+      8
+    ],
+    "flight_bounds_local": [
+      1,
+      6.2,
+      35,
+      25
+    ],
+    "pilot_bounds_local": [
+      2,
+      1,
+      19,
+      5
+    ],
+    "spectator_bounds_local": [
+      23,
+      1,
+      34,
+      5
+    ],
+    "gate_clear_width": 3.2,
+    "gate_clear_height": 3.0,
+    "gate_frame_thickness": 0.18,
+    "gates": [
+      {
+        "id": 1,
+        "center": [
+          10,
+          9,
+          1.9
+        ],
+        "direction": [
+          1,
+          0
+        ],
+        "sector": "cyan",
+        "world_center": [
+          -54,
+          9,
+          1.9
+        ],
+        "opening_min_z": 0.3999999999999999,
+        "opening_max_z": 3.4
+      },
+      {
+        "id": 2,
+        "center": [
+          21,
+          9,
+          2.3
+        ],
+        "direction": [
+          1,
+          0
+        ],
+        "sector": "cyan",
+        "world_center": [
+          -43,
+          9,
+          2.3
+        ],
+        "opening_min_z": 0.7999999999999998,
+        "opening_max_z": 3.8
+      },
+      {
+        "id": 3,
+        "center": [
+          30,
+          13,
+          3.3
+        ],
+        "direction": [
+          0,
+          1
+        ],
+        "sector": "amber",
+        "world_center": [
+          -34,
+          13,
+          3.3
+        ],
+        "opening_min_z": 1.7999999999999998,
+        "opening_max_z": 4.8
+      },
+      {
+        "id": 4,
+        "center": [
+          27,
+          21,
+          3.5
+        ],
+        "direction": [
+          -1,
+          0
+        ],
+        "sector": "amber",
+        "world_center": [
+          -37,
+          21,
+          3.5
+        ],
+        "opening_min_z": 2.0,
+        "opening_max_z": 5.0
+      },
+      {
+        "id": 5,
+        "center": [
+          20,
+          22,
+          3.0
+        ],
+        "direction": [
+          -1,
+          0
+        ],
+        "sector": "lime",
+        "world_center": [
+          -44,
+          22,
+          3.0
+        ],
+        "opening_min_z": 1.5,
+        "opening_max_z": 4.5
+      },
+      {
+        "id": 6,
+        "center": [
+          11,
+          21,
+          2.2
+        ],
+        "direction": [
+          -1,
+          0
+        ],
+        "sector": "lime",
+        "world_center": [
+          -53,
+          21,
+          2.2
+        ],
+        "opening_min_z": 0.7000000000000002,
+        "opening_max_z": 3.7
+      },
+      {
+        "id": 7,
+        "center": [
+          6,
+          18,
+          2.1
+        ],
+        "direction": [
+          0,
+          -1
+        ],
+        "sector": "cyan",
+        "world_center": [
+          -58,
+          18,
+          2.1
+        ],
+        "opening_min_z": 0.6000000000000001,
+        "opening_max_z": 3.6
+      },
+      {
+        "id": 8,
+        "center": [
+          6,
+          12,
+          1.8
+        ],
+        "direction": [
+          0,
+          -1
+        ],
+        "sector": "cyan",
+        "world_center": [
+          -58,
+          12,
+          1.8
+        ],
+        "opening_min_z": 0.30000000000000004,
+        "opening_max_z": 3.3
+      }
+    ],
+    "portals": [
+      {
+        "name": "VECTOR / FPV",
+        "position": [
+          19.8,
+          1.8,
+          1.15
+        ],
+        "destination": [
+          -42.5,
+          2.0,
+          0.12
+        ],
+        "yaw": 0
+      },
+      {
+        "name": "RETURN / CAFE",
+        "position": [
+          -42.5,
+          0.7,
+          1.15
+        ],
+        "destination": [
+          19.3,
+          2.5,
+          0.12
+        ],
+        "yaw": 0,
+        "facing_yaw": 180
+      }
+    ],
+    "design_status": "Initial spacious layout. VRC+ drone feel and PC/Quest frame timing require an in-client playtest.",
+    "drone_implementation": "Use the user's VRC+ Camera Drone; no world drone, controller, physics or race timer.",
+    "gate_frames": [
+      {
+        "id": 1,
+        "members": [
+          {
+            "position": [
+              -54.0,
+              7.31,
+              1.9
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -54.0,
+              10.69,
+              1.9
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -54,
+              9,
+              0.30999999999999983
+            ],
+            "size": [
+              0.18,
+              3.2,
+              0.18
+            ]
+          },
+          {
+            "position": [
+              -54,
+              9,
+              3.49
+            ],
+            "size": [
+              0.18,
+              3.2,
+              0.18
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "members": [
+          {
+            "position": [
+              -43.0,
+              7.31,
+              2.3
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -43.0,
+              10.69,
+              2.3
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -43,
+              9,
+              0.7099999999999997
+            ],
+            "size": [
+              0.18,
+              3.2,
+              0.18
+            ]
+          },
+          {
+            "position": [
+              -43,
+              9,
+              3.8899999999999997
+            ],
+            "size": [
+              0.18,
+              3.2,
+              0.18
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "members": [
+          {
+            "position": [
+              -32.31,
+              13.0,
+              3.3
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -35.69,
+              13.0,
+              3.3
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -34,
+              13,
+              1.7099999999999997
+            ],
+            "size": [
+              3.2,
+              0.18,
+              0.18
+            ]
+          },
+          {
+            "position": [
+              -34,
+              13,
+              4.89
+            ],
+            "size": [
+              3.2,
+              0.18,
+              0.18
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "members": [
+          {
+            "position": [
+              -37.0,
+              22.69,
+              3.5
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -37.0,
+              19.31,
+              3.5
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -37,
+              21,
+              1.91
+            ],
+            "size": [
+              0.18,
+              3.2,
+              0.18
+            ]
+          },
+          {
+            "position": [
+              -37,
+              21,
+              5.09
+            ],
+            "size": [
+              0.18,
+              3.2,
+              0.18
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "members": [
+          {
+            "position": [
+              -44.0,
+              23.69,
+              3.0
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -44.0,
+              20.31,
+              3.0
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -44,
+              22,
+              1.41
+            ],
+            "size": [
+              0.18,
+              3.2,
+              0.18
+            ]
+          },
+          {
+            "position": [
+              -44,
+              22,
+              4.59
+            ],
+            "size": [
+              0.18,
+              3.2,
+              0.18
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "members": [
+          {
+            "position": [
+              -53.0,
+              22.69,
+              2.2
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -53.0,
+              19.31,
+              2.2
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -53,
+              21,
+              0.6100000000000001
+            ],
+            "size": [
+              0.18,
+              3.2,
+              0.18
+            ]
+          },
+          {
+            "position": [
+              -53,
+              21,
+              3.79
+            ],
+            "size": [
+              0.18,
+              3.2,
+              0.18
+            ]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "members": [
+          {
+            "position": [
+              -59.69,
+              18.0,
+              2.1
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -56.31,
+              18.0,
+              2.1
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -58,
+              18,
+              0.51
+            ],
+            "size": [
+              3.2,
+              0.18,
+              0.18
+            ]
+          },
+          {
+            "position": [
+              -58,
+              18,
+              3.6900000000000004
+            ],
+            "size": [
+              3.2,
+              0.18,
+              0.18
+            ]
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "members": [
+          {
+            "position": [
+              -59.69,
+              12.0,
+              1.8
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -56.31,
+              12.0,
+              1.8
+            ],
+            "size": [
+              0.18,
+              0.18,
+              3.36
+            ]
+          },
+          {
+            "position": [
+              -58,
+              12,
+              0.20999999999999996
+            ],
+            "size": [
+              3.2,
+              0.18,
+              0.18
+            ]
+          },
+          {
+            "position": [
+              -58,
+              12,
+              3.39
+            ],
+            "size": [
+              3.2,
+              0.18,
+              0.18
+            ]
+          }
+        ]
+      }
+    ],
+    "pilot_seats": 4,
+    "spectator_seats": 3,
+    "flight_area_m2": 639.2
+  },
   "stage": {
     "center": [
       14,
@@ -1010,6 +1668,2286 @@
       ],
       "kind": "box",
       "group": "AV_BackOfHouse"
+    },
+    {
+      "name": "COL_FPV_Floor",
+      "position": [
+        -46.0,
+        13.0,
+        -0.12
+      ],
+      "size": [
+        36,
+        26,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Wall",
+      "position": [
+        -63.9,
+        13.0,
+        4.0
+      ],
+      "size": [
+        0.2,
+        26,
+        8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Wall",
+      "position": [
+        -28.1,
+        13.0,
+        4.0
+      ],
+      "size": [
+        0.2,
+        26,
+        8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Wall",
+      "position": [
+        -46.0,
+        0.1,
+        4.0
+      ],
+      "size": [
+        35.6,
+        0.2,
+        8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Wall",
+      "position": [
+        -46.0,
+        25.9,
+        4.0
+      ],
+      "size": [
+        35.6,
+        0.2,
+        8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Roof",
+      "position": [
+        -46.0,
+        3.0,
+        8.09
+      ],
+      "size": [
+        36,
+        6,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Roof",
+      "position": [
+        -46.0,
+        12.5,
+        8.09
+      ],
+      "size": [
+        36,
+        9,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Roof",
+      "position": [
+        -46.0,
+        22.5,
+        8.09
+      ],
+      "size": [
+        36,
+        7,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Rooflight",
+      "position": [
+        -46.0,
+        7,
+        8.09
+      ],
+      "size": [
+        35.6,
+        2,
+        0.018
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Rooflight",
+      "position": [
+        -46.0,
+        18,
+        8.09
+      ],
+      "size": [
+        35.6,
+        2,
+        0.018
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Column",
+      "position": [
+        -63,
+        1,
+        3.8
+      ],
+      "size": [
+        0.24,
+        0.24,
+        7.6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_ColumnPad",
+      "position": [
+        -63,
+        1,
+        0.65
+      ],
+      "size": [
+        0.34,
+        0.34,
+        1.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Column",
+      "position": [
+        -63,
+        9,
+        3.8
+      ],
+      "size": [
+        0.24,
+        0.24,
+        7.6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_ColumnPad",
+      "position": [
+        -63,
+        9,
+        0.65
+      ],
+      "size": [
+        0.34,
+        0.34,
+        1.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Column",
+      "position": [
+        -63,
+        17,
+        3.8
+      ],
+      "size": [
+        0.24,
+        0.24,
+        7.6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_ColumnPad",
+      "position": [
+        -63,
+        17,
+        0.65
+      ],
+      "size": [
+        0.34,
+        0.34,
+        1.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Column",
+      "position": [
+        -63,
+        25,
+        3.8
+      ],
+      "size": [
+        0.24,
+        0.24,
+        7.6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_ColumnPad",
+      "position": [
+        -63,
+        25,
+        0.65
+      ],
+      "size": [
+        0.34,
+        0.34,
+        1.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Column",
+      "position": [
+        -29,
+        1,
+        3.8
+      ],
+      "size": [
+        0.24,
+        0.24,
+        7.6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_ColumnPad",
+      "position": [
+        -29,
+        1,
+        0.65
+      ],
+      "size": [
+        0.34,
+        0.34,
+        1.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Column",
+      "position": [
+        -29,
+        9,
+        3.8
+      ],
+      "size": [
+        0.24,
+        0.24,
+        7.6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_ColumnPad",
+      "position": [
+        -29,
+        9,
+        0.65
+      ],
+      "size": [
+        0.34,
+        0.34,
+        1.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Column",
+      "position": [
+        -29,
+        17,
+        3.8
+      ],
+      "size": [
+        0.24,
+        0.24,
+        7.6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_ColumnPad",
+      "position": [
+        -29,
+        17,
+        0.65
+      ],
+      "size": [
+        0.34,
+        0.34,
+        1.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Column",
+      "position": [
+        -29,
+        25,
+        3.8
+      ],
+      "size": [
+        0.24,
+        0.24,
+        7.6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_ColumnPad",
+      "position": [
+        -29,
+        25,
+        0.65
+      ],
+      "size": [
+        0.34,
+        0.34,
+        1.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Shell"
+    },
+    {
+      "name": "COL_FPV_Gate01_Upright",
+      "position": [
+        -54.0,
+        7.31,
+        1.9
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate01_Support",
+      "position": [
+        -54.0,
+        7.31,
+        0.10999999999999996
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.21999999999999992
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate01_Foot",
+      "position": [
+        -54.0,
+        7.31,
+        0.035
+      ],
+      "size": [
+        0.7,
+        0.4,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate01_Upright",
+      "position": [
+        -54.0,
+        10.69,
+        1.9
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate01_Support",
+      "position": [
+        -54.0,
+        10.69,
+        0.10999999999999996
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.21999999999999992
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate01_Foot",
+      "position": [
+        -54.0,
+        10.69,
+        0.035
+      ],
+      "size": [
+        0.7,
+        0.4,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate01_Crossbar",
+      "position": [
+        -54,
+        9,
+        0.30999999999999983
+      ],
+      "size": [
+        0.18,
+        3.2,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate01_Crossbar",
+      "position": [
+        -54,
+        9,
+        3.49
+      ],
+      "size": [
+        0.18,
+        3.2,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate01_NumberPlate",
+      "position": [
+        -54,
+        9,
+        3.7600000000000002
+      ],
+      "size": [
+        0.12,
+        1.05,
+        0.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate02_Upright",
+      "position": [
+        -43.0,
+        7.31,
+        2.3
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate02_Support",
+      "position": [
+        -43.0,
+        7.31,
+        0.30999999999999994
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.6199999999999999
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate02_Foot",
+      "position": [
+        -43.0,
+        7.31,
+        0.035
+      ],
+      "size": [
+        0.7,
+        0.4,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate02_Upright",
+      "position": [
+        -43.0,
+        10.69,
+        2.3
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate02_Support",
+      "position": [
+        -43.0,
+        10.69,
+        0.30999999999999994
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.6199999999999999
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate02_Foot",
+      "position": [
+        -43.0,
+        10.69,
+        0.035
+      ],
+      "size": [
+        0.7,
+        0.4,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate02_Crossbar",
+      "position": [
+        -43,
+        9,
+        0.7099999999999997
+      ],
+      "size": [
+        0.18,
+        3.2,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate02_Crossbar",
+      "position": [
+        -43,
+        9,
+        3.8899999999999997
+      ],
+      "size": [
+        0.18,
+        3.2,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate02_NumberPlate",
+      "position": [
+        -43,
+        9,
+        4.16
+      ],
+      "size": [
+        0.12,
+        1.05,
+        0.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate03_Upright",
+      "position": [
+        -32.31,
+        13.0,
+        3.3
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate03_Support",
+      "position": [
+        -32.31,
+        13.0,
+        0.8099999999999999
+      ],
+      "size": [
+        0.18,
+        0.18,
+        1.6199999999999999
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate03_Foot",
+      "position": [
+        -32.31,
+        13.0,
+        0.035
+      ],
+      "size": [
+        0.4,
+        0.7,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate03_Upright",
+      "position": [
+        -35.69,
+        13.0,
+        3.3
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate03_Support",
+      "position": [
+        -35.69,
+        13.0,
+        0.8099999999999999
+      ],
+      "size": [
+        0.18,
+        0.18,
+        1.6199999999999999
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate03_Foot",
+      "position": [
+        -35.69,
+        13.0,
+        0.035
+      ],
+      "size": [
+        0.4,
+        0.7,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate03_Crossbar",
+      "position": [
+        -34,
+        13,
+        1.7099999999999997
+      ],
+      "size": [
+        3.2,
+        0.18,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate03_Crossbar",
+      "position": [
+        -34,
+        13,
+        4.89
+      ],
+      "size": [
+        3.2,
+        0.18,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate03_NumberPlate",
+      "position": [
+        -34,
+        13,
+        5.159999999999999
+      ],
+      "size": [
+        1.05,
+        0.12,
+        0.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate04_Upright",
+      "position": [
+        -37.0,
+        22.69,
+        3.5
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate04_Support",
+      "position": [
+        -37.0,
+        22.69,
+        0.91
+      ],
+      "size": [
+        0.18,
+        0.18,
+        1.82
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate04_Foot",
+      "position": [
+        -37.0,
+        22.69,
+        0.035
+      ],
+      "size": [
+        0.7,
+        0.4,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate04_Upright",
+      "position": [
+        -37.0,
+        19.31,
+        3.5
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate04_Support",
+      "position": [
+        -37.0,
+        19.31,
+        0.91
+      ],
+      "size": [
+        0.18,
+        0.18,
+        1.82
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate04_Foot",
+      "position": [
+        -37.0,
+        19.31,
+        0.035
+      ],
+      "size": [
+        0.7,
+        0.4,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate04_Crossbar",
+      "position": [
+        -37,
+        21,
+        1.91
+      ],
+      "size": [
+        0.18,
+        3.2,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate04_Crossbar",
+      "position": [
+        -37,
+        21,
+        5.09
+      ],
+      "size": [
+        0.18,
+        3.2,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate04_NumberPlate",
+      "position": [
+        -37,
+        21,
+        5.359999999999999
+      ],
+      "size": [
+        0.12,
+        1.05,
+        0.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate05_Upright",
+      "position": [
+        -44.0,
+        23.69,
+        3.0
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate05_Support",
+      "position": [
+        -44.0,
+        23.69,
+        0.66
+      ],
+      "size": [
+        0.18,
+        0.18,
+        1.32
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate05_Foot",
+      "position": [
+        -44.0,
+        23.69,
+        0.035
+      ],
+      "size": [
+        0.7,
+        0.4,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate05_Upright",
+      "position": [
+        -44.0,
+        20.31,
+        3.0
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate05_Support",
+      "position": [
+        -44.0,
+        20.31,
+        0.66
+      ],
+      "size": [
+        0.18,
+        0.18,
+        1.32
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate05_Foot",
+      "position": [
+        -44.0,
+        20.31,
+        0.035
+      ],
+      "size": [
+        0.7,
+        0.4,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate05_Crossbar",
+      "position": [
+        -44,
+        22,
+        1.41
+      ],
+      "size": [
+        0.18,
+        3.2,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate05_Crossbar",
+      "position": [
+        -44,
+        22,
+        4.59
+      ],
+      "size": [
+        0.18,
+        3.2,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate05_NumberPlate",
+      "position": [
+        -44,
+        22,
+        4.859999999999999
+      ],
+      "size": [
+        0.12,
+        1.05,
+        0.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate06_Upright",
+      "position": [
+        -53.0,
+        22.69,
+        2.2
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate06_Support",
+      "position": [
+        -53.0,
+        22.69,
+        0.2600000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.5200000000000002
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate06_Foot",
+      "position": [
+        -53.0,
+        22.69,
+        0.035
+      ],
+      "size": [
+        0.7,
+        0.4,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate06_Upright",
+      "position": [
+        -53.0,
+        19.31,
+        2.2
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate06_Support",
+      "position": [
+        -53.0,
+        19.31,
+        0.2600000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.5200000000000002
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate06_Foot",
+      "position": [
+        -53.0,
+        19.31,
+        0.035
+      ],
+      "size": [
+        0.7,
+        0.4,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate06_Crossbar",
+      "position": [
+        -53,
+        21,
+        0.6100000000000001
+      ],
+      "size": [
+        0.18,
+        3.2,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate06_Crossbar",
+      "position": [
+        -53,
+        21,
+        3.79
+      ],
+      "size": [
+        0.18,
+        3.2,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate06_NumberPlate",
+      "position": [
+        -53,
+        21,
+        4.0600000000000005
+      ],
+      "size": [
+        0.12,
+        1.05,
+        0.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate07_Upright",
+      "position": [
+        -59.69,
+        18.0,
+        2.1
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate07_Support",
+      "position": [
+        -59.69,
+        18.0,
+        0.21000000000000005
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.4200000000000001
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate07_Foot",
+      "position": [
+        -59.69,
+        18.0,
+        0.035
+      ],
+      "size": [
+        0.4,
+        0.7,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate07_Upright",
+      "position": [
+        -56.31,
+        18.0,
+        2.1
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate07_Support",
+      "position": [
+        -56.31,
+        18.0,
+        0.21000000000000005
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.4200000000000001
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate07_Foot",
+      "position": [
+        -56.31,
+        18.0,
+        0.035
+      ],
+      "size": [
+        0.4,
+        0.7,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate07_Crossbar",
+      "position": [
+        -58,
+        18,
+        0.51
+      ],
+      "size": [
+        3.2,
+        0.18,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate07_Crossbar",
+      "position": [
+        -58,
+        18,
+        3.6900000000000004
+      ],
+      "size": [
+        3.2,
+        0.18,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate07_NumberPlate",
+      "position": [
+        -58,
+        18,
+        3.9600000000000004
+      ],
+      "size": [
+        1.05,
+        0.12,
+        0.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate08_Upright",
+      "position": [
+        -59.69,
+        12.0,
+        1.8
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate08_Support",
+      "position": [
+        -59.69,
+        12.0,
+        0.060000000000000026
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.12000000000000005
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate08_Foot",
+      "position": [
+        -59.69,
+        12.0,
+        0.035
+      ],
+      "size": [
+        0.4,
+        0.7,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate08_Upright",
+      "position": [
+        -56.31,
+        12.0,
+        1.8
+      ],
+      "size": [
+        0.18,
+        0.18,
+        3.36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate08_Support",
+      "position": [
+        -56.31,
+        12.0,
+        0.060000000000000026
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.12000000000000005
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate08_Foot",
+      "position": [
+        -56.31,
+        12.0,
+        0.035
+      ],
+      "size": [
+        0.4,
+        0.7,
+        0.07
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate08_Crossbar",
+      "position": [
+        -58,
+        12,
+        0.20999999999999996
+      ],
+      "size": [
+        3.2,
+        0.18,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate08_Crossbar",
+      "position": [
+        -58,
+        12,
+        3.39
+      ],
+      "size": [
+        3.2,
+        0.18,
+        0.18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_Gate08_NumberPlate",
+      "position": [
+        -58,
+        12,
+        3.66
+      ],
+      "size": [
+        1.05,
+        0.12,
+        0.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_Course"
+    },
+    {
+      "name": "COL_FPV_SafetyPlinth",
+      "position": [
+        -53.25,
+        5.65,
+        0.22
+      ],
+      "size": [
+        19.5,
+        0.14,
+        0.44
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_SafetyScreen",
+      "position": [
+        -53.25,
+        5.65,
+        1.2
+      ],
+      "size": [
+        19.5,
+        0.08,
+        2.4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_SafetyPlinth",
+      "position": [
+        -35.25,
+        5.65,
+        0.22
+      ],
+      "size": [
+        12.5,
+        0.14,
+        0.44
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_SafetyScreen",
+      "position": [
+        -35.25,
+        5.65,
+        1.2
+      ],
+      "size": [
+        12.5,
+        0.08,
+        2.4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_PilotDesk",
+      "position": [
+        -60,
+        4.05,
+        0.83
+      ],
+      "size": [
+        2.5,
+        0.65,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_DeskLeg",
+      "position": [
+        -61,
+        4.05,
+        0.4
+      ],
+      "size": [
+        0.07,
+        0.48,
+        0.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_DeskLeg",
+      "position": [
+        -59,
+        4.05,
+        0.4
+      ],
+      "size": [
+        0.07,
+        0.48,
+        0.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_PilotDesk",
+      "position": [
+        -56,
+        4.05,
+        0.83
+      ],
+      "size": [
+        2.5,
+        0.65,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_DeskLeg",
+      "position": [
+        -57,
+        4.05,
+        0.4
+      ],
+      "size": [
+        0.07,
+        0.48,
+        0.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_DeskLeg",
+      "position": [
+        -55,
+        4.05,
+        0.4
+      ],
+      "size": [
+        0.07,
+        0.48,
+        0.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_PilotDesk",
+      "position": [
+        -52,
+        4.05,
+        0.83
+      ],
+      "size": [
+        2.5,
+        0.65,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_DeskLeg",
+      "position": [
+        -53,
+        4.05,
+        0.4
+      ],
+      "size": [
+        0.07,
+        0.48,
+        0.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_DeskLeg",
+      "position": [
+        -51,
+        4.05,
+        0.4
+      ],
+      "size": [
+        0.07,
+        0.48,
+        0.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_PilotDesk",
+      "position": [
+        -48,
+        4.05,
+        0.83
+      ],
+      "size": [
+        2.5,
+        0.65,
+        0.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_DeskLeg",
+      "position": [
+        -49,
+        4.05,
+        0.4
+      ],
+      "size": [
+        0.07,
+        0.48,
+        0.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "name": "COL_FPV_DeskLeg",
+      "position": [
+        -47,
+        4.05,
+        0.4
+      ],
+      "size": [
+        0.07,
+        0.48,
+        0.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "kind": "box",
+      "group": "FPV_PilotLounge"
     }
   ],
   "lights": [
@@ -1331,6 +4269,166 @@
         1,
         10,
         1
+      ]
+    },
+    {
+      "name": "LGT_FPV_Soft",
+      "position": [
+        -56,
+        10,
+        7.5
+      ],
+      "color": [
+        0.73,
+        0.84,
+        1
+      ],
+      "power": 450,
+      "size": 4,
+      "target": [
+        -56,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "LGT_FPV_Soft",
+      "position": [
+        -56,
+        21,
+        7.5
+      ],
+      "color": [
+        0.73,
+        0.84,
+        1
+      ],
+      "power": 450,
+      "size": 4,
+      "target": [
+        -56,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "LGT_FPV_Soft",
+      "position": [
+        -46,
+        10,
+        7.5
+      ],
+      "color": [
+        0.73,
+        0.84,
+        1
+      ],
+      "power": 450,
+      "size": 4,
+      "target": [
+        -46,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "LGT_FPV_Soft",
+      "position": [
+        -46,
+        21,
+        7.5
+      ],
+      "color": [
+        0.73,
+        0.84,
+        1
+      ],
+      "power": 450,
+      "size": 4,
+      "target": [
+        -46,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "LGT_FPV_Soft",
+      "position": [
+        -36,
+        10,
+        7.5
+      ],
+      "color": [
+        0.73,
+        0.84,
+        1
+      ],
+      "power": 450,
+      "size": 4,
+      "target": [
+        -36,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "LGT_FPV_Soft",
+      "position": [
+        -36,
+        21,
+        7.5
+      ],
+      "color": [
+        0.73,
+        0.84,
+        1
+      ],
+      "power": 450,
+      "size": 4,
+      "target": [
+        -36,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "LGT_FPV_People",
+      "position": [
+        -56,
+        3,
+        4.8
+      ],
+      "color": [
+        1,
+        0.72,
+        0.46
+      ],
+      "power": 180,
+      "size": 3,
+      "target": [
+        -56,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "LGT_FPV_People",
+      "position": [
+        -37,
+        3,
+        4.8
+      ],
+      "color": [
+        1,
+        0.72,
+        0.46
+      ],
+      "power": 180,
+      "size": 3,
+      "target": [
+        -37,
+        3,
+        0
       ]
     }
   ],
@@ -1964,6 +5062,69 @@
       ],
       "yaw": 0,
       "group": "FURN_Terrace"
+    },
+    {
+      "position": [
+        -60,
+        3,
+        0.52
+      ],
+      "yaw": 3.141592653589793,
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "position": [
+        -56,
+        3,
+        0.52
+      ],
+      "yaw": 3.141592653589793,
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "position": [
+        -52,
+        3,
+        0.52
+      ],
+      "yaw": 3.141592653589793,
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "position": [
+        -48,
+        3,
+        0.52
+      ],
+      "yaw": 3.141592653589793,
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "position": [
+        -39,
+        3,
+        0.52
+      ],
+      "yaw": 3.141592653589793,
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "position": [
+        -36,
+        3,
+        0.52
+      ],
+      "yaw": 3.141592653589793,
+      "group": "FPV_PilotLounge"
+    },
+    {
+      "position": [
+        -33,
+        3,
+        0.52
+      ],
+      "yaw": 3.141592653589793,
+      "group": "FPV_PilotLounge"
     }
   ],
   "cameras": {
@@ -2038,6 +5199,22 @@
         1.9800000190734863
       ],
       "eye_height": null
+    },
+    "10_FPV_Field": {
+      "position": [
+        -42.5,
+        3.0,
+        1.600000023841858
+      ],
+      "eye_height": null
+    },
+    "11_FPV_Course": {
+      "position": [
+        -33.0,
+        23.0,
+        6.699999809265137
+      ],
+      "eye_height": null
     }
   },
   "materials": {
@@ -2050,7 +5227,9 @@
       ],
       "texture": "blackened_steel",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.65,
+      "metallic": 0.45
     },
     "MAT_Oak": {
       "color": [
@@ -2061,7 +5240,9 @@
       ],
       "texture": "warm_oak",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.65,
+      "metallic": 0
     },
     "MAT_Plaster": {
       "color": [
@@ -2072,7 +5253,9 @@
       ],
       "texture": "mineral_plaster",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.9,
+      "metallic": 0
     },
     "MAT_Stone": {
       "color": [
@@ -2083,7 +5266,9 @@
       ],
       "texture": "basalt_terrazzo",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.58,
+      "metallic": 0
     },
     "MAT_Brass": {
       "color": [
@@ -2094,7 +5279,9 @@
       ],
       "texture": "satin_brass",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.48,
+      "metallic": 0.65
     },
     "MAT_Fabric": {
       "color": [
@@ -2105,7 +5292,9 @@
       ],
       "texture": "teal_woven",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.96,
+      "metallic": 0
     },
     "MAT_Cream": {
       "color": [
@@ -2116,7 +5305,9 @@
       ],
       "texture": "teal_woven",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.98,
+      "metallic": 0
     },
     "MAT_Black": {
       "color": [
@@ -2127,7 +5318,9 @@
       ],
       "texture": "",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.8,
+      "metallic": 0
     },
     "MAT_Ceramic": {
       "color": [
@@ -2138,7 +5331,9 @@
       ],
       "texture": "",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.7,
+      "metallic": 0
     },
     "MAT_Leaf": {
       "color": [
@@ -2149,7 +5344,9 @@
       ],
       "texture": "",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.91,
+      "metallic": 0
     },
     "MAT_LeafLight": {
       "color": [
@@ -2160,7 +5357,9 @@
       ],
       "texture": "",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.88,
+      "metallic": 0
     },
     "MAT_BottleGreen": {
       "color": [
@@ -2171,7 +5370,9 @@
       ],
       "texture": "",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.28,
+      "metallic": 0.15
     },
     "MAT_BottleAmber": {
       "color": [
@@ -2182,7 +5383,9 @@
       ],
       "texture": "",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.26,
+      "metallic": 0.12
     },
     "MAT_Label": {
       "color": [
@@ -2193,7 +5396,9 @@
       ],
       "texture": "",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.9,
+      "metallic": 0
     },
     "MAT_Glass": {
       "color": [
@@ -2204,7 +5409,9 @@
       ],
       "texture": "",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.25,
+      "metallic": 0.22
     },
     "MAT_Window": {
       "color": [
@@ -2215,7 +5422,9 @@
       ],
       "texture": "",
       "emission": 0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.25,
+      "metallic": 0
     },
     "MAT_Amber": {
       "color": [
@@ -2226,7 +5435,9 @@
       ],
       "texture": "",
       "emission": 2.3,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.5,
+      "metallic": 0
     },
     "MAT_Cyan": {
       "color": [
@@ -2237,7 +5448,9 @@
       ],
       "texture": "",
       "emission": 1.6,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.5,
+      "metallic": 0
     },
     "MAT_White": {
       "color": [
@@ -2248,7 +5461,9 @@
       ],
       "texture": "",
       "emission": 0.5,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.6,
+      "metallic": 0
     },
     "MAT_Holo": {
       "color": [
@@ -2259,7 +5474,9 @@
       ],
       "texture": "",
       "emission": 1.0,
-      "wrap": "mirror"
+      "wrap": "mirror",
+      "roughness": 0.3,
+      "metallic": 0
     },
     "MAT_DJPanel": {
       "color": [
@@ -2270,7 +5487,9 @@
       ],
       "texture": "relay_controller",
       "emission": 0,
-      "wrap": "clamp"
+      "wrap": "clamp",
+      "roughness": 0.8,
+      "metallic": 0
     },
     "MAT_BottleLabels": {
       "color": [
@@ -2281,7 +5500,9 @@
       ],
       "texture": "bar_labels",
       "emission": 0,
-      "wrap": "clamp"
+      "wrap": "clamp",
+      "roughness": 0.84,
+      "metallic": 0
     },
     "MAT_PropPrint": {
       "color": [
@@ -2292,7 +5513,74 @@
       ],
       "texture": "cafe_props",
       "emission": 0,
-      "wrap": "clamp"
+      "wrap": "clamp",
+      "roughness": 0.73,
+      "metallic": 0
+    },
+    "MAT_FPVFloor": {
+      "color": [
+        0.18000000715255737,
+        0.23999999463558197,
+        0.28999999165534973,
+        1.0
+      ],
+      "texture": "basalt_terrazzo",
+      "emission": 0,
+      "wrap": "mirror",
+      "roughness": 0.67,
+      "metallic": 0
+    },
+    "MAT_FPVCyan": {
+      "color": [
+        0.03999999910593033,
+        0.6399999856948853,
+        0.7799999713897705,
+        1.0
+      ],
+      "texture": "",
+      "emission": 0.18,
+      "wrap": "mirror",
+      "roughness": 0.38,
+      "metallic": 0.25
+    },
+    "MAT_FPVAmber": {
+      "color": [
+        1.0,
+        0.4300000071525574,
+        0.07000000029802322,
+        1.0
+      ],
+      "texture": "",
+      "emission": 0.12,
+      "wrap": "mirror",
+      "roughness": 0.4,
+      "metallic": 0.18
+    },
+    "MAT_FPVLime": {
+      "color": [
+        0.5199999809265137,
+        0.800000011920929,
+        0.1599999964237213,
+        1.0
+      ],
+      "texture": "",
+      "emission": 0.1,
+      "wrap": "mirror",
+      "roughness": 0.48,
+      "metallic": 0.12
+    },
+    "MAT_FPVWall": {
+      "color": [
+        0.3700000047683716,
+        0.4300000071525574,
+        0.49000000953674316,
+        1.0
+      ],
+      "texture": "mineral_plaster",
+      "emission": 0,
+      "wrap": "mirror",
+      "roughness": 0.83,
+      "metallic": 0
     }
   }
 }

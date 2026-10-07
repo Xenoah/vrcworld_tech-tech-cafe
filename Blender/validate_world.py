@@ -86,6 +86,45 @@ while queue:
 for name,p in [('Orbit Cafe',(3,6.8)),('DJ Booth',(14,14.5)),('Archive',(24,4.2)),('Horizon',(25,12)),('West Stair Landing',(8,16.8))]:check('2F route: '+name,cell(p) in seen,list(p))
 check('Academic chair anchors',sum(s['group']=='MODE_Academic' for s in raw['seat_anchors'])==24,24)
 check('PC total mesh target',len(bpy.data.objects)>3000,'Editable objects: '+str(len(bpy.data.objects)))
+# FPV geometry and travel checks against authored collider records.
+fpv=raw['fpv'];origin=np.array(fpv['origin']);size=np.array(fpv['size'])
+lo,hi=bounds('FPV_Floor')
+check('FPV independent floor',np.allclose(hi[:2]-lo[:2],size[:2]) and hi[0]<-20 and abs(hi[2])<1e-5,{'size':size.tolist(),'bounds':[lo.tolist(),hi.tolist()]})
+box_cols=[c for c in cols if c['kind']=='box']
+centers=np.array([c['position'] for c in box_cols]);half=np.array([c['size'] for c in box_cols])*.5
+bmin=centers-half;bmax=centers+half
+def sphere_hits(p,r):
+ d=np.maximum(np.maximum(bmin-p,p-bmax),0)
+ return [box_cols[i]['name'] for i in np.where(np.sum(d*d,axis=1)<r*r-1e-7)[0]]
+failures=[]
+for g in fpv['gates']:
+ center=np.array(g['world_center']);d=np.array(g['direction']);side=np.array([-d[1],d[0],0])
+ for u in np.linspace(-fpv['gate_clear_width']/2+.17,fpv['gate_clear_width']/2-.17,9):
+  for z in np.linspace(-fpv['gate_clear_height']/2+.17,fpv['gate_clear_height']/2-.17,9):
+   hits=sphere_hits(center+side*u+np.array([0,0,z]),.16)
+   if hits:failures.append({'gate':g['id'],'hits':hits})
+check('FPV 8 clear gate openings',len(fpv['gates'])==8 and not failures,{'radius_m':.16,'failures':failures[:12]})
+failures=[];points=[np.array(g['world_center']) for g in fpv['gates']]
+for i,a in enumerate(points):
+ b=points[(i+1)%len(points)]
+ for t in np.linspace(0,1,max(2,int(np.linalg.norm(b-a)/.15)+1)):
+  hits=sphere_hits(a+(b-a)*t,.16)
+  if hits:failures.append({'segment':i+1,'hits':hits})
+check('FPV loop centerline clearance',not failures,{'radius_m':.16,'failures':failures[:12]})
+failures=[]
+for portal in fpv['portals']:
+ p=np.array(portal['destination'])
+ for h in [.22,.9,1.5]:
+  hits=sphere_hits(p+np.array([0,0,h]),.22)
+  if hits:failures.append({'portal':portal['name'],'hits':hits})
+check('FPV return and arrival capsule clearance',not failures,{'radius_m':.22,'failures':failures})
+f=fpv['flight_bounds_local'];p=fpv['pilot_bounds_local'];v=fpv['spectator_bounds_local']
+check('FPV flight pilot spectator separation',p[3]<f[1] and v[3]<f[1] and p[2]<v[0],{'flight':f,'pilot':p,'spectator':v})
+geo=json.loads((ROOT/'Documentation/geometry_report.json').read_text())
+for platform,limit in [('pc',30000),('quest',25000)]:
+ meshes=[m for m in geo[platform]['meshes'] if m['group'].startswith('FPV_')]
+ total=sum(m['triangles'] for m in meshes)
+ check('FPV '+platform+' geometry budget',total<=limit and len(meshes)<=24,{'triangles':total,'meshes':len(meshes),'triangle_budget':limit,'runtime_frame_timing':'not measured'})
 report['notes']=['West stair is 48.14 degrees in the retained CAD envelope; use its adjacent portal if movement is blocked by the VRChat slope limit.','Room and player audio levels, shader compilation, lightmap bake, network late join, Quest performance and VR playtest remain unverified.','Six architectural textures use Mirror wrap, not exact raw Repeat edge matching. Three new printed artwork atlases use Clamp and individual UV regions.','Coplanar test covers walkable floor, stage and stair top faces. It is not a claim that all intentional object contacts or all realtime artifacts are eliminated.']
 (ROOT/'Documentation/validation_report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False))
 # Actual floor and collider layout, in millimetres, separate from the original CAD.
@@ -98,7 +137,7 @@ for c in cols:
  if c['kind']!='box':continue
  x,y,z=c['position'];sx,sy,sz=c['size'];layer='IMPL_FLOOR_2F' if abs(z+sz/2-4.8)<.001 else 'IMPL_GUARD' if 'Balustrade' in c['name'] else 'IMPL_COLLIDER'
  ms.add_lwpolyline([((x-sx/2)*1000,(y-sy/2)*1000),((x+sx/2)*1000,(y-sy/2)*1000),((x+sx/2)*1000,(y+sy/2)*1000),((x-sx/2)*1000,(y+sy/2)*1000)],close=True,dxfattribs={'layer':layer})
-ms.add_text('THE COMMONS - v0.2 IMPLEMENTATION OVERLAY / PROPOSED CHANGES - NOT SOURCE CAD',dxfattribs={'height':240,'insert':(0,19000),'layer':'NOTES'})
-doc.saveas(ROOT/'CAD/The_Commons_Implementation_Overlay_v02.dxf')
+ms.add_text('THE COMMONS - v0.4 IMPLEMENTATION OVERLAY / PROPOSED CHANGES - NOT SOURCE CAD',dxfattribs={'height':240,'insert':(0,19000),'layer':'NOTES'})
+doc.saveas(ROOT/'CAD/The_Commons_Implementation_Overlay_v04.dxf')
 print(json.dumps(report,ensure_ascii=False,indent=2))
 if any(not c['pass'] for c in report['checks']):raise SystemExit(1)

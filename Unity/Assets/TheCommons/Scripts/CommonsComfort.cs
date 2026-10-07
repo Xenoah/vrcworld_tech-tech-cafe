@@ -7,6 +7,8 @@ public class CommonsComfort : UdonSharpBehaviour
     public Material[] luminousMaterials;
     public Material djMaterial;
     public GameObject mirrorRoot;
+    public GameObject glowRoot;
+    public bool glowEnabled = true;
     public TextMesh label;
     public bool reducedMotion = true;
     public bool lowEmission = false;
@@ -16,10 +18,12 @@ public class CommonsComfort : UdonSharpBehaviour
     public void ToggleMotion() { reducedMotion = !reducedMotion; Refresh(); }
     public void ToggleEmission() { lowEmission = !lowEmission; Refresh(); }
     public void ToggleDJVisuals() { djVisuals = !djVisuals; Refresh(); }
+    public void ToggleGlow() { glowEnabled = !glowEnabled; Refresh(); }
     public void ToggleMirror() { mirrorOn = !mirrorOn; if (mirrorRoot != null) mirrorRoot.SetActive(mirrorOn); }
     public void Refresh()
     {
         int mode = state == null ? 0 : state.mode;
+        if (glowRoot != null) glowRoot.SetActive(glowEnabled && !lowEmission);
         float emission = (lowEmission ? .35f : 1f) * (mode == 3 ? .4f : 1f);
         if (luminousMaterials != null)
             for (int i=0; i<luminousMaterials.Length; i++)

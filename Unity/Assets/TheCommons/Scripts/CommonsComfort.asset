@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: CommonsComfort
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   serializedUdonProgramAsset: {fileID: 0}
-  udonAssembly: 
-  assemblyError: 
+  udonAssembly:
+  assemblyError:
   sourceCsScript: {fileID: 11500000, guid: 76bb6890ccef5c2288dac10502e25a45, type: 3}
   scriptVersion: 2
   compiledVersion: 0
@@ -23,9 +23,9 @@ MonoBehaviour:
   scriptID: 0
   serializationData:
     SerializedFormat: 2
-    SerializedBytes: 
+    SerializedBytes:
     ReferencedUnityObjects: []
-    SerializedBytesString: 
+    SerializedBytesString:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []

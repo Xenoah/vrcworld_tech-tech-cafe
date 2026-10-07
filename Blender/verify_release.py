@@ -34,9 +34,16 @@ required = {
     "Data/world_manifest.json",
     "Textures/relay_controller_albedo.png", "Textures/bar_labels_albedo.png",
     "Textures/cafe_props_albedo.png",
+    "Editor/CommonsAtmosphereBuilder.cs", "Scripts/CommonsTimeOfDay.cs",
+    "Scripts/CommonsAreaVisibility.cs", "Shaders/CommonsSurface.shader",
+    "Shaders/CommonsGlow.shader", "Shaders/CommonsSky.shader",
 }
 assert all((ASSET_ROOT / p).is_file() for p in required), "Missing required assets"
 assert len(list((ASSET_ROOT / "Textures").glob("*_albedo.png"))) == 9
+manifest = json.loads((ASSET_ROOT / "Data/world_manifest.json").read_text())
+fpv = manifest["fpv"]
+assert len(fpv["gates"]) == 8 and len(fpv["portals"]) == 2, "Incomplete FPV course or return route"
+assert all(p["destination"] for p in fpv["portals"])
 
 expected_tar = {}
 guids = set()
@@ -84,6 +91,7 @@ assert listed_hashes == {name: sha for name, sha in source_hashes.items() if nam
 report = {
     "version": version,
     "source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT).decode().strip(),
+    "source_worktree_clean": not subprocess.check_output(["git","status","--porcelain"],cwd=ROOT).strip(),
     "scope": "Archive integrity only; Unity/Udon compilation and VRChat runtime not tested.",
     "passed": True,
     "unity_assets_including_folders": len(paths),

@@ -58,6 +58,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
 '''.replace('NAME',script.stem).replace('GUID',cg))
+ asset.write_text('\n'.join(line.rstrip() for line in asset.read_text().splitlines())+'\n')
 paths=sorted([A]+[p for p in A.rglob('*') if p.suffix!='.meta' and 'Generated' not in p.parts and not p.name.endswith('.tmp')])
 for p in paths:metadata(p)
 if '--metadata-only' in sys.argv:

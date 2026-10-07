@@ -1,6 +1,6 @@
 # vrcworld_tech-tech-cafe
 
-VRChat用の技術者カフェ／交流ワールド制作データ。内部プロジェクト名は **The Commons — Compact Edition**、収録モデルは **v0.3.0** です。
+VRChat用の技術者カフェ／交流ワールド制作データ。内部プロジェクト名は **The Commons — Compact Edition**、mainの収録モデルは **v0.4.0** です。
 
 ![ワールドの入口からのプレビュー](Preview/01_Entrance_160cm.png)
 
@@ -8,13 +8,15 @@ VRChat用の技術者カフェ／交流ワールド制作データ。内部プ�
 
 v0.3.0ではDJ機材・酒ラベル・カフェ小物を作り込み、床・ステージ・階段の同一面重複を修正しました。[変更内容](Documentation/CHANGES_v0.3.0_JA.md) / [Unity MCP引き継ぎ](UNITY_MCP_HANDOFF.md)
 
+v0.4.0では独立した屋内FPVフロア、往復ワープ、PBR／軽量シェーダー、控えめなグロー、全時間帯の切り替えを追加しました。[変更内容](Documentation/CHANGES_v0.4.0_JA.md)
+
 ## Unityへ導入
 
-配布用の `.unitypackage` と制作データ一式のZIPは [GitHub Releases](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases) から取得できます。パッケージを使う場合は、以下の手順2のコピー操作をインポートに置き換えてください。
+**v0.4.0** の `.unitypackage` と制作データ一式のZIPは [GitHub Releases](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.4.0) から取得できます。FPV・時間帯・描画更新を収録しています。Unityパッケージをインポートするか、以下のコピー手順を使ってください。
 
 1. VRChat Creator Companionで **Worlds / Built-in Render Pipeline** のプロジェクトを作成します。制作時の基準は **Unity 2022.3.22f1 / VRChat SDK 3.10.5** です。SDKとUdonSharpはVCC側で導入してください。
 2. このリポジトリの `Unity/Assets/TheCommons` を、VCCで作成したプロジェクトの `Assets` にコピーします。`.meta` も一緒にコピーしてください。
-3. Unity上部メニューの **The Commons → Build PC World** を実行します。
+3. PCのBloomを使う場合はUnity Package ManagerでPost Processing（com.unity.postprocessing@3.4.0）を導入します。未導入でも器具グローは使用できます。Unity上部メニューの **The Commons → Build PC World** を実行します。
 4. **The Commons → Bake lighting** でライトベイクし、VRChat SDKの **Build & Test** で確認します。
 5. Quest版は **Build Quest World** で別シーンを生成し、Android向けにテストします。
 
@@ -33,7 +35,7 @@ v0.3.0ではDJ機材・酒ラベル・カフェ小物を作り込み、床・ス
 | [Unity/Assets/TheCommons/Audio/](Unity/Assets/TheCommons/Audio/) | 環境音・アンビエント・DJ用のオリジナル音源 |
 | [CAD/](CAD/) / [SourceDesign/](SourceDesign/) | 実装差分図、元図面、設計資料 |
 | [Documentation/](Documentation/) | 寸法検査・構文検査・受入確認・素材生成記録 |
-| [Preview/](Preview/) | 制作モデルの静止画8枚とglTF（外部参照形式） |
+| [Preview/](Preview/) | 制作モデルの静止画15枚とglTF（外部参照形式） |
 
 ### ワールド内の機能
 
@@ -41,7 +43,9 @@ v0.3.0ではDJ機材・酒ラベル・カフェ小物を作り込み、床・ス
 - 発表スライド、15分/5分タイマー、Q&A、画面ポインター。
 - URL動画の再生と同期、主画面と上階補助画面。
 - 明示的な操作による着席、上下階の移動ポータル。
-- 動き・発光・DJ演出のローカル設定、音量ゾーン。
+- 動き・発光・DJ演出・グローのローカル設定、音量ゾーン。
+- 36 × 26 × 8 mの独立FPVフロア、8ゲート、操縦・観戦席、往復ワープ。VRC+ドローンを利用。
+- 朝・昼・夕・夜のプリセット、±1時間、連続サイクル。ホスト操作と時刻同期。
 
 これらはUdonSharpソースとして収録しています。実機での確認項目は [ACCEPTANCE_JA.md](Documentation/ACCEPTANCE_JA.md) に記載しています。
 
@@ -49,8 +53,8 @@ v0.3.0ではDJ機材・酒ラベル・カフェ小物を作り込み、床・ス
 
 | 書き出しモデル | 三角形数 | メッシュ数 |
 | --- | ---: | ---: |
-| PC | 139,940 | 129 |
-| Quest | 107,773 | 120 |
+| PC | 159,884 | 151 |
+| Quest | 122,104 | 141 |
 
 数値は書き出した全景の形状検査結果です。実機FPSや描画負荷の実測値ではありません。
 
@@ -61,6 +65,7 @@ v0.3.0ではDJ機材・酒ラベル・カフェ小物を作り込み、床・ス
 - `.blend` と全アセットを通常のGitファイルとして管理します。Git LFSは使用していません。
 - `.blend` は圧縮保存し、画像とフォントをリポジトリ内の相対パスで参照します。Blenderファイル単体ではなく、リポジトリ全体を取得してください。
 - プレビューモデルは `Preview/The_Commons_Compact.gltf` と `.bin` に分離し、同じテクスチャを参照します。パッケージ整理による形状・PNGの変更はありません。
+- FPVは編集可能なメッシュ・UV・文字を独立モジュールにも保存し、全体再生成時に復元します。
 - 再生成後のGit用整理は `Blender/prepare_repository_assets.py` をBlenderのPython環境で実行します。元のGLBは生成できますがGit対象外です。
 - Unityの `Library`、キャッシュ、ビルド出力、生成シーンはGit対象外です。
 - SDK本体とAudioLink本体は同梱していません。
