@@ -1,6 +1,6 @@
 {
   "version": "0.6.0",
-  "scope": "Actual enclosed model rendered with Blender 4.5.3 / Cycles. Overview only is a cutaway hiding roof, two front walls and trusses. Other views retain the closed hall. Not Unity or VRChat runtime captures. No vehicles included.",
+  "scope": "Actual cafe, FPV and kart model previews rendered with Blender Cycles. Kart overview alone is a cutaway hiding roof, two front walls and trusses. Not Unity or VRChat runtime captures. No vehicles included. Dimensioned plans and composed design sheets are catalogued separately in Documentation/Design/atlas_manifest.json.",
   "images": [
     {
       "path": "Preview/16_Kart_Overview.png",
@@ -26,6 +26,16 @@
       "path": "Preview/20_Kart_UpperTechnical.png",
       "renderer": "Blender 4.5.3 / Cycles",
       "caption": "上層のテクニカルセクション"
+    },
+    {
+      "path": "Preview/01_Entrance_160cm.png",
+      "caption": "カフェ入口から中央ステージ",
+      "renderer": "Blender / Cycles; existing model view retained in v0.6.0"
+    },
+    {
+      "path": "Preview/11_FPV_Course.png",
+      "caption": "FPVの飛行エリアとゲート",
+      "renderer": "Blender / Cycles; existing model view retained in v0.6.0"
     }
   ]
 }

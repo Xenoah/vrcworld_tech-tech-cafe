@@ -8,6 +8,8 @@
 
 Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md)、今回の修正は [CHANGES_v0.6.0_JA.md](Documentation/CHANGES_v0.6.0_JA.md) を参照してください。
 
+**詳細仕様・寸法付き平面図・実モデルのデザインシートは [README](README.md) と [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) に整理しています。モデル版はv0.6.0、資料は2026-10-07改訂1です。**
+
 ## 最短の導入
 
 1. VRChat Creator Companionで **Worldsプロジェクト** を作成します。制作基準は **Unity 2022.3.22f1**。Built-in Render Pipelineを使います。SDK / UdonSharpはVCCの導入分を利用します。
@@ -31,7 +33,7 @@ Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md
 | `Unity/Assets/TheCommons/Textures/` | 建築素材6種＋専用印刷アトラス3種の生成原本 |
 | `Unity/Assets/TheCommons/Media/` | 差し替え可能な4枚のスライド・6枚のポスター |
 | `Unity/Assets/TheCommons/Audio/` | オリジナルの環境音・アンビエント・96 BPMのDJループ |
-| `Preview/` | カフェ・小物・FPV・時間帯・カートの設計プレビュー20枚、外部参照形式のglTFモデル |
+| `Preview/` | カフェ・小物・FPV・時間帯・カートの設計プレビュー19枚、外部参照形式のglTFモデル |
 | `SourceDesign/` | 元仕様、元CAD、元スケジュール、参考画像、添付PDF |
 
 ## モデルの細部

@@ -1,0 +1,83 @@
+{
+  "model_version": "0.6.0",
+  "documentation_revision": 1,
+  "model_commit": "a77e3087fb76f50f59ee3ceb611a5c470e25e9d0",
+  "scope": "Plans derive from actual collider / centerline / seat-anchor manifests. Furniture symbols are simplified. Design boards compose actual-model Blender renders; not Unity runtime or AI concept art.",
+  "paper": "A3 landscape",
+  "sheets": [
+    {
+      "code": "A01",
+      "title": "WORLD LAYOUT",
+      "file": "01_World_Layout",
+      "kind": "dimensioned plan"
+    },
+    {
+      "code": "A02",
+      "title": "CAFE FLOOR PLANS",
+      "file": "02_Cafe_Floor_Plans",
+      "kind": "dimensioned plan"
+    },
+    {
+      "code": "A03",
+      "title": "VECTOR / FPV PLAN",
+      "file": "03_FPV_Floor_Plan",
+      "kind": "dimensioned plan"
+    },
+    {
+      "code": "A04",
+      "title": "APEX / COURSE PLAN",
+      "file": "04_Kart_Overall_Plan",
+      "kind": "dimensioned plan"
+    },
+    {
+      "code": "A05",
+      "title": "KART LEVELS + PROFILE",
+      "file": "05_Kart_Levels_Profile",
+      "kind": "dimensioned plan"
+    },
+    {
+      "code": "D01",
+      "title": "CAFE / WARM INDUSTRIAL",
+      "file": "06_Cafe_Design",
+      "kind": "design board"
+    },
+    {
+      "code": "D02",
+      "title": "VECTOR / READABLE FLIGHT",
+      "file": "07_FPV_Design",
+      "kind": "design board"
+    },
+    {
+      "code": "D03",
+      "title": "APEX / NEON SWITCHYARD",
+      "file": "08_Kart_Design",
+      "kind": "design board"
+    }
+  ],
+  "screenshots_reused": [
+    "01_Entrance_160cm",
+    "07_Relay_Detail",
+    "08_BarLabels_Detail",
+    "10_FPV_Field",
+    "11_FPV_Course",
+    "16_Kart_Overview",
+    "17_Kart_Overpass",
+    "20_Kart_UpperTechnical"
+  ],
+  "inputs_sha256": {
+    "Documentation/model_manifest.json": "02cb21eccfb90206abe066d6b781d41377e55cb6071b65284ced0d53ab1e4d43",
+    "Documentation/geometry_report.json": "b616644083e1eb925e2f7cffcd2ac21265ae249be3a454039c0fa62009f70ce7",
+    "Documentation/kart_validation.json": "182079f30810c5605574bec8a0cedb0a9182f2d0ab982d9b990ba3f97818ab4b",
+    "SourceDesign/world_spec.json": "606183dc0d3fd5fa70608bfc6d8ac14cb0105a46a2128ba76483d9fa1d16b4f8",
+    "SourceDesign/fpv_field.json": "745accae9070085268a9674a9ab0412becc43c970924fd72d3cc469f8de4a1d3",
+    "SourceDesign/kart_circuit.json": "234a8578daef84691cd0d2e2b79ba5a69a8595e7c5309d32409aa6acb758067b",
+    "Preview/01_Entrance_160cm.png": "2abc179911a5cecb95f31a9c603e1baebbc42881da1dbe031f773fb9c42d8d35",
+    "Preview/07_Relay_Detail.png": "50050a15bf07cad74f04ece189144a83e7175720a8f3f4930a0c3a9b260ca8d3",
+    "Preview/08_BarLabels_Detail.png": "3cd8d321fa32b1623d78521cb113d2b7e77bffa7cf92c80d63f744ee2285e85a",
+    "Preview/10_FPV_Field.png": "d347d72e15b72ecd3d42e850e5e9b85f31297a7266433d3e8fefa3ed89820e93",
+    "Preview/11_FPV_Course.png": "d4a536e7bed8af3fed1245f598a0ecf6abb0011887f49641c41ac52aa3b3eb8d",
+    "Preview/16_Kart_Overview.png": "818bd7a03c8f12f123cad00ab25a3f2d1d4f744ad5fbe655c6c52910c05b7401",
+    "Preview/17_Kart_Overpass.png": "844c953c4a9b4155d76b5e9a853bc63a5335fea45d9923f14b90da6064f9051f",
+    "Preview/20_Kart_UpperTechnical.png": "187a814f2d915f59bf520ea68a3da92f11fc4e19126450b97d0194cbb7f05f31"
+  }
+}

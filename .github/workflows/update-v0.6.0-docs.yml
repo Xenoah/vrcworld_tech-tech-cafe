@@ -1,0 +1,41 @@
+name: Update v0.6.0 specification and design appendix
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/update-v0.6.0-docs.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-v0.6.0
+  cancel-in-progress: false
+
+jobs:
+  documentation:
+    if: github.repository == 'Xenoah/vrcworld_tech-tech-cafe' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Check out documentation and model history
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Verify source, atlas and distributions
+        run: |
+          sha256sum --check SHA256SUMS.txt --quiet
+          python Blender/package_documentation.py
+          python Blender/package_release.py
+          git diff --exit-code
+          python Blender/verify_release.py
+
+      - name: Append documentation and update existing release description
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python Blender/package_documentation.py --publish

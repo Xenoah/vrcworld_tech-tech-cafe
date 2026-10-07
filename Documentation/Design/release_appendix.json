@@ -1,0 +1,66 @@
+{
+  "model_version": "0.6.0",
+  "revision": "r1",
+  "model_commit": "a77e3087fb76f50f59ee3ceb611a5c470e25e9d0",
+  "notes_path": "Documentation/RELEASE_v0.6.0.md",
+  "original_assets": [
+    {
+      "name": "16_Kart_Overview.png",
+      "size": 2104162,
+      "digest": "sha256:818bd7a03c8f12f123cad00ab25a3f2d1d4f744ad5fbe655c6c52910c05b7401"
+    },
+    {
+      "name": "17_Kart_Overpass.png",
+      "size": 2158815,
+      "digest": "sha256:844c953c4a9b4155d76b5e9a853bc63a5335fea45d9923f14b90da6064f9051f"
+    },
+    {
+      "name": "18_Kart_Driver.png",
+      "size": 2223046,
+      "digest": "sha256:416a6c1c69527e0aeefe9a19c1438e756adc5cf5767ba4d70430bd05a294ac10"
+    },
+    {
+      "name": "19_Kart_Pits.png",
+      "size": 2227961,
+      "digest": "sha256:cc63c686ced65c4581d6bf1131a8b11ed47336586fc6b0d4e1a3b1561075faff"
+    },
+    {
+      "name": "20_Kart_UpperTechnical.png",
+      "size": 2135218,
+      "digest": "sha256:187a814f2d915f59bf520ea68a3da92f11fc4e19126450b97d0194cbb7f05f31"
+    },
+    {
+      "name": "release-validation-v0.6.0.json",
+      "size": 2692,
+      "digest": "sha256:82583175114b567232d0941fbe594bac7224715b45ba3b0971ded4778b718ce6"
+    },
+    {
+      "name": "SHA256SUMS-v0.6.0.txt",
+      "size": 740,
+      "digest": "sha256:9d07aef90a6a5aab0f141ea2c9c153bb7442e9e2655a03211a94c6a1ea195997"
+    },
+    {
+      "name": "The_Commons_Compact_v0.6.0.unitypackage",
+      "size": 48092962,
+      "digest": "sha256:ee02999f66ddc1a01e8fd85eed0977618dae6d15488beaf86036c00588947f5a"
+    },
+    {
+      "name": "The_Commons_Compact_v0.6.0_Full.zip",
+      "size": 97033565,
+      "digest": "sha256:c9893af8a51e187ca584de734d7d92f52b1eac0b206e07ee4cd5a67892ca80ae"
+    }
+  ],
+  "append_assets": [
+    "Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf",
+    "Preview/Design/01_World_Layout.png",
+    "Preview/Design/02_Cafe_Floor_Plans.png",
+    "Preview/Design/03_FPV_Floor_Plan.png",
+    "Preview/Design/04_Kart_Overall_Plan.png",
+    "Preview/Design/05_Kart_Levels_Profile.png",
+    "Preview/Design/06_Cafe_Design.png",
+    "Preview/Design/07_FPV_Design.png",
+    "Preview/Design/08_Kart_Design.png",
+    "Preview/01_Entrance_160cm.png",
+    "Preview/11_FPV_Course.png"
+  ]
+}
