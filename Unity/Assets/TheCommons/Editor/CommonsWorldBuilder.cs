@@ -21,12 +21,15 @@ public static class CommonsWorldBuilder
     static bool Mobile;
     static Dictionary<string,Material> materials;
     static Dictionary<string,GameObject> groups;
-    [Serializable] public class Manifest { public ColliderRecord[] colliders; public LightRecord[] lights; public SeatRecord[] seat_anchors; public MaterialRecord[] materials; public FPVRecord fpv; }
-    [Serializable] public class ColliderRecord { public string name,kind,group; public float[] position,size,rotation,vertices; public float radius,height; }
+    [Serializable] public class Manifest { public ColliderRecord[] colliders; public LightRecord[] lights; public SeatRecord[] seat_anchors; public MaterialRecord[] materials; public FPVRecord fpv; public KartRecord kart; }
+    [Serializable] public class ColliderRecord { public string name,kind,group; public float[] position,size,rotation,vertices; public float radius,height; public int[] triangles; }
     [Serializable] public class LightRecord { public string name; public float[] position,color,target; public float power,size; }
     [Serializable] public class SeatRecord { public float[] position; public float yaw; public string group; }
     [Serializable] public class MaterialRecord { public string name,texture,wrap; public float[] color; public float emission,roughness,metallic; }
     [Serializable] public class FPVRecord { public float[] origin,size; public PortalRecord[] portals; }
+    [Serializable] public class KartRecord { public float[] origin,size; public PortalRecord[] portals; public VehicleAnchor[] vehicle_anchors; public ProbeRecord[] light_probes; public VehicleAnchor time_panel; }
+    [Serializable] public class VehicleAnchor { public string name; public float[] position; public float yaw; }
+    [Serializable] public class ProbeRecord { public float[] position; }
     [Serializable] public class PortalRecord { public string name; public float[] position,destination; public float yaw,facing_yaw; }
 
     [MenuItem("The Commons/Build PC World")]
@@ -118,7 +121,17 @@ public static class CommonsWorldBuilder
         foreach(ColliderRecord c in data.colliders)
         {
             GameObject o=new GameObject(c.name);o.transform.SetParent(Group(c.group).transform,false);
-            if (c.kind=="ramp")
+            if(c.kind=="mesh")
+            {
+                Vector3[] vertices=new Vector3[c.vertices.Length/3];
+                for(int i=0;i<vertices.Length;i++)vertices[i]=new Vector3(c.vertices[i*3],c.vertices[i*3+2],c.vertices[i*3+1]);
+                int[] indices=(int[])c.triangles.Clone();
+                for(int i=0;i<indices.Length;i+=3){int swap=indices[i+1];indices[i+1]=indices[i+2];indices[i+2]=swap;}
+                Mesh mesh=new Mesh();mesh.name=c.name;mesh.indexFormat=vertices.Length>65535?IndexFormat.UInt32:IndexFormat.UInt16;
+                mesh.vertices=vertices;mesh.triangles=indices;mesh.RecalculateNormals();mesh.RecalculateBounds();
+                SaveAsset(mesh,AssetDatabase.GenerateUniqueAssetPath(Out+"/Meshes/"+c.name+".asset"));o.AddComponent<MeshCollider>().sharedMesh=mesh;
+            }
+            else if (c.kind=="ramp")
             {
                 Vector3[] v=new Vector3[4];for(int i=0;i<4;i++)v[i]=new Vector3(c.vertices[i*3],c.vertices[i*3+2],c.vertices[i*3+1]);
                 Mesh mesh=new Mesh();mesh.name=c.name;mesh.vertices=v;mesh.triangles=new[]{0,2,1,0,3,2};mesh.RecalculateNormals();
@@ -133,7 +146,8 @@ public static class CommonsWorldBuilder
                 o.AddComponent<MeshCollider>().sharedMesh=o.GetComponent<MeshFilter>().sharedMesh;
                 UnityEngine.Object.DestroyImmediate(o.GetComponent<Renderer>());
             }
-            else { o.transform.position=V(c.position);o.AddComponent<BoxCollider>().size=V(c.size); }
+            else { o.transform.position=V(c.position);o.AddComponent<BoxCollider>().size=V(c.size);
+                if(c.rotation!=null && c.rotation.Length==3)o.transform.rotation=Quaternion.Euler(-c.rotation[0]*Mathf.Rad2Deg,-c.rotation[2]*Mathf.Rad2Deg,-c.rotation[1]*Mathf.Rad2Deg); }
             o.isStatic=true;
         }
         GameObject systems=Group("INT_Systems");
@@ -188,6 +202,17 @@ public static class CommonsWorldBuilder
         Portal("ANCHOR BAR",new Vector3(6.7f,5.95f,15.8f),new Vector3(6.35f,.1f,11.0f));
         if(data.fpv!=null && data.fpv.portals!=null)foreach(PortalRecord r in data.fpv.portals)
             Portal(r.name,V(r.position),V(r.destination),r.facing_yaw,r.yaw);
+        if(data.kart!=null)
+        {
+            if(data.kart.portals!=null)foreach(PortalRecord r in data.kart.portals)
+                Portal(r.name,V(r.position),V(r.destination),r.facing_yaw,r.yaw);
+            // Empty placement guides only. Import the owner's CVS2 vehicles separately.
+            if(data.kart.vehicle_anchors!=null)foreach(VehicleAnchor r in data.kart.vehicle_anchors)
+            {
+                Transform anchor=new GameObject(r.name).transform;anchor.SetParent(Group("KART_ExternalVehicleAnchors").transform);
+                anchor.position=V(r.position);anchor.rotation=Quaternion.Euler(0,r.yaw,0);
+            }
+        }
         int si=0;
         foreach(SeatRecord r in data.seat_anchors)
         {
@@ -211,15 +236,23 @@ public static class CommonsWorldBuilder
         CommonsTimeOfDay time=CommonsAtmosphereBuilder.Configure(Out,Mobile,state,comfort,materials);
         TextMesh cafeTime=TimePanel(new Vector3(22.5f,1.8f,1.48f),0,time);
         TextMesh fieldTime=TimePanel(new Vector3(-33f,1.8f,.65f),180,time);
-        time.labels=new[]{cafeTime,fieldTime};time.ApplyHour(time.hour);time.ApplyProxyModifications();
+        time.labels=new[]{cafeTime,fieldTime};
+        if(data.kart!=null && data.kart.time_panel!=null)
+        {
+            TextMesh kartTime=TimePanel(V(data.kart.time_panel.position),data.kart.time_panel.yaw,time);
+            time.labels=new[]{cafeTime,fieldTime,kartTime};
+        }
+        time.ApplyHour(time.hour);time.ApplyProxyModifications();
         Button("SOFT GLOW",new Vector3(-30.5f,.85f,.65f),comfort,"ToggleGlow",1.6f,.28f,180);
         GameObject desc=new GameObject("VRCWorld");var descriptor=desc.AddComponent<VRCSceneDescriptor>();
         Transform spawn=new GameObject("Spawn_Entry").transform;spawn.position=new Vector3(14,.1f,1.2f);descriptor.spawns=new[]{spawn};descriptor.capacity=32;
         SerializedObject ds=new SerializedObject(descriptor);SerializedProperty rh=ds.FindProperty("RespawnHeightY");if(rh!=null)rh.floatValue=-12;ds.ApplyModifiedPropertiesWithoutUndo();
+        CommonsAtmosphereBuilder.ConfigureReferenceCamera(Mobile,descriptor);
         if(!Mobile)CommonsAtmosphereBuilder.AddOptionalBloom(Out,comfort.glowRoot,descriptor);
         // SDK stores its blueprint only after the owner uploads. No blueprint ID is preassigned.
         LightProbeGroup probes=new GameObject("LGT_LightProbes").AddComponent<LightProbeGroup>();List<Vector3> ps=new List<Vector3>();
         for(int x=2;x<28;x+=4)for(int z=2;z<18;z+=4)foreach(float y in new[]{1f,3f,5.6f,7.8f})ps.Add(new Vector3(x,y,z));for(int x=-61;x<=-28;x+=6)for(int z=3;z<=26;z+=6)foreach(float y in new[]{1.2f,3.5f,6f})ps.Add(new Vector3(x,y,z));
+        if(data.kart!=null && data.kart.light_probes!=null)foreach(ProbeRecord r in data.kart.light_probes)ps.Add(V(r.position));
         probes.probePositions=ps.ToArray();
         if(!Mobile)
         {
@@ -228,10 +261,10 @@ public static class CommonsWorldBuilder
         }
         GameObject areaObject=new GameObject("INT_AreaVisibility");areaObject.transform.SetParent(systems.transform);
         CommonsAreaVisibility visibility=areaObject.AddUdonSharpComponent<CommonsAreaVisibility>();
-        List<Renderer> cafeRenderers=new List<Renderer>(),fieldRenderers=new List<Renderer>();
+        List<Renderer> cafeRenderers=new List<Renderer>(),fieldRenderers=new List<Renderer>(),kartRenderers=new List<Renderer>();
         foreach(Renderer renderer in UnityEngine.Object.FindObjectsOfType<Renderer>(true))
-            if(renderer.bounds.center.x < -15f)fieldRenderers.Add(renderer);else cafeRenderers.Add(renderer);
-        visibility.cafe=cafeRenderers.ToArray();visibility.fpv=fieldRenderers.ToArray();visibility.ApplyProxyModifications();
+            if(renderer.bounds.center.x>=100f)kartRenderers.Add(renderer);else if(renderer.bounds.center.x < -15f)fieldRenderers.Add(renderer);else cafeRenderers.Add(renderer);
+        visibility.cafe=cafeRenderers.ToArray();visibility.fpv=fieldRenderers.ToArray();visibility.kart=kartRenderers.ToArray();visibility.timeOfDay=time;visibility.ApplyProxyModifications();
         zones.ApplyProxyModifications();comfort.ApplyProxyModifications();state.ApplyProxyModifications();
         state.academicRoot.SetActive(false);pointer.SetActive(false);comfort.Refresh();
         EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(Out+"/TheCommons.unity",true)};

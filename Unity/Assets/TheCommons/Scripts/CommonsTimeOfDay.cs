@@ -53,6 +53,7 @@ public class CommonsTimeOfDay : UdonSharpBehaviour
         if (!cycling || Time.time < nextTick) return;
         nextTick = Time.time + .25f; ApplyHour(CurrentHour());
     }
+    public void Refresh() { ApplyHour(CurrentHour()); }
     public void ApplyHour(float value)
     {
         float a = (value - 6f) * Mathf.PI / 12f;
@@ -74,7 +75,8 @@ public class CommonsTimeOfDay : UdonSharpBehaviour
         RenderSettings.ambientEquatorColor = Color.Lerp(new Color(.075f,.085f,.11f),new Color(.27f,.30f,.34f),day);
         RenderSettings.ambientGroundColor = Color.Lerp(new Color(.045f,.042f,.04f),new Color(.13f,.12f,.10f),day);
         RenderSettings.fogColor = Color.Lerp(new Color(.026f,.036f,.06f),horizon*.72f,day);
-        RenderSettings.fogDensity = Mathf.Lerp(.007f,.0035f,day);
+        bool atKart=Utilities.IsValid(Networking.LocalPlayer) && Networking.LocalPlayer.GetPosition().x>=100f;
+        RenderSettings.fogDensity = atKart?Mathf.Lerp(.0022f,.001f,day):Mathf.Lerp(.007f,.0035f,day);
         if (sun != null) { sun.transform.rotation=Quaternion.LookRotation(-direction); sun.color=sunlight; sun.intensity=day*.85f; }
         Color tint = Color.Lerp(new Color(.78f,.84f,.94f),Color.white,day);
         Color fill = Color.Lerp(new Color(.008f,.012f,.025f),new Color(.16f,.20f,.25f),day);

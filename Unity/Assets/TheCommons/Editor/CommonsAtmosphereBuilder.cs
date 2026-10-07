@@ -43,6 +43,16 @@ public static class CommonsAtmosphereBuilder
         o.transform.position=p;o.transform.localScale=Vector3.one*size;UnityEngine.Object.DestroyImmediate(o.GetComponent<Collider>());
         Renderer r=o.GetComponent<Renderer>();r.sharedMaterial=material;r.shadowCastingMode=ShadowCastingMode.Off;r.receiveShadows=false;
     }
+    public static void ConfigureReferenceCamera(bool mobile,VRCSceneDescriptor descriptor)
+    {
+        SerializedObject sceneDescriptor=new SerializedObject(descriptor);
+        SerializedProperty referenceCamera=sceneDescriptor.FindProperty("ReferenceCamera");
+        if(referenceCamera==null)throw new InvalidOperationException("The installed SDK has no ReferenceCamera field.");
+        GameObject go=new GameObject(mobile?"LGT_Quest_ReferenceCamera":"LGT_PC_ReferenceCamera");
+        Camera camera=go.AddComponent<Camera>();camera.enabled=false;camera.allowHDR=!mobile;
+        camera.nearClipPlane=.03f;camera.farClipPlane=900f;
+        referenceCamera.objectReferenceValue=go;sceneDescriptor.ApplyModifiedPropertiesWithoutUndo();
+    }
     // Reflection keeps PPS optional: missing package does not stop scene generation.
     public static void AddOptionalBloom(string output,GameObject parent,VRCSceneDescriptor descriptor)
     {
@@ -74,9 +84,8 @@ public static class CommonsAtmosphereBuilder
         AssetDatabase.CreateAsset(profile,output+"/CommonsBloom.asset");AssetDatabase.AddObjectToAsset((UnityEngine.Object)bloom,profile);
         // VRChat copies this camera's settings and PostProcessLayer to the player camera.
         // Keep it outside the local glow root: the toggle only enables/disables the volume.
-        GameObject cameraObject=new GameObject("LGT_PC_ReferenceCamera");
-        Camera camera=cameraObject.AddComponent<Camera>();camera.enabled=false;camera.allowHDR=true;
-        camera.nearClipPlane=.03f;camera.farClipPlane=300f;
+        GameObject cameraObject=referenceCamera.objectReferenceValue as GameObject;
+        if(cameraObject==null)throw new InvalidOperationException("Configure the reference camera before adding bloom.");
         Component layer=cameraObject.AddComponent(layerType);
         layerType.GetMethod("Init",new[]{resourcesType}).Invoke(layer,new[]{resources});
         LayerMask volumeMask=1<<4; // VRChat's built-in Water layer, commonly used for post processing.

@@ -263,9 +263,11 @@
   "style": "Dark neo-industrial + warm hospitality + flat-light stylization + restrained neon",
   "design_rule": "Small enough for social proximity; vertically layered so different participation intensities coexist without fragmenting the room.",
   "implementation_extensions": {
-    "version": "0.4.0",
+    "version": "0.5.0",
     "fpv_spec": "fpv_field.json",
-    "implementation_drawing": "../CAD/The_Commons_Implementation_Overlay_v04.dxf",
-    "notes": "Original cafe dimensions are retained. The separate FPV floor is defined by fpv_field.json; shared time-of-day and local glow controls are described in Documentation/CHANGES_v0.4.0_JA.md."
+    "implementation_drawing": "../CAD/The_Commons_Implementation_Overlay_v05.dxf",
+    "notes": "Cafe and FPV retained. A separate three-level kart floor is defined in kart_circuit.json. CVS2 vehicles are installed separately by the owner.",
+    "kart_spec": "kart_circuit.json",
+    "kart_drawing": "../CAD/APEX_Kart_ThreeLayer_v05.dxf"
   }
 }

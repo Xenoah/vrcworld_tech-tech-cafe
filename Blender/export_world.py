@@ -92,7 +92,7 @@ for o in objects:
  if g in ['FURN_HangingGarden','AV_Hologram']:continue
  if o.data.materials[0].name=='MAT_Window':continue
  if g=='ENV_City' and o.data.materials[0].name in ['MAT_Amber','MAT_Cyan']:continue
- if len(o.data.polygons)>1500:
+ if len(o.data.polygons)>1500 and not g.startswith(('KART_Road','KART_Barriers','KART_Markings','KART_Pits')):
   bpy.context.view_layer.objects.active=o;d=o.modifiers.new('Mobile decimation','DECIMATE');d.ratio=.56;bpy.ops.object.modifier_apply(modifier=d.name)
  qobjs.append(o)
 q=savebin(A/'Models/TheCommons_Quest.tcmesh.bytes',qobjs)
