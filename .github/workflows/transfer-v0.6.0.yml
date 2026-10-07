@@ -1,0 +1,41 @@
+name: Restore v0.6.0 model blobs
+on:
+  push:
+    branches: [codex/release-v0.6.0-transfer]
+    paths: [.github/workflows/transfer-v0.6.0.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  restore:
+    if: github.repository == 'Xenoah/vrcworld_tech-tech-cafe' && github.ref == 'refs/heads/codex/release-v0.6.0-transfer'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Restore byte-identical release models
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import base64,gzip,hashlib,json,os,urllib.request
+          objects=[{"path":"Preview/The_Commons_Compact.bin","size":17360312,"sha":"d772dfb68c53d748ff9e131f995df44703b3ba47","sha256":"dcda5af35ef919072ed0715e4b65905fc8716340886fd85fcd2371389bc2823f","compressed_sha":"90f7bbe24e6f62abb95ff9fb4a8b48a5debe2e02"},{"path":"Unity/Assets/TheCommons/Models/TheCommons_PC.tcmesh.bytes","size":19083788,"sha":"174431b19d97f50bbeef62aaad2a85915f1a4e1e","sha256":"2e9112dd4cd47dd5a4d71a086d7df4627d4b654a0c6a9fb2c4b7584be4371c27","compressed_sha":"42ad2540b62c3b8a8fa00d23312355deb9d2a23e"},{"path":"Unity/Assets/TheCommons/Models/TheCommons_Quest.tcmesh.bytes","size":16025466,"sha":"80089051bf73d80f28132bb4d755138b64757e3d","sha256":"0d6473cba96fa67e91c2b175644c9041d6112dbc252ab11faead66b3ad29129f","compressed_sha":"d8c3b906b81317ba46b5975292650a5107c35468"}]
+          base='https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']
+          def request(path,payload=None):
+              data=None if payload is None else json.dumps(payload).encode()
+              req=urllib.request.Request(base+path,data=data,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'thecommons-model-transfer'})
+              with urllib.request.urlopen(req,timeout=120) as response:return json.load(response)
+          def blob_sha(data):return hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+          for item in objects:
+              source=request('/git/blobs/'+item['compressed_sha'])
+              packed=base64.b64decode(source['content'])
+              assert blob_sha(packed)==item['compressed_sha']
+              raw=gzip.decompress(packed)
+              assert len(raw)==item['size']
+              assert blob_sha(raw)==item['sha']
+              assert hashlib.sha256(raw).hexdigest()==item['sha256']
+              result=request('/git/blobs',{'encoding':'base64','content':base64.b64encode(raw).decode()})
+              assert result['sha']==item['sha']
+              print('Verified model blob:',item['path'],result['sha'],len(raw))
+          PY
