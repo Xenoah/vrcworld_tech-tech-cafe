@@ -1,6 +1,6 @@
 # vrcworld_tech-tech-cafe
 
-VRChat用の技術者カフェ／交流ワールド制作データ。内部プロジェクト名は **The Commons — Compact Edition**、mainの収録モデルは **v0.4.0** です。
+VRChat用の技術者カフェ／交流ワールド制作データ。内部プロジェクト名は **The Commons — Compact Edition**、mainの収録モデルは **v0.5.0** です。
 
 ![ワールドの入口からのプレビュー](Preview/01_Entrance_160cm.png)
 
@@ -10,9 +10,13 @@ v0.3.0ではDJ機材・酒ラベル・カフェ小物を作り込み、床・ス
 
 v0.4.0では独立した屋内FPVフロア、往復ワープ、PBR／軽量シェーダー、控えめなグロー、全時間帯の切り替えを追加しました。[変更内容](Documentation/CHANGES_v0.4.0_JA.md)
 
+v0.5.0で **APEX / TRI-LAYER KART** を追加。320 × 300 mの別フロアに約1.40 kmの3層コース、立体交差、ピットと観戦席を配置。カフェとワープで往復します。CVS2の車両は別途導入してください。[変更内容](Documentation/CHANGES_v0.5.0_JA.md)
+
+![3層コース全景（Blender実モデルプレビュー）](Preview/16_Kart_Overview.png)
+
 ## Unityへ導入
 
-**v0.4.0** の `.unitypackage` と制作データ一式のZIPは [GitHub Releases](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.4.0) から取得できます。FPV・時間帯・描画更新を収録しています。Unityパッケージをインポートするか、以下のコピー手順を使ってください。
+**v0.5.0** の `.unitypackage` と制作データ一式のZIPは [GitHub Releases](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.5.0) から取得できます。カート・FPV・時間帯・描画更新とスクリーンショット4枚を収録しています。Unityパッケージをインポートするか、以下のコピー手順を使ってください。
 
 1. VRChat Creator Companionで **Worlds / Built-in Render Pipeline** のプロジェクトを作成します。制作時の基準は **Unity 2022.3.22f1 / VRChat SDK 3.10.5** です。SDKとUdonSharpはVCC側で導入してください。
 2. このリポジトリの `Unity/Assets/TheCommons` を、VCCで作成したプロジェクトの `Assets` にコピーします。`.meta` も一緒にコピーしてください。
@@ -35,7 +39,7 @@ v0.4.0では独立した屋内FPVフロア、往復ワープ、PBR／軽量シ�
 | [Unity/Assets/TheCommons/Audio/](Unity/Assets/TheCommons/Audio/) | 環境音・アンビエント・DJ用のオリジナル音源 |
 | [CAD/](CAD/) / [SourceDesign/](SourceDesign/) | 実装差分図、元図面、設計資料 |
 | [Documentation/](Documentation/) | 寸法検査・構文検査・受入確認・素材生成記録 |
-| [Preview/](Preview/) | 制作モデルの静止画15枚とglTF（外部参照形式） |
+| [Preview/](Preview/) | 制作モデルの静止画19枚とglTF（外部参照形式） |
 
 ### ワールド内の機能
 
@@ -45,6 +49,7 @@ v0.4.0では独立した屋内FPVフロア、往復ワープ、PBR／軽量シ�
 - 明示的な操作による着席、上下階の移動ポータル。
 - 動き・発光・DJ演出・グローのローカル設定、音量ゾーン。
 - 36 × 26 × 8 mの独立FPVフロア、8ゲート、操縦・観戦席、往復ワープ。VRC+ドローンを利用。
+- 3層カートコース、8 m幅の連続路面、空のCVS2配置ガイド6か所、ピット・観戦席、往復ワープ。
 - 朝・昼・夕・夜のプリセット、±1時間、連続サイクル。ホスト操作と時刻同期。
 
 これらはUdonSharpソースとして収録しています。実機での確認項目は [ACCEPTANCE_JA.md](Documentation/ACCEPTANCE_JA.md) に記載しています。
@@ -53,8 +58,10 @@ v0.4.0では独立した屋内FPVフロア、往復ワープ、PBR／軽量シ�
 
 | 書き出しモデル | 三角形数 | メッシュ数 |
 | --- | ---: | ---: |
-| PC | 159,884 | 151 |
-| Quest | 122,104 | 141 |
+| PC | 231,297 | 166 |
+| Quest | 193,517 | 156 |
+
+カート部分はPC／Quest共通71,413 tris／15メッシュ。エリア移動時に遠い側の建築描画を抑制します。
 
 数値は書き出した全景の形状検査結果です。実機FPSや描画負荷の実測値ではありません。
 
@@ -68,7 +75,8 @@ v0.4.0では独立した屋内FPVフロア、往復ワープ、PBR／軽量シ�
 - FPVは編集可能なメッシュ・UV・文字を独立モジュールにも保存し、全体再生成時に復元します。
 - 再生成後のGit用整理は `Blender/prepare_repository_assets.py` をBlenderのPython環境で実行します。元のGLBは生成できますがGit対象外です。
 - Unityの `Library`、キャッシュ、ビルド出力、生成シーンはGit対象外です。
-- SDK本体とAudioLink本体は同梱していません。
+- SDK・AudioLink・CVS2・車両本体は同梱していません。
+- 今後のリリースには実モデルの画像を添付し、レンダラーを明記。画像も配布チェックサムの対象にします。
 - フォントの権利表記は [DejaVu_Font_License.txt](Documentation/DejaVu_Font_License.txt) を参照してください。
 - ブラウザ歩行ビューアは別プロジェクトとして管理します。
 

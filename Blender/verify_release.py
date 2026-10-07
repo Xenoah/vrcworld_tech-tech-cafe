@@ -10,6 +10,7 @@ import re
 import subprocess
 import tarfile
 import zipfile
+from release_checks import validate_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSET_ROOT = ROOT / "Unity/Assets/TheCommons"
@@ -44,6 +45,7 @@ manifest = json.loads((ASSET_ROOT / "Data/world_manifest.json").read_text())
 fpv = manifest["fpv"]
 assert len(fpv["gates"]) == 8 and len(fpv["portals"]) == 2, "Incomplete FPV course or return route"
 assert all(p["destination"] for p in fpv["portals"])
+screens, screenshots = validate_inputs(ROOT, manifest)
 
 expected_tar = {}
 guids = set()
@@ -97,11 +99,12 @@ report = {
     "unity_assets_including_folders": len(paths),
     "unique_unity_guids": len(guids),
     "full_archive_files": len(files),
-    "checks": ["exact_asset_set", "unique_guids", "metadata_preserved", "all_bytes_match_source", "source_checksums"],
-    "assets": {p.name: {"bytes": p.stat().st_size, "sha256": digest(p.read_bytes())} for p in (package, bundle)},
+    "checks": ["exact_asset_set", "unique_guids", "metadata_preserved", "all_bytes_match_source", "source_checksums", "geometry_reports_passed", "release_screenshots"],
+    "screenshots": screens["images"],
+    "assets": {p.name: {"bytes": p.stat().st_size, "sha256": digest(p.read_bytes())} for p in [package, bundle] + screenshots},
 }
 report_path = ROOT.parent / f"release-validation-v{version}.json"
 report_path.write_text(json.dumps(report, indent=2) + "\n")
 sums_path = ROOT.parent / f"SHA256SUMS-v{version}.txt"
-sums_path.write_text("".join(f"{digest(p.read_bytes())}  {p.name}\n" for p in (package, bundle, report_path)))
+sums_path.write_text("".join(f"{digest(p.read_bytes())}  {p.name}\n" for p in [package, bundle, report_path] + screenshots))
 print(json.dumps(report, indent=2))

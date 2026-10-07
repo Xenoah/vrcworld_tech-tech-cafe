@@ -1,0 +1,141 @@
+{
+  "version": "0.5.0",
+  "length_m": 1398.6756256041433,
+  "checks": [
+    {
+      "name": "Kart finite collision mesh",
+      "pass": true,
+      "detail": {
+        "vertices": 7200,
+        "triangles": 14400
+      }
+    },
+    {
+      "name": "Kart watertight continuous deck",
+      "pass": true,
+      "detail": {
+        "nonmanifold_edges": 0
+      }
+    },
+    {
+      "name": "Kart authored road agrees with course samples",
+      "pass": true,
+      "detail": {
+        "samples": 1800
+      }
+    },
+    {
+      "name": "Kart width and nondegenerate track",
+      "pass": true,
+      "detail": {
+        "road_width_m": 8.0,
+        "deck_width_m": 9.899999999999933
+      }
+    },
+    {
+      "name": "Kart maximum grade",
+      "pass": true,
+      "detail": {
+        "maximum_percent": 8.946236993601831,
+        "limit_percent": 9.5
+      }
+    },
+    {
+      "name": "Kart turn radius",
+      "pass": true,
+      "detail": {
+        "minimum_center_radius_m": 14.72771160378845,
+        "inside_driving_radius_m": 10.72771160378845
+      }
+    },
+    {
+      "name": "Kart collision sampling",
+      "pass": true,
+      "detail": {
+        "maximum_segment_m": 1.004619334065781
+      }
+    },
+    {
+      "name": "Kart three drivable level plateaus",
+      "pass": true,
+      "detail": {
+        "flat_length_per_level_m": {
+          "0.35": 149.68045045716906,
+          "3.95": 101.2778861181721,
+          "7.55": 149.7274870608406
+        }
+      }
+    },
+    {
+      "name": "Kart road inside independent floor",
+      "pass": true,
+      "detail": {
+        "floor_size_m": [
+          320,
+          300
+        ],
+        "road_bounds": [
+          [
+            215.14517081219853,
+            14.27202033702439
+          ],
+          [
+            490.15000000000003,
+            275.7279796629756
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Kart collision faces point upward",
+      "pass": true,
+      "detail": {
+        "upward_top_triangles": 3600,
+        "expected": 3600
+      }
+    },
+    {
+      "name": "Kart bridge crossing clearance",
+      "pass": true,
+      "detail": {
+        "minimum_underside_clearance_m": 6.749999999999998,
+        "intersecting_triangle_pairs": 2050,
+        "required_m": 5.0
+      }
+    },
+    {
+      "name": "Kart bridge columns clear driving surfaces",
+      "pass": true,
+      "detail": {
+        "columns": 132,
+        "conflicts": []
+      }
+    },
+    {
+      "name": "Kart pit apron has no folded top faces",
+      "pass": true,
+      "detail": {
+        "folded_top_triangles": 0,
+        "top_triangles": 100
+      }
+    },
+    {
+      "name": "Kart six supported CVS2 placement guides",
+      "pass": true,
+      "detail": {
+        "anchors": 6,
+        "supported": 6,
+        "vehicle_system_included": false
+      }
+    },
+    {
+      "name": "Kart pedestrian warp capsule clearance",
+      "pass": true,
+      "detail": {
+        "blocked": []
+      }
+    }
+  ],
+  "passed": true,
+  "scope": "Geometric collision/layout checks only. Unity, CVS2 and VRChat runtime not tested."
+}

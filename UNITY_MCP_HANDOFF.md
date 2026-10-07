@@ -1,4 +1,4 @@
-# Unity MCPへの引き継ぎ — v0.4.0
+# Unity MCPへの引き継ぎ — v0.5.0
 
 取得元: https://github.com/Xenoah/vrcworld_tech-tech-cafe
 
@@ -50,3 +50,13 @@ Unity EditorへのMCP接続はこの制作環境にはありません。Unity/Ud
 時間帯は空・霧・環境色・補助光の連続補間。ライトマップ／反射は静的1組です。新シーンを生成して再ベイクしてください。Release v0.4.0のパッケージにこの追加更新を収録しています。
 
 PCでPPSを導入した場合は、`VRCWorld` のReference Cameraに `LGT_PC_ReferenceCamera` が入り、PostProcessLayerのVolume LayerがWater、`LGT_PC_BloomVolume` もWaterに設定されていることを確認してください。参照カメラのCameraは無効、HDRは有効です。SOFT GLOWはVolumeと器具グローをまとめて切り替えます。
+
+## v0.5.0 カート・CVS2
+
+- カフェ入口のAPEX / KARTから移動し、観戦側RETURN / CAFEで戻る。Unity座標X=180〜500、Z=0〜300。路面Y=0.35／3.95／7.55 m。
+- 8 m幅の連続MeshCollider。橋下6.75 m、最大勾配8.95%、最小中心旋回半径14.73 m。PC／Questで走行形状を共通化。
+- シーン生成後、所有者のCVS2車両を6つの空Transform `KART_ExternalVehicleAnchors/CVS2_Bay_01`〜`06` を目安に配置。車高・タイヤ・所有権・復帰設定はCVS2説明書に従う。詳細は `Documentation/CVS2_INTEGRATION_JA.md`。
+- 観戦側時間パネル、朝昼夕夜、エリア切替時の霧・音声を確認。Reference CameraはPC／Questともfar clip 900 m、Camera無効、HDRはPCのみ。
+- 外部CVS2車両を建築Renderer配列へ登録しない。建築が非表示でも物理とUdonを維持する。
+- 大面積のライトマップ・メモリ・実機フレーム時間を確認。Unity／CVS2実走は未検証。
+- Release画像4枚はBlender実モデル。今後も撮影元を明記し、PNGをRelease Assetsへ添付する。

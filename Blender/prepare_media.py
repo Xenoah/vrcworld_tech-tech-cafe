@@ -9,6 +9,7 @@ from PIL import Image,ImageDraw,ImageFont
 ROOT=Path(__file__).resolve().parents[1];A=ROOT/'Unity/Assets/TheCommons'
 def prepare_manifest():
  raw=json.loads((ROOT/'Documentation/model_manifest.json').read_text())
+ if 'kart' in raw:raw['kart']['light_probes']=[{'position':p} for p in raw['kart']['light_probes']]
  raw['materials']=[dict(name=n,**v) for n,v in raw['materials'].items()]
  for c in raw['colliders']:
   if 'vertices' in c:c['vertices']=[v for row in c['vertices'] for v in row]

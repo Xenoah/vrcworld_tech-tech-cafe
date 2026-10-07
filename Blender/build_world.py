@@ -494,6 +494,7 @@ for name,p in [('SPAWN_Entry',(14,1.2,.10)),('TP_Lower',(18.0,1.5,.1)),('TP_Uppe
  o=link(bpy.data.objects.new(name,None));o.location=p;o.empty_display_type='ARROWS';o.empty_display_size=.5
 
 FPV=runpy.run_path(str(ROOT/'Blender/build_fpv_field.py'),init_globals=globals())['FPV']
+KART=runpy.run_path(str(ROOT/'Blender/build_kart_circuit.py'),init_globals=globals())['KART']
 
 world=bpy.data.worlds.new('The Commons blue hour');S.world=world;world.use_nodes=True
 world.node_tree.nodes.get('Background').inputs[0].default_value=(.085,.12,.19,1);world.node_tree.nodes.get('Background').inputs[1].default_value=.32
@@ -512,21 +513,23 @@ camera('08_BarLabels_Detail',(2.40,7.35,2.90),(.84,7.35,2.85),54)
 camera('09_Coffee_Detail',(4.5,4.75,1.98),(4.35,6.00,1.41),48)
 camera('10_FPV_Field',(-42.5,3,1.6),(-46,16,2.7),19)
 camera('11_FPV_Course',(-33,23,6.7),(-49,14,1.7),22)
+for n,c in KART['cameras'].items():
+ camera(n,c['position'],c['target'],c['lens']);CAMS[n].data.clip_end=1000
 S.camera=CAMS['01_Entrance_160cm']
 S.render.engine='CYCLES';S.cycles.samples=32;S.cycles.use_denoising=True;S.cycles.max_bounces=5
 S.render.resolution_x=1600;S.render.resolution_y=1000;S.render.resolution_percentage=100
 S.view_settings.view_transform='AgX';S.view_settings.look='AgX - Medium High Contrast';S.view_settings.exposure=1.05
 S.render.image_settings.file_format='PNG';S.render.film_transparent=False
-S['project']='THE COMMONS - Compact Edition';S['revision']='0.4.0';S['source']='SourceDesign/world_spec.json';S['world_test_status']='Unity and VRChat runtime tests pending'
+S['project']='THE COMMONS - Compact Edition';S['revision']='0.5.0';S['source']='SourceDesign/world_spec.json';S['world_test_status']='Unity and VRChat runtime tests pending'
 # Hide only inactive mode, preserving authoring editability.
 for o in GROUPS['MODE_Academic'].objects:o.hide_render=True;o.hide_set(True)
 for im in bpy.data.images:
  if im.source=='FILE':im.pack()
 for o in bpy.data.objects:
  if o.type=='MESH':o['commons_group']=o.users_collection[0].name
-report={'version':'0.4.0','fpv':FPV,'footprint':[28,18],'level_tops':[0,4.8,9.6],'stage':{'center':[14,13.2],'diameter':4.8,'height':.25},'screen':[7.1,4.0],'stair_design':COUNTS,'colliders':COL,'lights':LIGHTS,'seat_anchors':SEATS,'cameras':{n:{'position':list(o.location),'eye_height':1.6 if '160cm' in n else None} for n,o in CAMS.items()},'materials':{n:{'color':list(m.diffuse_color),'texture':m.get('texture_key',''),'emission':m.get('emission',0),'wrap':m.get('wrap','mirror'),'roughness':m.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value,'metallic':m.node_tree.nodes.get('Principled BSDF').inputs['Metallic'].default_value} for n,m in M.items()}}
-(ASSET/'Data/world_manifest.json').write_text(json.dumps(report,indent=2))
-(ROOT/'Documentation/model_manifest.json').write_text(json.dumps(report,indent=2))
+report={'version':'0.5.0','fpv':FPV,'kart':KART,'footprint':[28,18],'level_tops':[0,4.8,9.6],'stage':{'center':[14,13.2],'diameter':4.8,'height':.25},'screen':[7.1,4.0],'stair_design':COUNTS,'colliders':COL,'lights':LIGHTS,'seat_anchors':SEATS,'cameras':{n:{'position':list(o.location),'eye_height':1.6 if '160cm' in n else None} for n,o in CAMS.items()},'materials':{n:{'color':list(m.diffuse_color),'texture':m.get('texture_key',''),'emission':m.get('emission',0),'wrap':m.get('wrap','mirror'),'roughness':m.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value,'metallic':m.node_tree.nodes.get('Principled BSDF').inputs['Metallic'].default_value} for n,m in M.items()}}
+(ASSET/'Data/world_manifest.json').write_text(json.dumps(report,indent=2,default=lambda x:x.item() if hasattr(x,'item') else list(x)))
+(ROOT/'Documentation/model_manifest.json').write_text(json.dumps(report,indent=2,default=lambda x:x.item() if hasattr(x,'item') else list(x)))
 bpy.ops.file.pack_all()
 bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'Blender/The_Commons_Compact.blend'))
 print('AUTHORING SAVED:',len(bpy.data.objects),'objects',flush=True)

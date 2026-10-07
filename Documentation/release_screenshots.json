@@ -1,0 +1,26 @@
+{
+  "version": "0.5.0",
+  "scope": "Actual authored model rendered with Blender Cycles. Not Unity or VRChat runtime captures. No vehicles included.",
+  "images": [
+    {
+      "path": "Preview/16_Kart_Overview.png",
+      "caption": "3層コース全景",
+      "renderer": "Blender 4.5.3 / Cycles"
+    },
+    {
+      "path": "Preview/17_Kart_Overpass.png",
+      "caption": "橋と立体交差",
+      "renderer": "Blender 4.5.3 / Cycles"
+    },
+    {
+      "path": "Preview/18_Kart_Driver.png",
+      "caption": "低層のドライバー視点",
+      "renderer": "Blender 4.5.3 / Cycles"
+    },
+    {
+      "path": "Preview/19_Kart_Pits.png",
+      "caption": "ピット・6配置ガイド・観戦席",
+      "renderer": "Blender 4.5.3 / Cycles"
+    }
+  ]
+}

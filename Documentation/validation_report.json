@@ -130,9 +130,9 @@
       "name": "TheCommons_PC binary",
       "pass": true,
       "detail": {
-        "meshes": 151,
-        "triangles": 159884,
-        "vertices": 283834,
+        "meshes": 166,
+        "triangles": 231297,
+        "vertices": 414611,
         "invalid_meshes": 0
       }
     },
@@ -146,15 +146,15 @@
     {
       "name": "TheCommons_PC end of file",
       "pass": true,
-      "detail": "11011052"
+      "detail": "16053940"
     },
     {
       "name": "TheCommons_Quest binary",
       "pass": true,
       "detail": {
-        "meshes": 141,
-        "triangles": 122104,
-        "vertices": 224363,
+        "meshes": 156,
+        "triangles": 193517,
+        "vertices": 355060,
         "invalid_meshes": 0
       }
     },
@@ -168,7 +168,7 @@
     {
       "name": "TheCommons_Quest end of file",
       "pass": true,
-      "detail": "8653954"
+      "detail": "13694282"
     },
     {
       "name": "2F route: Orbit Cafe",
@@ -218,7 +218,7 @@
     {
       "name": "PC total mesh target",
       "pass": true,
-      "detail": "Editable objects: 3681"
+      "detail": "Editable objects: 4076"
     },
     {
       "name": "FPV independent floor",
