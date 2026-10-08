@@ -1,0 +1,59 @@
+name: Publish v0.6.1 world assets
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/release-v0.6.1.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-v0.6.1
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.repository == 'Xenoah/vrcworld_tech-tech-cafe' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Check out release source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+
+      - name: Verify source and build distribution archives
+        run: |
+          python -c 'import json; assert json.load(open("Unity/Assets/TheCommons/Data/world_manifest.json"))["version"] == "0.6.1"'
+          sha256sum --check SHA256SUMS.txt --quiet
+          python Blender/package_release.py
+          git diff --exit-code
+          python Blender/verify_release.py
+
+      - name: Publish verified release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Refuse to reuse or replace an existing tag or release.
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/matching-refs/tags/v0.6.1" --jq 'map(select(.ref == "refs/tags/v0.6.1")) | length')" -eq 0
+          gh release create v0.6.1 \
+            ../The_Commons_Compact_v0.6.1.unitypackage \
+            ../The_Commons_Compact_v0.6.1_Full.zip \
+            ../SHA256SUMS-v0.6.1.txt \
+            ../release-validation-v0.6.1.json \
+            Preview/01_Entrance_160cm.png \
+            Preview/04_Mezzanine_160cm.png \
+            Preview/21_Spawn_Glass.png \
+            Preview/22_Horizon_Skyline.png \
+            Preview/23_City_Architecture.png \
+            Preview/11_FPV_Course.png \
+            Preview/16_Kart_Overview.png \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "v0.6.1 — 安全ガラス・照明・グロー・街並み" \
+            --notes-file Documentation/RELEASE_v0.6.1.md \
+            --latest

@@ -2,13 +2,79 @@
 
 **技術者カフェ・屋内FPV・屋内ネオンカートをワープで結ぶ、VRChatワールド制作データ。**
 
-モデル版 **v0.6.0** ／ 詳細仕様・図面 **資料改訂1（2026-10-07）**。このREADMEは現在の生成ソース・マニフェスト・形状検査に基づきます。カフェで会話・発表・DJを楽しみ、独立したVECTORでドローン、APEXでカートを走らせる構成です。
+モデル版 **v0.6.1（2026-10-08）** ／ 図面集はv0.6.0の資料改訂1を参考資料として同梱。このREADMEは現在の生成ソース・マニフェスト・形状検査に基づきます。カフェで会話・発表・DJを楽しみ、独立したVECTORでドローン、APEXでカートを走らせる構成です。
 
 ![カフェ入口からの実モデル](Preview/01_Entrance_160cm.png)
 
 **画像はBlenderの実モデルレンダーです。Unity／VRChatでの撮影ではありません。** カート全景のみ、レイアウトを見せるため屋根・手前2面の壁・トラスを非表示にしています。Unity/Udonコンパイル・ベイク・実機プレイは未検証。モデル・ソースからシーンを生成する配布物です。
 
-[リリースと全ダウンロード](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.6.0) · [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) · [Unity導入の詳細](README_JA.md) · [Unity MCP引き継ぎ](UNITY_MCP_HANDOFF.md)
+[リリースと全ダウンロード](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.6.1) · [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) · [Unity導入の詳細](README_JA.md) · [Unity MCP引き継ぎ](UNITY_MCP_HANDOFF.md)
+
+## v0.6.1の更新
+
+
+### 1. スポーン背後の落下対策
+
+南壁中央の開口に6面の安全ガラス、真鍮の縦枠、目線下の細い表示線、足元灯を追加しました。床から屋根まで1つのBoxColliderで覆い、両側の壁・床・屋根と重ねて、ガラスの継目も通り抜けられない形状にしています。
+
+| 項目 | 仕様 |
+| --- | --- |
+| 開口幅／衝突範囲 | 開口5 m、衝突は幅5.12 × 高さ9.8 × 厚さ0.24 m |
+| 衝突中心 | Unity `(14, 4.8, 0.125)` m |
+| PC／Quest | どちらも安全ガラスの描画・衝突を保持 |
+| 外景 | ガラスは影を落とさず、不透明な遮蔽物としても扱わない設定 |
+
+スポーン位置、既存のワープ着地点・床・階段・着席位置は維持しています。Questで東側の装飾窓を省略する処理から、安全ガラスを分離しました。
+
+### 2. 室内・全時間帯の明るさ
+
+カフェ既存灯の出力を1.65倍、FPV／カートを1.35倍にし、BlenderとUnity生成用マニフェストへ反映しました。倍率は光源の設定値で、実機で測定した明るさではありません。
+
+- 入口・中央ラウンジ・上階南通路に、ベイク用の補助灯を3灯追加。
+- 東・北側にコーブ照明を配置し、床石・左官・木・鋼材の基準色を調整。
+- 夜間環境光と昼夜の素材補助光を増やし、暗い面の見やすさを改善。
+- カートの青紫色は維持し、路面補助光と固定Tintを明るく調整。
+- Unityのベイク光強度上限を6→10に変更。プレビューの露出は従来値を維持。
+
+### 3. 環境グロー
+
+| 設定 | v0.6.0 | v0.6.1 |
+| --- | ---: | ---: |
+| PC Bloom intensity | 0.16 | 0.60 |
+| Bloom threshold | 1.15 | 1.05 |
+| Bloom soft knee / diffusion | 0.55 / 4 | 0.60 / 5 |
+| PC 器具グロー 暖色／寒色 | 0.035 / 0.030 | 0.090 / 0.075 |
+| Quest 器具グロー 暖色／寒色 | 0.028 / 0.023 | 0.060 / 0.050 |
+
+器具グローの範囲を広げ、入口・テラスにも追加。PCの画面全体のBloomにはPost Processing Stack v2が必要です。Questは器具グローと発光材を使用し、SOFT GLOW／LOW EMISSIONは引き続きプレイヤーごとに調整できます。
+
+### 4. 周辺建築
+
+単純な30棟を、各3段のセットバックを持つ24棟へ変更しました。石の柱と水平帯、金属感のある不透明ガラス外装、暖色・寒色の窓、発光する冠部、屋上庭園、2本の空中回廊を配置。東テラスと南側のスポーンガラスから見える街並みを整えました。
+
+高さは基部から22〜62 m。棟ごとの配置・高さは固定し、再生成しても変わりません。材質ごとに6メッシュへまとめ、追加テクスチャ・リアルタイム光源・衝突形状は使っていません。街並みは背景用で、屋上・空中回廊への歩行ルートやワープはありません。
+
+
+
+### v0.6.1の実モデル画像
+
+Blender 4.5.3 / Cyclesで撮影した7枚です。Unity／VRChatの実機画像ではありません。カート全景のみ屋根・手前2壁・トラスを非表示にしています。
+
+![明るくなったカフェ全景](Preview/01_Entrance_160cm.png)
+
+![上階と環境グロー](Preview/04_Mezzanine_160cm.png)
+
+![スポーン背後の落下防止ガラス](Preview/21_Spawn_Glass.png)
+
+![テラスから見える街並み](Preview/22_Horizon_Skyline.png)
+
+![24棟の周辺建築と冠部・屋上庭園](Preview/23_City_Architecture.png)
+
+![明るくなったFPVフロア](Preview/11_FPV_Course.png)
+
+![明るくなった3層カート全景（屋根・手前2壁・トラス非表示）](Preview/16_Kart_Overview.png)
+
+**適用にはシーンの再生成・ライトの再ベイクが必要です。** 導入手順は「導入・配布・編集」、細部は[変更仕様](Documentation/CHANGES_v0.6.1_JA.md)を参照してください。
 
 ## 1. 全体構成
 
@@ -55,7 +121,7 @@
 | ARCHIVE / 2F Quiet Room | 本棚・印刷入りの本・4着席アンカー。BGMとプレイヤー音声をローカルに減衰 |
 | AV / HOST | ホスト操作パネル、動画URL入力、機材ラック、保管スペース |
 | 階段・上階回遊 | 東28段・36.44°、西25段・48.14°、各幅1.50 m。南北の橋で上階を接続 |
-| 床・落下防止 | 上階床厚0.20 m。開放床端の手すり1.05 m、簡略化した衝突範囲1.30 m |
+| 床・落下防止 | 上階床厚0.20 m、手すり1.05 m／衝突範囲1.30 m。スポーン背後に安全ガラス6面と幅5.12 × 高さ9.8 × 厚さ0.24 mの連続衝突範囲 |
 
 **着席アンカーはカフェ常設34、Lounge用12、Academic用24、FPV用7の計77。** 中央の12席と24席は切替なので同時には有効になりません。カートの観戦段・バーのスツールは形状のみで、着席アンカーを追加していません。着席は明示的なInteractで行います。
 
@@ -98,6 +164,8 @@
 ## 4. APEX / NEON SWITCHYARD
 
 写真の密度・青紫の光を参考に、**走路は独自設計**。低い壁と連続する切り返し、頭上の橋、閉じた屋内空間でテクニカルな走行感を狙っています。
+
+橋下・低層・ピット・上層の画像はv0.6.0の形状参考です。v0.6.1の照明はカート全景で確認できます。
 
 ![カート・橋下の走行視点](Preview/17_Kart_Overpass.png)
 
@@ -171,6 +239,8 @@ CVS2本体・車両モデル・操縦・車両同期・レース管理は同梱�
 - 空・太陽・霧・環境色・素材の補助光を連続補間し、時刻と起点を共有します。ライトマップと反射は静的1組です。
 - カート室内のマテリアルは固定の青紫色・発光。室内滞在中の霧と環境色も固定し、外の時間帯で雰囲気を変えません。LOW EMISSION等のローカル設定は有効です。
 
+以下の4枚は旧版の時間帯表現の参考です。v0.6.1では環境光・素材補助光を明るく調整しています。
+
 | 朝 | 昼 | 夕 | 夜 |
 | --- | --- | --- | --- |
 | ![朝](Preview/12_Dawn.png) | ![昼](Preview/13_Day.png) | ![夕](Preview/14_Dusk.png) | ![夜](Preview/15_Night.png) |
@@ -180,8 +250,8 @@ CVS2本体・車両モデル・操縦・車両同期・レース管理は同梱�
 | 項目 | PC | Quest |
 | --- | --- | --- |
 | 建築・家具 | PBR、金属度・粗さ、弱い微細法線 | 軽量な明暗とハイライト、ベイク光 |
-| 窓ガラス | Fresnelとベイク反射 | 窓の描画を省略、衝突は保持 |
-| グロー | 器具のグローカード＋任意の弱いBloom | グローカード。Post Processingなし |
+| 窓ガラス | Fresnelとベイク反射。透明面の影・不透明遮蔽を無効化 | スポーン安全ガラスを保持。東側装飾窓の描画は省略、衝突を保持 |
+| グロー | 拡大した器具グローカード＋任意のBloom | グローカード。Post Processingなし |
 | 反射プローブ | カフェ・FPV・カートに各1、128 px、Box Projection、ベイク | 作成しない |
 | 太陽 | Realtime Directional Light 1灯 | シェーダー側の補助色・方向 |
 | ライトマップの生成設定 | 20 texels/m、最大2048 | 12 texels/m、最大1024 |
@@ -189,7 +259,7 @@ CVS2本体・車両モデル・操縦・車両同期・レース管理は同梱�
 | 建築素材の取込上限 | 1024 | 512 |
 | 描画距離 | Reference Camera far clip 900 m、near 0.03 m | 同左 |
 
-BloomはPost Processing導入時に生成します。強度0.16、閾値1.15、Soft Knee 0.55、Diffusion 4、Fast Mode。未導入なら器具グローのみ。カートの広い床・屋根・外壁にはライトマップ密度の倍率0.08、他のカート部材には0.4を設定しています。
+BloomはPost Processing導入時に生成します。強度0.60、閾値1.05、Soft Knee 0.60、Diffusion 5、Fast Mode。未導入なら器具グローのみ。カートの広い床・屋根・外壁にはライトマップ密度の倍率0.08、他のカート部材には0.4、背景の街並みには0.05を設定しています。ベイク光の強度上限は10です。
 
 建築テクスチャ6種は木・左官・テラゾー・黒皮鋼・真鍮・織布。DJ・酒ラベル・小物用アトラス3種を加え、原本は計9画像です。建築素材はMirror、印刷用アトラスはClamp。元画像の左右・上下端がRepeatで完全一致するとは保証していません。
 
@@ -199,13 +269,16 @@ BloomはPost Processing導入時に生成します。強度0.16、閾値1.15、S
 
 | 対象 | PC三角形数 | PCメッシュ数 | Quest三角形数 | Questメッシュ数 |
 | --- | ---: | ---: | ---: | ---: |
-| ワールド全体 | 295,797 | 186 | 245,507 | 176 |
+| ワールド全体 | 318,781 | 193 | 263,899 | 185 |
+| うち街並み | 30,236 | 6 | 18,804 | 6 |
 | うちFPV | 19,944 | 22 | 14,331 | 21 |
 | うちカート | 135,913 | 35 | 123,403 | 35 |
 
 メッシュ数は書き出し単位で、Unityの描画回数やSetPass数ではありません。PC／Quest実機のFPS・メモリ・配信サイズは未測定です。
 
 ## 7. 平面図・デザイン画
+
+以下は**v0.6.0の過去資料**です。フロア・コース寸法は継続しています。v0.6.1のガラスは[最新衝突CAD](CAD/The_Commons_Implementation_Overlay_v061.dxf)、照明と街並みは今回の画像を参照してください。
 
 **[A3横・8ページの図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf)** ／ **[追加資料一式ZIP](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/download/v0.6.0/The_Commons_v0.6.0_Docs_r1.zip)**
 
@@ -233,21 +306,21 @@ BloomはPost Processing導入時に生成します。強度0.16、閾値1.15、S
 ## 8. 導入・配布・編集
 
 1. VCCでWorlds / Built-in Render Pipelineのプロジェクトを作成。制作時の基準は **Unity 2022.3.22f1／VRChat SDK 3.10.5**。現在の対応版はVCC・公式の指定に従ってください。
-2. [v0.6.0のUnityパッケージ](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.6.0)をインポートするか、`Unity/Assets/TheCommons` と `.meta` をコピー。SDK・UdonSharpはVCC側で導入します。
+2. [v0.6.1のUnityパッケージ](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.6.1)をインポートするか、`Unity/Assets/TheCommons` と `.meta` をコピー。SDK・UdonSharpはVCC側で導入します。
 3. PCのBloomを使う場合は `com.unity.postprocessing@3.4.0` を導入。**The Commons → Build PC World** または **Build Quest World** を実行します。
 4. シーンは `Assets/TheCommons/Generated/PC_日時/` または `Quest_日時/` に新規作成。CVS2／AudioLinkを使う場合は所有者側で追加します。
 5. **The Commons → Bake lighting**、VRChat SDKのBuild & Test、PC／Quest・複数人での確認を行います。アップロードやBlueprint IDは所有者が管理します。
 
 | 配布物 | 用途 |
 | --- | --- |
-| `The_Commons_Compact_v0.6.0.unitypackage` | Unityへインポートするモデル・素材・Editor・UdonSharp・シェーダー |
-| `The_Commons_Compact_v0.6.0_Full.zip` | v0.6.0公開時点の制作データ。Blender・CAD・設計・再生成ソース・実モデル画像19枚 |
-| `The_Commons_v0.6.0_Design_Atlas.pdf` | 今回追加したA3図面集8ページ |
-| `The_Commons_v0.6.0_Docs_r1.zip` | 今回の詳細README・リリース本文・図面・デザイン画・既存画像・設計根拠 |
-| `SHA256SUMS-v0.6.0.txt` | 公開済みモデル配布物・画像のチェックサム |
-| `SHA256SUMS-v0.6.0-docs-r1.txt` | 今回の追加資料・画像のチェックサム |
+| `The_Commons_Compact_v0.6.1.unitypackage` | Unityへインポートするモデル・素材・Editor・UdonSharp・シェーダー |
+| `The_Commons_Compact_v0.6.1_Full.zip` | v0.6.1の制作データ。Blender・CAD・設計・再生成ソース・最新画像7枚を含むプレビュー |
+| `The_Commons_v0.6.0_Design_Atlas.pdf` | v0.6.0のA3図面集8ページ（過去資料） |
+| `The_Commons_v0.6.0_Docs_r1.zip` | v0.6.0の詳細README・図面・デザイン画・設計根拠（過去資料） |
+| `SHA256SUMS-v0.6.1.txt` | 公開済みモデル配布物・画像のチェックサム |
+| `SHA256SUMS-v0.6.0-docs-r1.txt` | v0.6.0追加資料・画像のチェックサム |
 
-今回の資料改訂ではモデル・Unityソース・既存配布パッケージ・v0.6.0タグは変更していません。最新資料はmainと追加資料ZIPに収録しています。
+v0.6.1ではモデル・Unity生成ソース・照明・画像を更新しました。最新の制作データはv0.6.1 Full.zipとmainに収録しています。v0.6.0のタグ・過去配布物は保持しています。
 
 `.blend` は圧縮保存し、画像とフォントをリポジトリ内の相対パスで参照します。Blender編集時はFull.zipを全体展開するかリポジトリごと取得してください。プレビューモデルは [glTF](Preview/The_Commons_Compact.gltf) と [.bin](Preview/The_Commons_Compact.bin)。ブラウザ歩行ビューアは別プロジェクトです。
 
@@ -257,8 +330,8 @@ BloomはPost Processing導入時に生成します。強度0.16、閾値1.15、S
 
 | 区分 | 現在地 |
 | --- | --- |
-| 実施済み | 共通形状36項目＋カート15項目、PC／Questメッシュデータ、C#構文12ファイル、メタデータ、モデル配布物の内容一致、実モデル画像の確認 |
-| 今回の資料 | 8ページをレンダリングして目視確認。寸法は現行マニフェスト、層別図と縦断図は同じ1,987点の走路から生成 |
+| 実施済み | 共通形状46項目＋カート15項目、PC／Questメッシュデータ、C#構文12ファイル、メタデータ、モデル配布物の内容一致、実モデル画像の確認 |
+| 今回の画像 | v0.6.1実モデル7枚をレンダリングして目視確認。v0.6.0の8ページ図面集は過去資料として同梱 |
 | 未実施 | Unity/Udon・シェーダーのコンパイル、Unityライトベイク、VRChat Build & Test、CVS2実走・同期、VRC+実飛行、VR両眼、Quest実機性能 |
 
 [共通形状検査](Documentation/validation_report.json) · [カート形状検査](Documentation/kart_validation.json) · [モデル計測](Documentation/geometry_report.json) · [Unity実機受入表](Documentation/ACCEPTANCE_JA.md) · [図面の入力・版情報](Documentation/Design/atlas_manifest.json)

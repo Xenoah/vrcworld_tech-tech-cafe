@@ -130,9 +130,9 @@
       "name": "TheCommons_PC binary",
       "pass": true,
       "detail": {
-        "meshes": 186,
-        "triangles": 295797,
-        "vertices": 485059,
+        "meshes": 193,
+        "triangles": 318781,
+        "vertices": 523507,
         "invalid_meshes": 0
       }
     },
@@ -146,15 +146,15 @@
     {
       "name": "TheCommons_PC end of file",
       "pass": true,
-      "detail": "19083788"
+      "detail": "20590440"
     },
     {
       "name": "TheCommons_Quest binary",
       "pass": true,
       "detail": {
-        "meshes": 176,
-        "triangles": 245507,
-        "vertices": 408366,
+        "meshes": 185,
+        "triangles": 263899,
+        "vertices": 445258,
         "invalid_meshes": 0
       }
     },
@@ -168,7 +168,47 @@
     {
       "name": "TheCommons_Quest end of file",
       "pass": true,
-      "detail": "16025466"
+      "detail": "17427332"
+    },
+    {
+      "name": "Spawn south edge sealed from floor to roof",
+      "pass": true,
+      "detail": {
+        "sampled_paths": 1650,
+        "unsealed": []
+      }
+    },
+    {
+      "name": "Entry glass collider overlaps floor and both side walls",
+      "pass": true,
+      "detail": {
+        "name": "COL_EntrySafetyGlass",
+        "position": [
+          14,
+          0.125,
+          4.8
+        ],
+        "size": [
+          5.12,
+          0.24,
+          9.8
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "kind": "box",
+        "group": "ARCH_EntrySafety"
+      }
+    },
+    {
+      "name": "Spawn capsule clear of new glass",
+      "pass": true,
+      "detail": {
+        "radius_m": 0.25,
+        "blocked": []
+      }
     },
     {
       "name": "2F route: Orbit Cafe",
@@ -218,7 +258,7 @@
     {
       "name": "PC total mesh target",
       "pass": true,
-      "detail": "Editable objects: 4633"
+      "detail": "Editable objects: 8084"
     },
     {
       "name": "Kart meshes remain in kart export groups",
@@ -294,6 +334,66 @@
           34,
           5
         ]
+      }
+    },
+    {
+      "name": "Entry glass visible in pc",
+      "pass": true,
+      "detail": [
+        {
+          "name": "ARCH_EntrySafety__MAT_SafetyGlass",
+          "group": "ARCH_EntrySafety",
+          "vertices": 144,
+          "triangles": 72
+        }
+      ]
+    },
+    {
+      "name": "City pc geometry budget",
+      "pass": true,
+      "detail": {
+        "triangles": 30236,
+        "meshes": 6,
+        "budget": 36000
+      }
+    },
+    {
+      "name": "City illuminated architecture retained in pc",
+      "pass": true,
+      "detail": "Opaque window/crown materials retained"
+    },
+    {
+      "name": "Entry glass visible in quest",
+      "pass": true,
+      "detail": [
+        {
+          "name": "ARCH_EntrySafety__MAT_SafetyGlass",
+          "group": "ARCH_EntrySafety",
+          "vertices": 144,
+          "triangles": 72
+        }
+      ]
+    },
+    {
+      "name": "City quest geometry budget",
+      "pass": true,
+      "detail": {
+        "triangles": 18804,
+        "meshes": 6,
+        "budget": 28000
+      }
+    },
+    {
+      "name": "City illuminated architecture retained in quest",
+      "pass": true,
+      "detail": "Opaque window/crown materials retained"
+    },
+    {
+      "name": "City has 24 terraced towers and two skybridges",
+      "pass": true,
+      "detail": {
+        "towers": 24,
+        "skybridges": 2
       }
     },
     {

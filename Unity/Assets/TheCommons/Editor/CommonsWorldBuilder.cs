@@ -86,6 +86,7 @@ public static class CommonsWorldBuilder
             }
             m.globalIlluminationFlags=MaterialGlobalIlluminationFlags.BakedEmissive;
             if(r.name=="MAT_Window") {m.shader=Shader.Find("The Commons/Smoked Glass");m.SetColor("_Color",new Color(.1f,.18f,.2f,.07f));}
+            if(r.name=="MAT_SafetyGlass") {m.shader=Shader.Find("The Commons/Smoked Glass");m.SetColor("_Color",new Color(.20f,.36f,.40f,.12f));}
             SaveAsset(m,Out+"/Materials/"+r.name+".mat");materials.Add(r.name,m);
         }
         string meshFile=Root+"/Models/TheCommons_"+(Mobile?"Quest":"PC")+".tcmesh.bytes";
@@ -113,10 +114,15 @@ public static class CommonsWorldBuilder
                 SaveAsset(mesh,Out+"/Meshes/"+name+".asset");
                 GameObject o=new GameObject(name);o.transform.SetParent(Group(group).transform,false);
                 o.AddComponent<MeshFilter>().sharedMesh=mesh;MeshRenderer mr=o.AddComponent<MeshRenderer>();mr.sharedMaterial=materials[mat];
-                mr.shadowCastingMode=ShadowCastingMode.On;
+                bool glass=mat=="MAT_Window" || mat=="MAT_SafetyGlass";
+                mr.shadowCastingMode=glass?ShadowCastingMode.Off:ShadowCastingMode.On;
+                if(glass)mr.receiveShadows=false;
+                if(group=="ENV_City")mr.scaleInLightmap=.05f;
                 if(group.StartsWith("KART_"))
                     mr.scaleInLightmap=(group=="KART_Hall" || group=="KART_Roof" || group.StartsWith("KART_Shell"))?.08f:.4f;
-                if (!group.StartsWith("MODE_") && group!="AV_Hologram")
+                if(glass)
+                    GameObjectUtility.SetStaticEditorFlags(o,StaticEditorFlags.BatchingStatic|StaticEditorFlags.OccludeeStatic);
+                else if (!group.StartsWith("MODE_") && group!="AV_Hologram")
                     GameObjectUtility.SetStaticEditorFlags(o,StaticEditorFlags.ContributeGI|StaticEditorFlags.BatchingStatic|StaticEditorFlags.OccludeeStatic|StaticEditorFlags.OccluderStatic);
             }
         }
@@ -354,7 +360,7 @@ public static class CommonsWorldBuilder
         RenderSettings.fog=true;RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogDensity=.009f;RenderSettings.fogColor=new Color(.026f,.036f,.06f);
         foreach(LightRecord r in data.lights)
         {
-            GameObject o=new GameObject(r.name);o.transform.position=V(r.position);Light l=o.AddComponent<Light>();l.type=LightType.Point;l.lightmapBakeType=LightmapBakeType.Baked;l.range=Mathf.Max(5,r.size*2.5f);l.intensity=Mathf.Clamp(r.power/130f,.5f,6f);l.color=new Color(r.color[0],r.color[1],r.color[2]);l.shadows=LightShadows.Soft;
+            GameObject o=new GameObject(r.name);o.transform.position=V(r.position);Light l=o.AddComponent<Light>();l.type=LightType.Point;l.lightmapBakeType=LightmapBakeType.Baked;l.range=Mathf.Max(5,r.size*2.5f);l.intensity=Mathf.Clamp(r.power/130f,.5f,10f);l.color=new Color(r.color[0],r.color[1],r.color[2]);l.shadows=LightShadows.Soft;
         }
         LightingSettings settings=new LightingSettings();settings.name="Commons_Lighting";settings.bakedGI=true;settings.realtimeGI=false;settings.lightmapper=LightingSettings.Lightmapper.ProgressiveCPU;settings.lightmapResolution=Mobile?12:20;settings.lightmapMaxSize=Mobile?1024:2048;settings.indirectSampleCount=64;settings.directSampleCount=32;settings.environmentSampleCount=64;
         SaveAsset(settings,Out+"/LightingSettings.lighting");Lightmapping.lightingSettings=settings;

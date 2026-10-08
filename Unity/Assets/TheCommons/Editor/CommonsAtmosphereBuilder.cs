@@ -20,8 +20,8 @@ public static class CommonsAtmosphereBuilder
             if(!pair.Key.StartsWith("MAT_Kart")){daylightSurfaces.Add(pair.Value);continue;}
             // The enclosed kart hall keeps its artificial lighting at every outside hour.
             Material interior=pair.Value;
-            interior.SetColor("_TimeTint",new Color(.72f,.78f,1f));
-            interior.SetColor("_DayFill",new Color(.018f,.023f,.045f));
+            interior.SetColor("_TimeTint",new Color(.84f,.90f,1f));
+            interior.SetColor("_DayFill",new Color(.055f,.065f,.10f));
             interior.SetFloat("_TimeEmission",1f);
             if(interior.HasProperty("_SunColor"))interior.SetColor("_SunColor",Color.black);
         }
@@ -35,12 +35,14 @@ public static class CommonsAtmosphereBuilder
             time.sun=sun;RenderSettings.sun=sun;
         }
         GameObject glowRoot=new GameObject("LGT_LocalGlow");comfort.glowRoot=glowRoot;
-        Material warm=GlowMaterial(output,"Warm",new Color(1,.55f,.22f),mobile ? .028f : .035f);
-        Material cool=GlowMaterial(output,"Cool",new Color(.12f,.65f,.95f),mobile ? .023f : .03f);
+        Material warm=GlowMaterial(output,"Warm",new Color(1,.55f,.22f),mobile ? .06f : .09f);
+        Material cool=GlowMaterial(output,"Cool",new Color(.12f,.65f,.95f),mobile ? .05f : .075f);
         time.glows=new[]{warm,cool};
-        foreach(float z in new[]{6.4f,11.3f}) Glow(glowRoot,new Vector3(14,8.55f,z),1.5f,warm);
-        foreach(float x in new[]{8.6f,19.85f})foreach(float y in new[]{2.1f,7f}) Glow(glowRoot,new Vector3(x,y,4.74f),.9f,warm);
-        foreach(float x in new[]{-56f,-46f,-36f}) Glow(glowRoot,new Vector3(x,7.48f,10f),1.4f,cool);
+        foreach(float z in new[]{6.4f,11.3f}) Glow(glowRoot,new Vector3(14,8.55f,z),2.2f,warm);
+        foreach(float x in new[]{8.6f,19.85f})foreach(float y in new[]{2.1f,7f}) Glow(glowRoot,new Vector3(x,y,4.74f),1.4f,warm);
+        foreach(float x in new[]{-56f,-46f,-36f}) Glow(glowRoot,new Vector3(x,7.48f,10f),2f,cool);
+        Glow(glowRoot,new Vector3(14,3.7f,.34f),1.8f,warm);
+        foreach(float z in new[]{9.5f,14.5f}) Glow(glowRoot,new Vector3(27.58f,7f,z),1.4f,cool);
         time.ApplyHour(20f);time.ApplyProxyModifications();return time;
     }
     static Material GlowMaterial(string output,string name,Color color,float intensity)
@@ -89,10 +91,10 @@ public static class CommonsAtmosphereBuilder
         SerializedObject sceneDescriptor=new SerializedObject(descriptor);
         SerializedProperty referenceCamera=sceneDescriptor.FindProperty("ReferenceCamera");
         if(referenceCamera==null)throw new InvalidOperationException("The installed SDK has no ReferenceCamera field. Verify its scene descriptor API before building.");
-        ScriptableObject profile=ScriptableObject.CreateInstance(profileType);profile.name="Commons_SubtleBloom";
+        ScriptableObject profile=ScriptableObject.CreateInstance(profileType);profile.name="Commons_AtmosphereBloom";
         object bloom=profileType.GetMethod("AddSettings",new[]{typeof(Type)}).Invoke(profile,new object[]{bloomType});
-        SetParameter(bloom,"enabled",true);SetParameter(bloom,"intensity",.16f);SetParameter(bloom,"threshold",1.15f);
-        SetParameter(bloom,"softKnee",.55f);SetParameter(bloom,"diffusion",4f);SetParameter(bloom,"fastMode",true);
+        SetParameter(bloom,"enabled",true);SetParameter(bloom,"intensity",.60f);SetParameter(bloom,"threshold",1.05f);
+        SetParameter(bloom,"softKnee",.60f);SetParameter(bloom,"diffusion",5f);SetParameter(bloom,"fastMode",true);
         AssetDatabase.CreateAsset(profile,output+"/CommonsBloom.asset");AssetDatabase.AddObjectToAsset((UnityEngine.Object)bloom,profile);
         // VRChat copies this camera's settings and PostProcessLayer to the player camera.
         // Keep it outside the local glow root: the toggle only enables/disables the volume.

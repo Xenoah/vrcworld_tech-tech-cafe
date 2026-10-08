@@ -1,26 +1,92 @@
 # THE COMMONS — Compact Edition
 
-**v0.6.0 / 詳細モデル・Unity構築データ / 2026-10-07**
+**v0.6.1 / 詳細モデル・Unity構築データ / 2026-10-08**
 
 28×18m、1F +0.000m、2F +4.800m、屋根基準 +9.600mの制作データです。Blenderで編集できる実形状、FBX、glTF、生成テクスチャ、VRChat SDK用のシーン構築ツールとUdonSharpソースを含みます。
 
 **Unity Editor / VRChatクライアントは制作環境になかったため、Unityでのコンパイル・ライトベイク・Build & Test・Quest実機・複数人通信は未検証です。公開済みワールドやビルド済み `.vrcw` ではありません。** Blenderレンダーと幾何検査の結果は `Preview/` と `Documentation/validation_report.json` に収録しています。
 
-Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md)、今回の修正は [CHANGES_v0.6.0_JA.md](Documentation/CHANGES_v0.6.0_JA.md) を参照してください。
+Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md)、今回の修正は [CHANGES_v0.6.1_JA.md](Documentation/CHANGES_v0.6.1_JA.md) を参照してください。
 
-**詳細仕様・寸法付き平面図・実モデルのデザインシートは [README](README.md) と [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) に整理しています。モデル版はv0.6.0、資料は2026-10-07改訂1です。**
+**詳細仕様・寸法付き平面図・実モデルのデザインシートは [README](README.md) と [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) に整理しています。モデル版はv0.6.1、図面集はv0.6.0の過去資料です。最新のガラス・照明・街並みは今回の画像を参照してください。**
+
+## v0.6.1の変更
+
+
+### 1. スポーン背後の落下対策
+
+南壁中央の開口に6面の安全ガラス、真鍮の縦枠、目線下の細い表示線、足元灯を追加しました。床から屋根まで1つのBoxColliderで覆い、両側の壁・床・屋根と重ねて、ガラスの継目も通り抜けられない形状にしています。
+
+| 項目 | 仕様 |
+| --- | --- |
+| 開口幅／衝突範囲 | 開口5 m、衝突は幅5.12 × 高さ9.8 × 厚さ0.24 m |
+| 衝突中心 | Unity `(14, 4.8, 0.125)` m |
+| PC／Quest | どちらも安全ガラスの描画・衝突を保持 |
+| 外景 | ガラスは影を落とさず、不透明な遮蔽物としても扱わない設定 |
+
+スポーン位置、既存のワープ着地点・床・階段・着席位置は維持しています。Questで東側の装飾窓を省略する処理から、安全ガラスを分離しました。
+
+### 2. 室内・全時間帯の明るさ
+
+カフェ既存灯の出力を1.65倍、FPV／カートを1.35倍にし、BlenderとUnity生成用マニフェストへ反映しました。倍率は光源の設定値で、実機で測定した明るさではありません。
+
+- 入口・中央ラウンジ・上階南通路に、ベイク用の補助灯を3灯追加。
+- 東・北側にコーブ照明を配置し、床石・左官・木・鋼材の基準色を調整。
+- 夜間環境光と昼夜の素材補助光を増やし、暗い面の見やすさを改善。
+- カートの青紫色は維持し、路面補助光と固定Tintを明るく調整。
+- Unityのベイク光強度上限を6→10に変更。プレビューの露出は従来値を維持。
+
+### 3. 環境グロー
+
+| 設定 | v0.6.0 | v0.6.1 |
+| --- | ---: | ---: |
+| PC Bloom intensity | 0.16 | 0.60 |
+| Bloom threshold | 1.15 | 1.05 |
+| Bloom soft knee / diffusion | 0.55 / 4 | 0.60 / 5 |
+| PC 器具グロー 暖色／寒色 | 0.035 / 0.030 | 0.090 / 0.075 |
+| Quest 器具グロー 暖色／寒色 | 0.028 / 0.023 | 0.060 / 0.050 |
+
+器具グローの範囲を広げ、入口・テラスにも追加。PCの画面全体のBloomにはPost Processing Stack v2が必要です。Questは器具グローと発光材を使用し、SOFT GLOW／LOW EMISSIONは引き続きプレイヤーごとに調整できます。
+
+### 4. 周辺建築
+
+単純な30棟を、各3段のセットバックを持つ24棟へ変更しました。石の柱と水平帯、金属感のある不透明ガラス外装、暖色・寒色の窓、発光する冠部、屋上庭園、2本の空中回廊を配置。東テラスと南側のスポーンガラスから見える街並みを整えました。
+
+高さは基部から22〜62 m。棟ごとの配置・高さは固定し、再生成しても変わりません。材質ごとに6メッシュへまとめ、追加テクスチャ・リアルタイム光源・衝突形状は使っていません。街並みは背景用で、屋上・空中回廊への歩行ルートやワープはありません。
+
+
+
+### v0.6.1の実モデル画像
+
+Blender 4.5.3 / Cyclesで撮影した7枚です。Unity／VRChatの実機画像ではありません。カート全景のみ屋根・手前2壁・トラスを非表示にしています。
+
+![明るくなったカフェ全景](Preview/01_Entrance_160cm.png)
+
+![上階と環境グロー](Preview/04_Mezzanine_160cm.png)
+
+![スポーン背後の落下防止ガラス](Preview/21_Spawn_Glass.png)
+
+![テラスから見える街並み](Preview/22_Horizon_Skyline.png)
+
+![24棟の周辺建築と冠部・屋上庭園](Preview/23_City_Architecture.png)
+
+![明るくなったFPVフロア](Preview/11_FPV_Course.png)
+
+![明るくなった3層カート全景（屋根・手前2壁・トラス非表示）](Preview/16_Kart_Overview.png)
+
+**再生成・再ベイクが必要です。** 既存の生成シーンは残し、新しいシーンへ必要な設定を移してください。
 
 ## 最短の導入
 
 1. VRChat Creator Companionで **Worldsプロジェクト** を作成します。制作基準は **Unity 2022.3.22f1**。Built-in Render Pipelineを使います。SDK / UdonSharpはVCCの導入分を利用します。
-2. `Unity/Assets/TheCommons` を、作成したプロジェクトの `Assets` へフォルダーごとコピーします。Release v0.6.0のUnityパッケージをインポートする方法でも導入できます。
+2. `Unity/Assets/TheCommons` を、作成したプロジェクトの `Assets` へフォルダーごとコピーします。Release v0.6.1のUnityパッケージをインポートする方法でも導入できます。
 3. C#のインポートが完了したら、Unity上部メニュー **The Commons → Build PC World** を実行します。最初にUdonSharpをコンパイルし、メッシュ・マテリアル・コライダー・操作パネル・スポーン・照明を配置します。
 4. シーンは `Assets/TheCommons/Generated/PC_日時/TheCommons.unity` に保存されます。既存シーンは上書きしません。
 5. **The Commons → Bake lighting** でライトマップを生成します。PCはPBRと補助光、Questは頂点の環境色をベイク前の補助表示に使います。
 6. VRChat SDK Control Panelで **Build & Test**。初回は入口、東階段、西階段脇ポータル、Quiet Room、モード切替を確認してください。
 7. モバイル版は **Build Quest World** で別シーンを作り、Androidへプラットフォームを切り替えて同様にベイク・テストします。SDKで同じワールドとして管理する場合のBlueprintは所有者側で設定してください。
 
-元資料が指定するCAD/JSONの不整合は、`Documentation/CAD_CHANGES_JA.md` に明示しました。採用した補完箇所は `CAD/The_Commons_Implementation_Overlay_v06.dxf` で確認できます。元CADは `SourceDesign/CAD/` にそのまま残しています。
+元資料が指定するCAD/JSONの不整合は、`Documentation/CAD_CHANGES_JA.md` に明示しました。採用した補完箇所は `CAD/The_Commons_Implementation_Overlay_v061.dxf` で確認できます。元CADは `SourceDesign/CAD/` にそのまま残しています。
 
 ## 入っているもの
 
@@ -33,7 +99,7 @@ Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md
 | `Unity/Assets/TheCommons/Textures/` | 建築素材6種＋専用印刷アトラス3種の生成原本 |
 | `Unity/Assets/TheCommons/Media/` | 差し替え可能な4枚のスライド・6枚のポスター |
 | `Unity/Assets/TheCommons/Audio/` | オリジナルの環境音・アンビエント・96 BPMのDJループ |
-| `Preview/` | カフェ・小物・FPV・時間帯・カートの設計プレビュー19枚、外部参照形式のglTFモデル |
+| `Preview/` | カフェ・小物・FPV・時間帯・カートの設計プレビュー（最新Release画像7枚を含む）、外部参照形式のglTFモデル |
 | `SourceDesign/` | 元仕様、元CAD、元スケジュール、参考画像、添付PDF |
 
 ## モデルの細部
@@ -74,11 +140,11 @@ DJシェーダーはAudioLinkのグローバル `_AudioTexture` の4バンドを
 - PCのインポート上限は共通素材1024、モバイルは512。法線・金属度・粗さは形状とシェーダーの値で整理しています。
 - スライドは `Media/slide_0.png`〜`slide_3.png`、ポスターは `poster_0.png`〜`poster_5.png` を交換してからシーンを再構築できます。作成済みシーンは生成先のマテリアルのテクスチャを交換できます。
 - 実際のスライド面はUnityで別の正規UV面を追加します。Blenderの文字入りスクリーンは確認用の静的表示です。
-- 再生成時は `build_world.py → export_world.py → prepare_media.py --manifest-only → prepare_repository_assets.py → validate_world.py → validate_kart.py → package_release.py --metadata-only` の順。`render_views.py` は従来の確認画像、`render_kart_views.py` はカート画像5枚を出します。Blender 4.5 LTS、Python側の numpy/scipy/Pillow/ezdxf/shapely が必要です。
+- 再生成時は `build_world.py → export_world.py → prepare_media.py --manifest-only → prepare_repository_assets.py → validate_world.py → validate_kart.py → package_release.py --metadata-only` の順。v0.6.1の画像は `render_atmosphere_views.py` の6枚と `render_kart_views.py 16_Kart_Overview` の1枚です。C#構文検査は `validate_csharp.py`（tree-sitter / tree-sitter-c-sharpが必要）。画像・資料を確定してから `package_release.py → verify_release.py` で配布物を作成・照合します。Blender 4.5 LTS、Python側の numpy/scipy/Pillow/ezdxf/shapely が必要です。
 
 ## 検証の区分
 
-実行済み: Blenderでモデル生成・保存・開き直し、カフェ・FPV・4時間帯の実モデルレンダー、メッシュの有限数/インデックス/向き/データ末尾、外形/階高/ステージ/画面寸法、上階接続の平面検査、共通形状36項目＋カート15項目、C#構文12ファイル、SDK 3.10.5の公開メンバー照合。
+実行済み: Blenderでモデル生成・保存・開き直し、v0.6.1のカフェ・FPV・カート・街並みの実モデル画像7枚（旧版の4時間帯画像は参考資料）、メッシュの有限数/インデックス/向き/データ末尾、外形/階高/ステージ/画面寸法、上階接続の平面検査、共通形状46項目＋カート15項目、C#構文12ファイル、SDK 3.10.5の公開メンバー照合。
 
 未実行: Unity/Udonコンパイル、シェーダーコンパイル、Unityライトマップ、VRChat Build & Test、アップロード、複数人同期、視線追従やVR両眼、QuestのFPS/メモリ/ダウンロード容量測定。
 
@@ -102,7 +168,7 @@ Git登録用の `.blend` は圧縮保存し、画像・フォントを相対パ�
 
 ## v0.4.0追加更新（2026-10-07）
 
-現在のmainは独立FPVフロア、PBR／Quest用軽量シェーダー、弱いグロー、全時間帯の同期切替を含みます。仕様・モデル数・追加画像・検証範囲は [CHANGES_v0.4.0_JA.md](Documentation/CHANGES_v0.4.0_JA.md) を参照してください。[Release v0.4.0](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.4.0)にUnityパッケージと制作データ一式を収録しています。
+現在のmainは独立FPVフロア、PBR／Quest用軽量シェーダー、v0.6.1で強化したグロー、全時間帯の同期切替を含みます。仕様・モデル数・追加画像・検証範囲は [CHANGES_v0.4.0_JA.md](Documentation/CHANGES_v0.4.0_JA.md) を参照してください。[Release v0.4.0](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.4.0)にUnityパッケージと制作データ一式を収録しています。
 
 ## v0.6.0 屋内ネオンカート
 

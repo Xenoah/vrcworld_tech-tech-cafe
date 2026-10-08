@@ -34,10 +34,10 @@ def mat(name,color,texture=None,rough=.72,metal=0,emit=0,wrap='mirror'):
   m.node_tree.links.new(n.outputs['Color'],mix.inputs[1]); m.node_tree.links.new(mix.outputs[0],p.inputs['Base Color'])
  m['texture_key']=texture or ''; m['emission']=emit; m['wrap']=wrap; M[name]=m
  return m
-mat('MAT_Steel',(.62,.69,.75),'blackened_steel',.65,.45)
-mat('MAT_Oak',(.8,.64,.48),'warm_oak',.65)
-mat('MAT_Plaster',(.39,.43,.46),'mineral_plaster',.9)
-mat('MAT_Stone',(.53,.56,.6),'basalt_terrazzo',.58)
+mat('MAT_Steel',(.70,.77,.82),'blackened_steel',.65,.45)
+mat('MAT_Oak',(.87,.73,.59),'warm_oak',.65)
+mat('MAT_Plaster',(.56,.59,.62),'mineral_plaster',.9)
+mat('MAT_Stone',(.67,.70,.74),'basalt_terrazzo',.58)
 mat('MAT_Brass',(.72,.56,.37),'satin_brass',.48,.65)
 mat('MAT_Fabric',(.85,.86,.86),'teal_woven',.96)
 mat('MAT_Cream',(.53,.43,.28),'teal_woven',.98)
@@ -51,6 +51,8 @@ mat('MAT_Label',(.52,.43,.30),rough=.9)
 mat('MAT_Glass',(.065,.13,.155),rough=.25,metal=.22)
 glass=mat('MAT_Window',(.11,.19,.22),rough=.25)
 gn=glass.node_tree.nodes;gl=glass.node_tree.links;gp=gn.get('Principled BSDF');go=gn.get('Material Output');gt=gn.new('ShaderNodeBsdfTransparent');gm=gn.new('ShaderNodeMixShader');gm.inputs[0].default_value=.07;gl.new(gt.outputs[0],gm.inputs[1]);gl.new(gp.outputs[0],gm.inputs[2]);gl.new(gm.outputs[0],go.inputs['Surface'])
+glass=mat('MAT_SafetyGlass',(.20,.36,.40),rough=.18,metal=.12)
+gn=glass.node_tree.nodes;gl=glass.node_tree.links;gp=gn.get('Principled BSDF');go=gn.get('Material Output');gt=gn.new('ShaderNodeBsdfTransparent');gm=gn.new('ShaderNodeMixShader');gm.inputs[0].default_value=.12;gl.new(gt.outputs[0],gm.inputs[1]);gl.new(gp.outputs[0],gm.inputs[2]);gl.new(gm.outputs[0],go.inputs['Surface'])
 mat('MAT_Amber',(.95,.42,.115),rough=.5,emit=2.3)
 mat('MAT_Cyan',(.02,.48,.72),rough=.5,emit=1.6)
 mat('MAT_White',(.72,.82,.86),rough=.6,emit=.5)
@@ -241,6 +243,19 @@ for y in [2.6,5,10.2,15.3,17.6]:box('ARCH_RoofBeam',(14,y,9.22),(27.6,.18,.36),'
 for x in range(1,28,2):box('ARCH_CeilingBatten',(x,9,9.51),(.06,17.5,.08),'MAT_Oak')
 box('ARCH_EntranceHeader',(14,.14,3.7),(5,.28,.32),'MAT_Steel')
 text_obj('ARCH_EntrySign','THE  COMMONS',(14,.32,3.7),.28,'MAT_Amber',rot=(math.pi/2,0,math.pi))
+# Seal the unsupported south opening behind spawn. The continuous collider
+# overlaps both side walls, the ground and roof: panel joints never create gaps.
+# Keep this glass in BOTH exports; decorative east panes may be omitted on Quest.
+group('ARCH_EntrySafety')
+colbox('EntrySafetyGlass',(14,.125,4.8),(5.12,.24,9.8))
+for x in [11.53,14,16.47]:box('ARCH_EntryMullion',(x,.15,4.8),(.065,.14,9.6),'MAT_Brass')
+for z in [.10,4.68,9.51]:box('ARCH_EntryTransom',(14,.15,z),(5,.16,.10),'MAT_Steel')
+for x in [12.765,15.235]:
+ for low,high in [(.15,3.54),(3.86,4.63),(4.73,9.46)]:
+  box('ARCH_EntrySafetyPane',(x,.125,(low+high)/2),(2.405,.028,high-low),'MAT_SafetyGlass')
+ # Fine brass manifestation stripes make the clear barrier visible at eye level.
+ box('ARCH_EntryGlassStripe',(x,.149,1.15),(2.38,.012,.018),'MAT_Brass')
+box('LGT_EntrySill',(14,.245,.10),(4.9,.025,.018),'MAT_Amber')
 
 group('ARCH_Mezzanine')
 # Tile the slabs around CAD stair openings; surface top is exactly 4.800.
@@ -468,6 +483,12 @@ group('LGT_Main')
 area('LGT_AtriumSoft',(14,8.7,8.8),(14,9,0),1300,(.55,.71,1),6.5)
 area('LGT_StageNeutral',(14,12.3,4.45),(14,13.2,.25),420,(.85,.86,1),3)
 area('LGT_BarFill',(5,10.4,4.35),(1,10,1),330,(1,.60,.33),4)
+area('LGT_EntryFill',(14,1.6,3.4),(14,2.7,0),270,(1,.79,.58),3.5)
+area('LGT_LoungeFill',(14,6.2,4.4),(14,6.2,0),380,(.85,.91,1),4.5)
+area('LGT_UpperWalkFill',(14,3.8,8.9),(14,3.8,4.8),400,(1,.82,.62),4.5)
+for z in [4.43,9.31]:
+ box('LGT_EastCove',(27.64,9,z),(.04,17,.045),'MAT_Amber')
+ box('LGT_NorthCove',(14,17.67,z),(27,.04,.045),'MAT_Cyan')
 for y in [6.4,11.3]:
  ring('LGT_Halo',(14,y,8.65),1.7,.045,'MAT_Brass',80,6);ring('LGT_HaloLight',(14,y,8.60),1.68,.022,'MAT_Amber',80,5)
 for x,y in [(8.6,5),(19.85,5),(8.65,15.65),(19.85,15.65)]:
@@ -478,15 +499,8 @@ for y in [5.8,8.5,10.8]:
  for j in range(3):plant(8.25,y+j*.4,4.8,height=.70,r=.14)
 for x in [10,18.6]:plant(x,3.5,4.8,height=.9,r=.25)
 
-# City beyond the east wall, separate low-poly removable group.
-group('ENV_City')
-for i in range(30):
- x=random.uniform(35,67);y=random.uniform(-25,43);h=random.uniform(8,38);w=random.uniform(2,5);d=random.uniform(2,5)
- box('ENV_CityTower',(x,y,h/2-8),(w,d,h),'MAT_Black')
- for zz in range(0,int(h)-1,2):
-  for yy in [-.32,0,.32]:
-   if random.random()>.48:box('ENV_Window',(x-w/2-.01,y+yy*d,zz-7),(.015,d*.12,.5),'MAT_Cyan' if i%4==0 else 'MAT_Amber')
- if i%3==0:beam('ENV_Antenna',(x,y,h-8),(x,y,h-5),.035,'MAT_Steel')
+# Deterministic architectural skyline, separately batched from indoor geometry.
+CITY=runpy.run_path(str(ROOT/'Blender/build_city.py'),init_globals=globals())['CITY']
 
 # Transparent marker collections not exported as render geometry.
 group('INT_Markers')
@@ -496,8 +510,15 @@ for name,p in [('SPAWN_Entry',(14,1.2,.10)),('TP_Lower',(18.0,1.5,.1)),('TP_Uppe
 FPV=runpy.run_path(str(ROOT/'Blender/build_fpv_field.py'),init_globals=globals())['FPV']
 KART=runpy.run_path(str(ROOT/'Blender/build_kart_circuit.py'),init_globals=globals())['KART']
 
+# Match Blender and the Unity light manifest. Raise usable illumination rather
+# than only raising preview exposure. No additional realtime Unity point lights.
+def light_gain(name):return 1.35 if name.startswith(('FPV_','LGT_FPV','KART_')) else 1.65
+for o in bpy.data.objects:
+ if o.type=='LIGHT':o.data.energy*=light_gain(o.name)
+for r in LIGHTS:r['power']*=light_gain(r['name'])
+
 world=bpy.data.worlds.new('The Commons blue hour');S.world=world;world.use_nodes=True
-world.node_tree.nodes.get('Background').inputs[0].default_value=(.085,.12,.19,1);world.node_tree.nodes.get('Background').inputs[1].default_value=.32
+world.node_tree.nodes.get('Background').inputs[0].default_value=(.12,.17,.26,1);world.node_tree.nodes.get('Background').inputs[1].default_value=.48
 group('OPT_Cameras')
 def camera(name,pos,target,lens):
  data=bpy.data.cameras.new(name);data.lens=lens;data.clip_end=180;data.clip_start=.06
@@ -513,6 +534,9 @@ camera('08_BarLabels_Detail',(2.40,7.35,2.90),(.84,7.35,2.85),54)
 camera('09_Coffee_Detail',(4.5,4.75,1.98),(4.35,6.00,1.41),48)
 camera('10_FPV_Field',(-42.5,3,1.6),(-46,16,2.7),19)
 camera('11_FPV_Course',(-33,23,6.7),(-49,14,1.7),22)
+camera('21_Spawn_Glass',(15.4,4.7,1.6),(13.8,.125,1.8),20)
+camera('22_Horizon_Skyline',(21.7,9.1,6.4),(45,23,10),22)
+camera('23_City_Architecture',(-14,-70,50),(32,10,12),32)
 for n,c in KART['cameras'].items():
  camera(n,c['position'],c['target'],c['lens']);CAMS[n].data.clip_end=1000
 S.camera=CAMS['01_Entrance_160cm']
@@ -520,14 +544,14 @@ S.render.engine='CYCLES';S.cycles.samples=32;S.cycles.use_denoising=True;S.cycle
 S.render.resolution_x=1600;S.render.resolution_y=1000;S.render.resolution_percentage=100
 S.view_settings.view_transform='AgX';S.view_settings.look='AgX - Medium High Contrast';S.view_settings.exposure=1.05
 S.render.image_settings.file_format='PNG';S.render.film_transparent=False
-S['project']='THE COMMONS - Compact Edition';S['revision']='0.6.0';S['source']='SourceDesign/world_spec.json';S['world_test_status']='Unity and VRChat runtime tests pending'
+S['project']='THE COMMONS - Compact Edition';S['revision']='0.6.1';S['source']='SourceDesign/world_spec.json';S['world_test_status']='Unity and VRChat runtime tests pending'
 # Hide only inactive mode, preserving authoring editability.
 for o in GROUPS['MODE_Academic'].objects:o.hide_render=True;o.hide_set(True)
 for im in bpy.data.images:
  if im.source=='FILE':im.pack()
 for o in bpy.data.objects:
  if o.type=='MESH':o['commons_group']=o.users_collection[0].name
-report={'version':'0.6.0','fpv':FPV,'kart':KART,'footprint':[28,18],'level_tops':[0,4.8,9.6],'stage':{'center':[14,13.2],'diameter':4.8,'height':.25},'screen':[7.1,4.0],'stair_design':COUNTS,'colliders':COL,'lights':LIGHTS,'seat_anchors':SEATS,'cameras':{n:{'position':list(o.location),'eye_height':1.6 if '160cm' in n else None} for n,o in CAMS.items()},'materials':{n:{'color':list(m.diffuse_color),'texture':m.get('texture_key',''),'emission':m.get('emission',0),'wrap':m.get('wrap','mirror'),'roughness':m.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value,'metallic':m.node_tree.nodes.get('Principled BSDF').inputs['Metallic'].default_value} for n,m in M.items()}}
+report={'version':'0.6.1','city':CITY,'fpv':FPV,'kart':KART,'footprint':[28,18],'level_tops':[0,4.8,9.6],'stage':{'center':[14,13.2],'diameter':4.8,'height':.25},'screen':[7.1,4.0],'stair_design':COUNTS,'colliders':COL,'lights':LIGHTS,'seat_anchors':SEATS,'cameras':{n:{'position':list(o.location),'eye_height':1.6 if '160cm' in n else None} for n,o in CAMS.items()},'materials':{n:{'color':list(m.diffuse_color),'texture':m.get('texture_key',''),'emission':m.get('emission',0),'wrap':m.get('wrap','mirror'),'roughness':m.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value,'metallic':m.node_tree.nodes.get('Principled BSDF').inputs['Metallic'].default_value} for n,m in M.items()}}
 (ASSET/'Data/world_manifest.json').write_text(json.dumps(report,indent=2,default=lambda x:x.item() if hasattr(x,'item') else list(x)))
 (ROOT/'Documentation/model_manifest.json').write_text(json.dumps(report,indent=2,default=lambda x:x.item() if hasattr(x,'item') else list(x)))
 bpy.ops.file.pack_all()

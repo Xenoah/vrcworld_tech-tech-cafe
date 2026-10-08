@@ -1,8 +1,32 @@
 {
   "pc": {
-    "triangles": 295797,
-    "render_meshes": 186,
+    "triangles": 318781,
+    "render_meshes": 193,
     "meshes": [
+      {
+        "name": "ARCH_EntrySafety__MAT_Amber",
+        "group": "ARCH_EntrySafety",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "ARCH_EntrySafety__MAT_Brass",
+        "group": "ARCH_EntrySafety",
+        "vertices": 120,
+        "triangles": 60
+      },
+      {
+        "name": "ARCH_EntrySafety__MAT_SafetyGlass",
+        "group": "ARCH_EntrySafety",
+        "vertices": 144,
+        "triangles": 72
+      },
+      {
+        "name": "ARCH_EntrySafety__MAT_Steel",
+        "group": "ARCH_EntrySafety",
+        "vertices": 72,
+        "triangles": 36
+      },
       {
         "name": "ARCH_Mezzanine__MAT_Brass",
         "group": "ARCH_Mezzanine",
@@ -250,28 +274,40 @@
         "triangles": 3488
       },
       {
-        "name": "ENV_City__MAT_Amber",
+        "name": "ENV_City__MAT_Brass",
         "group": "ENV_City",
-        "vertices": 10560,
-        "triangles": 5280
+        "vertices": 4032,
+        "triangles": 2240
       },
       {
-        "name": "ENV_City__MAT_Black",
+        "name": "ENV_City__MAT_CityCool",
         "group": "ENV_City",
-        "vertices": 720,
-        "triangles": 360
+        "vertices": 6688,
+        "triangles": 3768
       },
       {
-        "name": "ENV_City__MAT_Cyan",
+        "name": "ENV_City__MAT_CityGlazing",
         "group": "ENV_City",
-        "vertices": 3120,
-        "triangles": 1560
+        "vertices": 1728,
+        "triangles": 864
       },
       {
-        "name": "ENV_City__MAT_Steel",
+        "name": "ENV_City__MAT_CityStone",
         "group": "ENV_City",
-        "vertices": 480,
-        "triangles": 280
+        "vertices": 26112,
+        "triangles": 15440
+      },
+      {
+        "name": "ENV_City__MAT_CityWarm",
+        "group": "ENV_City",
+        "vertices": 12008,
+        "triangles": 6772
+      },
+      {
+        "name": "ENV_City__MAT_LeafLight",
+        "group": "ENV_City",
+        "vertices": 2304,
+        "triangles": 1152
       },
       {
         "name": "FPV_Course__MAT_Black",
@@ -1038,14 +1074,20 @@
       {
         "name": "LGT_Main__MAT_Amber",
         "group": "LGT_Main",
-        "vertices": 3392,
-        "triangles": 1696
+        "vertices": 3440,
+        "triangles": 1720
       },
       {
         "name": "LGT_Main__MAT_Brass",
         "group": "LGT_Main",
         "vertices": 3200,
         "triangles": 1920
+      },
+      {
+        "name": "LGT_Main__MAT_Cyan",
+        "group": "LGT_Main",
+        "vertices": 48,
+        "triangles": 24
       },
       {
         "name": "MODE_Academic__MAT_Brass",
@@ -1122,9 +1164,33 @@
     ]
   },
   "quest": {
-    "triangles": 245507,
-    "render_meshes": 176,
+    "triangles": 263899,
+    "render_meshes": 185,
     "meshes": [
+      {
+        "name": "ARCH_EntrySafety__MAT_Amber",
+        "group": "ARCH_EntrySafety",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "ARCH_EntrySafety__MAT_Brass",
+        "group": "ARCH_EntrySafety",
+        "vertices": 120,
+        "triangles": 60
+      },
+      {
+        "name": "ARCH_EntrySafety__MAT_SafetyGlass",
+        "group": "ARCH_EntrySafety",
+        "vertices": 144,
+        "triangles": 72
+      },
+      {
+        "name": "ARCH_EntrySafety__MAT_Steel",
+        "group": "ARCH_EntrySafety",
+        "vertices": 72,
+        "triangles": 36
+      },
       {
         "name": "ARCH_Mezzanine__MAT_Brass",
         "group": "ARCH_Mezzanine",
@@ -1354,16 +1420,40 @@
         "triangles": 1953
       },
       {
-        "name": "ENV_City__MAT_Black",
+        "name": "ENV_City__MAT_Brass",
         "group": "ENV_City",
-        "vertices": 720,
-        "triangles": 360
+        "vertices": 4032,
+        "triangles": 2240
       },
       {
-        "name": "ENV_City__MAT_Steel",
+        "name": "ENV_City__MAT_CityCool",
         "group": "ENV_City",
-        "vertices": 480,
-        "triangles": 280
+        "vertices": 4374,
+        "triangles": 2110
+      },
+      {
+        "name": "ENV_City__MAT_CityGlazing",
+        "group": "ENV_City",
+        "vertices": 1728,
+        "triangles": 864
+      },
+      {
+        "name": "ENV_City__MAT_CityStone",
+        "group": "ENV_City",
+        "vertices": 17430,
+        "triangles": 8646
+      },
+      {
+        "name": "ENV_City__MAT_CityWarm",
+        "group": "ENV_City",
+        "vertices": 7768,
+        "triangles": 3792
+      },
+      {
+        "name": "ENV_City__MAT_LeafLight",
+        "group": "ENV_City",
+        "vertices": 2304,
+        "triangles": 1152
       },
       {
         "name": "FPV_Course__MAT_Black",
@@ -2100,14 +2190,20 @@
       {
         "name": "LGT_Main__MAT_Amber",
         "group": "LGT_Main",
-        "vertices": 3392,
-        "triangles": 1696
+        "vertices": 3440,
+        "triangles": 1720
       },
       {
         "name": "LGT_Main__MAT_Brass",
         "group": "LGT_Main",
         "vertices": 3200,
         "triangles": 1920
+      },
+      {
+        "name": "LGT_Main__MAT_Cyan",
+        "group": "LGT_Main",
+        "vertices": 48,
+        "triangles": 24
       },
       {
         "name": "MODE_Academic__MAT_Brass",

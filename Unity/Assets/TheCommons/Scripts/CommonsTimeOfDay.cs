@@ -71,22 +71,22 @@ public class CommonsTimeOfDay : UdonSharpBehaviour
             sky.SetColor("_Ground",Color.Lerp(new Color(.018f,.023f,.035f),new Color(.18f,.21f,.24f),day));
             sky.SetVector("_SunDirection",direction); sky.SetColor("_SunColor",sunlight * day * 1.8f);
         }
-        RenderSettings.ambientSkyColor = Color.Lerp(new Color(.10f,.14f,.22f),new Color(.45f,.56f,.7f),day);
-        RenderSettings.ambientEquatorColor = Color.Lerp(new Color(.075f,.085f,.11f),new Color(.27f,.30f,.34f),day);
-        RenderSettings.ambientGroundColor = Color.Lerp(new Color(.045f,.042f,.04f),new Color(.13f,.12f,.10f),day);
+        RenderSettings.ambientSkyColor = Color.Lerp(new Color(.20f,.26f,.36f),new Color(.52f,.63f,.76f),day);
+        RenderSettings.ambientEquatorColor = Color.Lerp(new Color(.15f,.17f,.21f),new Color(.34f,.37f,.41f),day);
+        RenderSettings.ambientGroundColor = Color.Lerp(new Color(.095f,.095f,.105f),new Color(.18f,.17f,.15f),day);
         RenderSettings.fogColor = Color.Lerp(new Color(.026f,.036f,.06f),horizon*.72f,day);
         bool atKart=Utilities.IsValid(Networking.LocalPlayer) && Networking.LocalPlayer.GetPosition().x>=100f;
         RenderSettings.fogDensity = atKart?.0025f:Mathf.Lerp(.007f,.0035f,day);
         if(atKart)
         {
-            RenderSettings.ambientSkyColor=new Color(.065f,.075f,.14f);
-            RenderSettings.ambientEquatorColor=new Color(.035f,.045f,.09f);
-            RenderSettings.ambientGroundColor=new Color(.015f,.018f,.035f);
+            RenderSettings.ambientSkyColor=new Color(.13f,.16f,.25f);
+            RenderSettings.ambientEquatorColor=new Color(.09f,.105f,.17f);
+            RenderSettings.ambientGroundColor=new Color(.045f,.055f,.09f);
             RenderSettings.fogColor=new Color(.012f,.016f,.036f);
         }
         if (sun != null) { sun.transform.rotation=Quaternion.LookRotation(-direction); sun.color=sunlight; sun.intensity=day*.85f; }
-        Color tint = Color.Lerp(new Color(.78f,.84f,.94f),Color.white,day);
-        Color fill = Color.Lerp(new Color(.008f,.012f,.025f),new Color(.16f,.20f,.25f),day);
+        Color tint = Color.Lerp(new Color(.90f,.94f,1f),Color.white,day);
+        Color fill = Color.Lerp(new Color(.055f,.063f,.078f),new Color(.20f,.24f,.28f),day);
         if (surfaces != null) for (int i=0;i<surfaces.Length;i++)
         {
             Material m=surfaces[i]; if (m==null) continue;

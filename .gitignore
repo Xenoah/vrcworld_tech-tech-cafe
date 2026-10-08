@@ -30,6 +30,7 @@ __pycache__/
 *.tmp.meta
 *.blend1
 *.blend2
+Blender/.*.blend*
 # Regenerated self-contained browser preview; Git stores the external glTF form.
 Preview/The_Commons_Compact.glb
 *.unitypackage

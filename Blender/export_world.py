@@ -85,7 +85,8 @@ bpy.ops.object.select_all(action='DESELECT')
 for o in objects:
  if o.users_collection[0].name not in ['MODE_Academic']:o.select_set(True)
 bpy.ops.export_scene.gltf(filepath=str(ROOT/'Preview/The_Commons_Compact.glb'),export_format='GLB',use_selection=True,export_materials='EXPORT',export_image_format='AUTO',export_yup=True)
-# Mobile geometry: city window detail and hanging garden are optional, curves decimated conservatively.
+# Mobile geometry: retain the six entry safety panes and opaque city lights.
+# Decorative east windows and indoor hanging garden remain optional.
 qobjs=[]
 for o in objects:
  g=o.users_collection[0].name

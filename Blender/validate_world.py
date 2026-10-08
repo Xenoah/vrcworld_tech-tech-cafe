@@ -67,6 +67,25 @@ for n,origin in origins.items():
  report.setdefault('sightlines',[]).append({'view':n,'target':'Main screen' if n!='Upper overlook' else 'Upper repeater','first_hit':obj.name if hit else None,'distance_m':float((point-origin).length) if hit else None})
 # 2F connectivity, using actual floor/guard colliders. 0.4m diameter navigation probe.
 raw=json.loads((ROOT/'Documentation/model_manifest.json').read_text());cols=raw['colliders'];step=.1
+# Regression: walking backward anywhere across the former south opening must
+# hit a wall while still standing on the floor, including diagonal approaches.
+barriers=[c for c in cols if c['kind']=='box' and c['group'] in ['ARCH_Shell','ARCH_EntrySafety']]
+unsealed=[]
+for x in np.linspace(.3,27.7,275):
+ for z in [.15,1.6,3.4,5.0,8.8,9.5]:
+  hits=[c for c in barriers if abs(x-c['position'][0])<=c['size'][0]/2 and abs(z-c['position'][2])<=c['size'][2]/2 and c['position'][1]-c['size'][1]/2<=.25 and c['position'][1]+c['size'][1]/2>=0]
+  if not hits:unsealed.append([float(x),z])
+check('Spawn south edge sealed from floor to roof',not unsealed,{'sampled_paths':1650,'unsealed':unsealed[:10]})
+guard=next(c for c in cols if c['name']=='COL_EntrySafetyGlass')
+check('Entry glass collider overlaps floor and both side walls',guard['position'][2]-guard['size'][2]/2<=0 and guard['position'][2]+guard['size'][2]/2>=9.6 and guard['position'][0]-guard['size'][0]/2<11.5 and guard['position'][0]+guard['size'][0]/2>16.5,guard)
+spawn=np.array([14,1.2,.1]);blocked=[]
+for c in barriers:
+ center=np.array(c['position']);halfsize=np.array(c['size'])/2
+ # Vertical player capsule represented by its central segment plus radius.
+ for z in [.35,.9,1.45]:
+  p=spawn+np.array([0,0,z]);d=np.maximum(abs(p-center)-halfsize,0)
+  if np.linalg.norm(d)<.25:blocked.append(c['name'])
+check('Spawn capsule clear of new glass',not blocked,{'radius_m':.25,'blocked':blocked})
 xs=np.arange(.05,28,.1);ys=np.arange(.05,18,.1);xx,yy=np.meshgrid(xs,ys);floor=np.zeros_like(xx,dtype=bool);block=np.zeros_like(xx,dtype=bool)
 for c in cols:
  if c['kind']!='box':continue
@@ -123,6 +142,14 @@ check('FPV return and arrival capsule clearance',not failures,{'radius_m':.22,'f
 f=fpv['flight_bounds_local'];p=fpv['pilot_bounds_local'];v=fpv['spectator_bounds_local']
 check('FPV flight pilot spectator separation',p[3]<f[1] and v[3]<f[1] and p[2]<v[0],{'flight':f,'pilot':p,'spectator':v})
 geo=json.loads((ROOT/'Documentation/geometry_report.json').read_text())
+for target in ['pc','quest']:
+ safety=[m for m in geo[target]['meshes'] if m['group']=='ARCH_EntrySafety' and m['name'].endswith('__MAT_SafetyGlass')]
+ check('Entry glass visible in '+target,len(safety)==1 and safety[0]['triangles']==72,safety)
+ city=[m for m in geo[target]['meshes'] if m['group']=='ENV_City']
+ triangles=sum(m['triangles'] for m in city);limit=raw['city']['triangle_budget_'+target]
+ check('City '+target+' geometry budget',0<triangles<=limit and len(city)<=8,{'triangles':triangles,'meshes':len(city),'budget':limit})
+ check('City illuminated architecture retained in '+target,any(m['name'].endswith('__MAT_CityWarm') for m in city) and any(m['name'].endswith('__MAT_CityCool') for m in city),'Opaque window/crown materials retained')
+check('City has 24 terraced towers and two skybridges',len(raw['city']['buildings'])==24 and len(raw['city']['skybridges'])==2,{'towers':len(raw['city']['buildings']),'skybridges':len(raw['city']['skybridges'])})
 for platform,limit in [('pc',30000),('quest',25000)]:
  meshes=[m for m in geo[platform]['meshes'] if m['group'].startswith('FPV_')]
  total=sum(m['triangles'] for m in meshes)
@@ -139,7 +166,7 @@ for c in cols:
  if c['kind']!='box':continue
  x,y,z=c['position'];sx,sy,sz=c['size'];layer='IMPL_FLOOR_2F' if abs(z+sz/2-4.8)<.001 else 'IMPL_GUARD' if 'Balustrade' in c['name'] else 'IMPL_COLLIDER'
  ms.add_lwpolyline([((x-sx/2)*1000,(y-sy/2)*1000),((x+sx/2)*1000,(y-sy/2)*1000),((x+sx/2)*1000,(y+sy/2)*1000),((x-sx/2)*1000,(y+sy/2)*1000)],close=True,dxfattribs={'layer':layer})
-ms.add_text('THE COMMONS - v0.6 IMPLEMENTATION OVERLAY / PROPOSED CHANGES - NOT SOURCE CAD',dxfattribs={'height':240,'insert':(0,19000),'layer':'NOTES'})
-doc.saveas(ROOT/'CAD/The_Commons_Implementation_Overlay_v06.dxf')
+ms.add_text('THE COMMONS - v0.6.1 IMPLEMENTATION OVERLAY / PROPOSED CHANGES - NOT SOURCE CAD',dxfattribs={'height':240,'insert':(0,19000),'layer':'NOTES'})
+doc.saveas(ROOT/'CAD/The_Commons_Implementation_Overlay_v061.dxf')
 print(json.dumps(report,ensure_ascii=False,indent=2))
 if any(not c['pass'] for c in report['checks']):raise SystemExit(1)

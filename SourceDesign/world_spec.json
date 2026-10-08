@@ -263,10 +263,10 @@
   "style": "Dark neo-industrial + warm hospitality + flat-light stylization + restrained neon",
   "design_rule": "Small enough for social proximity; vertically layered so different participation intensities coexist without fragmenting the room.",
   "implementation_extensions": {
-    "version": "0.6.0",
+    "version": "0.6.1",
     "fpv_spec": "fpv_field.json",
-    "implementation_drawing": "../CAD/The_Commons_Implementation_Overlay_v06.dxf",
-    "notes": "Cafe and FPV retained. Original enclosed neon switchyard: 34 tight corners across three levels, defined in kart_circuit.json. CVS2 vehicles are installed separately by the owner.",
+    "implementation_drawing": "../CAD/The_Commons_Implementation_Overlay_v061.dxf",
+    "notes": "Spawn opening sealed with PC/Quest safety glass and continuous collider. Cafe lighting x1.65; FPV/kart x1.35. Stronger glow and 24 detailed skyline buildings. Cafe/FPV/kart geometry and portals retained. CVS2 vehicles are installed separately by the owner.",
     "kart_spec": "kart_circuit.json",
     "kart_drawing": "../CAD/APEX_Kart_Neon_Switchyard_v06.dxf"
   }
