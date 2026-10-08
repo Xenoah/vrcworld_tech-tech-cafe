@@ -1,13 +1,13 @@
 {
-  "version": "0.7.0",
-  "length_m": 1002.3127255054821,
+  "version": "0.8.0",
+  "length_m": 1141.2295799091653,
   "checks": [
     {
       "name": "Kart finite collision mesh",
       "pass": true,
       "detail": {
-        "vertices": 6336,
-        "triangles": 12672
+        "vertices": 7164,
+        "triangles": 14328
       }
     },
     {
@@ -21,7 +21,7 @@
       "name": "Kart authored road agrees with course samples",
       "pass": true,
       "detail": {
-        "samples": 1584
+        "samples": 1791
       }
     },
     {
@@ -29,14 +29,14 @@
       "pass": true,
       "detail": {
         "road_width_m": 5.2,
-        "deck_width_m": 6.499999999999942
+        "deck_width_m": 6.499999999999947
       }
     },
     {
       "name": "Kart maximum grade",
       "pass": true,
       "detail": {
-        "maximum_percent": 10.600782412928359,
+        "maximum_percent": 11.917699548546832,
         "limit_percent": 12.5
       }
     },
@@ -44,8 +44,8 @@
       "name": "Kart turn radius",
       "pass": true,
       "detail": {
-        "minimum_center_radius_m": 5.997258819002715,
-        "inside_driving_radius_m": 3.397258819002715
+        "minimum_center_radius_m": 5.997181496257221,
+        "inside_driving_radius_m": 3.3971814962572213
       }
     },
     {
@@ -60,7 +60,7 @@
       "pass": true,
       "detail": {
         "maximum_bank_deg": 8.000000000000055,
-        "banked_length_m": 88.40708407156859,
+        "banked_length_m": 87.84594596868475,
         "limit_deg": 8.5
       }
     },
@@ -68,8 +68,16 @@
       "name": "Kart corner catalogue matches the route",
       "pass": true,
       "detail": {
-        "turns": 33,
-        "control_vertices": 46
+        "turns": 26,
+        "control_vertices": 44
+      }
+    },
+    {
+      "name": "Kart jump crests have open air above",
+      "pass": true,
+      "detail": {
+        "jumps": 2,
+        "covered": []
       }
     },
     {
@@ -77,9 +85,9 @@
       "pass": true,
       "detail": {
         "flat_length_per_level_m": {
-          "0.35": 347.63111802996116,
-          "4.55": 211.82255251107838,
-          "8.75": 180.97562566168796
+          "0.35": 170.72793518235025,
+          "4.55": 153.12213344323897,
+          "8.75": 64.14355892674858
         }
       }
     },
@@ -93,12 +101,12 @@
         ],
         "road_bounds": [
           [
-            184.75009460839482,
-            30.75
+            186.2612791051576,
+            24.75
           ],
           [
-            321.25,
-            149.25
+            323.25,
+            153.25
           ]
         ]
       }
@@ -107,8 +115,8 @@
       "name": "Kart collision faces point upward",
       "pass": true,
       "detail": {
-        "upward_top_triangles": 3168,
-        "expected": 3168
+        "upward_top_triangles": 3582,
+        "expected": 3582
       }
     },
     {
@@ -116,7 +124,7 @@
       "pass": true,
       "detail": {
         "minimum_underside_clearance_m": 3.3656316761249756,
-        "intersecting_triangle_pairs": 1567,
+        "intersecting_triangle_pairs": 1541,
         "required_m": 3.0
       }
     },
@@ -124,7 +132,7 @@
       "name": "Kart bridge columns clear driving surfaces",
       "pass": true,
       "detail": {
-        "columns": 98,
+        "columns": 129,
         "conflicts": []
       }
     },
@@ -133,7 +141,7 @@
       "pass": true,
       "detail": {
         "folded_top_triangles": 0,
-        "top_triangles": 138
+        "top_triangles": 142
       }
     },
     {

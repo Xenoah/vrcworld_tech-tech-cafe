@@ -263,11 +263,11 @@
   "style": "Dark neo-industrial + warm hospitality + flat-light stylization + restrained neon",
   "design_rule": "Small enough for social proximity; vertically layered so different participation intensities coexist without fragmenting the room.",
   "implementation_extensions": {
-    "version": "0.7.0",
+    "version": "0.8.0",
     "fpv_spec": "fpv_field.json",
-    "implementation_drawing": "../CAD/The_Commons_Implementation_Overlay_v070.dxf",
-    "notes": "Kart circuit re-routed as a technical 33-turn, three-level layout whose corner characters are adapted from real circuits (kart_circuit.json corners). Cafe, FPV, city and kart hall shell retained unchanged. CVS2 vehicles are installed separately by the owner.",
+    "implementation_drawing": "../CAD/The_Commons_Implementation_Overlay_v080.dxf",
+    "notes": "Kart circuit re-routed as a less sinuous 26-turn, three-level layout with a chicane, fast corners, two jump crests, a banked climbing carousel, right-angle castle corners, a corkscrew drop and seven irregular downhill hairpins; corner characters are adapted from real circuits, a mountain road and a classic castle course (kart_circuit.json corners and features). Cafe, FPV, city and kart hall shell retained unchanged. CVS2 vehicles are installed separately by the owner.",
     "kart_spec": "kart_circuit.json",
-    "kart_drawing": "../CAD/APEX_Kart_Neon_Switchyard_v07.dxf"
+    "kart_drawing": "../CAD/APEX_Kart_Neon_Switchyard_v08.dxf"
   }
 }

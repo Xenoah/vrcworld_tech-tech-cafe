@@ -1,6 +1,6 @@
 {
   "pc": {
-    "triangles": 288809,
+    "triangles": 294325,
     "render_meshes": 194,
     "meshes": [
       {
@@ -864,8 +864,8 @@
       {
         "name": "KART_Barriers__MAT_KartRubber",
         "group": "KART_Barriers",
-        "vertices": 36708,
-        "triangles": 24796
+        "vertices": 44818,
+        "triangles": 28092
       },
       {
         "name": "KART_HallDetails__MAT_KartBlue",
@@ -900,26 +900,26 @@
       {
         "name": "KART_Markings__MAT_KartBlue",
         "group": "KART_Markings",
-        "vertices": 9878,
-        "triangles": 7548
+        "vertices": 12606,
+        "triangles": 8328
       },
       {
         "name": "KART_Markings__MAT_KartCyan",
         "group": "KART_Markings",
-        "vertices": 7310,
-        "triangles": 4908
+        "vertices": 4128,
+        "triangles": 2592
       },
       {
         "name": "KART_Markings__MAT_KartGold",
         "group": "KART_Markings",
-        "vertices": 623,
-        "triangles": 445
+        "vertices": 707,
+        "triangles": 505
       },
       {
         "name": "KART_Markings__MAT_KartPink",
         "group": "KART_Markings",
-        "vertices": 10012,
-        "triangles": 6204
+        "vertices": 11956,
+        "triangles": 7040
       },
       {
         "name": "KART_Markings__MAT_KartRubber",
@@ -930,20 +930,20 @@
       {
         "name": "KART_Markings__MAT_KartViolet",
         "group": "KART_Markings",
-        "vertices": 9148,
-        "triangles": 6132
+        "vertices": 16288,
+        "triangles": 10140
       },
       {
         "name": "KART_Markings__MAT_KartWhite",
         "group": "KART_Markings",
-        "vertices": 18097,
-        "triangles": 12572
+        "vertices": 22591,
+        "triangles": 14212
       },
       {
         "name": "KART_Pits__MAT_KartConcrete",
         "group": "KART_Pits",
-        "vertices": 700,
-        "triangles": 688
+        "vertices": 716,
+        "triangles": 704
       },
       {
         "name": "KART_Pits__MAT_KartGold",
@@ -960,8 +960,8 @@
       {
         "name": "KART_Pits__MAT_KartRubber",
         "group": "KART_Pits",
-        "vertices": 528,
-        "triangles": 480
+        "vertices": 544,
+        "triangles": 496
       },
       {
         "name": "KART_Pits__MAT_KartSteel",
@@ -984,14 +984,14 @@
       {
         "name": "KART_Road__MAT_KartAsphalt",
         "group": "KART_Road",
-        "vertices": 4054,
-        "triangles": 3168
+        "vertices": 5368,
+        "triangles": 3582
       },
       {
         "name": "KART_Road__MAT_KartConcrete",
         "group": "KART_Road",
-        "vertices": 14576,
-        "triangles": 9504
+        "vertices": 17318,
+        "triangles": 10746
       },
       {
         "name": "KART_Roof__MAT_KartSteel",
@@ -1038,8 +1038,8 @@
       {
         "name": "KART_Signage__MAT_KartGold",
         "group": "KART_Signage",
-        "vertices": 14983,
-        "triangles": 8188
+        "vertices": 14258,
+        "triangles": 6288
       },
       {
         "name": "KART_Signage__MAT_KartSteel",
@@ -1056,14 +1056,14 @@
       {
         "name": "KART_Signage__MAT_KartWhite",
         "group": "KART_Signage",
-        "vertices": 3398,
-        "triangles": 2164
+        "vertices": 3294,
+        "triangles": 2096
       },
       {
         "name": "KART_Structure__MAT_KartSteel",
         "group": "KART_Structure",
-        "vertices": 2352,
-        "triangles": 1176
+        "vertices": 3096,
+        "triangles": 1548
       },
       {
         "name": "KART_Trusses__MAT_KartSteel",
@@ -1074,8 +1074,8 @@
       {
         "name": "KART_TyreBundles__MAT_KartRubber",
         "group": "KART_TyreBundles",
-        "vertices": 11520,
-        "triangles": 5760
+        "vertices": 5760,
+        "triangles": 2880
       },
       {
         "name": "LGT_Main__MAT_Amber",
@@ -1170,7 +1170,7 @@
     ]
   },
   "quest": {
-    "triangles": 237607,
+    "triangles": 246524,
     "render_meshes": 186,
     "meshes": [
       {
@@ -1986,8 +1986,8 @@
       {
         "name": "KART_Barriers__MAT_KartRubber",
         "group": "KART_Barriers",
-        "vertices": 36708,
-        "triangles": 24796
+        "vertices": 44818,
+        "triangles": 28092
       },
       {
         "name": "KART_HallDetails__MAT_KartBlue",
@@ -2022,26 +2022,26 @@
       {
         "name": "KART_Markings__MAT_KartBlue",
         "group": "KART_Markings",
-        "vertices": 9878,
-        "triangles": 7548
+        "vertices": 12606,
+        "triangles": 8328
       },
       {
         "name": "KART_Markings__MAT_KartCyan",
         "group": "KART_Markings",
-        "vertices": 7310,
-        "triangles": 4908
+        "vertices": 4128,
+        "triangles": 2592
       },
       {
         "name": "KART_Markings__MAT_KartGold",
         "group": "KART_Markings",
-        "vertices": 623,
-        "triangles": 445
+        "vertices": 707,
+        "triangles": 505
       },
       {
         "name": "KART_Markings__MAT_KartPink",
         "group": "KART_Markings",
-        "vertices": 10012,
-        "triangles": 6204
+        "vertices": 11956,
+        "triangles": 7040
       },
       {
         "name": "KART_Markings__MAT_KartRubber",
@@ -2052,20 +2052,20 @@
       {
         "name": "KART_Markings__MAT_KartViolet",
         "group": "KART_Markings",
-        "vertices": 9148,
-        "triangles": 6132
+        "vertices": 16288,
+        "triangles": 10140
       },
       {
         "name": "KART_Markings__MAT_KartWhite",
         "group": "KART_Markings",
-        "vertices": 18097,
-        "triangles": 12572
+        "vertices": 22591,
+        "triangles": 14212
       },
       {
         "name": "KART_Pits__MAT_KartConcrete",
         "group": "KART_Pits",
-        "vertices": 700,
-        "triangles": 688
+        "vertices": 716,
+        "triangles": 704
       },
       {
         "name": "KART_Pits__MAT_KartGold",
@@ -2082,8 +2082,8 @@
       {
         "name": "KART_Pits__MAT_KartRubber",
         "group": "KART_Pits",
-        "vertices": 528,
-        "triangles": 480
+        "vertices": 544,
+        "triangles": 496
       },
       {
         "name": "KART_Pits__MAT_KartSteel",
@@ -2106,14 +2106,14 @@
       {
         "name": "KART_Road__MAT_KartAsphalt",
         "group": "KART_Road",
-        "vertices": 4054,
-        "triangles": 3168
+        "vertices": 5368,
+        "triangles": 3582
       },
       {
         "name": "KART_Road__MAT_KartConcrete",
         "group": "KART_Road",
-        "vertices": 14576,
-        "triangles": 9504
+        "vertices": 17318,
+        "triangles": 10746
       },
       {
         "name": "KART_Roof__MAT_KartSteel",
@@ -2160,8 +2160,8 @@
       {
         "name": "KART_Signage__MAT_KartGold",
         "group": "KART_Signage",
-        "vertices": 9143,
-        "triangles": 4585
+        "vertices": 9245,
+        "triangles": 3520
       },
       {
         "name": "KART_Signage__MAT_KartSteel",
@@ -2178,14 +2178,14 @@
       {
         "name": "KART_Signage__MAT_KartWhite",
         "group": "KART_Signage",
-        "vertices": 1799,
-        "triangles": 1211
+        "vertices": 1733,
+        "triangles": 1173
       },
       {
         "name": "KART_Structure__MAT_KartSteel",
         "group": "KART_Structure",
-        "vertices": 2352,
-        "triangles": 1176
+        "vertices": 3096,
+        "triangles": 1548
       },
       {
         "name": "KART_Trusses__MAT_KartSteel",
@@ -2196,8 +2196,8 @@
       {
         "name": "KART_TyreBundles__MAT_KartRubber",
         "group": "KART_TyreBundles",
-        "vertices": 7904,
-        "triangles": 3224
+        "vertices": 5760,
+        "triangles": 2880
       },
       {
         "name": "LGT_Main__MAT_Amber",
@@ -2292,5 +2292,5 @@
     ]
   },
   "measurement": "Exported whole-scene geometry. Not runtime FPS / draw-call measurement.",
-  "non_kart_records": "Unity mesh records outside KART_ groups are byte-identical to v0.6.1."
+  "non_kart_records": "Unity mesh records outside KART_ groups are byte-identical to v0.6.1 and v0.7.0."
 }

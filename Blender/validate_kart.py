@@ -28,6 +28,13 @@ bank=np.degrees(np.arctan(np.abs(V[1::4,2]-V[::4,2])/widths))
 check('Kart banking within limit',float(bank.max())<=limits['maximum_bank_deg'],{'maximum_bank_deg':float(bank.max()),'banked_length_m':float(lengths[bank>.5].sum()),'limit_deg':limits['maximum_bank_deg']})
 ids=[c['id'] for c in spec['corners']];used=[v['turn'] for v in spec['layout']['control_vertices']]
 check('Kart corner catalogue matches the route',ids==['T%d'%(k+1) for k in range(len(ids))] and ids==list(dict.fromkeys(used)) and spec['turns']==len(ids)==len(spec['turn_markers']) and all(c['reference'] for c in spec['corners']),{'turns':len(ids),'control_vertices':len(used)})
+# Jump crests need open air: no other deck within the kart envelope above the take-off.
+covered=[]
+for jump in spec.get('jump_markers',[]):
+    c=np.array(jump['crest']);k=int(np.argmin(np.linalg.norm(P-c,axis=1)));far=np.minimum((np.arange(n)-k)%n,(k-np.arange(n))%n)>40
+    over=far&(np.linalg.norm(P[:,:2]-c[:2],axis=1)<2*spec['deck_half_width']+1)&(P[:,2]>c[2])&(P[:,2]-c[2]<6)
+    if over.any():covered.append(jump['crest'])
+check('Kart jump crests have open air above',len(spec.get('jump_markers',[]))==sum(f['type']=='jump' for f in spec.get('features',[])) and not covered,{'jumps':len(spec.get('jump_markers',[])),'covered':covered})
 levels={str(h):float(lengths[np.abs(P[:,2]-h)<1e-6].sum()) for h in spec['levels']}
 check('Kart three drivable level plateaus',len(levels)==3 and min(levels.values())>60,{'flat_length_per_level_m':levels})
 lo=np.array(spec['origin'][:2]);hi=lo+spec['size'][:2]
@@ -90,6 +97,6 @@ for i in range(n):
     ms.add_line(tuple(P[i]*1000),tuple(P[k]*1000),dxfattribs={'layer':name})
 ms.add_lwpolyline([(lo[0]*1000,lo[1]*1000),(hi[0]*1000,lo[1]*1000),(hi[0]*1000,hi[1]*1000),(lo[0]*1000,hi[1]*1000)],close=True,dxfattribs={'layer':'FLOOR'})
 for a in spec['vehicle_anchors']:ms.add_point(tuple(np.array(a['position'])*1000),dxfattribs={'layer':'CVS2_GUIDES'})
-doc.saveas(ROOT/'CAD/APEX_Kart_Neon_Switchyard_v07.dxf')
+doc.saveas(ROOT/'CAD/APEX_Kart_Neon_Switchyard_v08.dxf')
 print(json.dumps(report,indent=2))
 if not report['passed']:raise SystemExit(1)

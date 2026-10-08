@@ -185,7 +185,7 @@ for u in [-17,0,17]:
     p=mid+axis*u+normal*-21;p[2]=4.05;area('LGT_KartPits',list(p),[p[0],p[1],0],900,(.36,.27,1),6)
 # Original signage: sector titles and painted turn numbers only; no circuit names or logos.
 group('KART_Signage')
-for label,xy,z,color in [('01 / REACTOR',[118,66],2.6,'MAT_KartBlue'),('02 / CROSSFIRE',[72,131],6.9,'MAT_KartViolet'),('03 / SKYLINE',[46,74],11.0,'MAT_KartCyan')]:
+for label,xy,z,color in [('01 / REACTOR',[62,41.5],2.4,'MAT_KartBlue'),('02 / CROSSFIRE',[40,140.5],7.0,'MAT_KartViolet'),('03 / SKYLINE',[100,118],11.5,'MAT_KartCyan')]:
     p=np.array(xy)+shift;text_obj('KART_Sector',label,[p[0],p[1],z],1.0,color)
 text_obj('KART_BackWallTitle','NEON SWITCHYARD',[center[0],159.65,10.2],3.3,'MAT_KartCyan')
 text_obj('KART_BackWallSub','%d TURNS  /  3 LEVELS  /  FIND YOUR LINE'%len(spec['corners']),[center[0],159.63,6.9],1.15,'MAT_KartWhite')
@@ -196,6 +196,15 @@ for corner in spec['corners']:
     mark=first[corner['id']];i=int(np.argmin((D-D[mark['entry']]+5)%loop));c=point(i,1.35,.03)
     text_obj('KART_TurnNumber',corner['id'],c,.8,'MAT_KartGold',rot=(math.atan(G[i]),-BANK[i],math.atan2(-T[i,0],T[i,1])))
     turn_markers.append({'id':corner['id'],'name':corner['name'],'position':list(c),'apex':P[mark['apex']].tolist(),'radius_m':mark['radius'],'station_m':float(D[mark['apex']])})
+# Jump crests: painted JUMP 10 m before and a white take-off line across the crest.
+jump_markers=[]
+for vertex,mark in zip(spec['layout']['control_vertices'],MARKS):
+    bump=vertex.get('bump')
+    if not bump or bump.get('shape','crest')!='crest' or bump['height']<.5:continue
+    k=mark['bump'];i=int(np.argmin((D-D[k]+10)%loop));c=point(i,-1.35,.03)
+    text_obj('KART_JumpMark','JUMP',c,.75,'MAT_KartGold',rot=(math.atan(G[i]),-BANK[i],math.atan2(-T[i,0],T[i,1])))
+    strip('KART_JumpLine',[(k-1)%count,k,(k+1)%count],-rw+.1,rw-.1,'MAT_KartWhite',top=.03)
+    jump_markers.append({'crest':P[k].tolist(),'height_m':bump['height'],'length_m':bump['length'],'station_m':float(D[k])})
 # A start gantry above the full 3.5 m vehicle envelope.
 i=start_i;p=P[i];angle=math.atan2(T[i,1],T[i,0])
 for side in [-1,1]:
@@ -208,14 +217,16 @@ probes=[list(P[i]+np.array([0,0,1.0])) for i in range(0,count,20)]
 def world(local):return [local[0]+shift[0],local[1]+shift[1],local[2]]
 cameras={
  '16_Kart_Overview':{'position':world([213,-109,178]),'target':world([74,84,3.4]),'lens':43,'cutaway':True},
- '17_Kart_Overpass':{'position':world([121,75,1.45]),'target':world([96,78,2.6]),'lens':21},
- '18_Kart_Driver':{'position':world([138,100.5,1.25]),'target':world([133,124,3.4]),'lens':20},
+ '17_Kart_Overpass':{'position':world([101,78,5.7]),'target':world([95,108,8.6]),'lens':20},
+ '18_Kart_Driver':{'position':world([84,34,1.25]),'target':world([114,30,1.5]),'lens':22},
  '19_Kart_Pits':{'position':world([98,42,3.2]),'target':world([66,22,1.4]),'lens':24},
- '20_Kart_UpperTechnical':{'position':world([64,121.6,9.95]),'target':world([94,116,9.3]),'lens':22},
- '24_Kart_Carousel':{'position':world([110,82,12.6]),'target':world([128,121,1.8]),'lens':26},
- '25_Kart_Esses':{'position':world([116,146,5.8]),'target':world([82,140,5.2]),'lens':22},
- '26_Kart_Climb':{'position':world([33,119,10.8]),'target':world([15,92,6.4]),'lens':24},
- '27_Kart_Corkscrew':{'position':world([124,97,10.8]),'target':world([97,78,3.6]),'lens':22}
+ '20_Kart_Castle':{'position':world([132,86,13.2]),'target':world([92,112,7.4]),'lens':24},
+ '24_Kart_Carousel':{'position':world([104,146,12.4]),'target':world([134,113,2.6]),'lens':24},
+ '25_Kart_Hairpins':{'position':world([92,40,13.0]),'target':world([40,94,1.5]),'lens':24},
+ '26_Kart_SpaHairpin':{'position':world([44,157,12.0]),'target':world([12,140,4.6]),'lens':22},
+ '27_Kart_Corkscrew':{'position':world([137,95,11.8]),'target':world([116,83,5.6]),'lens':22},
+ '28_Kart_Nordschleife':{'position':world([128,150,5.8]),'target':world([92,144,5.0]),'lens':22},
+ '29_Kart_Jump':{'position':world([139,46.5,2.3]),'target':world([140.4,72,1.0]),'lens':24}
 }
-KART={**spec,'centerline':P.tolist(),'tangents':T.tolist(),'stations':D.tolist(),'length_m':float(np.linalg.norm(np.roll(P,-1,axis=0)-P,axis=1).sum()),'pit_indices':pit_indices,'vehicle_anchors':anchors,'portals':portals,'light_probes':probes,'support_columns':support_count,'tyres':tyre_count,'rail_wash_lights':lamp_count,'turns':len(spec['corners']),'turn_markers':turn_markers,'maximum_bank_deg':float(np.degrees(np.abs(BANK).max())),'cameras':cameras,'time_panel':{'position':panel.tolist(),'yaw':-math.degrees(yaw)}}
+KART={**spec,'centerline':P.tolist(),'tangents':T.tolist(),'stations':D.tolist(),'length_m':float(np.linalg.norm(np.roll(P,-1,axis=0)-P,axis=1).sum()),'pit_indices':pit_indices,'vehicle_anchors':anchors,'portals':portals,'light_probes':probes,'support_columns':support_count,'tyres':tyre_count,'rail_wash_lights':lamp_count,'turns':len(spec['corners']),'turn_markers':turn_markers,'jump_markers':jump_markers,'maximum_bank_deg':float(np.degrees(np.abs(BANK).max())),'cameras':cameras,'time_panel':{'position':panel.tolist(),'yaw':-math.degrees(yaw)}}
 print('KART: %.1fm, %d turns, %d apexes, %d supports, %d samples'%(KART['length_m'],KART['turns'],len(MARKS),support_count,count),flush=True)

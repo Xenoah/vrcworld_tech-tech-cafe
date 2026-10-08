@@ -1,6 +1,6 @@
 """Draw the current kart plan and long section from the exported manifest.
 
-Python: numpy, Pillow. Output: Preview/Design/09_Kart_Plan_v07.png.
+Python: numpy, Pillow. Output: Preview/Design/09_Kart_Plan_v08.png.
 Deck outlines, heights, stations and turn positions come from model_manifest.json.
 """
 from pathlib import Path
@@ -71,5 +71,5 @@ for t in K['turn_markers']:
     x, y = g(t['station_m'], t['apex'][2]); d.line([(x, y - 8), (x, y - 26)], fill=MUTED, width=1)
     d.text((x, y - 30), t['id'][1:], fill=INK, font=font(12), anchor='mb')
 for s_ in range(0, int(total) + 1, 200): d.text(g(s_, 0)[0:1] + (py + ph + 8,), '%d m' % s_, fill=MUTED, font=font(14), anchor='ma')
-out = ROOT / 'Preview/Design/09_Kart_Plan_v07.png'; img.save(out, optimize=True)
+out = ROOT / 'Preview/Design/09_Kart_Plan_v08.png'; img.save(out, optimize=True)
 print('KART PLAN', out.relative_to(ROOT), img.size)
