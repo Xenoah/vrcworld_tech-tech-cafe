@@ -1,41 +1,51 @@
 {
-  "version": "0.6.1",
-  "scope": "Actual v0.6.1 model rendered in Blender Cycles. Kart overview only is a cutaway. Not Unity/VRChat runtime captures. Older Preview images and v0.6.0 design sheets are historical references.",
+  "version": "0.7.0",
+  "scope": "Actual v0.7.0 kart model rendered in Blender Cycles (bpy 4.5.14 LTS). Kart overview only is a cutaway. Not Unity/VRChat runtime captures. Cafe, FPV and city are unchanged and keep their v0.6.1 images; v0.6.0 design sheets are historical references.",
   "images": [
     {
-      "path": "Preview/01_Entrance_160cm.png",
-      "caption": "明るくなったカフェ全景",
-      "renderer": "Blender 4.5.3 / Cycles"
-    },
-    {
-      "path": "Preview/04_Mezzanine_160cm.png",
-      "caption": "上階と環境グロー",
-      "renderer": "Blender 4.5.3 / Cycles"
-    },
-    {
-      "path": "Preview/21_Spawn_Glass.png",
-      "caption": "スポーン背後の落下防止ガラス",
-      "renderer": "Blender 4.5.3 / Cycles"
-    },
-    {
-      "path": "Preview/22_Horizon_Skyline.png",
-      "caption": "テラスから見える街並み",
-      "renderer": "Blender 4.5.3 / Cycles"
-    },
-    {
-      "path": "Preview/23_City_Architecture.png",
-      "caption": "24棟の周辺建築と冠部・屋上庭園",
-      "renderer": "Blender 4.5.3 / Cycles"
-    },
-    {
-      "path": "Preview/11_FPV_Course.png",
-      "caption": "明るくなったFPVフロア",
-      "renderer": "Blender 4.5.3 / Cycles"
-    },
-    {
       "path": "Preview/16_Kart_Overview.png",
-      "caption": "明るくなった3層カート全景（屋根・手前2壁・トラス非表示）",
-      "renderer": "Blender 4.5.3 / Cycles"
+      "caption": "v0.7.0のテクニカルコース全景（屋根・手前2壁・トラス非表示）",
+      "renderer": "Blender 4.5.14 / Cycles"
+    },
+    {
+      "path": "Preview/24_Kart_Carousel.png",
+      "caption": "T7カルーセル：バンク8°で360°登り、自身の入口の上を越える",
+      "renderer": "Blender 4.5.14 / Cycles"
+    },
+    {
+      "path": "Preview/18_Kart_Driver.png",
+      "caption": "カルーセル進入の運転視点：頭上を出口の路面が通る",
+      "renderer": "Blender 4.5.14 / Cycles"
+    },
+    {
+      "path": "Preview/25_Kart_Esses.png",
+      "caption": "中層T9〜T13のS字5連",
+      "renderer": "Blender 4.5.14 / Cycles"
+    },
+    {
+      "path": "Preview/26_Kart_Climb.png",
+      "caption": "T17〜T20：オー・ルージュ型の曲がりながらの登坂",
+      "renderer": "Blender 4.5.14 / Cycles"
+    },
+    {
+      "path": "Preview/20_Kart_UpperTechnical.png",
+      "caption": "上層T27：バスストップ型の二重シケイン",
+      "renderer": "Blender 4.5.14 / Cycles"
+    },
+    {
+      "path": "Preview/27_Kart_Corkscrew.png",
+      "caption": "T29〜T31の下り橋が下層デグナー型ヘアピンの上を通過",
+      "renderer": "Blender 4.5.14 / Cycles"
+    },
+    {
+      "path": "Preview/17_Kart_Overpass.png",
+      "caption": "下り橋の下を走る下層（T3→T4）",
+      "renderer": "Blender 4.5.14 / Cycles"
+    },
+    {
+      "path": "Preview/19_Kart_Pits.png",
+      "caption": "スタートゲート・ピット・観戦席",
+      "renderer": "Blender 4.5.14 / Cycles"
     }
   ]
 }

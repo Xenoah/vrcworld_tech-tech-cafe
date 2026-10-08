@@ -23,6 +23,11 @@ check('Kart width and nondegenerate track',widths.min()>spec['road_width'] and d
 check('Kart maximum grade',float(np.max(abs(delta[:,2])/ds)*100)<=limits['maximum_grade_percent'],{'maximum_percent':float(np.max(abs(delta[:,2])/ds)*100),'limit_percent':limits['maximum_grade_percent']})
 check('Kart turn radius',float(radius.min())>=limits['minimum_center_radius'],{'minimum_center_radius_m':float(radius.min()),'inside_driving_radius_m':float(radius.min()-spec['road_width']/2)})
 check('Kart collision sampling',float(ds.max())<=limits['maximum_sample_distance'],{'maximum_segment_m':float(ds.max())})
+# Cross-slope measured on the authored deck edges, not taken from the design JSON.
+bank=np.degrees(np.arctan(np.abs(V[1::4,2]-V[::4,2])/widths))
+check('Kart banking within limit',float(bank.max())<=limits['maximum_bank_deg'],{'maximum_bank_deg':float(bank.max()),'banked_length_m':float(lengths[bank>.5].sum()),'limit_deg':limits['maximum_bank_deg']})
+ids=[c['id'] for c in spec['corners']];used=[v['turn'] for v in spec['layout']['control_vertices']]
+check('Kart corner catalogue matches the route',ids==['T%d'%(k+1) for k in range(len(ids))] and ids==list(dict.fromkeys(used)) and spec['turns']==len(ids)==len(spec['turn_markers']) and all(c['reference'] for c in spec['corners']),{'turns':len(ids),'control_vertices':len(used)})
 levels={str(h):float(lengths[np.abs(P[:,2]-h)<1e-6].sum()) for h in spec['levels']}
 check('Kart three drivable level plateaus',len(levels)==3 and min(levels.values())>60,{'flat_length_per_level_m':levels})
 lo=np.array(spec['origin'][:2]);hi=lo+spec['size'][:2]
@@ -85,6 +90,6 @@ for i in range(n):
     ms.add_line(tuple(P[i]*1000),tuple(P[k]*1000),dxfattribs={'layer':name})
 ms.add_lwpolyline([(lo[0]*1000,lo[1]*1000),(hi[0]*1000,lo[1]*1000),(hi[0]*1000,hi[1]*1000),(lo[0]*1000,hi[1]*1000)],close=True,dxfattribs={'layer':'FLOOR'})
 for a in spec['vehicle_anchors']:ms.add_point(tuple(np.array(a['position'])*1000),dxfattribs={'layer':'CVS2_GUIDES'})
-doc.saveas(ROOT/'CAD/APEX_Kart_Neon_Switchyard_v06.dxf')
+doc.saveas(ROOT/'CAD/APEX_Kart_Neon_Switchyard_v07.dxf')
 print(json.dumps(report,indent=2))
 if not report['passed']:raise SystemExit(1)

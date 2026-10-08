@@ -544,14 +544,14 @@ S.render.engine='CYCLES';S.cycles.samples=32;S.cycles.use_denoising=True;S.cycle
 S.render.resolution_x=1600;S.render.resolution_y=1000;S.render.resolution_percentage=100
 S.view_settings.view_transform='AgX';S.view_settings.look='AgX - Medium High Contrast';S.view_settings.exposure=1.05
 S.render.image_settings.file_format='PNG';S.render.film_transparent=False
-S['project']='THE COMMONS - Compact Edition';S['revision']='0.6.1';S['source']='SourceDesign/world_spec.json';S['world_test_status']='Unity and VRChat runtime tests pending'
+S['project']='THE COMMONS - Compact Edition';S['revision']='0.7.0';S['source']='SourceDesign/world_spec.json';S['world_test_status']='Unity and VRChat runtime tests pending'
 # Hide only inactive mode, preserving authoring editability.
 for o in GROUPS['MODE_Academic'].objects:o.hide_render=True;o.hide_set(True)
 for im in bpy.data.images:
  if im.source=='FILE':im.pack()
 for o in bpy.data.objects:
  if o.type=='MESH':o['commons_group']=o.users_collection[0].name
-report={'version':'0.6.1','city':CITY,'fpv':FPV,'kart':KART,'footprint':[28,18],'level_tops':[0,4.8,9.6],'stage':{'center':[14,13.2],'diameter':4.8,'height':.25},'screen':[7.1,4.0],'stair_design':COUNTS,'colliders':COL,'lights':LIGHTS,'seat_anchors':SEATS,'cameras':{n:{'position':list(o.location),'eye_height':1.6 if '160cm' in n else None} for n,o in CAMS.items()},'materials':{n:{'color':list(m.diffuse_color),'texture':m.get('texture_key',''),'emission':m.get('emission',0),'wrap':m.get('wrap','mirror'),'roughness':m.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value,'metallic':m.node_tree.nodes.get('Principled BSDF').inputs['Metallic'].default_value} for n,m in M.items()}}
+report={'version':'0.7.0','city':CITY,'fpv':FPV,'kart':KART,'footprint':[28,18],'level_tops':[0,4.8,9.6],'stage':{'center':[14,13.2],'diameter':4.8,'height':.25},'screen':[7.1,4.0],'stair_design':COUNTS,'colliders':COL,'lights':LIGHTS,'seat_anchors':SEATS,'cameras':{n:{'position':list(o.location),'eye_height':1.6 if '160cm' in n else None} for n,o in CAMS.items()},'materials':{n:{'color':list(m.diffuse_color),'texture':m.get('texture_key',''),'emission':m.get('emission',0),'wrap':m.get('wrap','mirror'),'roughness':m.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value,'metallic':m.node_tree.nodes.get('Principled BSDF').inputs['Metallic'].default_value} for n,m in M.items()}}
 (ASSET/'Data/world_manifest.json').write_text(json.dumps(report,indent=2,default=lambda x:x.item() if hasattr(x,'item') else list(x)))
 (ROOT/'Documentation/model_manifest.json').write_text(json.dumps(report,indent=2,default=lambda x:x.item() if hasattr(x,'item') else list(x)))
 bpy.ops.file.pack_all()

@@ -130,9 +130,9 @@
       "name": "TheCommons_PC binary",
       "pass": true,
       "detail": {
-        "meshes": 193,
-        "triangles": 318781,
-        "vertices": 523507,
+        "meshes": 194,
+        "triangles": 288809,
+        "vertices": 486604,
         "invalid_meshes": 0
       }
     },
@@ -146,15 +146,15 @@
     {
       "name": "TheCommons_PC end of file",
       "pass": true,
-      "detail": "20590440"
+      "detail": "19049950"
     },
     {
       "name": "TheCommons_Quest binary",
       "pass": true,
       "detail": {
-        "meshes": 185,
-        "triangles": 263899,
-        "vertices": 445258,
+        "meshes": 186,
+        "triangles": 237607,
+        "vertices": 412542,
         "invalid_meshes": 0
       }
     },
@@ -168,7 +168,7 @@
     {
       "name": "TheCommons_Quest end of file",
       "pass": true,
-      "detail": "17427332"
+      "detail": "16064986"
     },
     {
       "name": "Spawn south edge sealed from floor to roof",
@@ -258,7 +258,7 @@
     {
       "name": "PC total mesh target",
       "pass": true,
-      "detail": "Editable objects: 8084"
+      "detail": "Editable objects: 7909"
     },
     {
       "name": "Kart meshes remain in kart export groups",

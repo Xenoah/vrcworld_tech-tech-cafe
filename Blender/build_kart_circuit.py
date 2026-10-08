@@ -1,4 +1,5 @@
-"""APEX Neon Switchyard: original indoor route, static architecture only.
+"""APEX Neon Switchyard: original indoor technical route, static architecture only.
+Corner characters are adapted from real circuits; see SourceDesign/kart_circuit.json.
 Run from build_world.py with its material, mesh, light and collider helpers.
 """
 import importlib.util
@@ -12,10 +13,12 @@ def group(name):
     GROUP=name;host_group(name)
 loader=importlib.util.spec_from_file_location('kart_layout',ROOT/'Blender/kart_layout.py')
 layout_module=importlib.util.module_from_spec(loader);loader.loader.exec_module(layout_module)
-P,T,N,D,PHASE=layout_module.layout(spec);count=len(P);origin=np.array(spec['origin']);center=np.array(spec['center_local'])+origin[:2]
+P,T,N,D,PHASE,BANK,MARKS=layout_module.layout(spec);count=len(P);origin=np.array(spec['origin']);center=np.array(spec['center_local'])+origin[:2]
 shift=origin[:2]+np.array(spec['layout']['offset']);half=spec['deck_half_width'];rw=spec['road_width']/2;bh=spec['barrier_height']
 pit=spec['pit'];pit_indices=[i for i in range(count) if abs(P[i,1]-shift[1]-pit['straight_y'])<1e-5 and pit['straight_x'][0]<=P[i,0]-shift[0]<=pit['straight_x'][1] and abs(P[i,2]-spec['levels'][0])<1e-5 and T[i,0]>.99]
 pit_i=pit_indices[len(pit_indices)//2];pit_set=set(pit_indices)
+# Cross-slope from banking and centreline grade keep deck details on the actual surface.
+TB=np.tan(BANK);G=(np.roll(P[:,2],-1)-np.roll(P[:,2],1))/np.linalg.norm((np.roll(P,-1,axis=0)-np.roll(P,1,axis=0))[:,:2],axis=1)
 mat('MAT_KartAsphalt',(.13,.15,.21),'basalt_terrazzo',.26,.2)
 mat('MAT_KartConcrete',(.25,.28,.36),'mineral_plaster',.72)
 mat('MAT_KartRubber',(.019,.025,.043),rough=.52)
@@ -31,7 +34,7 @@ mat('MAT_KartLEDWhite',(.65,.8,1),rough=.3,emit=3)
 COLORS=['MAT_KartBlue','MAT_KartViolet','MAT_KartCyan']
 LIGHT_COLORS=[(.045,.18,1),(.42,.04,1),(.025,.75,1)]
 def level(i):return min(range(3),key=lambda j:abs(P[i,2]-spec['levels'][j]))
-def point(i,offset,zoff=0):return (float(P[i,0]+N[i,0]*offset),float(P[i,1]+N[i,1]*offset),float(P[i,2]+zoff))
+def point(i,offset,zoff=0):return (float(P[i,0]+N[i,0]*offset),float(P[i,1]+N[i,1]*offset),float(P[i,2]-offset*TB[i]+zoff))
 DECOR={}
 def strip(name,indices,a,b,material,top=0,bottom=None,collision=False,batch=False):
     indices=list(indices);closed=len(indices)==count;vs=[];fs=[]
@@ -105,7 +108,7 @@ for side in [-1,1]:
         a,b=sorted([side*(rw-.06),side*(rw-.01)]);strip('KART_LED_RoadGuide',[i,j],a,b,COLORS[level(i)],top=.028,batch=True)
     strip('KART_EdgeLine',range(count),side*(rw-.17)-.045,side*(rw-.17)+.045,'MAT_KartWhite',top=.02)
 def arrow(i,off=0,material='MAT_KartGold'):
-    c=np.array(point(i,off,.027));f=np.r_[T[i],0];left=np.r_[N[i],0]
+    c=np.array(point(i,off,.027));f=np.r_[T[i],G[i]];left=np.r_[N[i],-TB[i]]
     xy=[(-.17,-.65),(.17,-.65),(.17,.2),(.47,.2),(0,.9),(-.47,.2),(-.17,.2)]
     mesh('KART_Direction',[list(c+left*x+f*y) for x,y in xy],[tuple(reversed(range(7)))],material)
 last=-99
@@ -130,15 +133,16 @@ for i in range(count):
         height=q[2]-spec['deck_thickness']
         box('KART_BridgeColumn',(q[0],q[1],height/2),(.42,.42,height),'MAT_KartSteel')
         colbox('KART_BridgeColumn',(q[0],q[1],height/2),(.42,.42,height));support_count+=1
-# Tyre bundles at the inside of corners, outside the collision deck.
+# Tyre bundles stand on the hall floor inside ground-level corners, outside the deck.
 group('KART_TyreBundles');tyre_count=0
-for vertex in spec['layout']['control_vertices']:
-    near=np.argmin(np.linalg.norm(P[:,:2]-(np.array(vertex[:2])+shift),axis=1));turn=np.cross(np.r_[T[(near-5)%count],0],np.r_[T[(near+5)%count],0])[2];side=1 if turn>0 else -1
+for mark in MARKS:
+    near=mark['apex'];side=1 if mark['sweep_deg']>0 else -1
+    if abs(mark['sweep_deg'])<40 or abs(P[near,2]-spec['levels'][0])>1e-6:continue
     for offset in [-.85,0,.85]:
-        q=np.array(point(near,side*4.0));q[:2]+=T[near]*offset
+        q=np.array(point(near,side*4.0));q[:2]+=T[near]*offset;q[2]=0
         far=np.minimum((np.arange(count)-near)%count,(near-np.arange(count))%count)>20
-        if np.any((np.linalg.norm(P[:,:2]-q[:2],axis=1)<3.8)&far&(abs(P[:,2]-q[2])<1.5)):continue
-        for h in [.17,.43]:ring('KART_Tyre',q+np.array([0,0,h]),.29,.135,'MAT_KartRubber',12,5);tyre_count+=1
+        if np.any((np.linalg.norm(P[:,:2]-q[:2],axis=1)<3.8)&far&(P[:,2]<6)):continue
+        for h in [.135,.405]:ring('KART_Tyre',q+np.array([0,0,h]),.29,.135,'MAT_KartRubber',12,5);tyre_count+=1
 # Pit lane and protected pedestrian stand; only empty CVS2 placement guides are authored.
 group('KART_Pits')
 strip('KART_PitApron',pit_indices,-pit['outside_offset'],-half,'MAT_KartConcrete',bottom=-.35,collision=True)
@@ -179,12 +183,19 @@ for x in range(20,148,28):
         box('KART_CeilingFixture',(p[0],p[1],13.65),(3,.14,.1),'MAT_KartLEDWhite')
 for u in [-17,0,17]:
     p=mid+axis*u+normal*-21;p[2]=4.05;area('LGT_KartPits',list(p),[p[0],p[1],0],900,(.36,.27,1),6)
-# Original signage: no names, logos or layout art from the photographed venue.
+# Original signage: sector titles and painted turn numbers only; no circuit names or logos.
 group('KART_Signage')
-for label,xy,z,color in [('01 / REACTOR',[96,42],2.3,'MAT_KartBlue'),('02 / CROSSFIRE',[68,82],6.5,'MAT_KartViolet'),('03 / SKYLINE',[80,58],10.7,'MAT_KartCyan')]:
-    p=np.array(xy)+shift;text_obj('KART_Sector',label,[p[0],p[1]+4,z],1.0,color)
+for label,xy,z,color in [('01 / REACTOR',[118,66],2.6,'MAT_KartBlue'),('02 / CROSSFIRE',[72,131],6.9,'MAT_KartViolet'),('03 / SKYLINE',[46,74],11.0,'MAT_KartCyan')]:
+    p=np.array(xy)+shift;text_obj('KART_Sector',label,[p[0],p[1],z],1.0,color)
 text_obj('KART_BackWallTitle','NEON SWITCHYARD',[center[0],159.65,10.2],3.3,'MAT_KartCyan')
-text_obj('KART_BackWallSub','34 TURNS  /  3 LEVELS  /  FIND YOUR LINE',[center[0],159.63,6.9],1.15,'MAT_KartWhite')
+text_obj('KART_BackWallSub','%d TURNS  /  3 LEVELS  /  FIND YOUR LINE'%len(spec['corners']),[center[0],159.63,6.9],1.15,'MAT_KartWhite')
+# Turn numbers painted 5 m before each corner, tilted to the local grade and bank.
+first={};turn_markers=[];loop=float(D[-1]+np.linalg.norm(P[0]-P[-1]))
+for vertex,mark in zip(spec['layout']['control_vertices'],MARKS):first.setdefault(vertex['turn'],mark)
+for corner in spec['corners']:
+    mark=first[corner['id']];i=int(np.argmin((D-D[mark['entry']]+5)%loop));c=point(i,1.35,.03)
+    text_obj('KART_TurnNumber',corner['id'],c,.8,'MAT_KartGold',rot=(math.atan(G[i]),-BANK[i],math.atan2(-T[i,0],T[i,1])))
+    turn_markers.append({'id':corner['id'],'name':corner['name'],'position':list(c),'apex':P[mark['apex']].tolist(),'radius_m':mark['radius'],'station_m':float(D[mark['apex']])})
 # A start gantry above the full 3.5 m vehicle envelope.
 i=start_i;p=P[i];angle=math.atan2(T[i,1],T[i,0])
 for side in [-1,1]:
@@ -196,11 +207,15 @@ for (g,name,material),(vs,fs) in DECOR.items():group(g);mesh(name,vs,fs,material
 probes=[list(P[i]+np.array([0,0,1.0])) for i in range(0,count,20)]
 def world(local):return [local[0]+shift[0],local[1]+shift[1],local[2]]
 cameras={
- '16_Kart_Overview':{'position':world([205,-145,178]),'target':world([65,40,3.4]),'lens':43,'cutaway':True},
- '17_Kart_Overpass':{'position':world([50,44,1.4]),'target':world([42,58,1.3]),'lens':21},
- '18_Kart_Driver':{'position':world([83,18,1.25]),'target':world([96,30,1.5]),'lens':20},
- '19_Kart_Pits':{'position':world([92,25,2.7]),'target':world([56,-1,1.6]),'lens':24},
- '20_Kart_UpperTechnical':{'position':world([110,10,9.85]),'target':world([118,32,9.8]),'lens':22}
+ '16_Kart_Overview':{'position':world([213,-109,178]),'target':world([74,84,3.4]),'lens':43,'cutaway':True},
+ '17_Kart_Overpass':{'position':world([121,75,1.45]),'target':world([96,78,2.6]),'lens':21},
+ '18_Kart_Driver':{'position':world([138,100.5,1.25]),'target':world([133,124,3.4]),'lens':20},
+ '19_Kart_Pits':{'position':world([98,42,3.2]),'target':world([66,22,1.4]),'lens':24},
+ '20_Kart_UpperTechnical':{'position':world([64,121.6,9.95]),'target':world([94,116,9.3]),'lens':22},
+ '24_Kart_Carousel':{'position':world([110,82,12.6]),'target':world([128,121,1.8]),'lens':26},
+ '25_Kart_Esses':{'position':world([116,146,5.8]),'target':world([82,140,5.2]),'lens':22},
+ '26_Kart_Climb':{'position':world([33,119,10.8]),'target':world([15,92,6.4]),'lens':24},
+ '27_Kart_Corkscrew':{'position':world([124,97,10.8]),'target':world([97,78,3.6]),'lens':22}
 }
-KART={**spec,'centerline':P.tolist(),'tangents':T.tolist(),'stations':D.tolist(),'length_m':float(np.linalg.norm(np.roll(P,-1,axis=0)-P,axis=1).sum()),'pit_indices':pit_indices,'vehicle_anchors':anchors,'portals':portals,'light_probes':probes,'support_columns':support_count,'tyres':tyre_count,'rail_wash_lights':lamp_count,'turns':len(spec['layout']['control_vertices']),'cameras':cameras,'time_panel':{'position':panel.tolist(),'yaw':-math.degrees(yaw)}}
-print('KART: %.1fm, %d corners, %d supports, %d samples'%(KART['length_m'],KART['turns'],support_count,count),flush=True)
+KART={**spec,'centerline':P.tolist(),'tangents':T.tolist(),'stations':D.tolist(),'length_m':float(np.linalg.norm(np.roll(P,-1,axis=0)-P,axis=1).sum()),'pit_indices':pit_indices,'vehicle_anchors':anchors,'portals':portals,'light_probes':probes,'support_columns':support_count,'tyres':tyre_count,'rail_wash_lights':lamp_count,'turns':len(spec['corners']),'turn_markers':turn_markers,'maximum_bank_deg':float(np.degrees(np.abs(BANK).max())),'cameras':cameras,'time_panel':{'position':panel.tolist(),'yaw':-math.degrees(yaw)}}
+print('KART: %.1fm, %d turns, %d apexes, %d supports, %d samples'%(KART['length_m'],KART['turns'],len(MARKS),support_count,count),flush=True)

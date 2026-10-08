@@ -1,6 +1,6 @@
 {
   "name": "APEX / NEON SWITCHYARD",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "origin": [
     180,
     0,
@@ -26,204 +26,600 @@
   "barrier_height": 0.75,
   "indoor": true,
   "layout": {
-    "type": "original_rounded_switchback_multilevel",
-    "corner_radius": 6.0,
+    "type": "original_variable_radius_banked_multilevel",
+    "default_radius": 8.0,
     "sample_distance": 0.65,
+    "bank_transition": 8.0,
     "offset": [
-      8,
-      36
+      0,
+      0
     ],
     "control_vertices": [
-      [
-        18,
-        18,
-        0.35
-      ],
-      [
-        96,
-        18,
-        0.35
-      ],
-      [
-        96,
-        42,
-        0.35
-      ],
-      [
-        72,
-        42,
-        0.35
-      ],
-      [
-        72,
-        30,
-        0.35
-      ],
-      [
-        50,
-        30,
-        0.35
-      ],
-      [
-        50,
-        58,
-        0.35
-      ],
-      [
-        26,
-        58,
-        0.35
-      ],
-      [
-        26,
-        36,
-        0.35
-      ],
-      [
-        10,
-        36,
-        0.35
-      ],
-      [
-        10,
-        92,
-        0.35
-      ],
-      [
-        118,
-        92,
-        4.55
-      ],
-      [
-        118,
-        70,
-        4.55
-      ],
-      [
-        92,
-        70,
-        4.55
-      ],
-      [
-        92,
-        82,
-        4.55
-      ],
-      [
-        68,
-        82,
-        4.55
-      ],
-      [
-        68,
-        60,
-        4.55
-      ],
-      [
-        44,
-        60,
-        4.55
-      ],
-      [
-        44,
-        76,
-        4.55
-      ],
-      [
-        26,
-        76,
-        4.55
-      ],
-      [
-        26,
-        10,
-        8.75
-      ],
-      [
-        118,
-        10,
-        8.75
-      ],
-      [
-        118,
-        48,
-        8.75
-      ],
-      [
-        100,
-        48,
-        8.75
-      ],
-      [
-        100,
-        30,
-        8.75
-      ],
-      [
-        80,
-        30,
-        8.75
-      ],
-      [
-        80,
-        58,
-        8.75
-      ],
-      [
-        60,
-        58,
-        8.75
-      ],
-      [
-        60,
-        40,
-        8.75
-      ],
-      [
-        40,
-        40,
-        8.75
-      ],
-      [
-        40,
-        108,
-        8.75
-      ],
-      [
-        128,
-        108,
-        4.55
-      ],
-      [
-        128,
-        -24,
-        0.35
-      ],
-      [
-        18,
-        -24,
-        0.35
-      ]
+      {
+        "turn": "T1",
+        "x": 130,
+        "y": 34,
+        "z": 0.35,
+        "r": 7
+      },
+      {
+        "turn": "T2",
+        "x": 121,
+        "y": 52,
+        "z": 0.35,
+        "r": 9
+      },
+      {
+        "turn": "T3",
+        "x": 134,
+        "y": 76,
+        "z": 0.35,
+        "r": 8
+      },
+      {
+        "turn": "T4",
+        "x": 84,
+        "y": 75,
+        "z": 0.35,
+        "r": 9
+      },
+      {
+        "turn": "T5",
+        "x": 84,
+        "y": 92,
+        "z": 0.35,
+        "r": 6
+      },
+      {
+        "turn": "T6",
+        "x": 138,
+        "y": 92,
+        "z": 0.35,
+        "r": 8
+      },
+      {
+        "turn": "T7",
+        "x": 138,
+        "y": 132,
+        "z": 0.35,
+        "r": 12,
+        "hold": "entry",
+        "bank": 3
+      },
+      {
+        "turn": "T7",
+        "x": 114,
+        "y": 132,
+        "z": null,
+        "r": 12,
+        "bank": 8
+      },
+      {
+        "turn": "T7",
+        "x": 114,
+        "y": 108,
+        "z": null,
+        "r": 12,
+        "bank": 8
+      },
+      {
+        "turn": "T7",
+        "x": 138,
+        "y": 108,
+        "z": 4.55,
+        "r": 12,
+        "hold": "exit",
+        "bank": 5
+      },
+      {
+        "turn": "T8",
+        "x": 138,
+        "y": 146,
+        "z": 4.55,
+        "r": 8
+      },
+      {
+        "turn": "T9",
+        "x": 104,
+        "y": 146,
+        "z": 4.55,
+        "r": 12
+      },
+      {
+        "turn": "T10",
+        "x": 88,
+        "y": 136,
+        "z": 4.55,
+        "r": 12
+      },
+      {
+        "turn": "T11",
+        "x": 72,
+        "y": 148,
+        "z": 4.55,
+        "r": 12
+      },
+      {
+        "turn": "T12",
+        "x": 56,
+        "y": 136,
+        "z": 4.55,
+        "r": 12
+      },
+      {
+        "turn": "T13",
+        "x": 40,
+        "y": 146,
+        "z": 4.55,
+        "r": 12
+      },
+      {
+        "turn": "T14",
+        "x": 10,
+        "y": 146,
+        "z": 4.55,
+        "r": 9
+      },
+      {
+        "turn": "T15",
+        "x": 10,
+        "y": 126,
+        "z": 4.55,
+        "r": 8
+      },
+      {
+        "turn": "T16",
+        "x": 42,
+        "y": 126,
+        "z": 4.55,
+        "r": 7
+      },
+      {
+        "turn": "T16",
+        "x": 42,
+        "y": 112,
+        "z": 4.55,
+        "r": 7,
+        "hold": "apex"
+      },
+      {
+        "turn": "T17",
+        "x": 12,
+        "y": 112,
+        "z": null,
+        "r": 9
+      },
+      {
+        "turn": "T18",
+        "x": 12,
+        "y": 98,
+        "z": null,
+        "r": 10
+      },
+      {
+        "turn": "T19",
+        "x": 19,
+        "y": 88,
+        "z": null,
+        "r": 9
+      },
+      {
+        "turn": "T20",
+        "x": 16,
+        "y": 79,
+        "z": 8.75,
+        "r": 10,
+        "hold": "apex"
+      },
+      {
+        "turn": "T21",
+        "x": 17,
+        "y": 68,
+        "z": 8.75,
+        "r": 9
+      },
+      {
+        "turn": "T21",
+        "x": 27,
+        "y": 62,
+        "z": 8.75,
+        "r": 9
+      },
+      {
+        "turn": "T22",
+        "x": 64,
+        "y": 62,
+        "z": 8.75,
+        "r": 18
+      },
+      {
+        "turn": "T23",
+        "x": 64,
+        "y": 90,
+        "z": 8.75,
+        "r": 8
+      },
+      {
+        "turn": "T24",
+        "x": 40,
+        "y": 90,
+        "z": 8.75,
+        "r": 6.5
+      },
+      {
+        "turn": "T24",
+        "x": 40,
+        "y": 103,
+        "z": 8.75,
+        "r": 6.5
+      },
+      {
+        "turn": "T25",
+        "x": 55,
+        "y": 103,
+        "z": 8.75,
+        "r": 8
+      },
+      {
+        "turn": "T26",
+        "x": 58,
+        "y": 121,
+        "z": 8.75,
+        "r": 8
+      },
+      {
+        "turn": "T27",
+        "x": 70,
+        "y": 122,
+        "z": 8.75,
+        "r": 7
+      },
+      {
+        "turn": "T27",
+        "x": 76,
+        "y": 116,
+        "z": 8.75,
+        "r": 7
+      },
+      {
+        "turn": "T27",
+        "x": 84,
+        "y": 116,
+        "z": 8.75,
+        "r": 7
+      },
+      {
+        "turn": "T27",
+        "x": 90,
+        "y": 122,
+        "z": 8.75,
+        "r": 7
+      },
+      {
+        "turn": "T28",
+        "x": 99,
+        "y": 122,
+        "z": 8.75,
+        "r": 7,
+        "hold": "apex"
+      },
+      {
+        "turn": "T28",
+        "x": 104.46,
+        "y": 115.49,
+        "z": null,
+        "r": 7
+      },
+      {
+        "turn": "T28",
+        "x": 102.99,
+        "y": 107.12,
+        "z": null,
+        "r": 7
+      },
+      {
+        "turn": "T29",
+        "x": 90.87,
+        "y": 100.12,
+        "z": null,
+        "r": 8
+      },
+      {
+        "turn": "T30",
+        "x": 100,
+        "y": 88,
+        "z": null,
+        "r": 9
+      },
+      {
+        "turn": "T31",
+        "x": 106,
+        "y": 50,
+        "z": null,
+        "r": 8
+      },
+      {
+        "turn": "T32",
+        "x": 50,
+        "y": 50,
+        "z": 0.35,
+        "r": 7
+      },
+      {
+        "turn": "T32",
+        "x": 42,
+        "y": 56,
+        "z": 0.35,
+        "r": 7
+      },
+      {
+        "turn": "T33",
+        "x": 8,
+        "y": 56,
+        "z": 0.35,
+        "r": 8
+      },
+      {
+        "turn": "T33",
+        "x": 8,
+        "y": 34,
+        "z": 0.35,
+        "r": 14
+      }
     ]
   },
+  "corners": [
+    {
+      "id": "T1",
+      "name": "Senna S entry",
+      "type": "braking left",
+      "level": "lower",
+      "reference": "Interlagos: S do Senna, Turn 1"
+    },
+    {
+      "id": "T2",
+      "name": "Senna S exit",
+      "type": "right flick",
+      "level": "lower",
+      "reference": "Interlagos: S do Senna, Turn 2"
+    },
+    {
+      "id": "T3",
+      "name": "Hairpin",
+      "type": "tight left hairpin",
+      "level": "lower",
+      "reference": "Suzuka: Hairpin"
+    },
+    {
+      "id": "T4",
+      "name": "Degner 1",
+      "type": "medium right",
+      "level": "lower",
+      "reference": "Suzuka: Degner 1"
+    },
+    {
+      "id": "T5",
+      "name": "Degner 2",
+      "type": "tighter right (decreasing radius pair)",
+      "level": "lower",
+      "reference": "Suzuka: Degner 2"
+    },
+    {
+      "id": "T6",
+      "name": "Carousel approach",
+      "type": "left",
+      "level": "lower",
+      "reference": "link"
+    },
+    {
+      "id": "T7",
+      "name": "Carousel",
+      "type": "360 deg banked climbing left that crosses over its own entry",
+      "level": "ramp",
+      "reference": "Nuerburgring Nordschleife: Karussell banking; Suzuka: figure-eight crossover"
+    },
+    {
+      "id": "T8",
+      "name": "Carousel exit",
+      "type": "left",
+      "level": "middle",
+      "reference": "link"
+    },
+    {
+      "id": "T9",
+      "name": "Esses 1",
+      "type": "fast left",
+      "level": "middle",
+      "reference": "Suzuka: S-Curves; Silverstone: Maggotts-Becketts-Chapel"
+    },
+    {
+      "id": "T10",
+      "name": "Esses 2",
+      "type": "right",
+      "level": "middle",
+      "reference": "Suzuka: S-Curves; Silverstone: Maggotts-Becketts-Chapel"
+    },
+    {
+      "id": "T11",
+      "name": "Esses 3",
+      "type": "left",
+      "level": "middle",
+      "reference": "Suzuka: S-Curves; Silverstone: Maggotts-Becketts-Chapel"
+    },
+    {
+      "id": "T12",
+      "name": "Esses 4",
+      "type": "right",
+      "level": "middle",
+      "reference": "Suzuka: S-Curves; Silverstone: Maggotts-Becketts-Chapel"
+    },
+    {
+      "id": "T13",
+      "name": "Esses 5",
+      "type": "fast left",
+      "level": "middle",
+      "reference": "Suzuka: S-Curves; Silverstone: Maggotts-Becketts-Chapel"
+    },
+    {
+      "id": "T14",
+      "name": "North corner",
+      "type": "left",
+      "level": "middle",
+      "reference": "link"
+    },
+    {
+      "id": "T15",
+      "name": "West turn",
+      "type": "left",
+      "level": "middle",
+      "reference": "link"
+    },
+    {
+      "id": "T16",
+      "name": "Right hairpin",
+      "type": "right hairpin",
+      "level": "middle",
+      "reference": "Spa-Francorchamps: La Source"
+    },
+    {
+      "id": "T17",
+      "name": "Climb entry",
+      "type": "left, climbing",
+      "level": "ramp",
+      "reference": "link"
+    },
+    {
+      "id": "T18",
+      "name": "Eau Rouge",
+      "type": "left kink, climbing",
+      "level": "ramp",
+      "reference": "Spa-Francorchamps: Eau Rouge"
+    },
+    {
+      "id": "T19",
+      "name": "Raidillon",
+      "type": "right, climbing",
+      "level": "ramp",
+      "reference": "Spa-Francorchamps: Raidillon"
+    },
+    {
+      "id": "T20",
+      "name": "Raidillon crest",
+      "type": "left at the summit",
+      "level": "upper",
+      "reference": "Spa-Francorchamps: Raidillon crest"
+    },
+    {
+      "id": "T21",
+      "name": "Spoon",
+      "type": "double-apex left",
+      "level": "upper",
+      "reference": "Suzuka: Spoon; Spa-Francorchamps: Pouhon"
+    },
+    {
+      "id": "T22",
+      "name": "130R",
+      "type": "fast large-radius left",
+      "level": "upper",
+      "reference": "Suzuka: 130R"
+    },
+    {
+      "id": "T23",
+      "name": "Upper link left",
+      "type": "left",
+      "level": "upper",
+      "reference": "link"
+    },
+    {
+      "id": "T24",
+      "name": "Grand hairpin",
+      "type": "tightest right hairpin, 6.5 m radius",
+      "level": "upper",
+      "reference": "Monaco: Fairmont (Grand Hotel) hairpin, mirrored"
+    },
+    {
+      "id": "T25",
+      "name": "Upper link left 2",
+      "type": "left",
+      "level": "upper",
+      "reference": "link"
+    },
+    {
+      "id": "T26",
+      "name": "Upper link right",
+      "type": "right",
+      "level": "upper",
+      "reference": "link"
+    },
+    {
+      "id": "T27",
+      "name": "Bus Stop",
+      "type": "right-left-left-right double chicane",
+      "level": "upper",
+      "reference": "Spa-Francorchamps: Bus Stop (double chicane)"
+    },
+    {
+      "id": "T28",
+      "name": "Triple apex",
+      "type": "three-apex right, descent begins",
+      "level": "ramp",
+      "reference": "Istanbul Park: Turn 8 multi-apex, mirrored"
+    },
+    {
+      "id": "T29",
+      "name": "Corkscrew left",
+      "type": "blind left, steep descent",
+      "level": "ramp",
+      "reference": "Laguna Seca: Corkscrew (Turn 8)"
+    },
+    {
+      "id": "T30",
+      "name": "Corkscrew right",
+      "type": "right, steep descent",
+      "level": "ramp",
+      "reference": "Laguna Seca: Corkscrew (Turn 8A)"
+    },
+    {
+      "id": "T31",
+      "name": "Lesmo",
+      "type": "descending right",
+      "level": "ramp",
+      "reference": "Monza: Lesmo"
+    },
+    {
+      "id": "T32",
+      "name": "Final chicane",
+      "type": "right-left chicane",
+      "level": "lower",
+      "reference": "Suzuka: Casio Triangle"
+    },
+    {
+      "id": "T33",
+      "name": "Parabolica",
+      "type": "increasing-radius left onto the main straight",
+      "level": "lower",
+      "reference": "Monza: Parabolica (Curva Alboreto), mirrored"
+    }
+  ],
   "design_limits": {
     "maximum_grade_percent": 12.5,
     "minimum_center_radius": 5.8,
     "minimum_crossing_clearance": 3.0,
     "maximum_sample_distance": 0.8,
     "kart_triangle_budget_pc": 170000,
-    "kart_triangle_budget_quest": 140000
+    "kart_triangle_budget_quest": 140000,
+    "maximum_bank_deg": 8.5
   },
   "pit": {
     "straight_x": [
-      35,
-      81
+      48,
+      94
     ],
-    "straight_y": 18,
+    "straight_y": 34,
     "outside_offset": 13.4,
     "vehicle_bays": 6
   },
-  "art_direction": "Enclosed industrial kart hall; cyan, violet and pink LED rails; dark glossy asphalt; close barriers, hairpins, underpasses and overhead trusses. Photographs inform atmosphere only; the route is original.",
+  "art_direction": "Enclosed industrial kart hall; cyan, violet and pink LED rails; dark glossy asphalt; close barriers and overhead trusses. v0.7.0 re-routes the circuit as a technical layout whose corner characters are scaled and adapted from well-known real circuits (see corners). Corner geometry, names on site and the overall route are original; no circuit is reproduced.",
   "external_vehicle_system": "CHIKUWA VEHICLE SYSTEM 2 (CVS2), installed by the world owner",
   "vehicle_assets_included": false,
   "runtime_status": "CVS2 steering, vehicle dimensions, multiplayer, lightmap baking and PC/Quest frame timings require Unity/VRChat validation."

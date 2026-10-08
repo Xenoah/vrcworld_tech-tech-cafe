@@ -166,7 +166,7 @@ for c in cols:
  if c['kind']!='box':continue
  x,y,z=c['position'];sx,sy,sz=c['size'];layer='IMPL_FLOOR_2F' if abs(z+sz/2-4.8)<.001 else 'IMPL_GUARD' if 'Balustrade' in c['name'] else 'IMPL_COLLIDER'
  ms.add_lwpolyline([((x-sx/2)*1000,(y-sy/2)*1000),((x+sx/2)*1000,(y-sy/2)*1000),((x+sx/2)*1000,(y+sy/2)*1000),((x-sx/2)*1000,(y+sy/2)*1000)],close=True,dxfattribs={'layer':layer})
-ms.add_text('THE COMMONS - v0.6.1 IMPLEMENTATION OVERLAY / PROPOSED CHANGES - NOT SOURCE CAD',dxfattribs={'height':240,'insert':(0,19000),'layer':'NOTES'})
-doc.saveas(ROOT/'CAD/The_Commons_Implementation_Overlay_v061.dxf')
+ms.add_text('THE COMMONS - v0.7.0 IMPLEMENTATION OVERLAY / PROPOSED CHANGES - NOT SOURCE CAD',dxfattribs={'height':240,'insert':(0,19000),'layer':'NOTES'})
+doc.saveas(ROOT/'CAD/The_Commons_Implementation_Overlay_v070.dxf')
 print(json.dumps(report,ensure_ascii=False,indent=2))
 if any(not c['pass'] for c in report['checks']):raise SystemExit(1)
