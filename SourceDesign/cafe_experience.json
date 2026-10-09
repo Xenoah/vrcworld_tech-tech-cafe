@@ -1,0 +1,137 @@
+{
+  "version": "0.9.0",
+  "base_commit": "65c185ad0158e93db5023b1ae793313393ac2017",
+  "coordinates": "Blender X / Y floor / Z up; Unity converts to X / Z / Y",
+  "portals": [
+    {
+      "area": "fpv",
+      "label": "FPV",
+      "subtitle": "VECTOR / DRONE FIELD",
+      "color": [
+        0.04,
+        0.72,
+        0.94
+      ],
+      "position": [
+        11.0,
+        3.45,
+        1.3
+      ],
+      "return_destination": [
+        11.0,
+        2.0,
+        0.12
+      ]
+    },
+    {
+      "area": "kart",
+      "label": "KART",
+      "subtitle": "APEX / 3 LEVEL CIRCUIT",
+      "color": [
+        0.95,
+        0.15,
+        0.51
+      ],
+      "position": [
+        17.0,
+        3.45,
+        1.3
+      ],
+      "return_destination": [
+        17.0,
+        2.0,
+        0.12
+      ]
+    }
+  ],
+  "lighting": {
+    "default_mode": 0,
+    "names": [
+      "WARM",
+      "CYBER",
+      "DISCO"
+    ],
+    "pc_accent_lights": 4,
+    "quest_accent_lights": 0,
+    "pc_laser_rays": 12,
+    "quest_laser_rays": 6,
+    "sync": "Manual synced mode; server clock drives slow continuous sweeps",
+    "panels": [
+      [
+        7.7,
+        1.48,
+        1.55
+      ],
+      [
+        20.6,
+        16.0,
+        2.75
+      ]
+    ],
+    "laser_origins": [
+      [
+        10.2,
+        5.3,
+        4.3
+      ],
+      [
+        17.8,
+        5.3,
+        4.3
+      ]
+    ],
+    "laser_target_center": [
+      14,
+      10.0,
+      2.8
+    ],
+    "laser_target_radius": [
+      2.6,
+      1.0,
+      0.7
+    ]
+  },
+  "iwasync": {
+    "included": false,
+    "main_screen": [
+      14,
+      16.765,
+      2.4
+    ],
+    "main_size": [
+      7.1,
+      4.0
+    ],
+    "upper_screen": [
+      14,
+      17.27,
+      7.22
+    ],
+    "upper_size": [
+      5.68,
+      3.2
+    ],
+    "player_anchor": [
+      24.35,
+      15.4,
+      1.7
+    ],
+    "house_music_muted_by_default": true
+  },
+  "removed_object_prefixes": [
+    "AV_Lectern",
+    "AV_Mic",
+    "AV_PresenterMark",
+    "AV_ScreenTitle",
+    "AV_ScreenSub",
+    "AV_ScreenCaption",
+    "AV_ScreenTick",
+    "AV_UpperIdentity",
+    "AV_UpperTag"
+  ],
+  "preserve": [
+    "kart geometry, colliders, banking, jump crests, course specification",
+    "FPV flight geometry",
+    "spawn glass, city, seating, time of day"
+  ]
+}

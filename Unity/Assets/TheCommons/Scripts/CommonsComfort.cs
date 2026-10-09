@@ -4,6 +4,8 @@ using UnityEngine;
 public class CommonsComfort : UdonSharpBehaviour
 {
     public CommonsWorldState state;
+    public CommonsLightingModes lighting;
+    public bool lasersEnabled = true;
     public Material[] luminousMaterials;
     public Material djMaterial;
     public GameObject mirrorRoot;
@@ -15,6 +17,7 @@ public class CommonsComfort : UdonSharpBehaviour
     public bool djVisuals = true;
     private bool mirrorOn;
     void Start() { if (mirrorRoot != null) mirrorRoot.SetActive(false); Refresh(); }
+    public void ToggleLasers() { lasersEnabled = !lasersEnabled; Refresh(); }
     public void ToggleMotion() { reducedMotion = !reducedMotion; Refresh(); }
     public void ToggleEmission() { lowEmission = !lowEmission; Refresh(); }
     public void ToggleDJVisuals() { djVisuals = !djVisuals; Refresh(); }
@@ -33,6 +36,7 @@ public class CommonsComfort : UdonSharpBehaviour
             djMaterial.SetFloat("_Motion", reducedMotion ? 0 : 1);
             djMaterial.SetFloat("_Intensity", djVisuals && mode == 2 ? (lowEmission ? .3f : .7f) : .12f);
         }
-        if (label != null) label.text = "LOCAL COMFORT\nMotion " + (reducedMotion ? "REDUCED" : "ON") + " / Emission " + (lowEmission ? "LOW" : "NORMAL");
+        if (lighting != null) lighting.Refresh();
+        if (label != null) label.text = "LOCAL COMFORT\nMotion " + (reducedMotion ? "REDUCED" : "ON") + " / Emission " + (lowEmission ? "LOW" : "NORMAL") + "\nLasers " + (lasersEnabled ? "ON" : "OFF");
     }
 }

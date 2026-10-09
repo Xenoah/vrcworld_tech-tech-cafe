@@ -1,4 +1,4 @@
-"""Typeset exact demonstration slides/posters and synthesize original quiet loops.
+"""Typeset exact gallery posters and synthesize original quiet loops.
 AI material albedos are copied unmodified; no raster retouching is performed.
 """
 from pathlib import Path
@@ -21,15 +21,6 @@ if '--manifest-only' in sys.argv:
 FONT=str(ROOT/'Blender/Fonts/DejaVuSans.ttf');BOLD=str(ROOT/'Blender/Fonts/DejaVuSans-Bold.ttf')
 def font(n,b=False):return ImageFont.truetype(BOLD if b else FONT,n)
 def text(d,p,s,n=28,c='#dfdfd2',b=False):d.text(p,s,font=font(n,b),fill=c)
-slides=[('THE COMMONS','IDEAS TASTE BETTER TOGETHER.',['A shared room for curious people.','TALK  /  BUILD  /  SHARE']),('OPEN FORUM','15 MIN TALK  +  5 MIN Q&A',['One idea. One experiment. One question.','Continue the conversation at Anchor Bar.']),('COMMUNITY NOTES','KEEP THE ROOM COMFORTABLE',['Leave the center aisle open.','Quiet conversation: ARCHIVE / Level 2.','Local comfort controls are beside the entrance.']),('BUILD SOMETHING SMALL','SAME ROOM. DIFFERENT WORLDS.',['Posters and demos: OPEN LAB.','Observe, ask, try, compare.'])]
-for i,(title,sub,body) in enumerate(slides):
- im=Image.new('RGB',(1600,900),'#101c24');d=ImageDraw.Draw(im)
- d.line((90,110,1510,110),fill='#bd8d53',width=3);text(d,(90,58),'THE COMMONS   /   COMPACT EDITION',24,'#ae906c')
- text(d,(90,236),title,68,b=True);text(d,(94,359),sub,32,'#57c5db')
- for j,s in enumerate(body):text(d,(94,508+j*65),s,29)
- text(d,(94,805),'FORUM   /   ANCHOR BAR   /   ORBIT CAFE   /   ARCHIVE',22,'#7a8f98')
- for k in range(3):d.ellipse((1180+k*36,470+k*22,1410+k*36,700+k*22),outline='#276272',width=2)
- im.save(A/'Media'/f'slide_{i}.png')
 posters=[('01','SYSTEMS','Small parts. Shared purpose.','Observe a system before changing it.'),('02','SIGNALS','Find the structure in noise.','What can we measure?'),('03','ORBIT','Different paths. One room.','A place to remain curious.'),('04','MAKING','Start with one experiment.','Build, compare, and iterate.'),('05','CONVERSATION','Good questions travel.','A question can open a new direction.'),('06','OPEN DEMO','Bring your next prototype.','This panel is ready for your content.')]
 for i,(num,title,sub,foot) in enumerate(posters):
  im=Image.new('RGB',(800,1280),'#14202a');d=ImageDraw.Draw(im)
@@ -72,4 +63,4 @@ for k in range(64):
  f=[73.4167,73.4167,110,65.4][(k//4)%4];dj+=.038*np.sin(2*np.pi*f*tau)*np.exp(-tau*5)*(1-np.exp(-tau*80))
 save_audio('commons_dj',dj)
 prepare_manifest()
-print('4 slides, 6 posters, 3 original audio loops, Unity manifest prepared')
+print('6 posters, 3 original audio loops, Unity manifest prepared')

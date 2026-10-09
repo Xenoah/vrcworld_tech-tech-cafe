@@ -1,0 +1,21 @@
+{
+  "base_commit": "65c185ad0158e93db5023b1ae793313393ac2017",
+  "blend_sha256": "bae03d811a95dc7b9b91805b90c5109eac8ae08ed3dbf31e1a83afeb1beed778",
+  "preserved_objects": 7911,
+  "changed": [],
+  "unexpected": [],
+  "presentation_objects_remaining": [],
+  "entry_sightlines": [
+    {
+      "area": "fpv",
+      "first_hit": "WAY_ButtonBlank",
+      "clear": true
+    },
+    {
+      "area": "kart",
+      "first_hit": "WAY_ButtonBlank.002",
+      "clear": true
+    }
+  ],
+  "passed": true
+}

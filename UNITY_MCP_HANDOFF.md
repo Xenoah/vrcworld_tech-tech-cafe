@@ -1,5 +1,17 @@
 # Unity MCPへの引き継ぎ — v0.8.0
 
+## v0.9.0の適用
+
+基準はClaudeのv0.8.0（65c185a）。最新mainを取得し、**既存シーンを保存・複製してから新しいPC/Questシーンを生成**してください。生成先はタイムスタンプ付きの別フォルダで、前のシーンを上書きしません。
+
+- 旧プレゼン・CommonsVideoSyncを撤去。既存シーンへのアセット上書きだけでは古いオブジェクトは消えません。
+- 両ポータルを入口左右に配置し、戻り先も更新。FPV/カート内の着地点はv0.8.0のまま。
+- WARM/CYBER/DISCOの照明パネル。PC 12本/Quest 6本のレーザー、既定は動き低減ON（静止）。
+- iwaSync本体は同梱・接続していません。[導入手順](Documentation/IWASYNC_INTEGRATION_JA.md)に従い所有者のプレハブを配置。
+- 内蔵BGM/DJは初期OFF。HOUSE MUSICで切替。
+- Unity/Udonコンパイル、Shaderコンパイル、PC/Questの往復と途中参加同期を確認後にベイク・Build & Testへ進む。
+
+
 取得元: https://github.com/Xenoah/vrcworld_tech-tech-cafe
 
 これはUnityの `Assets` 導入用リポジトリです。Unityプロジェクト本体、VRChat SDK、UdonSharp、生成済みシーンは同梱していません。ブラウザ歩行ビューアは別管理です。

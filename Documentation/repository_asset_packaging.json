@@ -1,14 +1,7 @@
 {
   "gltf": {
-    "geometry_buffer_bytes": 17402352,
-    "geometry_views_verified": 734,
+    "geometry_buffer_bytes": 17977640,
+    "geometry_views_verified": 785,
     "texture_files_exactly_reused": 9
-  },
-  "blend": {
-    "compressed_bytes": 4222743,
-    "external_images": 9,
-    "external_fonts": 1,
-    "geometry_sha256_before_and_after": "b68cce95177f369591228f392bc43271adef3d52d62ea7eb0d5a04832ca1f6ee",
-    "relative_asset_paths_verified_after_reopen": true
   }
 }

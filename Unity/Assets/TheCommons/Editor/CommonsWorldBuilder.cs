@@ -4,15 +4,12 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UdonSharp;
 using UdonSharpEditor;
 using VRC.SDKBase;
 using VRC.SDK3.Components;
-using VRC.SDK3.Video.Components;
 
 public static class CommonsWorldBuilder
 {
@@ -169,11 +166,7 @@ public static class CommonsWorldBuilder
         state.hologramRoot=Mobile?null:Group("AV_Hologram");state.comfort=comfort;state.audioZones=zones;
         comfort.state=state;zones.state=state;
         List<Material> em=new List<Material>();foreach(MaterialRecord m in data.materials)if(m.emission>0)em.Add(materials[m.name]);comfort.luminousMaterials=em.ToArray();
-        Material media=new Material(Shader.Find("The Commons/Media"));media.name="Presentation";
-        state.slides=new Texture[4];for(int i=0;i<4;i++)state.slides[i]=AssetDatabase.LoadAssetAtPath<Texture2D>(Root+"/Media/slide_"+i+".png");
-        media.mainTexture=state.slides[0];SaveAsset(media,Out+"/Materials/Presentation.mat");state.presentationMaterial=media;
-        Quad("AV_MainMedia",new Vector3(14,2.4f,16.765f),7.1f,4f,0,media);
-        Quad("AV_UpperMedia",new Vector3(14,7.22f,17.27f),5.68f,3.2f,0,media);
+        BuildIwaSyncAnchors();
         for(int i=0;i<6;i++)
         {
             Material p=new Material(Shader.Find("The Commons/Media"));p.name="Poster_"+i;
@@ -183,20 +176,16 @@ public static class CommonsWorldBuilder
         }
         Material dj=new Material(Shader.Find("The Commons/DJ Bands"));SaveAsset(dj,Out+"/Materials/DJ_Bands.mat");comfort.djMaterial=dj;
         Quad("AV_DJVisualizer",new Vector3(14,5.22f,12.801f),3.4f,.34f,0,dj);
-        GameObject pointer=GameObject.CreatePrimitive(PrimitiveType.Sphere);pointer.name="INT_StablePointer";pointer.transform.localScale=Vector3.one*.055f;pointer.GetComponent<Renderer>().sharedMaterial=materials["MAT_Amber"];UnityEngine.Object.DestroyImmediate(pointer.GetComponent<Collider>());state.pointerRoot=pointer;state.pointerTransform=pointer.transform;
         state.modeLabel=Label("Mode","LOUNGE",new Vector3(17.1f,1.98f,1.38f),.13f);
-        state.timerLabel=Label("Timer","15 MIN TALK / 5 MIN Q&A",new Vector3(10.4f,1.75f,11.12f),.12f);
-        state.qaLabel=Label("QA","",new Vector3(14,4.18f,16.72f),.22f);
-        string[] mn={"LOUNGE","ACADEMIC","DJ / LIVE","QUIET NIGHT"};string[] me={"Lounge","Academic","DJ","QuietNight"};
+        string[] mn={"LOUNGE","AUDIENCE","DJ / LIVE","QUIET NIGHT"};string[] me={"Lounge","Academic","DJ","QuietNight"};
         for(int i=0;i<4;i++)
         {
             Button(mn[i],new Vector3(16.6f+(i%2)*1.05f,1.65f-(i/2)*.36f,1.48f),state,me[i]);
             Button(mn[i],new Vector3(20.6f+(i%2)*1.05f,1.65f-(i/2)*.36f,16.0f),state,me[i]);
         }
         Label("Host access","HOST / INSTANCE MASTER",new Vector3(17.12f,.98f,1.38f),.075f);
-        string[] actions={"PreviousSlide","NextSlide","StartTalk","StartQA","StopTimer","ToggleQA","TogglePointer","PointerLeft","PointerRight","PointerUp","PointerDown","Lounge"};
-        string[] titles={"PREV SLIDE","NEXT SLIDE","15 MIN TALK","5 MIN Q&A","STOP TIMER","Q&A SIGN","POINTER","LEFT","RIGHT","UP","DOWN","END SESSION"};
-        for(int i=0;i<actions.Length;i++)Button(titles[i],new Vector3(9.9f+(i%2)*1.02f,1.47f-(i/2)*.21f,11.22f),state,actions[i],.91f,.18f);
+        state.musicLabel=Label("HouseMusic","HOUSE MUSIC / OFF",new Vector3(24.35f,2.1f,16.05f),.11f);
+        Button("HOUSE MUSIC ON / OFF",new Vector3(24.35f,1.65f,16.12f),state,"ToggleHouseMusic",2.1f);
         comfort.label=Label("Comfort","LOCAL COMFORT",new Vector3(10.65f,1.92f,1.40f),.09f);
         Button("REDUCED MOTION",new Vector3(10.65f,1.55f,1.49f),comfort,"ToggleMotion",1.6f);
         Button("LOW EMISSION",new Vector3(10.65f,1.21f,1.49f),comfort,"ToggleEmission",1.6f);
@@ -209,11 +198,11 @@ public static class CommonsWorldBuilder
         Portal("ORBIT CAFE",new Vector3(6.6f,1.15f,11.4f),new Vector3(6.35f,4.9f,15.4f));
         Portal("ANCHOR BAR",new Vector3(6.7f,5.95f,15.8f),new Vector3(6.35f,.1f,11.0f));
         if(data.fpv!=null && data.fpv.portals!=null)foreach(PortalRecord r in data.fpv.portals)
-            Portal(r.name,V(r.position),V(r.destination),r.facing_yaw,r.yaw);
+            Portal(r.name,V(r.position),V(r.destination),r.facing_yaw,r.yaw,true);
         if(data.kart!=null)
         {
             if(data.kart.portals!=null)foreach(PortalRecord r in data.kart.portals)
-                Portal(r.name,V(r.position),V(r.destination),r.facing_yaw,r.yaw);
+                Portal(r.name,V(r.position),V(r.destination),r.facing_yaw,r.yaw,true);
             // Empty placement guides only. Import the owner's CVS2 vehicles separately.
             if(data.kart.vehicle_anchors!=null)foreach(VehicleAnchor r in data.kart.vehicle_anchors)
             {
@@ -238,10 +227,14 @@ public static class CommonsWorldBuilder
         AudioSource ambience=Audio("Room tone","commons_roomtone",new Vector3(14,3,9),.13f);
         AudioSource music=Audio("Original ambient loop","commons_ambient",new Vector3(14,3,12),.12f);zones.ambience=ambience;zones.music=music;
         zones.dance=Audio("Original DJ loop","commons_dj",new Vector3(14,5.9f,13.3f),0);
-        SetupVideo(state,zones,media);
-        new GameObject("EventSystem",typeof(EventSystem),typeof(StandaloneInputModule));
         SetupLighting(data);
         CommonsTimeOfDay time=CommonsAtmosphereBuilder.Configure(Out,Mobile,state,comfort,materials);
+        CommonsLightingModes lighting=CommonsLightingBuilder.Configure(Out,Mobile,state,comfort,time);
+        comfort.lighting=lighting;
+        foreach(Vector3 panel in new[]{new Vector3(7.7f,1.55f,1.48f),new Vector3(20.6f,2.75f,16f)})
+            LightingPanel(panel,lighting);
+        Button("LASERS (LOCAL)",new Vector3(12.5f,1.21f,1.49f),comfort,"ToggleLasers",1.6f,.23f);
+        lighting.ApplyProxyModifications();
         TextMesh cafeTime=TimePanel(new Vector3(22.5f,1.8f,1.48f),0,time);
         TextMesh fieldTime=TimePanel(new Vector3(-33f,1.8f,.65f),180,time);
         time.labels=new[]{cafeTime,fieldTime};
@@ -281,7 +274,7 @@ public static class CommonsWorldBuilder
             if(renderer.bounds.center.x>=100f)kartRenderers.Add(renderer);else if(renderer.bounds.center.x < -15f)fieldRenderers.Add(renderer);else cafeRenderers.Add(renderer);
         visibility.cafe=cafeRenderers.ToArray();visibility.fpv=fieldRenderers.ToArray();visibility.kart=kartRenderers.ToArray();visibility.timeOfDay=time;visibility.ApplyProxyModifications();
         zones.ApplyProxyModifications();comfort.ApplyProxyModifications();state.ApplyProxyModifications();
-        state.academicRoot.SetActive(false);pointer.SetActive(false);comfort.Refresh();
+        state.academicRoot.SetActive(false);state.ApplyState();comfort.Refresh();
         EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(Out+"/TheCommons.unity",true)};
         EditorSceneManager.SaveScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene(),Out+"/TheCommons.unity");AssetDatabase.SaveAssets();
         Debug.Log("THE COMMONS scene created: "+Out+". Run Bake lighting, then SDK Build & Test. Unity/runtime validation remains required.");
@@ -304,10 +297,10 @@ public static class CommonsWorldBuilder
         Label(name,name,p+Quaternion.Euler(0,yaw,0)*new Vector3(0,0,-.046f),h*.35f,yaw);
         CommonsButton b=o.AddUdonSharpComponent<CommonsButton>();b.target=target;b.eventName=method;b.ApplyProxyModifications();InteractSettings(b,name,2f);
     }
-    static void Portal(string name,Vector3 p,Vector3 destination,float facingYaw=0,float destinationYaw=0)
+    static void Portal(string name,Vector3 p,Vector3 destination,float facingYaw=0,float destinationYaw=0,bool activity=false)
     {
-        GameObject o=GameObject.CreatePrimitive(PrimitiveType.Cube);o.name="INT_Portal_"+name;o.transform.position=p;o.transform.rotation=Quaternion.Euler(0,facingYaw,0);o.transform.localScale=new Vector3(.8f,.5f,.12f);o.GetComponent<Renderer>().sharedMaterial=materials["MAT_Cyan"];
-        Label(name,name,p+Quaternion.Euler(0,facingYaw,0)*new Vector3(0,0,-.072f),.075f,facingYaw);
+        GameObject o=GameObject.CreatePrimitive(PrimitiveType.Cube);o.name="INT_Portal_"+name;o.transform.position=p;o.transform.rotation=Quaternion.Euler(0,facingYaw,0);o.transform.localScale=(activity?new Vector3(2.1f,.72f,.12f):new Vector3(.8f,.5f,.12f));o.GetComponent<Renderer>().sharedMaterial=materials[activity?"MAT_Black":"MAT_Cyan"];
+        if(!activity)Label(name,name,p+Quaternion.Euler(0,facingYaw,0)*new Vector3(0,0,-.072f),.075f,facingYaw);
         Transform target=new GameObject("TP_"+name).transform;target.position=destination;target.rotation=Quaternion.Euler(0,destinationYaw,0);
         CommonsPortal portal=o.AddUdonSharpComponent<CommonsPortal>();portal.destination=target;portal.ApplyProxyModifications();InteractSettings(portal,name,2.5f);
     }
@@ -328,23 +321,28 @@ public static class CommonsWorldBuilder
     }
     static void InteractSettings(UdonSharpBehaviour proxy,string text,float distance)
     {var b=UdonSharpEditorUtility.GetBackingUdonBehaviour(proxy);b.interactText=text;b.proximity=distance;EditorUtility.SetDirty(b);}
-    static void SetupVideo(CommonsWorldState state,CommonsAudioZones zones,Material media)
+    static void BuildIwaSyncAnchors()
     {
-        GameObject go=new GameObject("AV_SyncedVideo");VRCUnityVideoPlayer player=go.AddComponent<VRCUnityVideoPlayer>();
-        RenderTexture rt=new RenderTexture(Mobile?1024:1920,Mobile?576:1080,0,RenderTextureFormat.ARGB32);rt.name="VideoOutput";SaveAsset(rt,Out+"/VideoOutput.renderTexture");
-        AudioSource audio=go.AddComponent<AudioSource>();audio.playOnAwake=false;audio.spatialBlend=0;audio.volume=.7f;
-        player.autoPlay=false;player.loop=false;player.renderMode=VRCUnityVideoPlayer.VideoRenderMode.RenderTexture;player.targetTexture=rt;player.targetAudioSources=new[]{audio};player.maximumResolution=Mobile?720:1080;
-        CommonsVideoSync sync=go.AddUdonSharpComponent<CommonsVideoSync>();sync.state=state;sync.player=player;sync.output=rt;sync.screen=media;state.videoSync=sync;zones.videoAudio=audio;
-        sync.status=Label("VideoStatus","HOST VIDEO / HTTPS URL",new Vector3(24.35f,2.18f,16.05f),.11f);
-        GameObject canvasGO=new GameObject("INT_VideoURL",typeof(RectTransform),typeof(Canvas),typeof(GraphicRaycaster));Canvas canvas=canvasGO.GetComponent<Canvas>();canvas.renderMode=RenderMode.WorldSpace;canvasGO.transform.position=new Vector3(24.35f,1.7f,16.12f);canvasGO.transform.localScale=Vector3.one*.003f;
-        RectTransform rect=canvasGO.GetComponent<RectTransform>();rect.sizeDelta=new Vector2(800,100);
-        canvasGO.AddComponent<VRCUiShape>();BoxCollider click=canvasGO.AddComponent<BoxCollider>();click.size=new Vector3(800,100,1);
-        Image background=canvasGO.AddComponent<Image>();background.color=new Color(.06f,.09f,.12f);
-        GameObject textGO=new GameObject("URL Text",typeof(RectTransform));textGO.transform.SetParent(canvasGO.transform,false);RectTransform tr=textGO.GetComponent<RectTransform>();tr.anchorMin=Vector2.zero;tr.anchorMax=Vector2.one;tr.offsetMin=new Vector2(15,8);tr.offsetMax=new Vector2(-15,-8);
-        Text text=textGO.AddComponent<Text>();text.font=Resources.GetBuiltinResource<Font>("Arial.ttf");text.fontSize=24;text.alignment=TextAnchor.MiddleLeft;text.color=Color.white;
-        VRCUrlInputField input=canvasGO.AddComponent<VRCUrlInputField>();input.textComponent=text;input.targetGraphic=background;sync.urlInput=input;
-        Button("LOAD URL",new Vector3(23.8f,1.23f,16.12f),sync,"LoadFromField");Button("STOP VIDEO",new Vector3(24.9f,1.23f,16.12f),sync,"StopPlayback");
-        sync.ApplyProxyModifications();
+        // iwaSync is supplied by the world owner. No custom video Udon, URL UI,
+        // timer, slide player, or pointer is generated by this world.
+        GameObject root=Group("AV_IwaSync_Integration");
+        Material blank=new Material(Shader.Find("The Commons/Media"));blank.name="IwaSync_Unassigned";
+        blank.mainTexture=Texture2D.blackTexture;SaveAsset(blank,Out+"/Materials/IwaSync_Unassigned.mat");
+        GameObject main=Quad("AV_IwaSync_MainScreen",new Vector3(14,2.4f,16.765f),7.1f,4f,0,blank);
+        GameObject upper=Quad("AV_IwaSync_UpperScreen",new Vector3(14,7.22f,17.27f),5.68f,3.2f,0,blank);
+        main.transform.SetParent(root.transform,true);upper.transform.SetParent(root.transform,true);
+        Transform player=new GameObject("IwaSync_PlayerAnchor").transform;player.SetParent(root.transform,false);
+        player.position=new Vector3(24.35f,1.7f,15.4f);
+        Transform audio=new GameObject("IwaSync_AudioAnchor").transform;audio.SetParent(root.transform,false);
+        audio.position=new Vector3(14,2.3f,16.2f);
+    }
+    static void LightingPanel(Vector3 p,CommonsLightingModes lighting)
+    {
+        TextMesh label=Label("Lighting","LIGHTING / WARM",p+new Vector3(0,.48f,-.05f),.12f);
+        List<TextMesh> labels=new List<TextMesh>();if(lighting.labels!=null)labels.AddRange(lighting.labels);labels.Add(label);lighting.labels=labels.ToArray();
+        Label("LightingAccess","HOST / INSTANCE MASTER",p+new Vector3(0,.26f,-.05f),.065f);
+        string[] titles={"WARM","CYBER","DISCO + LASERS"},events={"Warm","Cyber","Disco"};
+        for(int i=0;i<3;i++)Button(titles[i],p+new Vector3(0,-i*.32f,0),lighting,events[i],2.0f,.27f);
     }
     static void BuildMirror(CommonsComfort comfort)
     {

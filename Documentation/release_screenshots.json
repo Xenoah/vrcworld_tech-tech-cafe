@@ -1,61 +1,31 @@
 {
-  "version": "0.8.0",
-  "scope": "Actual v0.8.0 kart model rendered in Blender Cycles (bpy 4.5.14 LTS). Kart overview only is a cutaway. Not Unity/VRChat runtime captures. Cafe, FPV and city are unchanged and keep their v0.6.1 images; v0.6.0 design sheets are historical references.",
+  "version": "0.9.0",
+  "scope": "Actual v0.9.0 model rendered in Blender Cycles. Lighting and lasers are design previews following the Unity palettes and layout, not Unity/VRChat runtime captures. iwaSync is not installed.",
   "images": [
     {
-      "path": "Preview/16_Kart_Overview.png",
-      "caption": "v0.8.0のカート全景（屋根・手前2壁・トラス非表示）",
-      "renderer": "Blender 4.5.14 / Cycles"
+      "path": "Preview/30_Activity_Portals.png",
+      "caption": "入口正面のFPVとKART：大型案内・色分け・選択パネル",
+      "renderer": "Blender 4.5.14 LTS / Cycles"
     },
     {
-      "path": "Preview/24_Kart_Carousel.png",
-      "caption": "T4カルーセル：バンク8°で360°登り、自身の入口の上を越える",
-      "renderer": "Blender 4.5.14 / Cycles"
+      "path": "Preview/31_Cafe_Warm.png",
+      "caption": "暖色照明のカフェ全景",
+      "renderer": "Blender 4.5.14 LTS / Cycles"
     },
     {
-      "path": "Preview/25_Kart_Hairpins.png",
-      "caption": "T19〜T25：いろは坂型の複合7連ヘアピン（斜めの脚で折り返しながら下る）",
-      "renderer": "Blender 4.5.14 / Cycles"
+      "path": "Preview/32_Cafe_Cyber.png",
+      "caption": "シアンと紫のサイバー照明",
+      "renderer": "Blender 4.5.14 LTS / Cycles"
     },
     {
-      "path": "Preview/20_Kart_Castle.png",
-      "caption": "上層T12〜T14：クッパ城のような直角コーナー（形のみ）",
-      "renderer": "Blender 4.5.14 / Cycles"
+      "path": "Preview/33_Cafe_Disco.png",
+      "caption": "ディスコ照明と有限長のレーザー",
+      "renderer": "Blender 4.5.14 LTS / Cycles"
     },
     {
-      "path": "Preview/27_Kart_Corkscrew.png",
-      "caption": "T14〜T16：頂上から落ちるコークスクリュー型の下り",
-      "renderer": "Blender 4.5.14 / Cycles"
-    },
-    {
-      "path": "Preview/26_Kart_SpaHairpin.png",
-      "caption": "T10：スパ型ヘアピンと上層への登坂",
-      "renderer": "Blender 4.5.14 / Cycles"
-    },
-    {
-      "path": "Preview/28_Kart_Nordschleife.png",
-      "caption": "T6〜T9：ノルトシュライフェ型の高速キンクとフリック",
-      "renderer": "Blender 4.5.14 / Cycles"
-    },
-    {
-      "path": "Preview/29_Kart_Jump.png",
-      "caption": "J1：T3後の下層直線のジャンプ（路面のJUMP表示）",
-      "renderer": "Blender 4.5.14 / Cycles"
-    },
-    {
-      "path": "Preview/17_Kart_Overpass.png",
-      "caption": "峠の入口の脚から見上げる上層の城（立体交差）",
-      "renderer": "Blender 4.5.14 / Cycles"
-    },
-    {
-      "path": "Preview/18_Kart_Driver.png",
-      "caption": "メインストレートからT1シケインへ（運転視点）",
-      "renderer": "Blender 4.5.14 / Cycles"
-    },
-    {
-      "path": "Preview/19_Kart_Pits.png",
-      "caption": "スタートゲート・ピット・観戦席",
-      "renderer": "Blender 4.5.14 / Cycles"
+      "path": "Preview/34_Stage_iwaSync.png",
+      "caption": "旧プレゼンを撤去したメインステージ・空画面",
+      "renderer": "Blender 4.5.14 LTS / Cycles"
     }
   ]
 }

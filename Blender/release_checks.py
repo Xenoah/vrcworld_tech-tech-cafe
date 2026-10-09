@@ -8,6 +8,12 @@ def validate_inputs(root,manifest):
     for name in ('validation_report.json','kart_validation.json'):
         report=json.loads((root/'Documentation'/name).read_text())
         assert report['checks'] and all(c['pass'] for c in report['checks']), name
+    if tuple(map(int,manifest['version'].split('.'))) >= (0,9,0):
+        import hashlib
+        source=json.loads((root/'Documentation/cafe_source_preservation.json').read_text())
+        update=json.loads((root/'Documentation/cafe_update_validation.json').read_text())
+        assert source['passed'] and update['passed'] and all(c['pass'] for c in update['checks'])
+        assert source['blend_sha256']==hashlib.sha256((root/'Blender/The_Commons_Compact.blend').read_bytes()).hexdigest()
     syntax=json.loads((root/'Documentation/csharp_syntax_report.json').read_text())
     assert syntax['checks'] and not any(c['syntax_errors'] for c in syntax['checks'])
     geometry=json.loads((root/'Documentation/geometry_report.json').read_text())

@@ -8,13 +8,11 @@ public class CommonsAudioZones : UdonSharpBehaviour
     public AudioSource ambience;
     public AudioSource music;
     public AudioSource dance;
-    public AudioSource videoAudio;
     public bool voiceZoning = true;
     private VRCPlayerApi[] players = new VRCPlayerApi[80];
     private float nextVoicePoll;
     private float targetAmbience;
     private float targetMusic;
-    private float targetVideo;
     private float targetDance;
     private bool quiet;
     private int area;
@@ -32,9 +30,8 @@ public class CommonsAudioZones : UdonSharpBehaviour
         targetAmbience = .13f * k;
         targetMusic = (m == 1 ? .035f : m == 2 ? 0 : m == 3 ? .07f : .12f) * k;
         targetDance = m == 2 ? .32f*k : 0;
-        if(state!=null && state.videoSync!=null && state.videoSync.playing){targetMusic=0;targetDance=0;}
-        targetVideo = (quiet ? .10f : .7f);
-        if (area != 0) {targetAmbience=.065f;targetMusic=0;targetDance=0;targetVideo=0;}
+        if(state!=null && state.houseMusicMuted){targetMusic=0;targetDance=0;}
+        if (area != 0) {targetAmbience=.065f;targetMusic=0;targetDance=0;}
     }
     void Update()
     {
@@ -47,7 +44,6 @@ public class CommonsAudioZones : UdonSharpBehaviour
         if (ambience != null) ambience.volume = Mathf.Lerp(ambience.volume,targetAmbience,k);
         if (music != null) music.volume = Mathf.Lerp(music.volume,targetMusic,k);
         if (dance != null) dance.volume = Mathf.Lerp(dance.volume,targetDance,k);
-        if (videoAudio != null) videoAudio.volume = Mathf.Lerp(videoAudio.volume,targetVideo,k);
         if (Time.time < nextVoicePoll) return;
         nextVoicePoll = Time.time + 1f;
         Refresh();

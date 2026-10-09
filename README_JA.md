@@ -1,16 +1,37 @@
 # THE COMMONS — Compact Edition
 
-**v0.8.0 / 詳細モデル・Unity構築データ / 2026-10-08**
+**v0.9.0 / 詳細モデル・Unity構築データ / 2026-10-09**
 
 28×18m、1F +0.000m、2F +4.800m、屋根基準 +9.600mの制作データです。Blenderで編集できる実形状、FBX、glTF、生成テクスチャ、VRChat SDK用のシーン構築ツールとUdonSharpソースを含みます。
 
 **Unity Editor / VRChatクライアントは制作環境になかったため、Unityでのコンパイル・ライトベイク・Build & Test・Quest実機・複数人通信は未検証です。公開済みワールドやビルド済み `.vrcw` ではありません。** Blenderレンダーと幾何検査の結果は `Preview/` と `Documentation/validation_report.json` に収録しています。
 
-Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md)、今回の修正は [CHANGES_v0.8.0_JA.md](Documentation/CHANGES_v0.8.0_JA.md) を参照してください。
+Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md)、今回の修正は [CHANGES_v0.9.0_JA.md](Documentation/CHANGES_v0.9.0_JA.md) を参照してください。
 
-**詳細仕様・寸法付き平面図・実モデルのデザインシートは [README](README.md) と [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) に整理しています。モデル版はv0.8.0、図面集はv0.6.0の過去資料です（カートの図面・デザインシートは旧コース）。最新のカートは `Preview/Design/09_Kart_Plan_v08.png` とv0.8.0の画像、ガラス・照明・街並みはv0.6.1の画像を参照してください。**
+**詳細仕様・寸法付き平面図・実モデルのデザインシートは [README](README.md) と [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) に整理しています。モデル版はv0.9.0、図面集はv0.6.0の過去資料です（カートの図面・デザインシートは旧コース）。最新のカートは `Preview/Design/09_Kart_Plan_v08.png` とv0.8.0の画像、ガラス・照明・街並みはv0.6.1の画像を参照してください。**
 
-## v0.8.0の変更 — いろは坂型の複合7連ヘアピン・カルーセル・ジャンプ
+## v0.9.0 — ポータル案内・iwaSync用ステージ・照明3モード
+
+Claudeのv0.8.0（`65c185a`、2026-10-08）を基準に更新しました。26コーナー・3層の走路、ジャンプ、バンク、FPV飛行エリア、ガラス・街並みを継承しています。
+
+- **ポータル**：入口正面の左にシアンのFPV、右にピンクのKART。幅2.94 mのフレーム、大きな行き先名、床矢印、2.1 × 0.72 mのInteractボタンを設置。両エリアの帰路もCAFEと大きく表示。
+- **ステージ**：内蔵スライド、15分/5分タイマー、Q&A、画面ポインター、動画URL UI・独自再生同期を撤去。演台・マイク・旧画面の文字も撤去し、iwaSync用の主画面・上階画面・配置アンカーを用意。
+- **照明**：WARM／CYBER／DISCO + LASERSを入口とAV側で選択。時間帯・家具モードとは独立し、選択を同期。カフェ専用マテリアルでFPV・カート・街・ポータルの識別色への影響を分離。
+- **レーザー**：PC 12本／Quest 6本。静かな色変化とゆっくりした走査、ストロボなし。REDUCED MOTION（既定ON）では静止、LASERS (LOCAL)で個別非表示、LOW EMISSIONで減光。
+
+**iwaSync本体は別途導入・接続が必要です。** 本更新は既存プレゼン撤去と配置準備まで。内蔵BGM/DJループは初期OFFで、AV側のHOUSE MUSICから切り替えます。iwaSyncの音量・URL・同期はiwaSync側で操作します。
+
+![入口正面のFPV・KARTポータル](Preview/30_Activity_Portals.png)
+
+| 暖色 | サイバー | ディスコ |
+| --- | --- | --- |
+| ![暖色](Preview/31_Cafe_Warm.png) | ![サイバー](Preview/32_Cafe_Cyber.png) | ![ディスコ](Preview/33_Cafe_Disco.png) |
+
+画像は更新モデルのBlenderレンダー。照明・レーザーはUnityの配色と配置を用いたデザイン確認で、Unity/VRChat実機の描画一致や動作を保証する画像ではありません。
+
+[変更仕様・検証](Documentation/CHANGES_v0.9.0_JA.md) · [iwaSync接続手順](Documentation/IWASYNC_INTEGRATION_JA.md) · [モデル保持検証](Documentation/cafe_source_preservation.json) · [メッシュ差分検証](Documentation/cafe_update_validation.json)
+
+## v0.8.0の変更履歴 — いろは坂型の複合7連ヘアピン・カルーセル・ジャンプ
 
 APEX / NEON SWITCHYARDの走路だけを作り直しました。v0.7.0のS字が続く「うねり」を減らし、**全長1,141.23 m・26コーナー・3層** のコースにしています。モンツァ型のシケイン、高速コーナー、2か所のジャンプ、前版から引き継いだバンク付きの360°登坂カルーセル、ノルトシュライフェ型の複合区間、スパ型ヘアピン、SFC『スーパーマリオカート』のクッパ城のような直角（形のみ）、ラグナ・セカ型の下りのコークスクリュー、鈴鹿のような立体交差、日光いろは坂の地図を参考にした複合7連ヘアピンの下りを、縮小・左右反転して取り入れました。どのコース・道路・ゲームも再現していません。
 
@@ -95,7 +116,7 @@ v0.6.1のRelease画像7枚のうち、カフェ・FPV・街並みの6枚です�
 ## 最短の導入
 
 1. VRChat Creator Companionで **Worldsプロジェクト** を作成します。制作基準は **Unity 2022.3.22f1**。Built-in Render Pipelineを使います。SDK / UdonSharpはVCCの導入分を利用します。
-2. `Unity/Assets/TheCommons` を、作成したプロジェクトの `Assets` へフォルダーごとコピーします。Release v0.8.0のUnityパッケージをインポートする方法でも導入できます。
+2. `Unity/Assets/TheCommons` を、作成したプロジェクトの `Assets` へフォルダーごとコピーします。Release v0.9.0のUnityパッケージをインポートする方法でも導入できます。
 3. C#のインポートが完了したら、Unity上部メニュー **The Commons → Build PC World** を実行します。最初にUdonSharpをコンパイルし、メッシュ・マテリアル・コライダー・操作パネル・スポーン・照明を配置します。
 4. シーンは `Assets/TheCommons/Generated/PC_日時/TheCommons.unity` に保存されます。既存シーンは上書きしません。
 5. **The Commons → Bake lighting** でライトマップを生成します。PCはPBRと補助光、Questは頂点の環境色をベイク前の補助表示に使います。
@@ -111,9 +132,9 @@ v0.6.1のRelease画像7枚のうち、カフェ・FPV・街並みの6枚です�
 | `Blender/The_Commons_Compact.blend` | 部材ごとに編集可能な建築・家具・AV・植栽・街並み。テクスチャとフォントは同梱フォルダーを相対参照 |
 | `Blender/build_world.py` | 寸法を追跡できる再生成用ソース |
 | `Unity/Assets/TheCommons/Models/` | PC/Quest FBXと、向き・単位を固定したUnity用メッシュデータ |
-| `Unity/Assets/TheCommons/Scripts/` | 共有状態、発表、同期動画、移動、着席、音量ゾーン、ローカル快適設定 |
+| `Unity/Assets/TheCommons/Scripts/` | 共有状態、照明、移動、着席、音量ゾーン、ローカル快適設定 |
 | `Unity/Assets/TheCommons/Textures/` | 建築素材6種＋専用印刷アトラス3種の生成原本 |
-| `Unity/Assets/TheCommons/Media/` | 差し替え可能な4枚のスライド・6枚のポスター |
+| `Unity/Assets/TheCommons/Media/` | 差し替え可能な6枚のポスター（スライド撤去済み） |
 | `Unity/Assets/TheCommons/Audio/` | オリジナルの環境音・アンビエント・96 BPMのDJループ |
 | `Preview/` | カフェ・小物・FPV・時間帯・カートの設計プレビュー（v0.8.0のカート画像11枚と平面図、v0.6.1の画像6枚を含む）、外部参照形式のglTFモデル |
 | `SourceDesign/` | 元仕様、元CAD、元スケジュール、参考画像、添付PDF |
@@ -128,23 +149,23 @@ PCには金属度・粗さ・弱い微細法線を使うPBR、Questには軽量�
 
 | モード | 中央家具 | 発表 | 音と光 |
 |---|---|---|---|
-| Lounge | 4クラスタの家具 | スライド表示 | 暖色中心、低いBGM |
-| Academic | 24席 | 15分/5分タイマー、Q&A、固定画面ポインター | BGM低下、ホログラム停止 |
-| DJ / Live | 中央家具を非表示 | 同期動画を利用可能 | DJループ、DJ表示、逃げ場は維持 |
-| Quiet Night | ラウンジ家具 | スライド表示 | 発光低減、静かなBGM |
+| Lounge | 4クラスタの家具 | iwaSync用画面 | 照明を独立選択、内蔵BGM既定OFF |
+| Audience | 24席 | iwaSync用画面 | ホログラム停止 |
+| DJ / Live | 中央家具を非表示 | iwaSync用画面 | DJ表示、内蔵ループは手動ON |
+| Quiet Night | ラウンジ家具 | iwaSync用画面 | 発光低減、内蔵音源は手動ON |
 
 - 初期状態はLounge。共有操作は初期設定でインスタンス所有者またはMasterに限定します。
-- 入口右側とAV側にモード操作。発表者用パネルはステージ左側。
+- 入口右側とAV側にモード操作。照明パネルは入口左側とAV側。発表者用パネルは撤去済み。
 - 入口左側の動き低減・発光低減・DJ演出はローカル設定。動き低減は初期ON。
-- 発表タイマーはサーバー時刻で共有します。終了するとLoungeへ戻ります。
+- 発表タイマー・スライド・ポインターはv0.9.0で撤去しました。照明3モードは家具・時間帯と独立して同期します。
 - 上下階ポータルを入口側と西階段脇に設けています。
 - 椅子は明示的なInteractで着席。通過するだけでは着席しません。
-- Quiet Roomの内外でBGM/動画音量をローカルに減衰し、相手プレイヤーの距離・ゲインも調整します。防音やプライバシーを保証する仕組みではありません。
+- Quiet Roomの内外で内蔵BGM音量をローカルに減衰し、相手プレイヤーの距離・ゲインも調整します。防音やプライバシーを保証する仕組みではありません。
 - PCの小型鏡はローカル、初期OFF。SDKの鏡シェーダーが見つからない場合は生成を省略し、Unity Consoleに表示します。Questには作りません。
 
 ## 動画とAudioLink
 
-AV室のURL欄にHTTPS動画URLを入れ、LOAD URLを押します。SDKのVRCUnityVideoPlayerを利用し、主画面と上階補助画面で同じRenderTextureを表示します。URL・再生開始時刻・停止を共有し、途中参加者は再生時刻を補正します。ライブ配信など長さが確定しない媒体はシーク補正しません。URLの対応状況と許可設定はVRChat側に依存します。配信サービス別の再生は未検証です。
+iwaSyncの公式プレハブを別途導入してください。内蔵のURL入力・VRCUnityVideoPlayer・独自動画同期は撤去済みです。[配置座標・導入手順](Documentation/IWASYNC_INTEGRATION_JA.md)を参照してください。
 
 DJシェーダーはAudioLinkのグローバル `_AudioTexture` の4バンドを読みます。**AudioLink本体は同梱していません。** 利用する場合は公式AudioLinkをVCC経由で追加し、そのPrefabのAudioSourceを `AUD_Original DJ loop` または動画音源に接続してください。未導入時にも固定バー表示と低速演出で動作し、コンパイル時のAudioLink依存はありません。
 
@@ -154,13 +175,13 @@ DJシェーダーはAudioLinkのグローバル `_AudioTexture` の4バンドを
 - アルベド画像は生成原本のまま。建築の6素材は **Mirror（鏡像反復）** を使い、境界の段差を防ぎます。生画像の左右・上下端が通常のRepeatで完全一致するとは保証していません。他の制作ソフトでもMirrorに設定してください。
 - 専用アトラスは **Clamp**。DJ操作面、6種の酒ラベル、エスプレッソ機、コーヒー袋、本、AVラックに個別UVで割り当てています。DJ機材の個別操作部は装飾です。
 - PCのインポート上限は共通素材1024、モバイルは512。法線・金属度・粗さは形状とシェーダーの値で整理しています。
-- スライドは `Media/slide_0.png`〜`slide_3.png`、ポスターは `poster_0.png`〜`poster_5.png` を交換してからシーンを再構築できます。作成済みシーンは生成先のマテリアルのテクスチャを交換できます。
-- 実際のスライド面はUnityで別の正規UV面を追加します。Blenderの文字入りスクリーンは確認用の静的表示です。
-- 再生成時は `build_world.py → export_world.py → prepare_media.py --manifest-only → prepare_repository_assets.py → validate_world.py → validate_kart.py → package_release.py --metadata-only` の順。v0.8.0の画像は `render_kart_views.py` の11視点、カート平面図は `build_kart_plan.py`（numpy／Pillow）です。カフェ・FPV・街並みの画像は `render_atmosphere_views.py` の6枚（v0.6.1）を継続しています。C#構文検査は `validate_csharp.py`（tree-sitter / tree-sitter-c-sharpが必要）。画像・資料を確定してから `package_release.py → verify_release.py` で配布物を作成・照合します。Blender 4.5 LTS（v0.7.0以降はPyPIの `bpy` 4.5.14で生成）、Python側の numpy/scipy/Pillow/ezdxf/shapely が必要です。
+- ポスターは `Media/poster_0.png`〜`poster_5.png` を交換してから再構築できます。
+- 主画面・上階画面は空の正規UV面です。iwaSyncの画面Prefabを配置する場合は同じ位置の空画面を非表示にして、面の重複を避けます。
+- 再生成時は `build_world.py → export_world.py → prepare_media.py --manifest-only → prepare_repository_assets.py → validate_world.py → validate_kart.py → package_release.py --metadata-only` の順。v0.8.0の画像は `render_kart_views.py` の11視点、カート平面図は `build_kart_plan.py`（numpy／Pillow）です。v0.9.0のカフェ画像5枚は `render_cafe_experience.py`。旧モデル保持を含む今回の再現手順は [変更仕様](Documentation/CHANGES_v0.9.0_JA.md) に記載しています。C#構文検査は `validate_csharp.py`（tree-sitter / tree-sitter-c-sharpが必要）。画像・資料を確定してから `package_release.py → verify_release.py` で配布物を作成・照合します。Blender 4.5 LTS（v0.7.0以降はPyPIの `bpy` 4.5.14で生成）、Python側の numpy/scipy/Pillow/ezdxf/shapely が必要です。
 
 ## 検証の区分
 
-実行済み: Blenderでモデル生成・保存・開き直し、v0.8.0のカート実モデル画像11枚とv0.6.1のカフェ・FPV・街並みの実モデル画像6枚（旧版の4時間帯画像は参考資料）、メッシュの有限数/インデックス/向き/データ末尾、外形/階高/ステージ/画面寸法、上階接続の平面検査、共通形状46項目＋カート18項目、カート以外のUnity用メッシュ記録とv0.7.0のバイト一致、C#構文12ファイル、SDK 3.10.5の公開メンバー照合。
+実行済み: v0.9.0のカフェ画像5枚の目視、既存7,911オブジェクトの保持と入口から両ポータルへの視線検査、旧版メッシュ・コース仕様の回帰37項目、共通形状46項目＋カート18項目、C#構文14ファイル、メタデータ・配布物の内容照合。カートはv0.8.0のコースと画像を継承。
 
 未実行: Unity/Udonコンパイル、シェーダーコンパイル、Unityライトマップ、VRChat Build & Test、アップロード、複数人同期、視線追従やVR両眼、QuestのFPS/メモリ/ダウンロード容量測定。
 

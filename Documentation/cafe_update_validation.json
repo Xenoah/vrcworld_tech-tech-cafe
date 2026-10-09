@@ -1,0 +1,278 @@
+{
+  "base_commit": "65c185ad0158e93db5023b1ae793313393ac2017",
+  "checks": [
+    {
+      "name": "PC KART_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 36,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "PC FPV_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 22,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "PC ARCH_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 19,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "PC FURN_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 70,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "PC MODE_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 12,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "PC ENV_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 6,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "PC AV_DJ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 6,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "PC activity signage exported",
+      "pass": true,
+      "detail": 208
+    },
+    {
+      "name": "Quest KART_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 36,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "Quest FPV_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 21,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "Quest ARCH_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 18,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "Quest FURN_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 66,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "Quest MODE_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 12,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "Quest ENV_ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 6,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "Quest AV_DJ mesh bytes preserved",
+      "pass": true,
+      "detail": {
+        "meshes": 6,
+        "changed": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "Quest activity signage exported",
+      "pass": true,
+      "detail": 200
+    },
+    {
+      "name": "colliders unchanged",
+      "pass": true,
+      "detail": {
+        "entries": 314
+      }
+    },
+    {
+      "name": "lights unchanged",
+      "pass": true,
+      "detail": {
+        "entries": 148
+      }
+    },
+    {
+      "name": "seat_anchors unchanged",
+      "pass": true,
+      "detail": {
+        "entries": 77
+      }
+    },
+    {
+      "name": "city unchanged",
+      "pass": true,
+      "detail": {
+        "entries": 8
+      }
+    },
+    {
+      "name": "stage unchanged",
+      "pass": true,
+      "detail": {
+        "entries": 3
+      }
+    },
+    {
+      "name": "screen unchanged",
+      "pass": true,
+      "detail": {
+        "entries": 2
+      }
+    },
+    {
+      "name": "stair_design unchanged",
+      "pass": true,
+      "detail": {
+        "entries": 2
+      }
+    },
+    {
+      "name": "kart course manifest preserved",
+      "pass": true,
+      "detail": "Only portal locations/return landings change"
+    },
+    {
+      "name": "kart course arrival preserved",
+      "pass": true,
+      "detail": [
+        231.40766574516346,
+        15.0,
+        0.42
+      ]
+    },
+    {
+      "name": "kart return interact preserved",
+      "pass": true,
+      "detail": [
+        231.40766574516346,
+        17.0,
+        1.2
+      ]
+    },
+    {
+      "name": "fpv course manifest preserved",
+      "pass": true,
+      "detail": "Only portal locations/return landings change"
+    },
+    {
+      "name": "fpv course arrival preserved",
+      "pass": true,
+      "detail": [
+        -42.5,
+        2.0,
+        0.12
+      ]
+    },
+    {
+      "name": "fpv return interact preserved",
+      "pass": true,
+      "detail": [
+        -42.5,
+        0.7,
+        1.15
+      ]
+    },
+    {
+      "name": "Blender/build_kart_circuit.py unchanged",
+      "pass": true,
+      "detail": "Exact original source bytes"
+    },
+    {
+      "name": "Blender/kart_layout.py unchanged",
+      "pass": true,
+      "detail": "Exact original source bytes"
+    },
+    {
+      "name": "SourceDesign/kart_circuit.json unchanged",
+      "pass": true,
+      "detail": "Exact original source bytes"
+    },
+    {
+      "name": "Blender/FPV_Field_Module.json unchanged",
+      "pass": true,
+      "detail": "Exact original source bytes"
+    },
+    {
+      "name": "Legacy player retired and slides removed",
+      "pass": true,
+      "detail": "Inert upgrade tombstone only; no video player or slides included"
+    },
+    {
+      "name": "No references to removed presentation API",
+      "pass": true,
+      "detail": "Generated scene no longer creates presentation or URL UI"
+    },
+    {
+      "name": "Portal interaction enlarged",
+      "pass": true,
+      "detail": "2.1 x 0.72 m, explicit Interact, 2.5 m proximity"
+    },
+    {
+      "name": "Late join lighting state is serialized",
+      "pass": true,
+      "detail": "Source inspection; multiplayer playtest pending"
+    }
+  ],
+  "runtime": "Unity/Udon/VRChat not run",
+  "passed": true
+}

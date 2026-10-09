@@ -5,6 +5,10 @@
       "syntax_errors": false
     },
     {
+      "file": "CommonsLightingBuilder.cs",
+      "syntax_errors": false
+    },
+    {
       "file": "CommonsWorldBuilder.cs",
       "syntax_errors": false
     },
@@ -22,6 +26,10 @@
     },
     {
       "file": "CommonsComfort.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsLightingModes.cs",
       "syntax_errors": false
     },
     {

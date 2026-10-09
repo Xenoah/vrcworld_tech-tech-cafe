@@ -1,7 +1,7 @@
 {
   "pc": {
-    "triangles": 294325,
-    "render_meshes": 194,
+    "triangles": 307333,
+    "render_meshes": 208,
     "meshes": [
       {
         "name": "ARCH_EntrySafety__MAT_Amber",
@@ -244,34 +244,22 @@
         "triangles": 240
       },
       {
-        "name": "AV_Stage__MAT_Brass",
-        "group": "AV_Stage",
-        "vertices": 1536,
-        "triangles": 768
-      },
-      {
         "name": "AV_Stage__MAT_Cyan",
         "group": "AV_Stage",
-        "vertices": 8088,
-        "triangles": 5004
+        "vertices": 3200,
+        "triangles": 1920
       },
       {
         "name": "AV_Stage__MAT_Oak",
         "group": "AV_Stage",
-        "vertices": 312,
-        "triangles": 202
+        "vertices": 96,
+        "triangles": 94
       },
       {
         "name": "AV_Stage__MAT_Steel",
         "group": "AV_Stage",
-        "vertices": 1488,
-        "triangles": 822
-      },
-      {
-        "name": "AV_Stage__MAT_White",
-        "group": "AV_Stage",
-        "vertices": 5494,
-        "triangles": 3488
+        "vertices": 1392,
+        "triangles": 770
       },
       {
         "name": "ENV_City__MAT_Brass",
@@ -1166,12 +1154,109 @@
         "group": "MODE_Lounge",
         "vertices": 768,
         "triangles": 480
+      },
+      {
+        "name": "WAY_EntryDirectory__MAT_WayDark",
+        "group": "WAY_EntryDirectory",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "WAY_EntryDirectory__MAT_WayWhite",
+        "group": "WAY_EntryDirectory",
+        "vertices": 3048,
+        "triangles": 1912
+      },
+      {
+        "name": "WAY_EntryDirectory__MAT_Way_FPV",
+        "group": "WAY_EntryDirectory",
+        "vertices": 366,
+        "triangles": 216
+      },
+      {
+        "name": "WAY_EntryDirectory__MAT_Way_KART",
+        "group": "WAY_EntryDirectory",
+        "vertices": 517,
+        "triangles": 312
+      },
+      {
+        "name": "WAY_FPV_Cafe__MAT_WayDark",
+        "group": "WAY_FPV_Cafe",
+        "vertices": 48,
+        "triangles": 24
+      },
+      {
+        "name": "WAY_FPV_Cafe__MAT_WayWhite",
+        "group": "WAY_FPV_Cafe",
+        "vertices": 3020,
+        "triangles": 1912
+      },
+      {
+        "name": "WAY_FPV_Cafe__MAT_Way_FPV",
+        "group": "WAY_FPV_Cafe",
+        "vertices": 3398,
+        "triangles": 2160
+      },
+      {
+        "name": "WAY_FPV_Return__MAT_WayDark",
+        "group": "WAY_FPV_Return",
+        "vertices": 48,
+        "triangles": 24
+      },
+      {
+        "name": "WAY_FPV_Return__MAT_WayWhite",
+        "group": "WAY_FPV_Return",
+        "vertices": 3804,
+        "triangles": 2308
+      },
+      {
+        "name": "WAY_FPV_Return__MAT_Way_FPV",
+        "group": "WAY_FPV_Return",
+        "vertices": 3959,
+        "triangles": 2452
+      },
+      {
+        "name": "WAY_KART_Cafe__MAT_WayDark",
+        "group": "WAY_KART_Cafe",
+        "vertices": 48,
+        "triangles": 24
+      },
+      {
+        "name": "WAY_KART_Cafe__MAT_WayWhite",
+        "group": "WAY_KART_Cafe",
+        "vertices": 3324,
+        "triangles": 2104
+      },
+      {
+        "name": "WAY_KART_Cafe__MAT_Way_KART",
+        "group": "WAY_KART_Cafe",
+        "vertices": 3606,
+        "triangles": 2264
+      },
+      {
+        "name": "WAY_KART_Return__MAT_WayDark",
+        "group": "WAY_KART_Return",
+        "vertices": 48,
+        "triangles": 24
+      },
+      {
+        "name": "WAY_KART_Return__MAT_WayWhite",
+        "group": "WAY_KART_Return",
+        "vertices": 3652,
+        "triangles": 2308
+      },
+      {
+        "name": "WAY_KART_Return__MAT_Way_KART",
+        "group": "WAY_KART_Return",
+        "vertices": 3880,
+        "triangles": 2452
       }
-    ]
+    ],
+    "base_meshes_preserved": 188
   },
   "quest": {
-    "triangles": 246524,
-    "render_meshes": 186,
+    "triangles": 256204,
+    "render_meshes": 200,
     "meshes": [
       {
         "name": "ARCH_EntrySafety__MAT_Amber",
@@ -1396,34 +1481,22 @@
         "triangles": 240
       },
       {
-        "name": "AV_Stage__MAT_Brass",
-        "group": "AV_Stage",
-        "vertices": 1536,
-        "triangles": 768
-      },
-      {
         "name": "AV_Stage__MAT_Cyan",
         "group": "AV_Stage",
-        "vertices": 5771,
-        "triangles": 2801
+        "vertices": 3200,
+        "triangles": 1920
       },
       {
         "name": "AV_Stage__MAT_Oak",
         "group": "AV_Stage",
-        "vertices": 312,
-        "triangles": 202
+        "vertices": 96,
+        "triangles": 94
       },
       {
         "name": "AV_Stage__MAT_Steel",
         "group": "AV_Stage",
-        "vertices": 1488,
-        "triangles": 822
-      },
-      {
-        "name": "AV_Stage__MAT_White",
-        "group": "AV_Stage",
-        "vertices": 3463,
-        "triangles": 1953
+        "vertices": 1392,
+        "triangles": 770
       },
       {
         "name": "ENV_City__MAT_Brass",
@@ -2288,9 +2361,105 @@
         "group": "MODE_Lounge",
         "vertices": 768,
         "triangles": 480
+      },
+      {
+        "name": "WAY_EntryDirectory__MAT_WayDark",
+        "group": "WAY_EntryDirectory",
+        "vertices": 24,
+        "triangles": 12
+      },
+      {
+        "name": "WAY_EntryDirectory__MAT_WayWhite",
+        "group": "WAY_EntryDirectory",
+        "vertices": 3048,
+        "triangles": 1912
+      },
+      {
+        "name": "WAY_EntryDirectory__MAT_Way_FPV",
+        "group": "WAY_EntryDirectory",
+        "vertices": 366,
+        "triangles": 216
+      },
+      {
+        "name": "WAY_EntryDirectory__MAT_Way_KART",
+        "group": "WAY_EntryDirectory",
+        "vertices": 517,
+        "triangles": 312
+      },
+      {
+        "name": "WAY_FPV_Cafe__MAT_WayDark",
+        "group": "WAY_FPV_Cafe",
+        "vertices": 48,
+        "triangles": 24
+      },
+      {
+        "name": "WAY_FPV_Cafe__MAT_WayWhite",
+        "group": "WAY_FPV_Cafe",
+        "vertices": 3020,
+        "triangles": 1912
+      },
+      {
+        "name": "WAY_FPV_Cafe__MAT_Way_FPV",
+        "group": "WAY_FPV_Cafe",
+        "vertices": 2350,
+        "triangles": 1209
+      },
+      {
+        "name": "WAY_FPV_Return__MAT_WayDark",
+        "group": "WAY_FPV_Return",
+        "vertices": 48,
+        "triangles": 24
+      },
+      {
+        "name": "WAY_FPV_Return__MAT_WayWhite",
+        "group": "WAY_FPV_Return",
+        "vertices": 2381,
+        "triangles": 1292
+      },
+      {
+        "name": "WAY_FPV_Return__MAT_Way_FPV",
+        "group": "WAY_FPV_Return",
+        "vertices": 2461,
+        "triangles": 1373
+      },
+      {
+        "name": "WAY_KART_Cafe__MAT_WayDark",
+        "group": "WAY_KART_Cafe",
+        "vertices": 48,
+        "triangles": 24
+      },
+      {
+        "name": "WAY_KART_Cafe__MAT_WayWhite",
+        "group": "WAY_KART_Cafe",
+        "vertices": 2084,
+        "triangles": 1177
+      },
+      {
+        "name": "WAY_KART_Cafe__MAT_Way_KART",
+        "group": "WAY_KART_Cafe",
+        "vertices": 2537,
+        "triangles": 1267
+      },
+      {
+        "name": "WAY_KART_Return__MAT_WayDark",
+        "group": "WAY_KART_Return",
+        "vertices": 48,
+        "triangles": 24
+      },
+      {
+        "name": "WAY_KART_Return__MAT_WayWhite",
+        "group": "WAY_KART_Return",
+        "vertices": 2305,
+        "triangles": 1291
+      },
+      {
+        "name": "WAY_KART_Return__MAT_Way_KART",
+        "group": "WAY_KART_Return",
+        "vertices": 2534,
+        "triangles": 1373
       }
-    ]
+    ],
+    "base_meshes_preserved": 180
   },
-  "measurement": "Exported whole-scene geometry. Not runtime FPS / draw-call measurement.",
-  "non_kart_records": "Unity mesh records outside KART_ groups are byte-identical to v0.6.1 and v0.7.0."
+  "measurement": "Exported geometry with untouched v0.8.0 mesh records reused after authored-object proof. Not runtime FPS / draw-call measurement."
 }

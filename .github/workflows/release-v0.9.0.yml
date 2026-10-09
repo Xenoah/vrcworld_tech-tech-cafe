@@ -1,0 +1,59 @@
+name: Publish v0.9.0 world assets
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/release-v0.9.0.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-v0.9.0
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.repository == 'Xenoah/vrcworld_tech-tech-cafe' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Check out release source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+
+      - name: Verify source and build distribution archives
+        run: |
+          python -c 'import json; assert json.load(open("Unity/Assets/TheCommons/Data/world_manifest.json"))["version"] == "0.9.0"'
+          sha256sum --check SHA256SUMS.txt --quiet
+          python Blender/validate_cafe_experience.py
+          python Blender/package_release.py
+          git diff --exit-code
+          python Blender/verify_release.py
+
+      - name: Publish verified release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Refuse to reuse or replace an existing tag or release.
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/matching-refs/tags/v0.9.0" --jq 'map(select(.ref == "refs/tags/v0.9.0")) | length')" -eq 0
+          gh release create v0.9.0 \
+            ../The_Commons_Compact_v0.9.0.unitypackage \
+            ../The_Commons_Compact_v0.9.0_Full.zip \
+            ../SHA256SUMS-v0.9.0.txt \
+            ../release-validation-v0.9.0.json \
+            Preview/30_Activity_Portals.png \
+            Preview/31_Cafe_Warm.png \
+            Preview/32_Cafe_Cyber.png \
+            Preview/33_Cafe_Disco.png \
+            Preview/34_Stage_iwaSync.png \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "v0.9.0 — ポータル案内・照明3モード・iwaSync用ステージ" \
+            --notes-file Documentation/RELEASE_v0.9.0.md \
+            --latest
