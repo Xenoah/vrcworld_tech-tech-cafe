@@ -24,7 +24,7 @@ public static class CommonsExperienceBuilder
     static List<Material> holos;
     static Dictionary<string, Material> baseMaterials;
 
-    [Serializable] public class Layout { public string version; public Deck deck; public Lift lift; public float[] cafe_settings_panel; public Ride ride; public Komo komo; }
+    [Serializable] public class Layout { public string version; public Deck deck; public Lift lift; public float[] cafe_settings_panel; public float cafe_settings_yaw; public Ride ride; public Komo komo; }
     [Serializable] public class Deck { public float[] center, arrival, return_portal, return_destination, settings_panel, size_lab, planet, dock_exit, dock_board, dock_gate; public float floor_radius, field_radius, field_height, well_radius, planet_radius, arrival_yaw, return_portal_yaw, return_destination_yaw, settings_yaw, size_lab_yaw, dock_exit_yaw, board_yaw, dock_rail_x; }
     [Serializable] public class Lift { public float[] portal, destination; public float yaw, destination_yaw, frame_width; }
     [Serializable] public class Ride { public float[] points, speeds; public string[] cues; public Cue[] cue_map; public int samples_per_segment, cars; public float boarding, unload, roll_factor, roll_limit; }
@@ -543,7 +543,7 @@ public static class CommonsExperienceBuilder
         List<TextMesh> boards = new List<TextMesh>(ride.boards);
         boards.Add(Text("Lift_RideBoard", "DATA STREAM", p + r * new Vector3(0, 1.85f, -.08f), .05f, L.yaw, root.transform, new Color(.7f, .85f, 1f)));
         ride.boards = boards.ToArray();
-        SettingsPanel(P(layout.cafe_settings_panel), 0, settings, root.transform);
+        SettingsPanel(P(layout.cafe_settings_panel), layout.cafe_settings_yaw, settings, root.transform);
     }
 
     // ---------------------------------------------------------------- KOMO
@@ -567,7 +567,8 @@ public static class CommonsExperienceBuilder
 
         Transform body = new GameObject("Body").transform; body.SetParent(root.transform, false);
         Prim(PrimitiveType.Sphere, "Shell", body, Vector3.zero, new Vector3(.46f, .42f, .42f), shell, Quaternion.identity);
-        Prim(PrimitiveType.Quad, "Face", body, new Vector3(0, .02f, .2f), new Vector3(.34f, .25f, 1f), face, Quaternion.Euler(0, 180, 0));
+        // The shell radius is .21 m: keep the screen just outside it so the shell never hides the face.
+        Prim(PrimitiveType.Quad, "Face", body, new Vector3(0, .02f, .215f), new Vector3(.34f, .25f, 1f), face, Quaternion.Euler(0, 180, 0));
         foreach (float side in new[] { -1f, 1f })
         {
             Prim(PrimitiveType.Cylinder, "Antenna", body, new Vector3(side * .11f, .25f, -.02f), new Vector3(.02f, .06f, .02f), dark, Quaternion.Euler(0, 0, -side * 15f));
@@ -588,7 +589,8 @@ public static class CommonsExperienceBuilder
         foreach (float side in new[] { -1f, 1f }) Prim(PrimitiveType.Cylinder, "EarCup", phones.transform, new Vector3(side * .23f, .02f, 0), new Vector3(.12f, .03f, .12f), dark, Quaternion.Euler(0, 0, 90));
         cup.SetActive(false); book.SetActive(false); phones.SetActive(false);
         // Speech bubble, billboarded to the local head by CommonsKomo.
-        GameObject bubble = new GameObject("Bubble"); bubble.transform.SetParent(root.transform, false); bubble.transform.localPosition = new Vector3(0, .7f, 0);
+        // In front of KOMO (it turns to whoever talks to it), so back-bar shelves and walls do not cut the bubble.
+        GameObject bubble = new GameObject("Bubble"); bubble.transform.SetParent(root.transform, false); bubble.transform.localPosition = new Vector3(0, .62f, .4f);
         Prim(PrimitiveType.Quad, "Back", bubble.transform, new Vector3(0, 0, .012f), new Vector3(1.2f, .34f, 1f), bubbleBack, Quaternion.identity);
         TextMesh bubbleText = Text("KomoBubble", "", Vector3.zero, .048f, 0, bubble.transform, Color.white);
         bubbleText.transform.localPosition = Vector3.zero; bubbleText.transform.localRotation = Quaternion.identity;

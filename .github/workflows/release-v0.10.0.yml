@@ -1,0 +1,62 @@
+name: Publish v0.10.0 world assets
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/release-v0.10.0.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-v0.10.0
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.repository == 'Xenoah/vrcworld_tech-tech-cafe' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Check out release source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          # validate_cafe_experience.py compares against the v0.8.0 commit (65c185a).
+          fetch-depth: 0
+
+      - name: Verify source and build distribution archives
+        run: |
+          python -c 'import json; assert json.load(open("Unity/Assets/TheCommons/Data/world_manifest.json"))["version"] == "0.10.0"'
+          python -c 'import json; r=json.load(open("Documentation/experience_validation.json")); assert all(r["checks"].values()), r["checks"]'
+          sha256sum --check SHA256SUMS.txt --quiet
+          python Blender/validate_cafe_experience.py
+          python Blender/package_release.py
+          git diff --exit-code
+          python Blender/verify_release.py
+
+      - name: Publish verified release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Refuse to reuse or replace an existing tag or release.
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/matching-refs/tags/v0.10.0" --jq 'map(select(.ref == "refs/tags/v0.10.0")) | length')" -eq 0
+          gh release create v0.10.0 \
+            ../The_Commons_Compact_v0.10.0.unitypackage \
+            ../The_Commons_Compact_v0.10.0_Full.zip \
+            ../SHA256SUMS-v0.10.0.txt \
+            ../release-validation-v0.10.0.json \
+            Preview/35_Orbit_Deck.png \
+            Preview/36_DataStream_Atrium.png \
+            Preview/37_DataStream_Skyline.png \
+            Preview/38_KOMO_Bar.png \
+            Preview/39_Orbit_Lift.png \
+            Preview/40_ViewJack_Effects.png \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "v0.10.0 — 上空デッキ・DATA STREAM・視界ジャック・KOMO・アダプティブ音楽" \
+            --notes-file Documentation/RELEASE_v0.10.0.md \
+            --latest

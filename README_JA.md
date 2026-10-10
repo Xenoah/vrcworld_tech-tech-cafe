@@ -1,18 +1,18 @@
 # THE COMMONS — Compact Edition
 
-**v0.9.0 / 詳細モデル・Unity構築データ / 2026-10-09**
+**v0.10.0 / 詳細モデル・Unity構築データ・体験レイヤー / 2026-10-10**
 
 28×18m、1F +0.000m、2F +4.800m、屋根基準 +9.600mの制作データです。Blenderで編集できる実形状、FBX、glTF、生成テクスチャ、VRChat SDK用のシーン構築ツールとUdonSharpソースを含みます。
 
 **Unity Editor / VRChatクライアントは制作環境になかったため、Unityでのコンパイル・ライトベイク・Build & Test・Quest実機・複数人通信は未検証です。公開済みワールドやビルド済み `.vrcw` ではありません。** Blenderレンダーと幾何検査の結果は `Preview/` と `Documentation/validation_report.json` に収録しています。
 
-Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md)、今回の修正は [CHANGES_v0.9.0_JA.md](Documentation/CHANGES_v0.9.0_JA.md) を参照してください。
+Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md)、今回の修正は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md) を参照してください。
 
-**詳細仕様・寸法付き平面図・実モデルのデザインシートは [README](README.md) と [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) に整理しています。モデル版はv0.9.0、図面集はv0.6.0の過去資料です（カートの図面・デザインシートは旧コース）。最新のカートは `Preview/Design/09_Kart_Plan_v08.png` とv0.8.0の画像、ガラス・照明・街並みはv0.6.1の画像を参照してください。**
+**詳細仕様・寸法付き平面図・実モデルのデザインシートは [README](README.md) と [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) に整理しています。モデル版はv0.10.0（Blenderモデル自体はv0.9.0から変更なし）、図面集はv0.6.0の過去資料です（カートの図面・デザインシートは旧コース）。最新のカートは `Preview/Design/09_Kart_Plan_v08.png` とv0.8.0の画像、ガラス・照明・街並みはv0.6.1の画像を参照してください。**
 
-## 開発中 v0.10.0 — 体験レイヤー（未リリース・実機未検証）
+## v0.10.0 — 体験レイヤー（上空デッキ・ライド・視界ジャック・KOMO・音楽）
 
-「メタバースだからこそできる体験」を追加する開発版です。詳細は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md)。
+「メタバースだからこそできる体験」を追加しました。Unity/VRChat実機は未検証です。詳細は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md)。
 
 - **ORBIT DECK**：入口のORBITリフトから上空120 mのデッキへ。中央の重力井戸は重力0.16倍、ジャンプ長押しで浮上。
 - **DATA STREAM**：デッキ発の2両×4席のライド（約112秒）。街を降下し、カフェのガラスと屋根をすり抜けて吹抜けを1周。サーバー時計で動くため同期変数なし。
@@ -21,7 +21,13 @@ Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md
 - **KOMO**：オリジナルの浮遊コンパニオン。バー・DJブース・ステージ・テラスなどを巡り、ときどきライドの先頭に乗る。
 - **アダプティブ音楽**：オリジナルの7ステム（96 BPM）がモード・照明・時刻・場所・ライドで切り替わる。
 
-## v0.9.0 — ポータル案内・iwaSync用ステージ・照明3モード
+| 上空デッキ | 吹抜けを通るライド | KOMO |
+| --- | --- | --- |
+| ![ORBIT DECK](Preview/35_Orbit_Deck.png) | ![DATA STREAM](Preview/36_DataStream_Atrium.png) | ![KOMO](Preview/38_KOMO_Bar.png) |
+
+画像は実モデルに体験レイヤーの形状を同じ寸法で再構築したBlender 4.0.2 / Cyclesのレンダーで、Unity/VRChatの実機画像ではありません。
+
+## v0.9.0の変更履歴 — ポータル案内・iwaSync用ステージ・照明3モード
 
 Claudeのv0.8.0（`65c185a`、2026-10-08）を基準に更新しました。26コーナー・3層の走路、ジャンプ、バンク、FPV飛行エリア、ガラス・街並みを継承しています。
 
@@ -127,7 +133,7 @@ v0.6.1のRelease画像7枚のうち、カフェ・FPV・街並みの6枚です�
 ## 最短の導入
 
 1. VRChat Creator Companionで **Worldsプロジェクト** を作成します。制作基準は **Unity 2022.3.22f1**。Built-in Render Pipelineを使います。SDK / UdonSharpはVCCの導入分を利用します。
-2. `Unity/Assets/TheCommons` を、作成したプロジェクトの `Assets` へフォルダーごとコピーします。Release v0.9.0のUnityパッケージをインポートする方法でも導入できます。
+2. `Unity/Assets/TheCommons` を、作成したプロジェクトの `Assets` へフォルダーごとコピーします。Release v0.10.0のUnityパッケージをインポートする方法でも導入できます。
 3. C#のインポートが完了したら、Unity上部メニュー **The Commons → Build PC World** を実行します。最初にUdonSharpをコンパイルし、メッシュ・マテリアル・コライダー・操作パネル・スポーン・照明を配置します。
 4. シーンは `Assets/TheCommons/Generated/PC_日時/TheCommons.unity` に保存されます。既存シーンは上書きしません。
 5. **The Commons → Bake lighting** でライトマップを生成します。PCはPBRと補助光、Questは頂点の環境色をベイク前の補助表示に使います。

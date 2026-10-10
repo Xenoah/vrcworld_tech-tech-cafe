@@ -1,5 +1,5 @@
 {
- "version": "0.10.0-dev",
+ "version": "0.10.0",
  "coordinates": "Unity X / Y up / Z, metres",
  "deck": {
   "center": [
@@ -81,10 +81,11 @@
   "destination_yaw": 0.0
  },
  "cafe_settings_panel": [
-  19.95,
+  21.25,
   1.92,
-  1.4
+  2.4
  ],
+ "cafe_settings_yaw": 90.0,
  "ride": {
   "points": [
    26.0,

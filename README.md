@@ -2,19 +2,19 @@
 
 **技術者カフェ・屋内FPV・屋内ネオンカートをワープで結ぶ、VRChatワールド制作データ。**
 
-モデル版 **v0.9.0（2026-10-09）** ／ 図面集はv0.6.0の資料改訂1を参考資料として同梱。このREADMEは現在の生成ソース・マニフェスト・形状検査に基づきます。カフェで会話・発表・DJを楽しみ、独立したVECTORでドローン、APEXでカートを走らせる構成です。
+モデル版 **v0.10.0（2026-10-10）** ／ 図面集はv0.6.0の資料改訂1を参考資料として同梱。このREADMEは現在の生成ソース・マニフェスト・形状検査に基づきます。カフェで会話・発表・DJを楽しみ、独立したVECTORでドローン、APEXでカートを走らせる構成です。
 
 ![カフェの暖色照明](Preview/31_Cafe_Warm.png)
 
 **画像はBlenderの実モデルレンダーです。Unity／VRChatでの撮影ではありません。** カート全景のみ、レイアウトを見せるため屋根・手前2面の壁・トラスを非表示にしています。Unity/Udonコンパイル・ベイク・実機プレイは未検証。モデル・ソースからシーンを生成する配布物です。
 
-[リリースと全ダウンロード](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.9.0) · [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) · [Unity導入の詳細](README_JA.md) · [Unity MCP引き継ぎ](UNITY_MCP_HANDOFF.md)
+[リリースと全ダウンロード](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.10.0) · [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) · [Unity導入の詳細](README_JA.md) · [Unity MCP引き継ぎ](UNITY_MCP_HANDOFF.md)
 
-## 開発中 v0.10.0 — 体験レイヤー
+## v0.10.0 — 体験レイヤー
 
-ORBIT DECK・DATA STREAMライド・SIZE LAB・視界ジャック・KOMO・アダプティブ音楽を追加する未リリースの開発版です。Unity/VRChat実機は未検証。仕様・座標・検査値は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md)。
+ORBIT DECK・DATA STREAMライド・SIZE LAB・視界ジャック・KOMO・アダプティブ音楽を追加しました。Blenderモデルはv0.9.0から変更なし。Unity/VRChat実機は未検証。仕様・座標・検査値は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md)。
 
-## v0.9.0 — ポータル案内・iwaSync用ステージ・照明3モード
+## v0.9.0の変更履歴 — ポータル案内・iwaSync用ステージ・照明3モード
 
 Claudeのv0.8.0（`65c185a`、2026-10-08）を基準に更新しました。26コーナー・3層の走路、ジャンプ、バンク、FPV飛行エリア、ガラス・街並みを継承しています。
 
@@ -375,11 +375,11 @@ BloomはPost Processing導入時に生成します。強度0.60、閾値1.05、S
 
 | 配布物 | 用途 |
 | --- | --- |
-| `The_Commons_Compact_v0.9.0.unitypackage` | Unityへインポートするモデル・素材・Editor・UdonSharp・シェーダー |
-| `The_Commons_Compact_v0.9.0_Full.zip` | v0.9.0の制作データ。Blender・CAD・設計・再生成ソース・新規カフェ画像5枚と過去画像 |
+| `The_Commons_Compact_v0.10.0.unitypackage` | Unityへインポートするモデル・素材・Editor・UdonSharp・シェーダー |
+| `The_Commons_Compact_v0.10.0_Full.zip` | v0.10.0の制作データ。Blender・CAD・設計・再生成ソース・体験レイヤーの画像6枚と過去画像 |
 | `The_Commons_v0.6.0_Design_Atlas.pdf` | v0.6.0のA3図面集8ページ（過去資料） |
 | `The_Commons_v0.6.0_Docs_r1.zip` | v0.6.0の詳細README・図面・デザイン画・設計根拠（過去資料） |
-| `SHA256SUMS-v0.9.0.txt` | 公開済みモデル配布物・画像のチェックサム |
+| `SHA256SUMS-v0.10.0.txt` | 公開済みモデル配布物・画像のチェックサム |
 | `SHA256SUMS-v0.6.0-docs-r1.txt` | v0.6.0追加資料・画像のチェックサム |
 
 v0.8.0ではカートの走路・カート生成ソース・カート画像を更新しました。最新の制作データはv0.9.0 Full.zipとmainに収録しています。v0.7.0以前のタグ・過去配布物は保持しています。

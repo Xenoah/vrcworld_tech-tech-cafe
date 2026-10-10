@@ -192,8 +192,10 @@ def main():
     c['car_never_below_deck_floor'] = bool(report['ride']['min_car_height_vs_deck_floor_m'] is None or report['ride']['min_car_height_vs_deck_floor_m'] >= 0)
     c['ride_clears_deck_heads'] = bool(report['ride']['min_height_over_deck_outside_dock_m'] is None or report['ride']['min_height_over_deck_outside_dock_m'] >= 2.2)
     layout = {
-        'version': '0.10.0-dev', 'coordinates': 'Unity X / Y up / Z, metres',
-        'deck': DECK, 'lift': LIFT, 'cafe_settings_panel': [19.95, 1.92, 1.40],
+        'version': '0.10.0', 'coordinates': 'Unity X / Y up / Z, metres',
+        'deck': DECK, 'lift': LIFT,
+        # On the Quiet Nook's west partition, facing the entrance; clear of the ORBIT portal frame.
+        'cafe_settings_panel': [21.25, 1.92, 2.4], 'cafe_settings_yaw': 90.0,
         'ride': {'points': [round(float(x), 4) for p in pts for x in p], 'speeds': [round(float(s), 3) for s in spd],
                  'cues': cue, 'cue_map': [{'name': n, 'channel': ch, 'seconds': s, 'sfx': fx} for n, (ch, s, fx) in CUES.items()],
                  'samples_per_segment': S, 'cars': 2, 'boarding': 30.0, 'unload': 4.0, 'roll_factor': .55, 'roll_limit': 28.0},

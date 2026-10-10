@@ -1,6 +1,6 @@
-# v0.10.0（開発版）— 体験レイヤー：視界ジャック・ORBIT DECK・DATA STREAM・KOMO・アダプティブ音楽
+# v0.10.0 — 体験レイヤー：視界ジャック・ORBIT DECK・DATA STREAM・KOMO・アダプティブ音楽
 
-**未リリースの開発ブランチです。** Unity/UdonSharp/シェーダーのコンパイル、ライトベイク、VRChat Build & Test、Quest実機は未検証です。リリース画像（AGENTS.mdの要件）はリリース時に実モデルから撮影します。
+**Unity/UdonSharp/シェーダーのコンパイル、ライトベイク、VRChat Build & Test、Quest実機は未検証です。** シーン生成用の制作データで、ビルド済みワールドではありません。
 
 基準はv0.9.0（`c3a50c9`）。**Blenderモデル・tcmesh・既存のメッシュ記録・カートの走路は変更していません。** 追加物はすべて `CommonsExperienceBuilder` がシーン生成時にプリミティブと手続きメッシュから作ります。ラップタイム計測はCVS2側で行う前提のため、カートには手を入れていません。
 
@@ -22,7 +22,7 @@
 | 項目 | Unity位置 m | 内容 |
 | --- | --- | --- |
 | ORBITリフト | (20, 1.3, 3.45) | KARTポータルの右。紫のフレーム、床パッド、出発案内。Interactでデッキの到着点 (14, 120.1, -3) へ |
-| EXPERIENCEパネル | (19.95, 1.92, 1.40) | 南壁側。視界ジャック・音楽・KOMOのローカル設定（同じパネルをデッキにも設置） |
+| EXPERIENCEパネル | (21.25, 1.92, 2.4)、西向き | Quiet Nookの西側の仕切りに設置し、入口・ポータル側から読める向き。ORBITリフトの枠と時間パネルに重ならない位置。視界ジャック・音楽・KOMOのローカル設定（同じパネルをデッキにも設置） |
 | 既存ポータル | — | 上下階・FPV・KART・各帰路もワープ演出付きに。WARP OFFで従来どおり即時移動 |
 
 ## 2. ORBIT DECK（上空デッキ）
@@ -169,7 +169,20 @@
 | 生成・検査 | `Blender/build_experience_layout.py`、`Blender/build_experience_audio.py` |
 | 記録 | `experience_validation.json`、`experience_audio_report.json`、`csharp_syntax_report.json` |
 
-## 9. 検証
+## 9. リリース画像
+
+`Blender/render_experience_views.py` で、**実モデル（`The_Commons_Compact.blend`）を開き、Unityビルダーが生成する体験レイヤーの形状を `experience_layout.json` と同じ寸法でBlender上に再構築**してレンダリングしました（Blender 4.0.2 / Cycles 40サンプル、Intel Open Image Denoise 2.3.3でアルベド・法線を使ってノイズ除去、照明はWARM）。ライドの車両はUnityと同じ焼き込み表の姿勢に置いています。**Unity/VRChatの実機スクリーンショットではありません**（Unityではトゥーン・ホログラム用シェーダー、ライトプローブ、独自のポストエフェクトで描画されます）。視界ジャックの画像は、シェーダーと同じ計算をPythonで実装してレンダー画像に重ねたデザイン確認です。
+
+| 画像 | 内容 |
+| --- | --- |
+| `Preview/35_Orbit_Deck.png` | ORBIT DECK全景。力場、重力井戸、ホロ惑星、乗り場のCAR AとKOMO |
+| `Preview/36_DataStream_Atrium.png` | 南橋から見た吹抜け。RELAYとホログラムの手前を通過するCAR A（先頭にKOMO） |
+| `Preview/37_DataStream_Skyline.png` | タワーの間を抜けるCAR Bの座席から |
+| `Preview/38_KOMO_Bar.png` | ANCHOR BARでエスプレッソを持つKOMOと吹き出し |
+| `Preview/39_Orbit_Lift.png` | 入口のORBITリフトとEXPERIENCEパネル |
+| `Preview/40_ViewJack_Effects.png` | 視界ジャックのデザイン確認：WARP（移動）、GLITCH（すり抜け）、DATA RAIN（降下）、STARS（デッキ） |
+
+## 10. 検証
 
 | 実施 | 結果 |
 | --- | --- |
@@ -183,7 +196,7 @@
 | Unity / UdonSharp / シェーダーのコンパイル、シーン生成 | 受入表（ACCEPTANCE_JA.md）の v0.10.0 |
 | VRChat両眼での視界ジャック、ステーション追従、途中参加、Quest性能 | 同上 |
 
-## 10. 調整のポイント・既知の注意
+## 11. 調整のポイント・既知の注意
 
 - **Quest負荷:** 7ステムのVorbisを同時にデコードします。重い場合は `stemTrim` ではなくステム数を減らすか、AudioImporterをStreamingへ。視界ジャックは全画面の半透明1枚で、表示中だけ描画します。
 - **アバタースケールの範囲:** ワールドの目線高さの範囲を0.12〜8 mに広げます（手動スケールもこの範囲になります）。

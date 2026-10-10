@@ -1,31 +1,36 @@
 {
-  "version": "0.9.0",
-  "scope": "Actual v0.9.0 model rendered in Blender Cycles. Lighting and lasers are design previews following the Unity palettes and layout, not Unity/VRChat runtime captures. iwaSync is not installed.",
-  "images": [
-    {
-      "path": "Preview/30_Activity_Portals.png",
-      "caption": "入口正面のFPVとKART：大型案内・色分け・選択パネル",
-      "renderer": "Blender 4.5.14 LTS / Cycles"
-    },
-    {
-      "path": "Preview/31_Cafe_Warm.png",
-      "caption": "暖色照明のカフェ全景",
-      "renderer": "Blender 4.5.14 LTS / Cycles"
-    },
-    {
-      "path": "Preview/32_Cafe_Cyber.png",
-      "caption": "シアンと紫のサイバー照明",
-      "renderer": "Blender 4.5.14 LTS / Cycles"
-    },
-    {
-      "path": "Preview/33_Cafe_Disco.png",
-      "caption": "ディスコ照明と有限長のレーザー",
-      "renderer": "Blender 4.5.14 LTS / Cycles"
-    },
-    {
-      "path": "Preview/34_Stage_iwaSync.png",
-      "caption": "旧プレゼンを撤去したメインステージ・空画面",
-      "renderer": "Blender 4.5.14 LTS / Cycles"
-    }
-  ]
+ "version": "0.10.0",
+ "scope": "Actual model (Blender/The_Commons_Compact.blend, unchanged since v0.9.0) with the v0.10.0 experience geometry rebuilt from Unity/Assets/TheCommons/Data/experience_layout.json at CommonsExperienceBuilder's dimensions (Blender/render_experience_views.py). Ride cars use the baked ride poses. Lighting is the WARM palette. Not Unity/VRChat runtime captures: Unity draws the new objects with toon/holo shaders, light probes and its own post effects. The view-jack image ports the shader math to numpy (Blender/render_viewjack_preview.py) as a design check.",
+ "images": [
+  {
+   "path": "Preview/35_Orbit_Deck.png",
+   "caption": "ORBIT DECK全景：力場・重力井戸・ホロ惑星・乗り場",
+   "renderer": "Blender 4.0.2 / Cycles 40 samples + Intel Open Image Denoise 2.3.3"
+  },
+  {
+   "path": "Preview/36_DataStream_Atrium.png",
+   "caption": "吹抜けを通過するDATA STREAM（先頭にKOMO）",
+   "renderer": "Blender 4.0.2 / Cycles 40 samples + Intel Open Image Denoise 2.3.3"
+  },
+  {
+   "path": "Preview/37_DataStream_Skyline.png",
+   "caption": "タワーの間を抜けるDATA STREAMの座席から",
+   "renderer": "Blender 4.0.2 / Cycles 40 samples + Intel Open Image Denoise 2.3.3"
+  },
+  {
+   "path": "Preview/38_KOMO_Bar.png",
+   "caption": "ANCHOR BARでエスプレッソを持つKOMO",
+   "renderer": "Blender 4.0.2 / Cycles 40 samples + Intel Open Image Denoise 2.3.3"
+  },
+  {
+   "path": "Preview/39_Orbit_Lift.png",
+   "caption": "入口のORBITリフトとEXPERIENCEパネル",
+   "renderer": "Blender 4.0.2 / Cycles 40 samples + Intel Open Image Denoise 2.3.3"
+  },
+  {
+   "path": "Preview/40_ViewJack_Effects.png",
+   "caption": "視界ジャックのデザイン確認：WARP・GLITCH・DATA RAIN・STARS",
+   "renderer": "numpy port of Shaders/CommonsViewJack.shader composited over the Blender renders above"
+  }
+ ]
 }
