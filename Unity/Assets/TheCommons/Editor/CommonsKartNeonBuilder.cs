@@ -189,10 +189,14 @@ public static partial class CommonsExperienceBuilder
         Transform t = new GameObject("NeonPassGate").transform; t.SetParent(neonRoot, false);
         t.position = P(g.position); t.rotation = Quaternion.Euler(0, g.yaw, 0);
         Material steel = DarkMat("GateSteel", Rgb(.12f, .13f, .17f)), amber = NeonMat("Amber", Rgb(1f, .62f, .12f), 3.2f);
-        GateFrame(t, g, steel, steel, steel, false);
         float w = g.banner != null && g.banner.Length == 2 ? g.banner[0] : 5.6f, h = g.banner != null && g.banner.Length == 2 ? g.banner[1] : 1.75f;
-        float cy = g.road_y + g.rise + h * .5f;
-        NeonPrim(PrimitiveType.Cube, "Beam", t, new Vector3(0, cy, 0), new Vector3(g.post_offset * 2f + .4f, .18f, .2f), steel, Quaternion.identity, false);
+        float cy = g.road_y + g.rise + h * .5f, postTop = cy + h * .5f + .31f;
+        // Posts reach the upper beam; the beams run above and below the banner so
+        // nothing crosses the lettering (the lower beam stays 4.3 m above the road).
+        for (int side = -1; side <= 1; side += 2)
+            NeonPrim(PrimitiveType.Cylinder, "Post", t, new Vector3(side * g.post_offset, postTop * .5f, 0), new Vector3(.36f, postTop * .5f, .36f), steel, Quaternion.identity, false);
+        foreach (float y in new[] { cy - h * .5f - .22f, cy + h * .5f + .22f })
+            NeonPrim(PrimitiveType.Cube, "Beam", t, new Vector3(0, y, 0), new Vector3(g.post_offset * 2f + .4f, .18f, .2f), steel, Quaternion.identity, false);
         NeonPrim(PrimitiveType.Cube, "Board", t, new Vector3(0, cy, 0), new Vector3(w, h, .1f), DarkMat("Board", Rgb(.02f, .02f, .03f)), Quaternion.identity, false);
         Material sign = SignMat(g.texture);
         // Both faces readable: approaching karts see the front, the climb back sees the rear.

@@ -104,13 +104,14 @@ def torii_run(count=6, spacing=6.5, rise=5.0, offset=HALF + .35):
                     'post_offset': round(offset, 3), 'rise': rise, 'station': round(float(S[i]), 1)})
     return out
 
-def pass_arch(rise=4.6, offset=HALF + .35):
+def pass_arch(rise=4.6, offset=HALF + .35, banner_h=1.75):
     for i in np.argsort(np.abs(S - (PASS[0] + 14))):
         if not (PASS[0] + 4 < S[i] < PASS[0] + 60): continue
-        if curvature(i) > .02 or not overhead_clear(i, Z[i] + rise + 1.9, offset + .3) or gate_posts_free(i, offset) is None: continue
+        # Structure top: board (rise .. rise + banner) plus the upper beam (+0.31).
+        if curvature(i) > .02 or not overhead_clear(i, Z[i] + rise + banner_h + .31, offset + .3) or gate_posts_free(i, offset) is None: continue
         t = tangent(i); yaw = math.degrees(math.atan2(t[0], t[1]))
         return {'position': U(XY[i], 0.0), 'road_y': round(float(Z[i]), 3), 'yaw': round(yaw, 2), 'post_offset': round(offset, 3),
-                'rise': rise, 'station': round(float(S[i]), 1), 'texture': 'neon_pass_banner', 'banner': [5.6, 1.75]}
+                'rise': rise, 'station': round(float(S[i]), 1), 'texture': 'neon_pass_banner', 'banner': [5.6, banner_h]}
     return None
 
 # ---------------------------------------------------------------- forest

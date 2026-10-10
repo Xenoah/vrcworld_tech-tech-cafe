@@ -217,9 +217,9 @@ def torii(g):
     gate_frame(trs(P(g['position']), euler(0, g['yaw'], 0)), g, vermilion, vermilion, dark('ToriiCap', (.03, .03, .04)), True)
 def pass_arch(g):
     m = trs(P(g['position']), euler(0, g['yaw'], 0)); steel = dark('GateSteel', (.12, .13, .17), .45); amber = neon('Amber', (1, .62, .12), 3.2)
-    gate_frame(m, g, steel, steel, steel, False)
-    w, h = g.get('banner') or (5.6, 1.75); cy = g['road_y'] + g['rise'] + h / 2
-    emit('Beam', CUBE, m @ trs((0, cy, 0), None, (g['post_offset'] * 2 + .4, .18, .2)), steel)
+    w, h = g.get('banner') or (5.6, 1.75); cy = g['road_y'] + g['rise'] + h / 2; post_top = cy + h / 2 + .31
+    for side in (-1, 1): emit('Post', CYL, m @ trs((side * g['post_offset'], post_top / 2, 0), None, (.36, post_top / 2, .36)), steel)
+    for y in (cy - h / 2 - .22, cy + h / 2 + .22): emit('Beam', CUBE, m @ trs((0, y, 0), None, (g['post_offset'] * 2 + .4, .18, .2)), steel)
     emit('Board', CUBE, m @ trs((0, cy, 0), None, (w, h, .1)), dark('Board', (.02, .02, .03)))
     for face in (-1, 1): emit('Banner', prim_quad(w, h), m @ trs((0, cy, face * .056), euler(0, 0 if face < 0 else 180, 0)), sign(g['texture']))
     for y in (cy - h / 2 - .06, cy + h / 2 + .06): emit('Tube', CUBE, m @ trs((0, y, 0), None, (w + .1, .06, .14)), amber)
