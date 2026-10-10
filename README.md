@@ -10,6 +10,10 @@
 
 [リリースと全ダウンロード](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.9.0) · [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) · [Unity導入の詳細](README_JA.md) · [Unity MCP引き継ぎ](UNITY_MCP_HANDOFF.md)
 
+## 開発中 v0.10.0 — 体験レイヤー
+
+ORBIT DECK・DATA STREAMライド・SIZE LAB・視界ジャック・KOMO・アダプティブ音楽を追加する未リリースの開発版です。Unity/VRChat実機は未検証。仕様・座標・検査値は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md)。
+
 ## v0.9.0 — ポータル案内・iwaSync用ステージ・照明3モード
 
 Claudeのv0.8.0（`65c185a`、2026-10-08）を基準に更新しました。26コーナー・3層の走路、ジャンプ、バンク、FPV飛行エリア、ガラス・街並みを継承しています。

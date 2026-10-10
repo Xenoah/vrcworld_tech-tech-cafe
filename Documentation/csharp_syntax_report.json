@@ -5,11 +5,19 @@
       "syntax_errors": false
     },
     {
+      "file": "CommonsExperienceBuilder.cs",
+      "syntax_errors": false
+    },
+    {
       "file": "CommonsLightingBuilder.cs",
       "syntax_errors": false
     },
     {
       "file": "CommonsWorldBuilder.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsAdaptiveMusic.cs",
       "syntax_errors": false
     },
     {
@@ -29,11 +37,35 @@
       "syntax_errors": false
     },
     {
+      "file": "CommonsExperienceSettings.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsKomo.cs",
+      "syntax_errors": false
+    },
+    {
       "file": "CommonsLightingModes.cs",
       "syntax_errors": false
     },
     {
+      "file": "CommonsOrbitDeck.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsPlayerMotion.cs",
+      "syntax_errors": false
+    },
+    {
       "file": "CommonsPortal.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsRide.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsRideSeat.cs",
       "syntax_errors": false
     },
     {
@@ -50,6 +82,10 @@
     },
     {
       "file": "CommonsVideoSync.cs",
+      "syntax_errors": false
+    },
+    {
+      "file": "CommonsViewJack.cs",
       "syntax_errors": false
     },
     {

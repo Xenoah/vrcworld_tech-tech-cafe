@@ -1,5 +1,15 @@
 # Unity MCPへの引き継ぎ — v0.8.0
 
+## v0.10.0（開発版）の適用 — 体験レイヤー
+
+開発ブランチの内容です。基準はv0.9.0（`c3a50c9`）。手順はv0.9.0と同じで、**既存シーンを保存・複製してから新しいPC/Questシーンを生成**します。Blenderモデル・メッシュ記録・カート走路は変更なし。
+
+- `The Commons/MCP/Build PC World (no dialogs)` の途中で `CommonsExperienceBuilder` が呼ばれ、ORBIT DECK（上空120 m）、DATA STREAMライド、SIZE LAB、KOMO、視界ジャック、アダプティブ音楽、ORBITリフト、EXPERIENCEパネルを生成します。Consoleの `THE COMMONS experience:` 行でライドの周期と音楽ステムの読み込みを確認。
+- 新規シェーダー4本（View Jack / Experience Toon / Komo Face / Holo Field）がコンパイルされていないとビルドを停止します。
+- `Audio/Experience/*.ogg` が読み込めれば旧BGM/DJループの2ソースは生成後に削除されます（Room toneと声のゾーニングは従来どおり）。
+- ライド経路の微調整は生成シーンの `ATTR_DataStream/Path_ControlPoints` を動かし **The Commons → Experience → Rebake Ride**。KOMOの経路は `KOMO_Places` のTransformを移動。
+- 確認項目は [ACCEPTANCE_JA.md](Documentation/ACCEPTANCE_JA.md) の v0.10.0、仕様は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md)。
+
 ## v0.9.0の適用
 
 基準はClaudeのv0.8.0（65c185a）。最新mainを取得し、**既存シーンを保存・複製してから新しいPC/Questシーンを生成**してください。生成先はタイムスタンプ付きの別フォルダで、前のシーンを上書きしません。

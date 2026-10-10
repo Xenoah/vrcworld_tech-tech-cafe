@@ -1,0 +1,26 @@
+{
+  "ride": {
+    "control_points": 115,
+    "length_m": 824.0,
+    "ride_seconds": 111.7,
+    "min_tower_clearance_m": 2.19,
+    "note_clearance": "car centre to tower/podium box; car half width 0.95 m",
+    "cafe_samples": 258,
+    "cafe_seconds": 6.5,
+    "cafe_issues": [],
+    "max_lateral_mps2": 14.8,
+    "max_climb_deg": 35.7,
+    "max_dive_deg": -30.7,
+    "min_height_over_deck_outside_dock_m": 2.49,
+    "min_car_height_vs_deck_floor_m": 0.023
+  },
+  "checks": {
+    "tower_clearance_ge_1_8m": true,
+    "cafe_path_inside_void_or_above_bridge": true,
+    "lateral_le_20mps2": true,
+    "slope_within_40deg": true,
+    "car_never_below_deck_floor": true,
+    "ride_clears_deck_heads": true
+  },
+  "note": "Geometry checks only. Unity/Udon compilation and VRChat runtime are not validated here."
+}

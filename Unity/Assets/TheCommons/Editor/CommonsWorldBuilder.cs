@@ -51,7 +51,7 @@ public static class CommonsWorldBuilder
         if (!groups.ContainsKey(name)) groups[name]=new GameObject(name);
         return groups[name];
     }
-    static void SaveAsset(UnityEngine.Object asset,string path)
+    internal static void SaveAsset(UnityEngine.Object asset,string path)
     {
         // Build uses a new timestamped directory; existing scenes are never overwritten.
         AssetDatabase.CreateAsset(asset,path);
@@ -245,6 +245,14 @@ public static class CommonsWorldBuilder
         }
         time.ApplyHour(time.hour);time.ApplyProxyModifications();
         Button("SOFT GLOW",new Vector3(-30.5f,.85f,.65f),comfort,"ToggleGlow",1.6f,.28f,180);
+        // v0.10 experience layer: view jack, adaptive music, sky deck, DATA STREAM, size lab, KOMO.
+        CommonsExperienceBuilder.Result experience=CommonsExperienceBuilder.Configure(Out,Mobile,materials,state,comfort,lighting,time);
+        if(experience.adaptiveMusic)
+        {
+            // Adaptive stems replace the two v0.9 loops; room tone and voice zoning stay with CommonsAudioZones.
+            UnityEngine.Object.DestroyImmediate(music.gameObject);UnityEngine.Object.DestroyImmediate(zones.dance.gameObject);
+            zones.music=null;zones.dance=null;
+        }
         GameObject desc=new GameObject("VRCWorld");var descriptor=desc.AddComponent<VRCSceneDescriptor>();
         Transform spawn=new GameObject("Spawn_Entry").transform;spawn.position=new Vector3(14,.1f,1.2f);descriptor.spawns=new[]{spawn};descriptor.capacity=32;
         SerializedObject ds=new SerializedObject(descriptor);SerializedProperty rh=ds.FindProperty("RespawnHeightY");if(rh!=null)rh.floatValue=-12;ds.ApplyModifiedPropertiesWithoutUndo();
@@ -254,6 +262,7 @@ public static class CommonsWorldBuilder
         LightProbeGroup probes=new GameObject("LGT_LightProbes").AddComponent<LightProbeGroup>();List<Vector3> ps=new List<Vector3>();
         for(int x=2;x<28;x+=4)for(int z=2;z<18;z+=4)foreach(float y in new[]{1f,3f,5.6f,7.8f})ps.Add(new Vector3(x,y,z));for(int x=-61;x<=-28;x+=6)for(int z=3;z<=26;z+=6)foreach(float y in new[]{1.2f,3.5f,6f})ps.Add(new Vector3(x,y,z));
         if(data.kart!=null && data.kart.light_probes!=null)foreach(ProbeRecord r in data.kart.light_probes)ps.Add(V(r.position));
+        ps.AddRange(experience.probes);
         probes.probePositions=ps.ToArray();
         if(!Mobile)
         {
@@ -271,7 +280,8 @@ public static class CommonsWorldBuilder
         CommonsAreaVisibility visibility=areaObject.AddUdonSharpComponent<CommonsAreaVisibility>();
         List<Renderer> cafeRenderers=new List<Renderer>(),fieldRenderers=new List<Renderer>(),kartRenderers=new List<Renderer>();
         foreach(Renderer renderer in UnityEngine.Object.FindObjectsOfType<Renderer>(true))
-            if(renderer.bounds.center.x>=100f)kartRenderers.Add(renderer);else if(renderer.bounds.center.x < -15f)fieldRenderers.Add(renderer);else cafeRenderers.Add(renderer);
+            if(renderer.gameObject==experience.viewJackOverlay)continue;   // head-locked overlay must survive area changes
+            else if(renderer.bounds.center.x>=100f)kartRenderers.Add(renderer);else if(renderer.bounds.center.x < -15f)fieldRenderers.Add(renderer);else cafeRenderers.Add(renderer);
         visibility.cafe=cafeRenderers.ToArray();visibility.fpv=fieldRenderers.ToArray();visibility.kart=kartRenderers.ToArray();visibility.timeOfDay=time;visibility.ApplyProxyModifications();
         zones.ApplyProxyModifications();comfort.ApplyProxyModifications();state.ApplyProxyModifications();
         state.academicRoot.SetActive(false);state.ApplyState();comfort.Refresh();
@@ -281,17 +291,17 @@ public static class CommonsWorldBuilder
         if(interactive && !Application.isBatchMode)
             EditorUtility.DisplayDialog("THE COMMONS", "Scene created. Next: The Commons > Bake lighting, then VRChat SDK > Build & Test.\n\nNo upload has occurred.", "OK");
     }
-    static GameObject Quad(string name,Vector3 center,float w,float h,float yaw,Material m)
+    internal static GameObject Quad(string name,Vector3 center,float w,float h,float yaw,Material m)
     {
         GameObject o=new GameObject(name);o.transform.position=center;o.transform.rotation=Quaternion.Euler(0,yaw,0);
         Mesh mesh=new Mesh();mesh.name=name;mesh.vertices=new[]{new Vector3(-w/2,-h/2,0),new Vector3(w/2,-h/2,0),new Vector3(w/2,h/2,0),new Vector3(-w/2,h/2,0)};mesh.uv=new[]{Vector2.zero,Vector2.right,Vector2.one,Vector2.up};mesh.triangles=new[]{0,2,1,0,3,2};mesh.RecalculateNormals();
         SaveAsset(mesh,Out+"/Meshes/"+name+".asset");o.AddComponent<MeshFilter>().sharedMesh=mesh;o.AddComponent<MeshRenderer>().sharedMaterial=m;return o;
     }
-    static TextMesh Label(string name,string content,Vector3 p,float size,float yaw=0)
+    internal static TextMesh Label(string name,string content,Vector3 p,float size,float yaw=0)
     {
         GameObject o=new GameObject("LABEL_"+name);o.transform.position=p;o.transform.rotation=Quaternion.Euler(0,yaw,0);TextMesh text=o.AddComponent<TextMesh>();text.text=content;text.anchor=TextAnchor.MiddleCenter;text.alignment=TextAlignment.Center;text.fontSize=48;text.characterSize=size*10f/48f;text.color=new Color(.87f,.92f,.94f);return text;
     }
-    static void Button(string name,Vector3 p,UdonSharpBehaviour target,string method,float w=.95f,float h=.28f,float yaw=0)
+    internal static void Button(string name,Vector3 p,UdonSharpBehaviour target,string method,float w=.95f,float h=.28f,float yaw=0)
     {
         GameObject o=GameObject.CreatePrimitive(PrimitiveType.Cube);o.name="INT_"+method;o.transform.position=p;o.transform.rotation=Quaternion.Euler(0,yaw,0);o.transform.localScale=new Vector3(w,h,.075f);o.GetComponent<Renderer>().sharedMaterial=materials["MAT_Steel"];
         Label(name,name,p+Quaternion.Euler(0,yaw,0)*new Vector3(0,0,-.046f),h*.35f,yaw);
@@ -319,7 +329,7 @@ public static class CommonsWorldBuilder
     {
         GameObject o=new GameObject("AUD_"+name);o.transform.position=p;AudioSource a=o.AddComponent<AudioSource>();a.clip=AssetDatabase.LoadAssetAtPath<AudioClip>(Root+"/Audio/"+clip+".wav");a.loop=true;a.playOnAwake=true;a.volume=volume;a.spatialBlend=0;return a;
     }
-    static void InteractSettings(UdonSharpBehaviour proxy,string text,float distance)
+    internal static void InteractSettings(UdonSharpBehaviour proxy,string text,float distance)
     {var b=UdonSharpEditorUtility.GetBackingUdonBehaviour(proxy);b.interactText=text;b.proximity=distance;EditorUtility.SetDirty(b);}
     static void BuildIwaSyncAnchors()
     {

@@ -107,3 +107,20 @@ v0.7.0の走路の項目です（v0.8.0で走路を変更）。
 - [ ] FPV/カートへ移動中はカフェのレーザー・追加リアルタイムライトを停止し、戻ると復帰する。
 - [ ] FPV・カート・街並みの色がカフェの照明モードで変化しない。
 - [ ] iwaSyncの音量・画面・URL・同期を所有者の導入版で確認する。HOUSE MUSIC既定OFF。
+
+## v0.10.0（開発版）体験レイヤー（Unity/VRChat実機未実施）
+
+詳細は [CHANGES_v0.10.0_JA.md](CHANGES_v0.10.0_JA.md)。
+
+- [ ] PC/Questの新規シーン生成でC#・UdonSharp・シェーダーのエラー0。Consoleに `THE COMMONS experience: ride … s, cycle … s, adaptive music ON` が出る。
+- [ ] 視界ジャック: ポータル・ORBITリフトで暗転の頂点に移動し、両眼で同じ像。鏡・VRChatカメラ・他の参加者に映らない。何も出ていない時に描画負荷がない。
+- [ ] EXPERIENCEパネル: VIEW FX OFF/SOFT/FULL、WARP OFFで即時移動、RIDE FX、AMBIENT、BEAT PULSE、RIDE VIGNETTEが自分だけに反映。REDUCED MOTION ONで模様が静止する。点滅して見える箇所がない。
+- [ ] ORBIT DECK: 到着、RETURN TO CAFE、力場の壁と天井で落ちない・抜けない。重力井戸でジャンプ長押しの上昇、井戸を出ると通常重力。救助が誤作動しない（ポータル移動・ライド降車後）。
+- [ ] SIZE LAB: TINY/SMALL/NORMAL/GIANTの目線と移動速度。GIANTはデッキ外で戻る。FPV/カート移動・ライド搭乗・リスポーン・アバター変更で元に戻る。
+- [ ] DATA STREAM: 2両が乗り場で重ならない。乗車時間だけ座れる。走行中に降りると乗り場へ戻る。到着で自動降車。途中参加者・他の参加者から見た車両位置と着席アバターが一致する。
+- [ ] DATA STREAM: 南面ガラス・屋根の通過、吹抜けでDJブース・ホログラム・南橋の人に当たって見えないか。カフェ内の参加者から通過が見える。
+- [ ] DATA STREAM: REDUCED MOTIONで自分の車両が水平、OFFでバンク。RIDE VIGNETTEの強さ。酔いやすさの評価（Desktop/VR）。
+- [ ] KOMO: 全員に同じ場所・行動で見える。8か所の移動で壁・家具に埋まらない（必要ならSpot/Doorを調整）。4周期に1回CAR Aの先頭に乗る。話しかけ、挨拶、EN/JP、QUIET。QuestでJPの吹き出しが表示されるか。
+- [ ] 音楽: カフェはHOUSE MUSICに従い、モード・照明・時刻・Quiet Room・テラスで滑らかに切り替わる。デッキとライドではHOUSE MUSICに関係なく流れる。途中参加者と同じ小節。MUSIC −/＋。
+- [ ] 既存機能: 4モード、照明3種、時間帯、iwaSync、FPV/カート往復、CVS2車両が変わらず動く。
+- [ ] PC/Quest実機のFPS・フレーム時間・メモリ（特にステム7本の同時再生と視界ジャック表示中）。

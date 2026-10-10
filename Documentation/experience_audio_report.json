@@ -1,0 +1,105 @@
+{
+  "bpm": 96.0,
+  "key": "D major",
+  "bars": 16,
+  "loop_seconds": 40.0,
+  "sample_rate": 44100,
+  "stems": [
+    {
+      "file": "stem_0_pad.ogg",
+      "samples": 1764000,
+      "rms_dbfs": -22.0,
+      "peak_dbfs": -8.22,
+      "loop_seam_jump": 0.0057
+    },
+    {
+      "file": "stem_1_keys.ogg",
+      "samples": 1764000,
+      "rms_dbfs": -22.0,
+      "peak_dbfs": -7.22,
+      "loop_seam_jump": 0.0118
+    },
+    {
+      "file": "stem_2_bass.ogg",
+      "samples": 1764000,
+      "rms_dbfs": -20.0,
+      "peak_dbfs": -10.32,
+      "loop_seam_jump": 0.0009
+    },
+    {
+      "file": "stem_3_beat_soft.ogg",
+      "samples": 1764000,
+      "rms_dbfs": -20.0,
+      "peak_dbfs": -3.59,
+      "loop_seam_jump": 0.0035
+    },
+    {
+      "file": "stem_4_beat_dance.ogg",
+      "samples": 1764000,
+      "rms_dbfs": -20.0,
+      "peak_dbfs": -5.75,
+      "loop_seam_jump": 0.0019
+    },
+    {
+      "file": "stem_5_arp.ogg",
+      "samples": 1764000,
+      "rms_dbfs": -22.0,
+      "peak_dbfs": -6.24,
+      "loop_seam_jump": 0.0037
+    },
+    {
+      "file": "stem_6_sparkle.ogg",
+      "samples": 1764000,
+      "rms_dbfs": -22.0,
+      "peak_dbfs": -6.39,
+      "loop_seam_jump": 0.0225
+    }
+  ],
+  "sfx": [
+    {
+      "file": "sfx_0_whoosh.ogg",
+      "seconds": 1.6
+    },
+    {
+      "file": "sfx_1_glitch.ogg",
+      "seconds": 0.55
+    },
+    {
+      "file": "sfx_2_chime.ogg",
+      "seconds": 2.4
+    },
+    {
+      "file": "sfx_3_grow.ogg",
+      "seconds": 1.6
+    },
+    {
+      "file": "sfx_4_shrink.ogg",
+      "seconds": 1.4
+    },
+    {
+      "file": "sfx_5_click.ogg",
+      "seconds": 0.09
+    },
+    {
+      "file": "sfx_6_lift.ogg",
+      "seconds": 3.2
+    },
+    {
+      "file": "ride_hum_loop.ogg",
+      "seconds": 4.0
+    },
+    {
+      "file": "komo_chirp_0.ogg",
+      "seconds": 0.9
+    },
+    {
+      "file": "komo_chirp_1.ogg",
+      "seconds": 0.9
+    },
+    {
+      "file": "komo_chirp_2.ogg",
+      "seconds": 0.9
+    }
+  ],
+  "note": "Original audio synthesised by this script. No samples or third-party recordings."
+}
