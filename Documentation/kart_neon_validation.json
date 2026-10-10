@@ -1,0 +1,40 @@
+{
+  "version": "0.11.0",
+  "trees": 54,
+  "hairpin_feature_trees": [
+    "T20",
+    "T22",
+    "T23",
+    "T24",
+    "T25"
+  ],
+  "tree_types": {
+    "momiji": 27,
+    "sakura": 10,
+    "cedar": 17
+  },
+  "torii": 6,
+  "torii_stations_m": [
+    44.9,
+    51.4,
+    57.9,
+    64.4,
+    70.9,
+    77.4
+  ],
+  "pass_arch_station_m": 578.3,
+  "lantern_strings": 4,
+  "tower_deck_clearance_m": 38.32,
+  "min_tree_canopy_to_deck_edge_m": 0.92,
+  "wall_signs": 10,
+  "hanging_signs": 3,
+  "vending_machines": 4,
+  "checks": {
+    "no_floor_object_inside_deck_pit_tyre_or_wall_clearance": true,
+    "gates_found": true,
+    "hanging_signs_clear_top_level_by_3m": true,
+    "trees_in_every_fitting_hairpin": true
+  },
+  "issues": [],
+  "note": "Visual-only décor without colliders except the vending machines (south wall walkway). Geometry checks only; Unity/CVS2 runtime not validated."
+}

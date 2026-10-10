@@ -1,5 +1,14 @@
 # Unity MCPへの引き継ぎ — v0.8.0
 
+## v0.11.0（開発中）の適用 — パーティクルレーザー・カートのネオン装飾
+
+基準はv0.10.0（`376c334`）。手順は同じで、**既存シーンを保存・複製してから新しいPC/Questシーンを生成**します。カート走路・当たり判定は変更なし。
+
+- `CommonsLightingBuilder` がDISCOのレーザーを `LGT_DiscoLasers/LaserEmitter_*`（ParticleSystem、PC 12 / Quest 6）として生成します。新規シェーダー `The Commons/Laser Particle` がコンパイルされていないとビルドを停止します。
+- `CommonsExperienceBuilder` が `Data/music_score.json` を `CommonsAdaptiveMusic` に読み込み、照明 (`CommonsLightingModes.music`) に接続します。
+- 同じビルダーがカート館内に `ATTR_KartNeon` を生成します。Consoleの `THE COMMONS kart neon:` 行で本数を確認（PC 54本 / Quest 29本の木、鳥居6基、壁の看板10枚）。テクスチャは `Media/Neon/`。
+- 確認項目は [ACCEPTANCE_JA.md](Documentation/ACCEPTANCE_JA.md) の v0.11.0、仕様は [CHANGES_v0.11.0_JA.md](Documentation/CHANGES_v0.11.0_JA.md)。
+
 ## v0.10.0の適用 — 体験レイヤー
 
 基準はv0.9.0（`c3a50c9`）。手順はv0.9.0と同じで、**既存シーンを保存・複製してから新しいPC/Questシーンを生成**します。Blenderモデル・メッシュ記録・カート走路は変更なし。

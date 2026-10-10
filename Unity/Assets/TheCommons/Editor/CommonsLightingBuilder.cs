@@ -49,28 +49,32 @@ public static class CommonsLightingBuilder
         }
         modes.accentLights=accents.ToArray();
         GameObject rootLaser=new GameObject("LGT_DiscoLasers");rootLaser.transform.SetParent(go.transform);modes.laserRoot=rootLaser;
-        Mesh mesh=BeamMesh();AssetDatabase.CreateAsset(mesh,output+"/Meshes/DiscoBeam.asset");
-        Material a=new Material(Shader.Find("The Commons/Disco Beam")),b=new Material(a);a.name="DiscoBeam_A";b.name="DiscoBeam_B";
-        AssetDatabase.CreateAsset(a,output+"/Materials/DiscoBeam_A.mat");AssetDatabase.CreateAsset(b,output+"/Materials/DiscoBeam_B.mat");modes.beamMaterials=new[]{a,b};
-        int count=mobile?6:12;Transform[] beams=new Transform[count];
+        // v0.11: particle lasers. Udon emits every particle (rate 0 here) so density and
+        // brightness follow the music; world-space simulation leaves sweeping trails.
+        Shader laser=Shader.Find("The Commons/Laser Particle");
+        if(laser==null) throw new System.InvalidOperationException("Shader not compiled: The Commons/Laser Particle. Check the Console for shader errors.");
+        Material a=new Material(laser),b=new Material(a);a.name="LaserParticle_A";b.name="LaserParticle_B";
+        a.enableInstancing=true;b.enableInstancing=true;
+        AssetDatabase.CreateAsset(a,output+"/Materials/LaserParticle_A.mat");AssetDatabase.CreateAsset(b,output+"/Materials/LaserParticle_B.mat");modes.beamMaterials=new[]{a,b};
+        int count=mobile?6:12;Transform[] beams=new Transform[count];ParticleSystem[] emitters=new ParticleSystem[count];
         for(int i=0;i<count;i++)
         {
-            GameObject beam=new GameObject("DiscoBeam_"+i);beam.transform.SetParent(rootLaser.transform);
+            GameObject beam=new GameObject("LaserEmitter_"+i);beam.transform.SetParent(rootLaser.transform);
             beam.transform.position=new Vector3(i<count/2?10.2f:17.8f,4.3f,5.3f);
-            beam.AddComponent<MeshFilter>().sharedMesh=mesh;MeshRenderer renderer=beam.AddComponent<MeshRenderer>();
+            ParticleSystem ps=beam.AddComponent<ParticleSystem>();
+            ParticleSystem.MainModule main=ps.main;main.loop=true;main.playOnAwake=true;main.duration=1f;
+            main.startLifetime=.28f;main.startSpeed=26f;main.startSize=.045f;main.startColor=Color.white;
+            main.simulationSpace=ParticleSystemSimulationSpace.World;main.maxParticles=mobile?40:64;main.scalingMode=ParticleSystemScalingMode.Hierarchy;
+            ParticleSystem.EmissionModule emission=ps.emission;emission.rateOverTime=0f;
+            ParticleSystem.ShapeModule shape=ps.shape;shape.enabled=true;shape.shapeType=ParticleSystemShapeType.Cone;shape.angle=0f;shape.radius=.004f;
+            ParticleSystemRenderer renderer=beam.GetComponent<ParticleSystemRenderer>();
+            renderer.renderMode=ParticleSystemRenderMode.Stretch;renderer.lengthScale=1f;renderer.velocityScale=.018f;
             renderer.sharedMaterial=i%2==0?a:b;renderer.shadowCastingMode=ShadowCastingMode.Off;renderer.receiveShadows=false;
-            beams[i]=beam.transform;
+            renderer.maxParticleSize=1f;
+            beams[i]=beam.transform;emitters[i]=ps;
         }
+        modes.beamEmitters=emitters;
         modes.beams=beams;modes.Refresh();time.ApplyProxyModifications();modes.ApplyProxyModifications();return modes;
-    }
-    static Mesh BeamMesh()
-    {
-        // Two crossed, finite ribbons, 8 vertices / 4 triangles per ray. Depth
-        // testing and finite lengths prevent beams drawing through walls.
-        const float w=.024f;Mesh m=new Mesh();m.name="DiscoBeam";
-        m.vertices=new[]{new Vector3(-w,0,0),new Vector3(w,0,0),new Vector3(w,0,1),new Vector3(-w,0,1),new Vector3(0,-w,0),new Vector3(0,w,0),new Vector3(0,w,1),new Vector3(0,-w,1)};
-        m.uv=new[]{Vector2.zero,Vector2.right,Vector2.one,Vector2.up,Vector2.zero,Vector2.right,Vector2.one,Vector2.up};
-        m.triangles=new[]{0,1,2,0,2,3,4,5,6,4,6,7};m.RecalculateBounds();return m;
     }
 }
 #endif

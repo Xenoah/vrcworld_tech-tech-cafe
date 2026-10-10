@@ -23,6 +23,16 @@ public class CommonsAdaptiveMusic : UdonSharpBehaviour
     public CommonsTimeOfDay timeOfDay;
     public CommonsExperienceSettings settings;
     public CommonsOrbitDeck deck;
+    [Header("Score (Data/music_score.json, per 16th step)")]
+    public int stepsPerBar = 16;
+    public int bars = 16;
+    public float[] scoreKickSoft;
+    public float[] scoreKickDance;
+    public float[] scoreSnare;
+    public float[] scoreHat;
+    public float[] scoreBass;
+    public Color[] barPrimary;
+    public Color[] barSecondary;
     private float[] target;
     private float[] mix = new float[7];
     private bool riding;
@@ -43,6 +53,65 @@ public class CommonsAdaptiveMusic : UdonSharpBehaviour
         double seconds = stems != null && stems.Length > 0 && stems[0] != null && stems[0].isPlaying ? stems[0].time : Networking.GetServerTimeInSeconds();
         double beats = seconds * bpm / 60.0;
         return (float)(beats % 1.0);
+    }
+
+    // ---- Score sync: lights read the playback position of the stems, so they
+    // follow exactly what is heard. When nothing plays (HOUSE MUSIC off, FPV,
+    // kart) the same grid runs from the server clock at reduced strength.
+    public bool Audible()
+    {
+        if (stems == null) return false;
+        for (int i = 0; i < stems.Length; i++) if (stems[i] != null && stems[i].isPlaying && stems[i].volume > .01f) return true;
+        return false;
+    }
+    public float StepPosition()
+    {
+        int total = Mathf.Max(1, stepsPerBar * bars);
+        double seconds = Audible() && stems[0] != null ? stems[0].time : Networking.GetServerTimeInSeconds();
+        double steps = seconds * bpm / 60.0 * (stepsPerBar / 4.0);
+        return (float)(steps % total);
+    }
+    public int Bar() { return Mathf.Clamp(Mathf.FloorToInt(StepPosition() / Mathf.Max(1, stepsPerBar)), 0, Mathf.Max(0, bars - 1)); }
+    public float BeatInBar() { return (StepPosition() % Mathf.Max(1, stepsPerBar)) / 4f; }   // 0..4
+    // Most recent onset within the last beat, decayed exponentially (decay per second).
+    public float Hit(float[] track, float decay)
+    {
+        if (track == null || track.Length == 0) return 0f;
+        float position = StepPosition();
+        int step = Mathf.FloorToInt(position);
+        float stepSeconds = 15f / Mathf.Max(1f, bpm);
+        for (int back = 0; back < 4; back++)
+        {
+            int s = ((step - back) % track.Length + track.Length) % track.Length;
+            if (track[s] > 0f) return track[s] * Mathf.Exp(-(position - (step - back)) * stepSeconds * decay);
+        }
+        return 0f;
+    }
+    private float StemLevel(int i)
+    {
+        if (stems == null || i >= stems.Length || stems[i] == null || !stems[i].isPlaying) return 0f;
+        float full = Mathf.Max(.001f, masterVolume * (stemTrim != null && i < stemTrim.Length ? stemTrim[i] : 1f) * .9f);
+        return Mathf.Clamp01(stems[i].volume / full);
+    }
+    // Kick envelope weighted by how loud the beat stems are right now.
+    public float KickPulse()
+    {
+        float dance = StemLevel(4), soft = StemLevel(3);
+        if (dance + soft < .05f) return Hit(scoreKickDance, 7f) * .45f;   // silent fallback grid
+        return Mathf.Clamp01(Hit(scoreKickDance, 7f) * dance + Hit(scoreKickSoft, 7f) * soft);
+    }
+    public float SnarePulse() { return Hit(scoreSnare, 9f) * Mathf.Max(StemLevel(3), StemLevel(4)); }
+    public float HatPulse() { return Hit(scoreHat, 14f) * StemLevel(4); }
+    public float BassPulse() { return Hit(scoreBass, 5f) * StemLevel(2); }
+    public float Energy() { return Mathf.Clamp01(StemLevel(2) * .3f + StemLevel(4) * .45f + StemLevel(3) * .2f + StemLevel(5) * .2f); }
+    // Chord colours, cross-faded over the first beat of each bar.
+    public Color ChordColor(bool secondary)
+    {
+        Color[] table = secondary ? barSecondary : barPrimary;
+        if (table == null || table.Length == 0) return secondary ? new Color(1f, .12f, .49f) : new Color(.08f, .7f, 1f);
+        int bar = Bar() % table.Length;
+        int previous = (bar - 1 + table.Length) % table.Length;
+        return Color.Lerp(table[previous], table[bar], Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(BeatInBar())));
     }
     public void Resync()
     {

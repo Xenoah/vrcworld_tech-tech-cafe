@@ -10,6 +10,10 @@ Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md
 
 **詳細仕様・寸法付き平面図・実モデルのデザインシートは [README](README.md) と [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) に整理しています。モデル版はv0.10.0（Blenderモデル自体はv0.9.0から変更なし）、図面集はv0.6.0の過去資料です（カートの図面・デザインシートは旧コース）。最新のカートは `Preview/Design/09_Kart_Plan_v08.png` とv0.8.0の画像、ガラス・照明・街並みはv0.6.1の画像を参照してください。**
 
+## 開発中（v0.11.0予定）— パーティクルレーザー・カートのネオン装飾
+
+DISCOのレーザーをBGMに同期するパーティクルに変更し、カート館内をネオトーキョー風に装飾しました（鳥居のトンネル、七曲峠ゲート、7連ヘアピン周りのネオンの樹木、電波塔、看板）。Unity/VRChat実機は未検証です。詳細は [CHANGES_v0.11.0_JA.md](Documentation/CHANGES_v0.11.0_JA.md)。
+
 ## v0.10.0 — 体験レイヤー（上空デッキ・ライド・視界ジャック・KOMO・音楽）
 
 「メタバースだからこそできる体験」を追加しました。Unity/VRChat実機は未検証です。詳細は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md)。

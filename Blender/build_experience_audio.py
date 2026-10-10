@@ -366,6 +366,41 @@ SFX = [('sfx_0_whoosh', sfx_whoosh), ('sfx_1_glitch', sfx_glitch), ('sfx_2_chime
        ('ride_hum_loop', sfx_car_loop), ('komo_chirp_0', lambda: sfx_chirp(0)), ('komo_chirp_1', lambda: sfx_chirp(1)),
        ('komo_chirp_2', lambda: sfx_chirp(2))]
 
+# ---------------------------------------------------------------- score
+# Chord colours for music-synchronous lighting (primary, secondary), linear RGB.
+CHORD_COLOURS = {
+    'Dmaj9': ((.05, .78, 1.0), (1.0, .12, .55)), 'Bm9': ((.62, .18, 1.0), (.05, .85, .95)),
+    'Gmaj9': ((.10, 1.0, .55), (.15, .45, 1.0)), 'A69': ((1.0, .35, .65), (1.0, .70, .20)),
+    'F#m7': ((.85, .10, 1.0), (.10, .60, 1.0)), 'A13': ((1.0, .55, .15), (.95, .15, .45)),
+    'Em9': ((.20, .95, .90), (.55, .25, 1.0)), 'A7sus': ((1.0, .20, .35), (.20, .80, 1.0)),
+}
+
+def score():
+    """Per-16th onset strengths that mirror the stem patterns above (16 bars x 16 steps).
+    CommonsAdaptiveMusic reads them against the stems' playback position, so lights
+    follow exactly what is heard without audio analysis."""
+    n = BARS * 16; tracks = {k: [0.0] * n for k in ('kick_soft', 'kick_dance', 'snare', 'hat', 'bass', 'keys')}
+    for bar in range(BARS):
+        b = bar * 16
+        for step in (0, 7, 10):
+            if step == 7 and bar % 2 == 1: continue
+            tracks['kick_soft'][b + step] = .9 if step == 0 else .6
+        for step in (0, 4, 8, 12): tracks['kick_dance'][b + step] = 1.0
+        for step in (4, 12): tracks['snare'][b + step] = 1.0
+        for step in (2, 6, 10, 14): tracks['hat'][b + step] = .6
+        for step in (0, 7, 10, 14): tracks['bass'][b + step] = 1.0 if step == 0 else .6
+        for step, vel, _ in [(0, 1.0, 5), (6, .7, 3), (10, .85, 4), (14, .55, 2)]:
+            if bar % 4 == 3 and step == 14: continue
+            tracks['keys'][b + step] = vel
+    return {'bpm': BPM, 'bars': BARS, 'steps_per_bar': 16, 'loop_seconds': LOOP,
+            'chords': PROG, 'bar_primary_rgb': [v for c in PROG for v in CHORD_COLOURS[c][0]],
+            'bar_secondary_rgb': [v for c in PROG for v in CHORD_COLOURS[c][1]], **tracks,
+            'note': 'Onsets mirror the generated stem patterns (beat_soft, beat_dance, bass, keys).'}
+
+def write_score():
+    path = ROOT / 'Unity/Assets/TheCommons/Data/music_score.json'
+    path.write_text(json.dumps(score(), indent=1) + '\n'); print('score', path.relative_to(ROOT))
+
 # ---------------------------------------------------------------- output
 def normalise(st, rms_db=-21.0, peak_db=-1.0):
     rms = np.sqrt(np.mean(st ** 2)) + 1e-9
@@ -385,7 +420,9 @@ def write_ogg(path, st, quality=5):
         subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(wav), '-c:a', 'libvorbis', '-q:a', str(quality), str(path)], check=True)
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument('--preview'); args = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument('--preview'); ap.add_argument('--score-only', action='store_true'); args = ap.parse_args()
+    write_score()
+    if args.score_only: return
     OUT.mkdir(parents=True, exist_ok=True)
     report = {'bpm': BPM, 'key': 'D major', 'bars': BARS, 'loop_seconds': LOOP, 'sample_rate': SR, 'stems': [], 'sfx': [],
               'note': 'Original audio synthesised by this script. No samples or third-party recordings.'}

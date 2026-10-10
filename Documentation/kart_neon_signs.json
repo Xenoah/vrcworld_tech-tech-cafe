@@ -1,0 +1,142 @@
+{
+  "font": "NotoSansCJK-Bold.ttc",
+  "font_license": "SIL Open Font License 1.1 (glyphs rendered into textures; font not redistributed)",
+  "signs": [
+    {
+      "file": "neon_tokyo_v.png",
+      "size": [
+        384,
+        1152
+      ],
+      "text": [
+        "東",
+        "京"
+      ]
+    },
+    {
+      "file": "neon_dennou_v.png",
+      "size": [
+        384,
+        1152
+      ],
+      "text": [
+        "電",
+        "脳"
+      ]
+    },
+    {
+      "file": "neon_kasoku_v.png",
+      "size": [
+        384,
+        1152
+      ],
+      "text": [
+        "加",
+        "速"
+      ]
+    },
+    {
+      "file": "neon_yasou_v.png",
+      "size": [
+        384,
+        1152
+      ],
+      "text": [
+        "夜",
+        "走"
+      ]
+    },
+    {
+      "file": "neon_touge_v.png",
+      "size": [
+        384,
+        1152
+      ],
+      "text": [
+        "峠"
+      ]
+    },
+    {
+      "file": "neon_mirai_v.png",
+      "size": [
+        384,
+        1152
+      ],
+      "text": [
+        "未",
+        "来"
+      ]
+    },
+    {
+      "file": "neon_neotokyo_h.png",
+      "size": [
+        1280,
+        400
+      ],
+      "text": [
+        "ネオ東京",
+        "NEO TOKYO"
+      ]
+    },
+    {
+      "file": "neon_switchyard_h.png",
+      "size": [
+        1280,
+        400
+      ],
+      "text": [
+        "ネオン操車場",
+        "NEON SWITCHYARD"
+      ]
+    },
+    {
+      "file": "neon_anzen_h.png",
+      "size": [
+        1280,
+        400
+      ],
+      "text": [
+        "安全運転",
+        "DRIVE SAFE"
+      ]
+    },
+    {
+      "file": "neon_pass_banner.png",
+      "size": [
+        1280,
+        400
+      ],
+      "text": [
+        "七曲峠",
+        "NANAMAGARI PASS  ·  7 HAIRPINS"
+      ]
+    },
+    {
+      "file": "neon_apex_h.png",
+      "size": [
+        1280,
+        400
+      ],
+      "text": [
+        "頂点",
+        "APEX"
+      ]
+    },
+    {
+      "file": "neon_vending_a.png",
+      "size": [
+        384,
+        704
+      ],
+      "text": []
+    },
+    {
+      "file": "neon_vending_b.png",
+      "size": [
+        384,
+        704
+      ],
+      "text": []
+    }
+  ]
+}

@@ -9,6 +9,10 @@
       "syntax_errors": false
     },
     {
+      "file": "CommonsKartNeonBuilder.cs",
+      "syntax_errors": false
+    },
+    {
       "file": "CommonsLightingBuilder.cs",
       "syntax_errors": false
     },

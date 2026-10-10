@@ -14,7 +14,7 @@ using VRC.SDK3.Components;
 // after lighting so every object lands in the same timestamped scene. All
 // geometry here is generated from primitives and procedural meshes; the
 // Blender model and its tcmesh records are not modified.
-public static class CommonsExperienceBuilder
+public static partial class CommonsExperienceBuilder
 {
     const string Root = "Assets/TheCommons";
     const string AudioDir = Root + "/Audio/Experience/";
@@ -31,6 +31,7 @@ public static class CommonsExperienceBuilder
     [Serializable] public class Cue { public string name; public int channel, sfx; public float seconds; }
     [Serializable] public class Komo { public Spot[] spots; public float[] hub; public int ride_every; public float travel_speed; }
     [Serializable] public class Spot { public string name; public int activity; public float[] position, door; public float yaw; }
+    [Serializable] public class Score { public float bpm; public int bars, steps_per_bar; public float[] kick_soft, kick_dance, snare, hat, bass, bar_primary_rgb, bar_secondary_rgb; }
 
     public class Result
     {
@@ -71,6 +72,7 @@ public static class CommonsExperienceBuilder
         CommonsKomo komo = BuildKomo(layout, ride, music, settings, state, lighting, time, comfort);
         settings.music = music; settings.komo = komo;
         BuildCafeEntrances(layout, settings, jack, music, ride);
+        BuildKartNeon();                                   // v0.11 Neo-Tokyo dressing for the kart hall
 
         // Every existing portal (floors, FPV, KART, returns) gains the optional warp.
         foreach (CommonsPortal portal in UnityEngine.Object.FindObjectsOfType<CommonsPortal>(true))
@@ -223,8 +225,28 @@ public static class CommonsExperienceBuilder
         AudioSource s2d = sfx.AddComponent<AudioSource>(); s2d.playOnAwake = false; s2d.spatialBlend = 0f; s2d.priority = 60;
         music.stems = sources; music.sfx = clips; music.sfxSource = s2d;
         music.state = state; music.lighting = lighting; music.timeOfDay = time; music.settings = settings;
+        // v0.11: per-16th score of the generated stems drives music-synchronous lighting.
+        string scorePath = Root + "/Data/music_score.json";
+        if (File.Exists(scorePath))
+        {
+            Score score = JsonUtility.FromJson<Score>(File.ReadAllText(scorePath));
+            music.bpm = score.bpm; music.bars = score.bars; music.stepsPerBar = score.steps_per_bar;
+            music.scoreKickSoft = score.kick_soft; music.scoreKickDance = score.kick_dance; music.scoreSnare = score.snare;
+            music.scoreHat = score.hat; music.scoreBass = score.bass;
+            music.barPrimary = Colors(score.bar_primary_rgb); music.barSecondary = Colors(score.bar_secondary_rgb);
+        }
+        else Debug.LogWarning("THE COMMONS: music_score.json missing; lasers follow the server clock only.");
+        lighting.music = music; lighting.ApplyProxyModifications();
         result.adaptiveMusic = complete;
         return music;
+    }
+
+    static Color[] Colors(float[] rgb)
+    {
+        if (rgb == null) return new Color[0];
+        Color[] c = new Color[rgb.Length / 3];
+        for (int i = 0; i < c.Length; i++) c[i] = new Color(rgb[i * 3], rgb[i * 3 + 1], rgb[i * 3 + 2], 1f);
+        return c;
     }
 
     // ----------------------------------------------------------- view jack

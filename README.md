@@ -10,6 +10,10 @@
 
 [リリースと全ダウンロード](https://github.com/Xenoah/vrcworld_tech-tech-cafe/releases/tag/v0.10.0) · [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) · [Unity導入の詳細](README_JA.md) · [Unity MCP引き継ぎ](UNITY_MCP_HANDOFF.md)
 
+## 開発中（v0.11.0予定）— BGM同期のパーティクルレーザー・カートのネオン装飾
+
+DISCOのレーザーをパーティクルにし、BGMの小節・拍・キック・コードに合わせて図形・密度・色が変わるようにしました。カート館内に鳥居のトンネル・七曲峠ゲート・ネオンの樹木54本・電波塔・看板を追加。カートの走路と当たり判定は変更なし。Unity/VRChat実機は未検証。詳細は [CHANGES_v0.11.0_JA.md](Documentation/CHANGES_v0.11.0_JA.md)。
+
 ## v0.10.0 — 体験レイヤー
 
 ORBIT DECK・DATA STREAMライド・SIZE LAB・視界ジャック・KOMO・アダプティブ音楽を追加しました。Blenderモデルはv0.9.0から変更なし。Unity/VRChat実機は未検証。仕様・座標・検査値は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md)。
