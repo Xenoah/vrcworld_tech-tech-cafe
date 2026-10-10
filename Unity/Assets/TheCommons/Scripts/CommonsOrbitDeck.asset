@@ -15,7 +15,7 @@ MonoBehaviour:
   serializedUdonProgramAsset: {fileID: 0}
   udonAssembly:
   assemblyError:
-  sourceCsScript: {fileID: 11500000, guid: 8f0bf0eac874479ba73bfd0c5f334e4f, type: 3}
+  sourceCsScript: {fileID: 11500000, guid: aaa1a47b951552c4a8f710a00c8f084b, type: 3}
   scriptVersion: 2
   compiledVersion: 0
   behaviourSyncMode: 0
