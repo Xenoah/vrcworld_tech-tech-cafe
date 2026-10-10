@@ -1,20 +1,30 @@
 # THE COMMONS — Compact Edition
 
-**v0.10.0 / 詳細モデル・Unity構築データ・体験レイヤー / 2026-10-10**
+**v0.11.0 / 詳細モデル・Unity構築データ・体験レイヤー / 2026-10-10**
 
 28×18m、1F +0.000m、2F +4.800m、屋根基準 +9.600mの制作データです。Blenderで編集できる実形状、FBX、glTF、生成テクスチャ、VRChat SDK用のシーン構築ツールとUdonSharpソースを含みます。
 
 **Unity Editor / VRChatクライアントは制作環境になかったため、Unityでのコンパイル・ライトベイク・Build & Test・Quest実機・複数人通信は未検証です。公開済みワールドやビルド済み `.vrcw` ではありません。** Blenderレンダーと幾何検査の結果は `Preview/` と `Documentation/validation_report.json` に収録しています。
 
-Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md)、今回の修正は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md) を参照してください。
+Unity MCPからの取得・構築は [UNITY_MCP_HANDOFF.md](UNITY_MCP_HANDOFF.md)、今回の修正は [CHANGES_v0.11.0_JA.md](Documentation/CHANGES_v0.11.0_JA.md) を参照してください。
 
-**詳細仕様・寸法付き平面図・実モデルのデザインシートは [README](README.md) と [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) に整理しています。モデル版はv0.10.0（Blenderモデル自体はv0.9.0から変更なし）、図面集はv0.6.0の過去資料です（カートの図面・デザインシートは旧コース）。最新のカートは `Preview/Design/09_Kart_Plan_v08.png` とv0.8.0の画像、ガラス・照明・街並みはv0.6.1の画像を参照してください。**
+**詳細仕様・寸法付き平面図・実モデルのデザインシートは [README](README.md) と [A3図面集PDF](Documentation/Design/The_Commons_v0.6.0_Design_Atlas.pdf) に整理しています。モデル版はv0.11.0（Blenderモデル自体はv0.9.0から変更なし）、図面集はv0.6.0の過去資料です（カートの図面・デザインシートは旧コース）。最新のカートは `Preview/Design/09_Kart_Plan_v08.png` とv0.8.0の画像、ガラス・照明・街並みはv0.6.1の画像を参照してください。**
 
-## 開発中（v0.11.0予定）— パーティクルレーザー・カートのネオン装飾
+## v0.11.0 — パーティクルレーザー・カートのネオン装飾
 
 DISCOのレーザーをBGMに同期するパーティクルに変更し、カート館内をネオトーキョー風に装飾しました（鳥居のトンネル、七曲峠ゲート、7連ヘアピン周りのネオンの樹木、電波塔、看板）。Unity/VRChat実機は未検証です。詳細は [CHANGES_v0.11.0_JA.md](Documentation/CHANGES_v0.11.0_JA.md)。
 
-## v0.10.0 — 体験レイヤー（上空デッキ・ライド・視界ジャック・KOMO・音楽）
+- **パーティクルレーザー**：小節ごとに図形（扇・交差・トンネル・流し）が変わり、キックで粒の塊が飛び、色が小節のコードで変わる。BGMの譜面を再生位置で読むため音声解析なし。REDUCED MOTIONで静止。
+- **カートのネオン装飾**：J1ジャンプの直線に鳥居6基、7連ヘアピン入口に七曲峠ゲート、提灯、電波塔、看板13枚、自販機。当たり判定は自販機のみ。走路・当たり判定は変更なし。
+- **ネオンの樹木**：7連ヘアピンの周囲に54本（Quest 29本）。T20・T22〜T25の内側にシンボルツリー。
+
+| 7連ヘアピン | 七曲峠ゲート | 館内全景 |
+| --- | --- | --- |
+| ![ネオンの木](Preview/42_Kart_Neon_Pass.png) | ![七曲峠](Preview/44_Kart_Pass_Gate.png) | ![全景](Preview/45_Kart_Neon_Overview.png) |
+
+画像は実モデルに装飾を同じ寸法で再構築したBlender 4.0.2 / Cyclesのレンダーで、Unity/VRChatの実機画像ではありません。
+
+## v0.10.0の変更履歴 — 体験レイヤー（上空デッキ・ライド・視界ジャック・KOMO・音楽）
 
 「メタバースだからこそできる体験」を追加しました。Unity/VRChat実機は未検証です。詳細は [CHANGES_v0.10.0_JA.md](Documentation/CHANGES_v0.10.0_JA.md)。
 
@@ -137,7 +147,7 @@ v0.6.1のRelease画像7枚のうち、カフェ・FPV・街並みの6枚です�
 ## 最短の導入
 
 1. VRChat Creator Companionで **Worldsプロジェクト** を作成します。制作基準は **Unity 2022.3.22f1**。Built-in Render Pipelineを使います。SDK / UdonSharpはVCCの導入分を利用します。
-2. `Unity/Assets/TheCommons` を、作成したプロジェクトの `Assets` へフォルダーごとコピーします。Release v0.10.0のUnityパッケージをインポートする方法でも導入できます。
+2. `Unity/Assets/TheCommons` を、作成したプロジェクトの `Assets` へフォルダーごとコピーします。Release v0.11.0のUnityパッケージをインポートする方法でも導入できます。
 3. C#のインポートが完了したら、Unity上部メニュー **The Commons → Build PC World** を実行します。最初にUdonSharpをコンパイルし、メッシュ・マテリアル・コライダー・操作パネル・スポーン・照明を配置します。
 4. シーンは `Assets/TheCommons/Generated/PC_日時/TheCommons.unity` に保存されます。既存シーンは上書きしません。
 5. **The Commons → Bake lighting** でライトマップを生成します。PCはPBRと補助光、Questは頂点の環境色をベイク前の補助表示に使います。
